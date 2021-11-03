@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/Level1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/TopDownPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Grass/GrassBlade01.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/Grass/WindyGrassBlade01.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D"]
 
@@ -24,11 +25,11 @@ position = Vector2( 71.6162, -231.74 )
 [node name="Sprite" parent="Level1/YSort/GrassBlade03" index="0"]
 flip_h = true
 
-[node name="GrassBlade01" parent="Level1/YSort" instance=ExtResource( 3 )]
-position = Vector2( 130.854, -240.195 )
-
 [node name="GrassBlade02" parent="Level1/YSort" instance=ExtResource( 4 )]
 position = Vector2( 153.241, -237.433 )
+
+[node name="WindyGrassBlade01" parent="Level1/YSort" instance=ExtResource( 5 )]
+position = Vector2( 121.359, -231.851 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 654.641, 455.851 )

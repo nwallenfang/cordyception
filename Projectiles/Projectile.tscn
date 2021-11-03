@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Projectiles/Projectile.gd" type="Script" id=1]
+[ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Projectiles/projectile_placeholder.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 7.99236
+
+[node name="Projectile" type="KinematicBody2D"]
+collision_layer = 64
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Generic Projectile used for both player and enemy projectiles.
+Parameters that should exist:
+Size, sprite, color, speed"
+}
+SPEED = 800
+ACCELERATION = 1600
+FRICTION = 0
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+collision_layer = 4
+collision_mask = 16
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

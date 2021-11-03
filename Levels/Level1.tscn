@@ -1,16 +1,15 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://World/background_placeholder.png" type="Texture" id=1]
+[ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 598.641, 354.096 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 283.894, 476.07 )
-scale = Vector2( 22.6267, 23.3061 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 250, 200 )
+region_rect = Rect2( 106.968, 87.5457, 4906.71, 3311.11 )
 
 [node name="LevelBoundary" type="StaticBody2D" parent="."]
 collision_mask = 3

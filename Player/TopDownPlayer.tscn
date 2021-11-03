@@ -4,10 +4,12 @@
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 7.15208
-height = 13.6958
+radius = 32.0
+height = 16.0
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 17
 script = ExtResource( 1 )
 SPEED = 490
 ACCELERATION = 1100

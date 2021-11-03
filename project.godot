@@ -28,6 +28,14 @@ config/icon="res://Player/player_ant_placeholder.png"
 
 GameSettings="*res://Game Logic/GameSettings.tscn"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/narrowing_conversion=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1280

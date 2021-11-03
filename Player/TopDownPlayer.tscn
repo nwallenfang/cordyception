@@ -160,4 +160,5 @@ anims/walk_up = SubResource( 5 )
 [node name="ProjectileSpawner" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="Timer" type="Timer" parent="ProjectileSpawner"]
+[node name="ProjectileCooldown" type="Timer" parent="ProjectileSpawner"]
+one_shot = true

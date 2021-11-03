@@ -27,6 +27,7 @@ config/icon="res://Player/player_ant_placeholder.png"
 [autoload]
 
 GameSettings="*res://Game Logic/GameSettings.tscn"
+PlayerStats="*res://Player/PlayerStats.tscn"
 
 [debug]
 

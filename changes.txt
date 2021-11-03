@@ -1,0 +1,167 @@
+diff --git a/Player/TopDownPlayer.tscn b/Player/TopDownPlayer.tscn
+index 99b6e91..de0813f 100644
+--- a/Player/TopDownPlayer.tscn
++++ b/Player/TopDownPlayer.tscn
+@@ -1,13 +1,14 @@
+-[gd_scene load_steps=6 format=2]
++[gd_scene load_steps=7 format=2]
+ 
+ [ext_resource path="res://Player/TopDownPlayer.gd" type="Script" id=1]
+ [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
+ [ext_resource path="res://Player/aim_marker.png" type="Texture" id=3]
+ [ext_resource path="res://icon.png" type="Texture" id=4]
++[ext_resource path="res://Projectiles/PlayerProjectileSpawner.gd" type="Script" id=5]
+ 
+ [sub_resource type="CapsuleShape2D" id=1]
+-radius = 7.15208
+-height = 13.6958
++radius = 32.0
++height = 16.0
+ 
+ [node name="Player" type="KinematicBody2D"]
+ collision_layer = 2
+@@ -35,3 +36,8 @@ texture = ExtResource( 3 )
+ [node name="TestCursor" type="Sprite" parent="."]
+ visible = false
+ texture = ExtResource( 4 )
++
++[node name="ProjectileSpawner" type="Node2D" parent="."]
++script = ExtResource( 5 )
++
++[node name="Timer" type="Timer" parent="ProjectileSpawner"]
+diff --git a/Projectiles/Projectile.gd b/Projectiles/Projectile.gd
+index 792b17b..265a0e5 100644
+--- a/Projectiles/Projectile.gd
++++ b/Projectiles/Projectile.gd
+@@ -1,29 +1,41 @@
+-extends SlideMover
++extends KinematicBody2D
+ 
+ 
+-const COLOR := false  # TODO
+-const SIZE := 16  # TODO
+-const IS_PIERCING := false  # whether or not to be destroyed when hitting something
++export var COLOR := false  # TODO
++export var SIZE := 16  # TODO
++export var IS_PIERCING := false  # whether or not to be destroyed when hitting something
++export var SPEED := 20
+ 
+ onready var direction: Vector2 setget set_direction
+ onready var damage: int setget set_damage
++onready var velocity := SPEED * direction
++
++
++func _ready():
++	$AnimationPlayer.play("active")
+ 
+ func set_direction(new_dir: Vector2):
+ 	direction = new_dir
++	velocity = SPEED * direction
+ 	
+ func set_damage(new_damage: int):
+ 	damage = new_damage
+ 
+ func _physics_process(delta: float) -> void:
+-	accelerate_and_move(direction, delta)
++	var collision := move_and_collide(velocity)
+ 
+-func _on_Hurtbox_area_entered(area: Area2D) -> void:
++	if collision:
++		if collision.collider is StaticBody2D:
++			print("true")
++			# collided with obstacle or level boundary
++			queue_free()
++		# collided with something else
++	
++func _on_Hitbox_area_entered(area: Area2D) -> void:
++	print(area)
+ 	# TODO check if area is a valid hitbox, (maybe it's guaranteed given the collision masks)
+ 	if not IS_PIERCING:
+ 		# TODO if there will be many projectiles instantiated at once and there 
+ 		# are performance problems, don't free them immediately
+ 		# google Pooling instead
+ 		queue_free()  
+-	
+-	
+-	
+diff --git a/Projectiles/Projectile.tscn b/Projectiles/Projectile.tscn
+index 81bd6b6..b5e26f2 100644
+--- a/Projectiles/Projectile.tscn
++++ b/Projectiles/Projectile.tscn
+@@ -1,32 +1,63 @@
+-[gd_scene load_steps=5 format=2]
++[gd_scene load_steps=8 format=2]
+ 
+ [ext_resource path="res://Projectiles/Projectile.gd" type="Script" id=1]
+-[ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
++[ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=2]
+ [ext_resource path="res://Projectiles/projectile_placeholder.png" type="Texture" id=3]
+ 
+ [sub_resource type="CircleShape2D" id=1]
+ radius = 7.99236
+ 
++[sub_resource type="CircleShape2D" id=2]
++radius = 8.09442
++
++[sub_resource type="Animation" id=3]
++resource_name = "active"
++length = 0.2
++loop = true
++tracks/0/type = "value"
++tracks/0/path = NodePath("Sprite:modulate")
++tracks/0/interp = 1
++tracks/0/loop_wrap = true
++tracks/0/imported = false
++tracks/0/enabled = true
++tracks/0/keys = {
++"times": PoolRealArray( 0, 0.1, 0.2 ),
++"transitions": PoolRealArray( 1, 1, 1 ),
++"update": 0,
++"values": [ Color( 0.14902, 0.898039, 0.0392157, 1 ), Color( 0.647059, 0.866667, 0.0392157, 1 ), Color( 0.14902, 0.898039, 0.0392157, 1 ) ]
++}
++
++[sub_resource type="Animation" id=4]
++resource_name = "obstacle_collision"
++
+ [node name="Projectile" type="KinematicBody2D"]
+ collision_layer = 64
++collision_mask = 17
+ script = ExtResource( 1 )
+ __meta__ = {
+ "_editor_description_": "Generic Projectile used for both player and enemy projectiles.
+ Parameters that should exist:
+ Size, sprite, color, speed"
+ }
+-SPEED = 800
+-ACCELERATION = 1600
+-FRICTION = 0
+-
+-[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+-collision_layer = 4
+-collision_mask = 16
+ 
+ [node name="Sprite" type="Sprite" parent="."]
++modulate = Color( 0.265129, 0.890725, 0.0392157, 1 )
+ texture = ExtResource( 3 )
+ 
+ [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
++visible = false
+ shape = SubResource( 1 )
+ 
+-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
++[node name="Hitbox" parent="." instance=ExtResource( 2 )]
++visible = false
++
++[node name="CollisionShape2D" parent="Hitbox" index="0"]
++shape = SubResource( 2 )
++
++[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
++anims/active = SubResource( 3 )
++anims/obstacle_collision = SubResource( 4 )
++
++[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
++
++[editable path="Hitbox"]
+diff --git a/Projectiles/projectile_placeholder.png b/Projectiles/projectile_placeholder.png
+index 985f729..844c7db 100644
+Binary files a/Projectiles/projectile_placeholder.png and b/Projectiles/projectile_placeholder.png differ

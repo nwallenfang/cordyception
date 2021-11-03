@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/TopDownPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
@@ -156,6 +156,7 @@ anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
+
 [node name="ProjectileSpawner" type="Node2D" parent="."]
 script = ExtResource( 5 )
 

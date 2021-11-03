@@ -149,7 +149,6 @@ texture = ExtResource( 3 )
 visible = false
 texture = ExtResource( 4 )
 
-<<<<<<< HEAD
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -157,9 +156,7 @@ anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
-=======
 [node name="ProjectileSpawner" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
 [node name="Timer" type="Timer" parent="ProjectileSpawner"]
->>>>>>> ca3de4043b199dfdaa60bbe404b1c3616da542bf

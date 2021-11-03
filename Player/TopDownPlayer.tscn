@@ -4,6 +4,7 @@
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Player/aim_marker.png" type="Texture" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Projectiles/PlayerProjectileSpawner.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 13.0
@@ -148,6 +149,7 @@ texture = ExtResource( 3 )
 visible = false
 texture = ExtResource( 4 )
 
+<<<<<<< HEAD
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -155,3 +157,9 @@ anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
+=======
+[node name="ProjectileSpawner" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="ProjectileSpawner"]
+>>>>>>> ca3de4043b199dfdaa60bbe404b1c3616da542bf

@@ -16,7 +16,3 @@ remote_path = NodePath("../../../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 654.641, 458.096 )
 current = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-
-[editable path="Level1/Player"]

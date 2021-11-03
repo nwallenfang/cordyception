@@ -23,6 +23,10 @@ _global_script_class_icons={
 config/name="Ant game"
 config/icon="res://Player/player_ant_placeholder.png"
 
+[autoload]
+
+GameSettings="*res://Game Logic/GameSettings.tscn"
+
 [display]
 
 window/size/width=1280

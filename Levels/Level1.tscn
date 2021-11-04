@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
 [ext_resource path="res://Enemies/AntEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/TopDownPlayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/Stones/Stone03.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/Stones/Stone01.tscn" type="PackedScene" id=6]
+[ext_resource path="res://World/Stones/Stone04.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/Grass/GrassBlade01.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World/Grass/WindyGrassBlade01.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=10]
+[ext_resource path="res://World/Stones/Stone02.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -24,14 +32,54 @@ collision_mask = 67
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundary"]
 polygon = PoolVector2Array( -1680.99, -1593.16, -2406.17, -676.195, -2430.15, 2362.37, -68.8135, 2386.34, 2496.29, 2434.29, 2957.77, 2452.27, 2927.8, 702.248, 2849.89, -1245.55, 1753.13, -1677.06, 506.536, -1695.04, -1309.41, -1653.09, -56.8271, -1946.76, 1884.98, -1940.77, 3041.67, -1413.36, 3167.53, 714.234, 3113.59, 2554.16, 1267.68, 2674.02, -1938.7, 2644.05, -2807.72, 2536.18, -2801.73, 1073.83, -2897.62, -820.032, -1830.82, -1868.85, -1321.4, -1683.06 )
 
-[node name="EnemyAntTopdown" parent="." instance=ExtResource( 3 )]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 56, 104 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
+
+[node name="GrassBlade03" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 71.6162, -231.74 )
+
+[node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
+position = Vector2( 153.241, -237.433 )
+
+[node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 121.359, -231.851 )
+
+[node name="Stone" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 171.089, -222.651 )
+
+[node name="Stone2" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 55.936, -224.539 )
+
+[node name="Stone01" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 511.827, -149.973 )
+
+[node name="Stone02" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( -108.298, -37.6519 )
+
+[node name="EnemyAntTopdown" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 252.58, 267.359 )
 
-[node name="EnemyAntTopdown2" parent="." instance=ExtResource( 3 )]
+[node name="EnemyAntTopdown2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 422.477, 210.727 )
 
-[node name="EnemyAntTopdown3" parent="." instance=ExtResource( 3 )]
+[node name="EnemyAntTopdown3" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 558.395, 248.482 )
 
-[node name="EnemyAntTopdown4" parent="." instance=ExtResource( 3 )]
+[node name="EnemyAntTopdown4" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 516.865, 142.768 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 56, 104 )
+current = true
+zoom = Vector2( 1.2, 1.2 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.4
+drag_margin_top = 0.4
+drag_margin_right = 0.4
+drag_margin_bottom = 0.4

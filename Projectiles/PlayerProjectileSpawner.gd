@@ -14,6 +14,7 @@ func try_creating_projectile(direction: float) -> void:
 	var projectile := PlayerProjectile.instance()
 	var main = get_tree().current_scene
 	main.add_child(projectile)
+	
 	projectile.direction = Vector2.UP.rotated(direction)
 	projectile.global_position = self.global_position
 	projectile.damage = PlayerStats.PROJECTILE_DAMAGE

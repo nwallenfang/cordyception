@@ -4,7 +4,7 @@
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Projectiles/drops.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 radius = 26.2563
 
 [sub_resource type="Animation" id=2]
@@ -51,7 +51,23 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "obstacle_collision"
+resource_name = "fly"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -80,23 +96,6 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "fly"
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 5, 6 ]
-}
-
 [node name="Projectile" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
@@ -119,7 +118,7 @@ collision_layer = 64
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"

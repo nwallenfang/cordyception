@@ -5,7 +5,6 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	# parent should either be a projectile, poison mist or another weapon
 	if parent is Projectile:
-		print("hurtbox entered")
 		var projectile := parent as Projectile
 		$EnemyStats.health -= projectile.damage
 

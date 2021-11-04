@@ -10,10 +10,15 @@ export var SPEED := 20
 onready var direction: Vector2 setget set_direction
 onready var damage: int setget set_damage
 onready var velocity := SPEED * direction
+onready var team: int = Team.FRIENDLY
 
+enum Team {
+	FRIENDLY, ENEMY
+}
 
 func _ready():
 	$AnimationPlayer.play("active")
+	# color depending on FRIENDLY / ENEMY
  
 func set_direction(new_dir: Vector2):
 	direction = new_dir
@@ -26,8 +31,6 @@ func _physics_process(delta: float) -> void:
 	self.position += delta * velocity
 
 func _on_Hitbox_area_entered(area: Area2D) -> void:	
-	print("yup")
-	# TODO check if area is a valid hitbox, (maybe it's guaranteed given the collision masks)
 	if not IS_PIERCING:
 		# TODO if there will be many projectiles instantiated at once and there 
 		# are performance problems, don't free them immediately

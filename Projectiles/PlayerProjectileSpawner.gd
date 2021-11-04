@@ -17,6 +17,7 @@ func try_creating_projectile(direction: float) -> void:
 	projectile.direction = Vector2.UP.rotated(direction)
 	projectile.global_position = self.global_position
 	projectile.damage = PlayerStats.PROJECTILE_DAMAGE
+	projectile.get_node("Sprite").rotation = direction
 	
 	# start cooldown timer
 	$ProjectileCooldown.start()

@@ -5,7 +5,7 @@
 [ext_resource path="res://Projectiles/drops.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 12.0
+radius = 26.2563
 
 [sub_resource type="Animation" id=2]
 resource_name = "active"
@@ -50,7 +50,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "fly"
 length = 0.2
 loop = true
@@ -67,8 +67,7 @@ tracks/0/keys = {
 "values": [ 5, 6 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "obstacle_collision"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -104,18 +103,19 @@ __meta__ = {
 Parameters that should exist:
 Size, sprite, color, speed"
 }
-SPEED = 800
+SPEED = 250
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
-position = Vector2( -1, 0 )
+position = Vector2( -4.1812, -3.48564 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 11
 frame = 6
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 64
-collision_mask = 8
+collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 1 )
@@ -123,9 +123,10 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"
 anims/active = SubResource( 2 )
-anims/fly = SubResource( 4 )
-anims/obstacle_collision = SubResource( 3 )
+anims/fly = SubResource( 3 )
+anims/obstacle_collision = SubResource( 4 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 
 [editable path="Hitbox"]

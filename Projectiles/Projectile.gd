@@ -4,6 +4,8 @@ class_name Projectile
 const FRIENDLY_COLOR := Color(38, 229, 10)
 const ENEMY_COLOR := Color(217, 54, 38)
 
+const TEXTURE_DROP := preload("res://Projectiles/drop.png")
+const TEXTURE_DROPS := preload("res://Projectiles/drops.png")
 
 const IS_PIERCING := false  # whether or not to be destroyed when hitting something
 export var COLOR := false  # TODO
@@ -28,6 +30,7 @@ func set_team(new_team: int) -> void:
 	# change color and collision masks
 	
 	$Sprite.modulate = FRIENDLY_COLOR if team == Team.FRIENDLY else ENEMY_COLOR
+	$Sprite.texture = TEXTURE_DROPS if team == Team.FRIENDLY else TEXTURE_DROP
 
 func set_direction(new_dir: Vector2):
 	direction = new_dir

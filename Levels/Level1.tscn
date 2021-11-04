@@ -15,7 +15,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/pixel_size = 6
+shader_param/pixel_size = 12
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 598.641, 354.096 )

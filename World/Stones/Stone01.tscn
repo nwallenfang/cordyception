@@ -3,6 +3,7 @@
 [ext_resource path="res://World/Stones/stone01.png" type="Texture" id=1]
 
 [node name="Stone" type="StaticBody2D"]
+scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

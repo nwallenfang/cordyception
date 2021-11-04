@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -12,10 +12,43 @@
 [ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Stones/Stone02.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=12]
+[ext_resource path="res://UI/SpeechBubble.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/pixel_size = 12
+shader_param/pixel_size = 9
+
+[sub_resource type="Animation" id=2]
+resource_name = "talk"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("YSort/EnemyAntTopdown2/SpeechBubble")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Halt's Maul!", 2 ],
+"method": "set_text"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("YSort/EnemyAntTopdown4/SpeechBubble")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Oh, ich kann ja jetzt sprechen!", null ],
+"method": "set_text"
+} ]
+}
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 598.641, 354.096 )
@@ -69,19 +102,28 @@ position = Vector2( 252.58, 267.359 )
 [node name="EnemyAntTopdown2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 422.477, 210.727 )
 
+[node name="SpeechBubble" parent="YSort/EnemyAntTopdown2" instance=ExtResource( 13 )]
+position = Vector2( -1.11798, -84.823 )
+
 [node name="EnemyAntTopdown3" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 558.395, 248.482 )
 
 [node name="EnemyAntTopdown4" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 516.865, 142.768 )
 
+[node name="SpeechBubble" parent="YSort/EnemyAntTopdown4" instance=ExtResource( 13 )]
+position = Vector2( -1.50598, -88.864 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 56, 104 )
 current = true
-zoom = Vector2( 1.2, 1.2 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 drag_margin_left = 0.4
 drag_margin_top = 0.4
 drag_margin_right = 0.4
 drag_margin_bottom = 0.4
+
+[node name="DialogPlayer" type="AnimationPlayer" parent="."]
+autoplay = "talk"
+anims/talk = SubResource( 2 )

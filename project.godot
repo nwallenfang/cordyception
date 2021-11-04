@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "SlideMover",
 "language": "GDScript",
 "path": "res://Player/SlideMover.gd"
+}, {
+"base": "Node2D",
+"class": "SpeechBubble",
+"language": "GDScript",
+"path": "res://UI/SpeechBubble.gd"
 } ]
 _global_script_class_icons={
 "Projectile": "",
-"SlideMover": ""
+"SlideMover": "",
+"SpeechBubble": ""
 }
 
 [application]

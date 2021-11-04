@@ -22,5 +22,3 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
-
-[connection signal="value_changed" from="." to="." method="_on_Healthbar_value_changed"]

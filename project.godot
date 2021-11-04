@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Projectiles/Projectile.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "SlideMover",
 "language": "GDScript",
 "path": "res://Player/SlideMover.gd"
 } ]
 _global_script_class_icons={
+"Projectile": "",
 "SlideMover": ""
 }
 

@@ -31,14 +31,14 @@ tracks/0/keys = {
 resource_name = "obstacle_collision"
 
 [node name="Projectile" type="Area2D"]
-collision_layer = 64
-collision_mask = 25
+collision_layer = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Generic Projectile used for both player and enemy projectiles.
 Parameters that should exist:
 Size, sprite, color, speed"
 }
+SPEED = 800
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
@@ -49,7 +49,8 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
-visible = false
+collision_layer = 64
+collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 2 )

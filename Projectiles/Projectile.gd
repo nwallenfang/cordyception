@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 			# collided with obstacle or level boundary
 			queue_free()
 		# collided with something else
+		# print(collision.collider)
 	
 func _on_Hitbox_area_entered(area: Area2D) -> void:
 	print(area)

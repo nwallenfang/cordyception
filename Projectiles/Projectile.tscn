@@ -30,9 +30,9 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "obstacle_collision"
 
-[node name="Projectile" type="KinematicBody2D"]
+[node name="Projectile" type="Area2D"]
 collision_layer = 64
-collision_mask = 17
+collision_mask = 25
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Generic Projectile used for both player and enemy projectiles.

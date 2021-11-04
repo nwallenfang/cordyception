@@ -33,7 +33,6 @@ config/icon="res://Player/player_ant_placeholder.png"
 [autoload]
 
 GameSettings="*res://GameLogic/GameSettings.tscn"
-PlayerStats="*res://Player/PlayerStats.tscn"
 GameStatus="*res://GameLogic/GameStatus.tscn"
 
 [debug]

@@ -3,12 +3,10 @@ extends SlideMover
 var aim_direction := 0.0
 
 var mouse_movement_input := Vector2.ZERO
-const MIN_TURN := PI / 20
+const MIN_TURN := PI / 16
 
 
 func _ready() -> void:
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-#	Input.set_custom_mouse_cursor(preload("res://Game Logic/invisible_cursor.png"))
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func get_input_vector() -> Vector2:

@@ -289,9 +289,9 @@ tracks/1/keys = {
 collision_layer = 2
 collision_mask = 17
 script = ExtResource( 1 )
-SPEED = 490
+SPEED = 420
 ACCELERATION = 1100
-FRICTION = 1200
+FRICTION = 1500
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 3.14159

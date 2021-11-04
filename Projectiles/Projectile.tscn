@@ -111,7 +111,7 @@ position = Vector2( -4.1812, -3.48564 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 11
-frame = 5
+frame = 7
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 64

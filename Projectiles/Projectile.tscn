@@ -4,7 +4,7 @@
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Projectiles/drops.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 radius = 26.2563
 
 [sub_resource type="Animation" id=2]
@@ -18,10 +18,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.14902, 0.898039, 0.0392157, 1 ), Color( 0.647059, 0.866667, 0.0392157, 1 ), Color( 0.14902, 0.898039, 0.0392157, 1 ) ]
+"values": [ Color( 0.0705882, 0.831373, 0.027451, 1 ), Color( 0.509804, 0.87451, 0.0666667, 1 ), Color( 0.0705882, 0.831373, 0.027451, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:frame")
@@ -51,8 +51,10 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "obstacle_collision"
-length = 0.4
+resource_name = "collision"
+length = 0.26
+loop = true
+step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -60,7 +62,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10 ]
@@ -72,12 +74,24 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.26 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "queue_free"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.06, 0.26 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0705882, 0.831373, 0.027451, 1 ), Color( 0.14902, 0.898039, 0.0392157, 0.203922 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -107,25 +121,25 @@ Size, sprite, color, speed"
 SPEED = 450
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
+modulate = Color( 0.901961, 0.905882, 0, 1 )
 position = Vector2( -4.1812, -3.48564 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 11
-frame = 5
+frame = 1
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 64
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"
 anims/active = SubResource( 2 )
-anims/fly = SubResource( 3 )
-anims/obstacle_collision = SubResource( 4 )
+anims/collision = SubResource( 3 )
+anims/fly = SubResource( 4 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

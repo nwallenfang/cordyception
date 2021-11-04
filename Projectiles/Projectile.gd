@@ -26,14 +26,13 @@ func _physics_process(delta: float) -> void:
 	self.position += delta * velocity
 
 func _on_Hitbox_area_entered(area: Area2D) -> void:	
-	print("yup")
 	# TODO check if area is a valid hitbox, (maybe it's guaranteed given the collision masks)
 	if not IS_PIERCING:
 		# TODO if there will be many projectiles instantiated at once and there 
 		# are performance problems, don't free them immediately
 		# google Pooling instead
 		self.velocity = Vector2.ZERO
-		$AnimationPlayer.play("obstacle_collision") 
+		$AnimationPlayer.play("collision") 
 
 
 func fly_animation():
@@ -43,4 +42,4 @@ func fly_animation():
 func _on_Hitbox_body_entered(body: Node) -> void:
 	# Projectile hit a wall
 	self.velocity = Vector2.ZERO
-	$AnimationPlayer.play("obstacle_collision")
+	$AnimationPlayer.play("collision")

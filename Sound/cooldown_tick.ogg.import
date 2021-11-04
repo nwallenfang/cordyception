@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cooldown_tick.ogg-7ad8f86477fa4f9e450f201e26138483.oggstr"
+
+[deps]
+
+source_file="res://Sound/cooldown_tick.ogg"
+dest_files=[ "res://.import/cooldown_tick.ogg-7ad8f86477fa4f9e450f201e26138483.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

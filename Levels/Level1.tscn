@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
+[ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
+[ext_resource path="res://Enemies/AntEnemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/pixel_size = 6
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 598.641, 354.096 )
 
 [node name="Background" type="Sprite" parent="."]
+material = SubResource( 1 )
 position = Vector2( 283.894, 476.07 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -16,3 +23,15 @@ collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundary"]
 polygon = PoolVector2Array( -1680.99, -1593.16, -2406.17, -676.195, -2430.15, 2362.37, -68.8135, 2386.34, 2496.29, 2434.29, 2957.77, 2452.27, 2927.8, 702.248, 2849.89, -1245.55, 1753.13, -1677.06, 506.536, -1695.04, -1309.41, -1653.09, -56.8271, -1946.76, 1884.98, -1940.77, 3041.67, -1413.36, 3167.53, 714.234, 3113.59, 2554.16, 1267.68, 2674.02, -1938.7, 2644.05, -2807.72, 2536.18, -2801.73, 1073.83, -2897.62, -820.032, -1830.82, -1868.85, -1321.4, -1683.06 )
+
+[node name="EnemyAntTopdown" parent="." instance=ExtResource( 3 )]
+position = Vector2( 252.58, 267.359 )
+
+[node name="EnemyAntTopdown2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 422.477, 210.727 )
+
+[node name="EnemyAntTopdown3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 558.395, 248.482 )
+
+[node name="EnemyAntTopdown4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 516.865, 142.768 )

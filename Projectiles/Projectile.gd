@@ -1,5 +1,5 @@
-extends KinematicBody2D
- 
+extends Area2D
+class_name Projectile
  
 
 const IS_PIERCING := false  # whether or not to be destroyed when hitting something
@@ -23,16 +23,13 @@ func set_damage(new_damage: int):
 	damage = new_damage
  
 func _physics_process(delta: float) -> void:
-	var collision := move_and_collide(velocity)
- 
-	if collision:
-		if collision.collider is StaticBody2D:
-			# collided with obstacle or level boundary
-			queue_free()
-		# collided with something else
-	
+	self.position += delta * velocity
+
 func _on_Hitbox_area_entered(area: Area2D) -> void:
 	print(area)
+	
+	
+	
 	# TODO check if area is a valid hitbox, (maybe it's guaranteed given the collision masks)
 	if not IS_PIERCING:
 		# TODO if there will be many projectiles instantiated at once and there 

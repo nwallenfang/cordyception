@@ -1,7 +1,5 @@
 extends SlideMover
 
-const PlayerProjectile := preload("res://Projectiles/Projectile.tscn")
-
 var aim_direction := 0.0
 
 var mouse_movement_input := Vector2.ZERO
@@ -22,7 +20,7 @@ func get_input_vector() -> Vector2:
 	
 func handle_nonmovement_input() -> void:
 	if Input.is_action_just_pressed("player_shoot"):
-		spawn_projectile()
+		$ProjectileSpawner.try_creating_projectile(aim_direction)
 	# hier dann später die ganzen anderen skills einfügen
 
 func _physics_process(delta: float) -> void:
@@ -70,11 +68,3 @@ func vector_to_angle(vec: Vector2) -> float:
 		vec = Vector2(0, -1)
 	vec.y = -vec.y
 	return vec.angle_to(Vector2.DOWN)
-
-func spawn_projectile() -> void: 
-	var projectile := PlayerProjectile.instance()
-	var main = get_tree().current_scene
-	main.add_child(projectile)
-	var rot : float = aim_direction
-	projectile.direction = Vector2.UP.rotated(aim_direction)
-	projectile.global_position = self.global_position

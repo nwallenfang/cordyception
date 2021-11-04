@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 class_name Projectile
  
 
@@ -35,4 +35,8 @@ func _on_Hitbox_area_entered(area: Area2D) -> void:
 		# TODO if there will be many projectiles instantiated at once and there 
 		# are performance problems, don't free them immediately
 		# google Pooling instead
-		queue_free()  
+		$AnimationPlayer.play("obstacle_collision") 
+
+
+func fly_animation():
+	$AnimationPlayer.play("fly")

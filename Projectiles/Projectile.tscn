@@ -2,17 +2,14 @@
 
 [ext_resource path="res://Projectiles/Projectile.gd" type="Script" id=1]
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Projectiles/projectile_placeholder.png" type="Texture" id=3]
+[ext_resource path="res://Projectiles/drops.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 7.99236
+radius = 12.0
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 8.09442
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "active"
-length = 0.2
+length = 0.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -21,17 +18,86 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0, 0.1, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.14902, 0.898039, 0.0392157, 1 ), Color( 0.647059, 0.866667, 0.0392157, 1 ), Color( 0.14902, 0.898039, 0.0392157, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fly_animation"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
-resource_name = "obstacle_collision"
+resource_name = "fly"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 5, 6 ]
+}
 
-[node name="Projectile" type="Area2D"]
-collision_layer = 0
+[sub_resource type="Animation" id=3]
+resource_name = "obstacle_collision"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Projectile" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Generic Projectile used for both player and enemy projectiles.
@@ -42,22 +108,23 @@ SPEED = 800
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
+position = Vector2( -1, 0 )
 texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+hframes = 11
+frame = 6
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 64
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/active = SubResource( 3 )
-anims/obstacle_collision = SubResource( 4 )
+autoplay = "active"
+anims/active = SubResource( 2 )
+anims/fly = SubResource( 4 )
+anims/obstacle_collision = SubResource( 3 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 

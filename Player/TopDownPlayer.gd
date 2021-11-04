@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	update_mouse()
 
+# update aimer arrow to mouse input
 func update_mouse():
 	var mouse_movement := mouse_movement_input
 	mouse_movement_input = Vector2.ZERO
@@ -59,6 +60,9 @@ func update_mouse():
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_movement_input += event.relative
+
+
+# vector angle calculation functions
 
 func reset_radian_angle(a: float) -> float:
 	return Vector2.RIGHT.rotated(a).angle()

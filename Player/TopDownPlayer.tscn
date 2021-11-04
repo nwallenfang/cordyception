@@ -8,64 +8,64 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 30.0
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "idle_left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=10]
-blend_point_0/node = SubResource( 6 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=6]
+blend_point_0/node = SubResource( 2 )
 blend_point_0/pos = Vector2( 0.9, 0 )
-blend_point_1/node = SubResource( 7 )
+blend_point_1/node = SubResource( 3 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 8 )
+blend_point_2/node = SubResource( 4 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 9 )
+blend_point_3/node = SubResource( 5 )
 blend_point_3/pos = Vector2( -0.9, 0 )
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "walk_down"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "walk_up"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "walk_right"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "walk_left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=15]
-blend_point_0/node = SubResource( 11 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=11]
+blend_point_0/node = SubResource( 7 )
 blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 12 )
+blend_point_1/node = SubResource( 8 )
 blend_point_1/pos = Vector2( 0, -1 )
-blend_point_2/node = SubResource( 13 )
+blend_point_2/node = SubResource( 9 )
 blend_point_2/pos = Vector2( 0.9, 0 )
-blend_point_3/node = SubResource( 14 )
+blend_point_3/node = SubResource( 10 )
 blend_point_3/pos = Vector2( -0.9, 0 )
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/Idle/node = SubResource( 10 )
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Idle/node = SubResource( 6 )
 states/Idle/position = Vector2( 432, 90 )
-states/Walk/node = SubResource( 15 )
+states/Walk/node = SubResource( 11 )
 states/Walk/position = Vector2( 610, 90 )
-transitions = [ "Idle", "Walk", SubResource( 16 ), "Walk", "Idle", SubResource( 17 ) ]
+transitions = [ "Idle", "Walk", SubResource( 12 ), "Walk", "Idle", SubResource( 13 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=16]
 resource_name = "idle_down"
 length = 0.1
 tracks/0/type = "value"
@@ -93,7 +93,7 @@ tracks/1/keys = {
 "values": [ 180.0 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=17]
 resource_name = "idle_left"
 length = 0.1
 tracks/0/type = "value"
@@ -121,7 +121,7 @@ tracks/1/keys = {
 "values": [ -90.0 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=18]
 resource_name = "idle_right"
 length = 0.1
 tracks/0/type = "value"
@@ -149,7 +149,7 @@ tracks/1/keys = {
 "values": [ 90.0 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=19]
 resource_name = "idle_up"
 length = 0.1
 tracks/0/type = "value"
@@ -177,8 +177,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk_down"
+[sub_resource type="Animation" id=20]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:rotation_degrees")
@@ -205,8 +204,7 @@ tracks/1/keys = {
 "values": [ 180.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk_left"
+[sub_resource type="Animation" id=21]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("CollisionShape2D:rotation_degrees")
@@ -233,8 +231,7 @@ tracks/1/keys = {
 "values": [ -90.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk_right"
+[sub_resource type="Animation" id=22]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -261,8 +258,7 @@ tracks/1/keys = {
 "values": [ 90.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk_up"
+[sub_resource type="Animation" id=23]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:rotation_degrees")
@@ -311,26 +307,27 @@ shape = SubResource( 1 )
 [node name="Aimer" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Aimer"]
-position = Vector2( 0, -45 )
-scale = Vector2( 0.7, 0.7 )
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, -49 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 18 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 19 )
+parameters/playback = SubResource( 15 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle_down = SubResource( 20 )
-anims/idle_left = SubResource( 21 )
-anims/idle_right = SubResource( 22 )
-anims/idle_up = SubResource( 23 )
-anims/walk_down = SubResource( 2 )
-anims/walk_left = SubResource( 3 )
-anims/walk_right = SubResource( 4 )
-anims/walk_up = SubResource( 5 )
+anims/idle_down = SubResource( 16 )
+anims/idle_left = SubResource( 17 )
+anims/idle_right = SubResource( 18 )
+anims/idle_up = SubResource( 19 )
+anims/walk_down = SubResource( 20 )
+anims/walk_left = SubResource( 21 )
+anims/walk_right = SubResource( 22 )
+anims/walk_up = SubResource( 23 )
 
 [node name="ProjectileSpawner" type="Node2D" parent="."]
 script = ExtResource( 5 )

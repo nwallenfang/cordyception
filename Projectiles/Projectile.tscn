@@ -104,7 +104,7 @@ __meta__ = {
 Parameters that should exist:
 Size, sprite, color, speed"
 }
-SPEED = 250
+SPEED = 450
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
@@ -112,7 +112,7 @@ position = Vector2( -4.1812, -3.48564 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 11
-frame = 6
+frame = 5
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_layer = 64

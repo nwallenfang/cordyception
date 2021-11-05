@@ -44,6 +44,9 @@ value = 10.0
 [node name="EnemyStats" parent="." instance=ExtResource( 4 )]
 
 [node name="EnemyProjectileSpawner" parent="." instance=ExtResource( 7 )]
+PROJECTILE_DAMAGE = 1
+SPAWN_TIME_MIN = 3
+SPAWN_TIME_MAX = 6
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]

@@ -79,3 +79,7 @@ func vector_to_angle(vec: Vector2) -> float:
 		vec = Vector2(0, -1)
 	vec.y = -vec.y
 	return vec.angle_to(Vector2.DOWN)
+
+
+func _on_Hurtbox_area_entered(area: Area2D) -> void:
+	GameStatus.CURRENT_HEALTH -= 1

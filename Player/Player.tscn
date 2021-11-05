@@ -341,4 +341,6 @@ collision_layer = 4
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 24 )
 
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
 [editable path="Hurtbox"]

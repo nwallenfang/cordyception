@@ -82,4 +82,14 @@ func vector_to_angle(vec: Vector2) -> float:
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
+	if not $Hurtbox/InvincibilityTimer.is_stopped():
+		return
+		
 	GameStatus.CURRENT_HEALTH -= 1
+	
+	$Hurtbox/InvincibilityTimer.start()
+	$InvincibilityPlayer.play("start")
+
+
+func _on_InvincibilityTimer_timeout() -> void:
+	$InvincibilityPlayer.play("stop")

@@ -103,7 +103,7 @@ frame = 2
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.758702, 0.996563 )
-collision_layer = 16
+collision_layer = 64
 collision_mask = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]

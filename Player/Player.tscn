@@ -298,7 +298,6 @@ ACCELERATION = 1100
 FRICTION = 1500
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 3.14159
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 

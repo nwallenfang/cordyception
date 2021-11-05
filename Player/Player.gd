@@ -4,6 +4,7 @@ var aim_direction := 0.0
 
 var mouse_movement_input := Vector2.ZERO
 const MIN_TURN := PI / 16
+const CONTROLLER_AIM_THRESHHOLD = 0.05
 
 
 func _ready() -> void:
@@ -15,7 +16,13 @@ func get_input_vector() -> Vector2:
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
 	return input_vector
-	
+
+func get_controller_aim_vector() -> Vector2:
+	var aim_vector := Vector2.ZERO
+	aim_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
+	return aim_vector
+
 func handle_nonmovement_input() -> void:
 	if Input.is_action_just_pressed("player_shoot"):
 		$ProjectileSpawner.try_creating_projectile(aim_direction)
@@ -26,10 +33,14 @@ func _physics_process(delta: float) -> void:
 	handle_nonmovement_input()
 	accelerate_and_move(input_vec, delta)
 	
-	update_mouse()
+	update_mouse_aim()
+	var controller_aim := get_controller_aim_vector()
+	if controller_aim.length() > CONTROLLER_AIM_THRESHHOLD:
+		aim_direction = vector_to_angle(controller_aim)
+	$Aimer.rotation = aim_direction
 
 # update aimer arrow to mouse input
-func update_mouse():
+func update_mouse_aim():
 	var mouse_movement := mouse_movement_input
 	mouse_movement_input = Vector2.ZERO
 	
@@ -52,8 +63,6 @@ func update_mouse():
 	
 	var turn_done := clamp(speed, 0.0, turn_abs) * turn_sign
 	aim_direction += turn_done
-	
-	$Aimer.rotation = aim_direction
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

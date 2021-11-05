@@ -11,5 +11,5 @@ dest_files=[ "res://.import/cooldown_tick.ogg-7ad8f86477fa4f9e450f201e26138483.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

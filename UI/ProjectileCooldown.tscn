@@ -14,7 +14,7 @@ colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.43
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
@@ -27,7 +27,7 @@ angle_random = 0.55
 scale_random = 0.28
 color_ramp = SubResource( 3 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "one"
 length = 0.8
 tracks/0/type = "bezier"
@@ -97,7 +97,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "zero"
 length = 0.1
 tracks/0/type = "value"
@@ -142,7 +142,7 @@ lifetime = 5.0
 speed_scale = 2.0
 explosiveness = 0.2
 randomness = 0.2
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Grey" type="TextureRect" parent="."]
@@ -181,5 +181,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/one = SubResource( 7 )
-anims/zero = SubResource( 8 )
+anims/one = SubResource( 5 )
+anims/zero = SubResource( 6 )

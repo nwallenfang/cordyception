@@ -4,7 +4,7 @@
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Player/aim_marker.png" type="Texture" id=3]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Projectiles/PlayerProjectileSpawner.gd" type="Script" id=5]
+[ext_resource path="res://Projectiles/PlayerProjectileSpawner.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 38.4616
@@ -334,19 +334,12 @@ anims/walk_left = SubResource( 21 )
 anims/walk_right = SubResource( 22 )
 anims/walk_up = SubResource( 23 )
 
-[node name="ProjectileSpawner" type="Node2D" parent="."]
-script = ExtResource( 5 )
-
-[node name="ProjectileCooldown" type="Timer" parent="ProjectileSpawner"]
-wait_time = 2.0
-one_shot = true
+[node name="ProjectileSpawner" parent="." instance=ExtResource( 5 )]
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 24 )
-
-[connection signal="timeout" from="ProjectileSpawner/ProjectileCooldown" to="ProjectileSpawner" method="_on_ProjectileCooldown_timeout"]
 
 [editable path="Hurtbox"]

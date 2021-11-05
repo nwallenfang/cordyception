@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Projectiles/PlayerProjectileSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Sound/cooldown_tick.ogg" type="AudioStream" id=2]
+
+[node name="ProjectileSpawner" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ProjectileCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="timeout" from="ProjectileCooldown" to="." method="_on_ProjectileCooldown_timeout"]

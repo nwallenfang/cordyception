@@ -1,6 +1,6 @@
 extends Node2D
 
-const PlayerProjectile := preload("res://Projectiles/Projectile.tscn")
+const PlayerProjectile := preload("res://Projectiles/PlayerProjectile.tscn")
 
 signal cooldown_not_ready
 

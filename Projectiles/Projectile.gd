@@ -2,35 +2,20 @@ extends Node2D
 class_name Projectile
  
 const FRIENDLY_COLOR := Color(38, 229, 10)
-const ENEMY_COLOR := Color(217, 54, 38)
-
-const TEXTURE_DROP := preload("res://Projectiles/drop.png")
-const TEXTURE_DROPS := preload("res://Projectiles/drops.png")
+const ENEMY_COLOR := Color.brown
 
 const IS_PIERCING := false  # whether or not to be destroyed when hitting something
-export var COLOR := false  # TODO
 export var SIZE := 16  # TODO
-export var SPEED := 20
+export var SPEED := 450
  
 onready var direction: Vector2 setget set_direction
 onready var damage: int setget set_damage
 onready var velocity := SPEED * direction
-onready var team: int = Team.FRIENDLY setget set_team
 
-enum Team {
-	FRIENDLY, ENEMY
-}
 
 func _ready():
 	$AnimationPlayer.play("active")
 	# color depending on FRIENDLY / ENEMY
-
-func set_team(new_team: int) -> void:
-	team = new_team
-	# change color and collision masks
-	
-	$Sprite.modulate = FRIENDLY_COLOR if team == Team.FRIENDLY else ENEMY_COLOR
-	$Sprite.texture = TEXTURE_DROPS if team == Team.FRIENDLY else TEXTURE_DROP
 
 func set_direction(new_dir: Vector2):
 	direction = new_dir

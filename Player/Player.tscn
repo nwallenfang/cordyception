@@ -1,12 +1,13 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Player/aim_marker.png" type="Texture" id=3]
+[ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Projectiles/PlayerProjectileSpawner.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 30.0
+height = 38.4616
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "idle_right"
@@ -285,6 +286,10 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=24]
+radius = 8.68169
+height = 27.3
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
@@ -299,7 +304,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
-position = Vector2( 0, 1 )
+position = Vector2( -3.71793e-13, -0.635162 )
 rotation = 3.14159
 scale = Vector2( 1, 0.88 )
 shape = SubResource( 1 )
@@ -336,4 +341,12 @@ script = ExtResource( 5 )
 wait_time = 2.0
 one_shot = true
 
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 24 )
+
 [connection signal="timeout" from="ProjectileSpawner/ProjectileCooldown" to="ProjectileSpawner" method="_on_ProjectileCooldown_timeout"]
+
+[editable path="Hurtbox"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/SingleHeartUI.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://UI/SingleHeartUI.gd" type="Script" id=2]
+
+[node name="HeartUI" type="AnimatedSprite"]
+frames = ExtResource( 1 )
+animation = "Dead"
+playing = true
+centered = false
+script = ExtResource( 2 )

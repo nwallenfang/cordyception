@@ -16,5 +16,7 @@ margin_bottom = 543.0
 [node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
 
 [node name="HealthUI" parent="." instance=ExtResource( 3 )]
-margin_left = 15.0
-margin_top = 15.0
+margin_left = 29.0
+margin_top = 33.0
+margin_right = 54.0
+margin_bottom = 58.0

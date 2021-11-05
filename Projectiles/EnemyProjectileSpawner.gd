@@ -2,6 +2,7 @@ extends Node2D
 
 # probs gonna stay at 1 since enemy will always deal same dmg to player
 export var PROJECTILE_DAMAGE := 1
+export var PROJECTILE_KNOCKBACK := 500.0
 const EnemyProjectile := preload("res://Projectiles/EnemyProjectile.tscn")
 
 export var SPAWN_TIME_MIN := 3
@@ -23,6 +24,7 @@ func create_projectile(direction: float) -> void:
 	projectile.direction = Vector2.UP.rotated(direction)
 	projectile.global_position = self.global_position
 	projectile.damage = PROJECTILE_DAMAGE
+	projectile.knockback = PROJECTILE_KNOCKBACK
 	projectile.get_node("Sprite").rotation = direction
 
 

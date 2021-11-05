@@ -19,6 +19,7 @@ func try_creating_projectile(direction: float) -> void:
 	projectile.direction = Vector2.UP.rotated(direction)
 	projectile.global_position = self.global_position
 	projectile.damage = GameStatus.PLAYER_PROJECTILE_DAMAGE
+	projectile.knockback = GameStatus.PLAYER_PROJECTILE_KNOCKBACK
 	projectile.get_node("Sprite").rotation = direction
 	
 	

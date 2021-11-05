@@ -10,6 +10,7 @@ export var SPEED := 450
  
 onready var direction: Vector2 setget set_direction
 onready var damage: int setget set_damage
+onready var knockback: float setget set_knockback
 onready var velocity := SPEED * direction
 
 
@@ -23,7 +24,13 @@ func set_direction(new_dir: Vector2):
 	
 func set_damage(new_damage: int):
 	damage = new_damage
- 
+
+func set_knockback(new_knockback: float):
+	knockback = new_knockback
+
+func knockback_vector() -> Vector2:
+	return knockback * direction.normalized()
+
 func _physics_process(delta: float) -> void:
 	self.position += delta * velocity
 
@@ -35,10 +42,8 @@ func _on_Hitbox_area_entered(area: Area2D) -> void:
 		self.velocity = Vector2.ZERO
 		$AnimationPlayer.play("obstacle_collision") 
 
-
 func fly_animation():
 	$AnimationPlayer.play("fly")
-
 
 func _on_Hitbox_body_entered(body: Node) -> void:
 	# Projectile hit a wall

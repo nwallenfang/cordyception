@@ -31,7 +31,7 @@ func handle_nonmovement_input() -> void:
 func _physics_process(delta: float) -> void:
 	var input_vec = get_input_vector()
 	handle_nonmovement_input()
-	accelerate_and_move(input_vec, delta)
+	accelerate_and_move(delta, input_vec)
 	
 	update_mouse_aim()
 	var controller_aim := get_controller_aim_vector()
@@ -80,13 +80,15 @@ func vector_to_angle(vec: Vector2) -> float:
 	vec.y = -vec.y
 	return vec.angle_to(Vector2.DOWN)
 
-
+# on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if not $Hurtbox/InvincibilityTimer.is_stopped():
 		return
 		
 	GameStatus.CURRENT_HEALTH -= 1
-	
+	var projectile := area.get_parent() as Projectile
+	if projectile:
+		add_velocity(projectile.knockback_vector())
 	$Hurtbox/InvincibilityTimer.start()
 	$InvincibilityPlayer.play("start")
 

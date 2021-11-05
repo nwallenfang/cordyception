@@ -1,7 +1,8 @@
 extends Node
 
-export var PLAYER_PROJECTILE_DAMAGE := 2
-export var PLAYER_MAX_HEALTH := 3
+export var PLAYER_PROJECTILE_DAMAGE := 3
+export var PLAYER_MAX_HEALTH := 4
+export var PLAYER_PROJECTILE_KNOCKBACK := 450.0
 
 var CURRENT_HEALTH = PLAYER_MAX_HEALTH setget set_health
 

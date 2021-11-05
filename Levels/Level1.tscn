@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -14,6 +14,11 @@
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=12]
 [ext_resource path="res://UI/SpeechBubble.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://World/Stones/Stone09.tscn" type="PackedScene" id=15]
+[ext_resource path="res://World/Stones/Stone07.tscn" type="PackedScene" id=16]
+[ext_resource path="res://World/Stones/Stone08.tscn" type="PackedScene" id=17]
+[ext_resource path="res://World/Stones/Stone06.tscn" type="PackedScene" id=18]
+[ext_resource path="res://World/Stones/Stone05.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -98,16 +103,22 @@ position = Vector2( 153.241, -237.433 )
 position = Vector2( 121.359, -233.111 )
 
 [node name="Stone" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 171.089, -222.651 )
+position = Vector2( -214.641, -73.096 )
 
 [node name="Stone2" parent="YSort" instance=ExtResource( 11 )]
-position = Vector2( 55.936, -224.539 )
+position = Vector2( 33.359, -223.096 )
 
 [node name="Stone01" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 511.827, -149.973 )
 
 [node name="Stone02" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( -108.298, -37.6519 )
+
+[node name="Stone4" parent="YSort" instance=ExtResource( 17 )]
+position = Vector2( 215.359, -213.096 )
+
+[node name="Stone3" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( -158.641, -118.096 )
 
 [node name="EnemyAntTopdown" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 252.58, 267.359 )
@@ -127,15 +138,24 @@ position = Vector2( 516.865, 142.768 )
 [node name="SpeechBubble" parent="YSort/EnemyAntTopdown4" instance=ExtResource( 13 )]
 position = Vector2( -1.50598, -88.864 )
 
+[node name="Stone5" parent="YSort" instance=ExtResource( 16 )]
+position = Vector2( 379.359, 368.904 )
+
+[node name="Stone6" parent="YSort" instance=ExtResource( 18 )]
+position = Vector2( -484.641, 361.904 )
+
+[node name="Stone7" parent="YSort" instance=ExtResource( 19 )]
+position = Vector2( -417.641, 381.904 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 56, 104 )
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-drag_margin_left = 0.4
-drag_margin_top = 0.4
-drag_margin_right = 0.4
-drag_margin_bottom = 0.4
+drag_margin_left = 0.3
+drag_margin_top = 0.3
+drag_margin_right = 0.3
+drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
 autoplay = "talk"

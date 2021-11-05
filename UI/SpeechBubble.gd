@@ -35,10 +35,15 @@ func set_text(text, wait_time = DEFAULT_WAIT):
 	$Tween.interpolate_property(text_bg, "margin_right", 0, text_size.x + 2 * MARGIN_OFFSET, duration)
 	$Tween.interpolate_property($Origin, "position", Vector2.ZERO, Vector2(-text_size.x/2, 0), duration)
 	$Tween.start()
+	
+	# idea was to start sound from random position to make it less repetitive
+	# sound is approx 11 secs 
+	$SpeechSound.play(rand_range($SpeechSound.stream.loop_begin, $SpeechSound.stream.loop_end))
 
 	visible = true
 
 func _on_Tween_tween_all_completed() -> void:
+	$SpeechSound.stop()
 	$Timer.start()
 
 func _on_Timer_timeout() -> void:

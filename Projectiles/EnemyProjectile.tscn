@@ -2,46 +2,34 @@
 
 [ext_resource path="res://Projectiles/Projectile.gd" type="Script" id=1]
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Projectiles/drops.png" type="Texture" id=3]
+[ext_resource path="res://Projectiles/drop.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.2563
+radius = 14.3767
 
 [sub_resource type="Animation" id=2]
 resource_name = "active"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.14902, 0.898039, 0.0392157, 1 ), Color( 0.647059, 0.866667, 0.0392157, 1 ), Color( 0.14902, 0.898039, 0.0392157, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -96,26 +84,27 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Projectile" type="Node2D"]
+[node name="EnemyProjectile" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Generic Projectile used for both player and enemy projectiles.
 Parameters that should exist:
 Size, sprite, color, speed"
 }
-SPEED = 450
+SPEED = 500
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
-position = Vector2( -4.1812, -3.48564 )
-scale = Vector2( 2, 2 )
+modulate = Color( 0.503906, 0.110065, 0.0216522, 1 )
+position = Vector2( -0.91083, -8.17022 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 3 )
 hframes = 11
-frame = 10
+frame = 2
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
-collision_layer = 64
-collision_mask = 9
+scale = Vector2( 0.758702, 0.996563 )
+collision_layer = 16
+collision_mask = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 1 )

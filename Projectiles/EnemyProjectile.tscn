@@ -9,7 +9,7 @@ radius = 14.3767
 
 [sub_resource type="Animation" id=2]
 resource_name = "active"
-length = 0.6
+length = 0.7
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -91,7 +91,7 @@ __meta__ = {
 Parameters that should exist:
 Size, sprite, color, speed"
 }
-SPEED = 500
+SPEED = 300
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.503906, 0.110065, 0.0216522, 1 )
@@ -99,7 +99,7 @@ position = Vector2( -0.91083, -8.17022 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 3 )
 hframes = 11
-frame = 2
+frame = 5
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.758702, 0.996563 )

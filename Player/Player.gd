@@ -7,9 +7,6 @@ const MIN_TURN := PI / 16
 const CONTROLLER_AIM_THRESHHOLD = 0.05
 
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 func get_input_vector() -> Vector2:
 	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -65,6 +62,11 @@ func update_mouse_aim():
 	aim_direction += turn_done
 
 func _input(event: InputEvent) -> void:
+	# browsers only allow mouse capture after the user has interacted with the 
+	# game, so the mouse mode has to be set in _input
+	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
+	if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion:
 		mouse_movement_input += event.relative
 

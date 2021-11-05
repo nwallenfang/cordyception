@@ -112,6 +112,12 @@ position = Vector2( -108.298, -37.6519 )
 [node name="EnemyAntTopdown" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 252.58, 267.359 )
 
+[node name="EnemyAntTopdown5" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -268.293, -34.6998 )
+
+[node name="Sprite" parent="YSort/EnemyAntTopdown5" index="0"]
+rotation = 2.26893
+
 [node name="EnemyAntTopdown2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 422.477, 210.727 )
 
@@ -140,3 +146,7 @@ drag_margin_bottom = 0.4
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
 autoplay = "talk"
 anims/talk = SubResource( 3 )
+
+[editable path="YSort/EnemyAntTopdown5"]
+[editable path="YSort/EnemyAntTopdown5/Hurtbox"]
+[editable path="YSort/EnemyAntTopdown5/EnemyProjectileSpawner"]

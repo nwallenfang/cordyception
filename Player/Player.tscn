@@ -333,4 +333,7 @@ anims/walk_up = SubResource( 23 )
 script = ExtResource( 5 )
 
 [node name="ProjectileCooldown" type="Timer" parent="ProjectileSpawner"]
+wait_time = 2.0
 one_shot = true
+
+[connection signal="timeout" from="ProjectileSpawner/ProjectileCooldown" to="ProjectileSpawner" method="_on_ProjectileCooldown_timeout"]

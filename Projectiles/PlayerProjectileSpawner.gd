@@ -23,3 +23,15 @@ func try_creating_projectile(direction: float) -> void:
 	
 	# start cooldown timer
 	$ProjectileCooldown.start()
+	GameStatus.CURRENT_UI.get_node("ProjectileCooldownUI").set_blend(0.0)
+
+# refresh GUI
+func _process(delta: float) -> void:
+	var time_left = $ProjectileCooldown.time_left
+	if time_left != 0.0:
+		var blend = 1.0 - (time_left / $ProjectileCooldown.wait_time)
+		GameStatus.CURRENT_UI.get_node("ProjectileCooldownUI").set_blend(blend)
+
+
+func _on_ProjectileCooldown_timeout() -> void:
+	GameStatus.CURRENT_UI.get_node("ProjectileCooldownUI").set_blend(1.0)

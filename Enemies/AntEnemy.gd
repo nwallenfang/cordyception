@@ -19,3 +19,4 @@ func _on_EnemyStats_health_zero() -> void:
 
 func _physics_process(delta: float) -> void:
 	accelerate_and_move(delta)
+	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position

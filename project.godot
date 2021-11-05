@@ -9,10 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SlideMover",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+}, {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://Projectiles/Projectile.gd"
+}, {
+"base": "Node2D",
+"class": "Scent",
+"language": "GDScript",
+"path": "res://Player/Scent.gd"
+}, {
+"base": "RayCast2D",
+"class": "ScentRay",
+"language": "GDScript",
+"path": "res://Enemies/ScentRay.gd"
 }, {
 "base": "AnimatedSprite",
 "class": "SingleHeartUI",
@@ -28,12 +43,21 @@ _global_script_classes=[ {
 "class": "SpeechBubble",
 "language": "GDScript",
 "path": "res://UI/SpeechBubble.gd"
+}, {
+"base": "CanvasLayer",
+"class": "UI",
+"language": "GDScript",
+"path": "res://UI/UI.gd"
 } ]
 _global_script_class_icons={
+"Player": "",
 "Projectile": "",
+"Scent": "",
+"ScentRay": "",
 "SingleHeartUI": "",
 "SlideMover": "",
-"SpeechBubble": ""
+"SpeechBubble": "",
+"UI": ""
 }
 
 [application]

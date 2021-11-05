@@ -14,7 +14,7 @@ colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 0.43
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
@@ -27,7 +27,7 @@ angle_random = 0.55
 scale_random = 0.28
 color_ramp = SubResource( 3 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "one"
 length = 0.8
 tracks/0/type = "bezier"
@@ -37,8 +37,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.0980392, -0.25, 0, 0.25, 0, 0.46, -0.25, 0, 0.25, 0, 0.0980392, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 0.8 )
+"points": PoolRealArray( 0.0980392, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 0.0980392, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.6 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("FullControl/Full:modulate:g")
@@ -47,8 +47,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.905882, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 0.905882, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 0.8 )
+"points": PoolRealArray( 0.905882, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 0.905882, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.6 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath("FullControl/Full:modulate:b")
@@ -57,8 +57,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.027451, -0.25, 0, 0.25, 0, 0.03, -0.25, 0, 0.25, 0, 0.027451, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 0.8 )
+"points": PoolRealArray( 0.027451, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.027451, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.6 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("FullControl/Full:modulate:a")
@@ -68,7 +68,7 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 0.8 )
+"times": PoolRealArray( 0, 0.1, 0.6 )
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath("Particles2D")
@@ -97,7 +97,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "zero"
 length = 0.1
 tracks/0/type = "value"
@@ -142,7 +142,7 @@ lifetime = 5.0
 speed_scale = 2.0
 explosiveness = 0.2
 randomness = 0.2
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Grey" type="TextureRect" parent="."]
@@ -167,7 +167,7 @@ __meta__ = {
 }
 
 [node name="Full" type="TextureRect" parent="FullControl"]
-modulate = Color( 0.0980392, 0.905882, 0.027451, 1 )
+modulate = Color( 0.751582, 1.05479, 0.00639322, 1 )
 margin_left = 24.25
 margin_top = 26.75
 margin_right = 48.25
@@ -181,5 +181,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/one = SubResource( 7 )
-anims/zero = SubResource( 8 )
+anims/one = SubResource( 5 )
+anims/zero = SubResource( 6 )

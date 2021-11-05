@@ -5,7 +5,7 @@
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.2563
+radius = 25.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "active"
@@ -83,6 +83,16 @@ tracks/1/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Sprite:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 2 )
@@ -93,17 +103,19 @@ Size, sprite, color, speed"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.14902, 0.898039, 0.0392157, 1 )
-position = Vector2( -4.1812, -3.48564 )
+modulate = Color( 0.3, 1.8, 0.08, 1 )
+position = Vector2( 0, -4 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 11
+frame = 7
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 collision_layer = 64
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 1, 0 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

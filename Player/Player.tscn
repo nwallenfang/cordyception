@@ -1,10 +1,15 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
 [ext_resource path="res://Player/aim_marker.png" type="Texture" id=3]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Projectiles/PlayerProjectileSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=6]
+
+[sub_resource type="ShaderMaterial" id=25]
+shader = ExtResource( 6 )
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 38.4616
@@ -290,6 +295,40 @@ tracks/1/keys = {
 radius = 8.68169
 height = 27.3
 
+[sub_resource type="Animation" id=26]
+resource_name = "start"
+length = 0.24
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
@@ -298,6 +337,7 @@ ACCELERATION = 1100
 FRICTION = 1500
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 25 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
@@ -341,6 +381,14 @@ collision_layer = 4
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 24 )
 
+[node name="InvincibilityTimer" parent="Hurtbox" index="1"]
+one_shot = true
+
+[node name="InvincibilityPlayer" type="AnimationPlayer" parent="."]
+anims/start = SubResource( 26 )
+anims/stop = SubResource( 27 )
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 
 [editable path="Hurtbox"]

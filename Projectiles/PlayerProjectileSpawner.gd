@@ -7,7 +7,8 @@ signal cooldown_not_ready
 func try_creating_projectile(direction: float) -> void:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running
 		# Projectile shooting skill is not ready to fire again
-		emit_signal("cooldown_not_ready")  # TODO maybe add sound when this fires
+		$CooldownNotReadySound.play()
+		emit_signal("cooldown_not_ready")
 		return
 		
 	# create projectile

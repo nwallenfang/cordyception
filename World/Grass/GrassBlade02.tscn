@@ -3,6 +3,7 @@
 [ext_resource path="res://World/Grass/GrassBlade02.png" type="Texture" id=1]
 
 [node name="GrassBlade02" type="Node2D"]
+scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 92.863, -105.562 )

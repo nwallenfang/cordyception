@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://World/Stones/Stone08.tscn" type="PackedScene" id=17]
 [ext_resource path="res://World/Stones/Stone06.tscn" type="PackedScene" id=18]
 [ext_resource path="res://World/Stones/Stone05.tscn" type="PackedScene" id=19]
+[ext_resource path="res://World/acorn.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -94,13 +95,13 @@ position = Vector2( 56, 104 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="GrassBlade03" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 71.6162, -231.74 )
+position = Vector2( 79.359, -232.096 )
 
 [node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
-position = Vector2( 153.241, -237.433 )
+position = Vector2( 127.359, -226.096 )
 
 [node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 121.359, -233.111 )
+position = Vector2( -501.641, -184.096 )
 
 [node name="Stone" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( -214.641, -73.096 )
@@ -120,9 +121,6 @@ position = Vector2( 215.359, -213.096 )
 [node name="Stone3" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( -158.641, -118.096 )
 
-[node name="EnemyAntTopdown" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 252.58, 267.359 )
-
 [node name="EnemyAntTopdown5" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -268.293, -34.6998 )
 
@@ -134,9 +132,6 @@ position = Vector2( 422.477, 210.727 )
 
 [node name="SpeechBubble" parent="YSort/EnemyAntTopdown2" instance=ExtResource( 13 )]
 position = Vector2( -1.11798, -84.823 )
-
-[node name="EnemyAntTopdown3" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 558.395, 248.482 )
 
 [node name="EnemyAntTopdown4" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 516.865, 142.768 )
@@ -152,6 +147,9 @@ position = Vector2( -484.641, 361.904 )
 
 [node name="Stone7" parent="YSort" instance=ExtResource( 19 )]
 position = Vector2( -417.641, 381.904 )
+
+[node name="Acorn" parent="YSort" instance=ExtResource( 20 )]
+position = Vector2( -185.641, -221.096 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 56, 104 )

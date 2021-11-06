@@ -16,6 +16,7 @@ shader_param/heightOffset = 0.0
 shader_param/offset = 0.0
 
 [node name="GrassBlade01" type="Node2D"]
+scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

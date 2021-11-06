@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/drops_symbol.png" type="Texture" id=1]
 [ext_resource path="res://UI/ProjectileCooldown.gd" type="Script" id=2]
 [ext_resource path="res://Effects/vortex.png" type="Texture" id=3]
+[ext_resource path="res://UI/cooldown_background.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -145,8 +146,18 @@ randomness = 0.2
 process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+margin_right = 24.0
+margin_bottom = 27.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Grey" type="TextureRect" parent="."]
-modulate = Color( 0.266667, 0.752941, 0.270588, 0.541176 )
+modulate = Color( 0.509804, 0.701961, 0.509804, 0.682353 )
 margin_right = 24.0
 margin_bottom = 27.0
 texture = ExtResource( 1 )
@@ -167,7 +178,7 @@ __meta__ = {
 }
 
 [node name="Full" type="TextureRect" parent="FullControl"]
-modulate = Color( 0.751582, 1.05479, 0.00639322, 1 )
+modulate = Color( 0.0980392, 0.905882, 0.027451, 1 )
 margin_left = 24.25
 margin_top = 26.75
 margin_right = 48.25

@@ -11,6 +11,8 @@ const CONTROLLER_AIM_THRESHHOLD = 0.05
 
 onready var scent_spawner = $ScentSpawner
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+onready var projectile_spawner := $ProjectileSpawner as PlayerProjectileSpawner
+onready var head := $Sprite/Head as Node2D
 
 enum State {
 	IDLE, WALK, DASH, SHOOT, ATTACK, POISON
@@ -78,7 +80,7 @@ func state_dash() -> void:
 
 func state_shoot() -> void:
 	if animation_state.get_current_node() != "Shoot":
-		var success = $ProjectileSpawner.try_creating_projectile(aim_direction)
+		var success := projectile_spawner.try_creating_projectile(aim_direction)
 		if success:
 			animation_state.travel("Shoot")
 			$AnimationTree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(aim_direction))
@@ -126,7 +128,6 @@ func _physics_process(delta: float) -> void:
 	update_animation_facing(input_vec)
 	update_aim()
 	match_state()
-
 
 # update the direction values for the animation tree
 func update_animation_facing(direction: Vector2) -> void:

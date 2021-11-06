@@ -1,8 +1,13 @@
 extends Node2D
+class_name PlayerProjectileSpawner
 
 const PlayerProjectile := preload("res://Projectiles/PlayerProjectile.tscn")
 
 signal cooldown_not_ready
+
+func _ready() -> void:
+	$Anchor/Particles2D.one_shot = true
+	$Anchor/Particles2D.emitting = false
 
 func try_creating_projectile(direction: float) -> bool:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running
@@ -21,6 +26,9 @@ func try_creating_projectile(direction: float) -> bool:
 	projectile.damage = GameStatus.PLAYER_PROJECTILE_DAMAGE
 	projectile.knockback = GameStatus.PLAYER_PROJECTILE_KNOCKBACK
 	projectile.rotation = direction
+	
+	$Anchor.rotation = direction
+	$Anchor/Particles2D.emitting = true
 	
 	
 	# start cooldown timer

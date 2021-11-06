@@ -5,15 +5,22 @@ enum State {
 	CHASE_PLAYER, IDLE, SPRINT, SHOOT_STUFF
 }
 
+export var IDLE_TIME := 0.5
+export var SHOOT_TIME := 1.5
+
+# these two won't be needed probably but are here for debugging purposes
+export var CHASE_TIME := 1.0
+export var SPRINT_TIME := 1.0
+
 const idle_transition_chance = {
 	State.IDLE: 0.5,
-	State.CHASE_PLAYER: 0.3,
-	State.SHOOT_STUFF: 0.1,
+	State.CHASE_PLAYER: 0.2,
+	State.SHOOT_STUFF: 0.2,
 	State.SPRINT: 0.1
 }
 
 var state = State.IDLE
-
+var first_time_entering := false
 
 func _ready() -> void:
 	if OS.is_debug_build():
@@ -43,32 +50,63 @@ func match_state():
 		State.IDLE:
 			state_idle()
 		State.SPRINT:
-			state_sprinting()
+			state_sprint()
 		State.CHASE_PLAYER:
-			state_chasing_player()
+			state_chase_player()
 		State.SHOOT_STUFF:
-			state_shooting_stuff()
+			state_shoot_stuff()
+			
+
 	
-func state_sprinting():
-	pass
+func state_sprint():
+	if $StateTimer.is_stopped():
+			transition_to_new_state(State.IDLE)
 	
-func state_chasing_player():
-	pass
+func state_chase_player():
+	if $StateTimer.is_stopped():
+			transition_to_new_state(State.IDLE)
 	
-func state_shooting_stuff():
-	pass
+func state_shoot_stuff():
+	if not first_time_entering:
+		if $StateTimer.is_stopped():
+			transition_to_new_state(State.IDLE)
+		# check timer if it's time to transition
+		# still running, pass
+		return
+
+	
+	# for now either shoot a cone in the player direction or shoot radial
+	var direction = $Line2D.points[1].angle() + PI/2
+	var random_flip := randi() % 2
+	if random_flip:
+		$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 30, 5, 0.2, 3)
+	else:
+		$EnemyProjectileSpawner.spawn_radial_projectiles(16)
+		
+	first_time_entering = false
+
+	# TODO shooting stuff should be depending on distance to player
+	# if too far from the player, don't shoot at all but enter another state instead
 	
 func transition_to_new_state(new_state):
-	if new_state == State.IDLE:
-		state = State.IDLE
-		$StateTimers/Idle.start(0.5)
-	else:
-		state = new_state
+	first_time_entering = true
+	
+	match new_state:
+		State.IDLE:
+			$StateTimer.start(IDLE_TIME)
+		State.SHOOT_STUFF:
+			$StateTimer.start(SHOOT_TIME)
+		State.SPRINT:
+			$StateTimer.start(SPRINT_TIME)
+		State.CHASE_PLAYER:
+			$StateTimer.start(CHASE_TIME)
+			
+	state = new_state
 	
 func state_idle():
 	# wait for a while first
 	# see if we're already idle for longer than minimum
-	if not $StateTimers/Idle.is_stopped():
+	if not $StateTimer.is_stopped():
 		# still running, pass
 		return
 	
@@ -89,6 +127,7 @@ func state_idle():
 			transition_to_new_state(new_state)
 			break
 		# random seed doesn't fit new state, go next
+	
 		
 
 func _physics_process(delta: float) -> void:

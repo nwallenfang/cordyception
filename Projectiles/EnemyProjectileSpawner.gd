@@ -1,5 +1,7 @@
 extends Node2D
 
+signal done_shooting
+
 # probs gonna stay at 1 since enemy will always deal same dmg to player
 export var PROJECTILE_DAMAGE := 1
 export var PROJECTILE_KNOCKBACK := 500.0
@@ -12,8 +14,8 @@ var volley_index: int = 0
 
 func _ready() -> void:
 	randomize()
-	$DebugSpawnTimer.wait_time = rand_range(SPAWN_TIME_MIN, SPAWN_TIME_MAX)
-	$DebugSpawnTimer.start()
+#	$DebugSpawnTimer.wait_time = rand_range(SPAWN_TIME_MIN, SPAWN_TIME_MAX)
+#	$DebugSpawnTimer.start()
 
 func create_projectile(direction: float) -> void:	
 	# create projectile
@@ -47,6 +49,8 @@ func spawn_single_spread(base_direction:float, spread_in_degree:int, amount: int
 	
 	for i in range(amount):
 		create_projectile(start_direction + i * step)
+		
+	emit_signal("done_shooting")
 
 
 func spawn_cone_projectile_volley(base_direction:float, spread_in_degree:int, amount: int, time_delta:float, how_often:int):
@@ -64,6 +68,8 @@ func spawn_cone_projectile_volley(base_direction:float, spread_in_degree:int, am
 		yield($VolleyTimer, "timeout")
 
 	$VolleyTimer.stop()
+	
+	emit_signal("done_shooting")
 	 
 
 func spawn_radial_projectiles(amount: int) -> void:

@@ -3,9 +3,11 @@ class_name Player
 
 var aim_direction := 0.0
 
-var mouse_movement_input := Vector2.ZERO
+var collective_mouse_movement_input := Vector2.ZERO
 const MIN_TURN := PI / 16
 const CONTROLLER_AIM_THRESHHOLD = 0.05
+
+onready var scent_spawner = $ScentSpawner
 
 func get_input_vector() -> Vector2:
 	var input_vector := Vector2.ZERO
@@ -38,8 +40,8 @@ func _physics_process(delta: float) -> void:
 
 # update aimer arrow to mouse input
 func update_mouse_aim():
-	var mouse_movement := mouse_movement_input
-	mouse_movement_input = Vector2.ZERO
+	var mouse_movement := collective_mouse_movement_input
+	collective_mouse_movement_input = Vector2.ZERO
 	
 	aim_direction = reset_radian_angle(aim_direction)
 	var target_direction := reset_radian_angle(vector_to_angle(mouse_movement))
@@ -68,7 +70,7 @@ func _input(event: InputEvent) -> void:
 	if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion:
-		mouse_movement_input += event.relative
+		collective_mouse_movement_input += event.relative
 
 
 # vector angle calculation functions
@@ -97,15 +99,3 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 
 func _on_InvincibilityTimer_timeout() -> void:
 	$InvincibilityPlayer.play("stop")
-
-
-# scent trail
-const ScentScene = preload("res://Player/Scent.tscn")
-
-var scent_trail := []
-
-func _on_ScentTimer_timeout() -> void:
-	var scent := ScentScene.instance() as Scent
-	scent.position = self.position
-	GameStatus.CURRENT_YSORT.add_child(scent)
-	scent_trail.push_front(scent)

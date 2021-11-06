@@ -10,7 +10,7 @@ func get_player_scent_position() -> Vector2:
 	if !is_colliding():
 		return player.position
 	else:
-		for scent in player.scent_trail:
+		for scent in player.scent_spawner.scent_trail:
 			cast_to = scent.position - get_parent().position
 			force_raycast_update()
 

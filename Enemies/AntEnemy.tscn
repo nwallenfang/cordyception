@@ -60,12 +60,6 @@ visible = false
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 
-[node name="StateTimers" type="Node" parent="."]
-
-[node name="Idle" type="Timer" parent="StateTimers"]
-wait_time = 0.5
-one_shot = true
-
 [node name="StateLabel" type="Label" parent="."]
 visible = false
 margin_left = -22.8811
@@ -76,6 +70,9 @@ custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="StateTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]

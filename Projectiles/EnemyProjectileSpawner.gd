@@ -25,7 +25,7 @@ func create_projectile(direction: float) -> void:
 	projectile.global_position = self.global_position
 	projectile.damage = PROJECTILE_DAMAGE
 	projectile.knockback = PROJECTILE_KNOCKBACK
-	projectile.get_node("Sprite").rotation = direction
+	projectile.rotation = direction
 
 
 func _on_SpawnTimer_timeout() -> void:

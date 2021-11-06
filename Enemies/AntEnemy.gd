@@ -2,14 +2,14 @@ extends SlideMover
 
 
 enum State {
-	CHASING_PLAYER, IDLE, SPRINTING, SHOOTING_STUFF
+	CHASE_PLAYER, IDLE, SPRINT, SHOOT_STUFF
 }
 
 const idle_transition_chance = {
 	State.IDLE: 0.5,
-	State.CHASING_PLAYER: 0.3,
-	State.SHOOTING_STUFF: 0.1,
-	State.SPRINTING: 0.1
+	State.CHASE_PLAYER: 0.3,
+	State.SHOOT_STUFF: 0.1,
+	State.SPRINT: 0.1
 }
 
 var state = State.IDLE
@@ -42,11 +42,11 @@ func match_state():
 	match state:
 		State.IDLE:
 			state_idle()
-		State.SPRINTING:
+		State.SPRINT:
 			state_sprinting()
-		State.CHASING_PLAYER:
+		State.CHASE_PLAYER:
 			state_chasing_player()
-		State.SHOOTING_STUFF:
+		State.SHOOT_STUFF:
 			state_shooting_stuff()
 	
 func state_sprinting():

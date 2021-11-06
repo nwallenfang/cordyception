@@ -4,12 +4,12 @@ const PlayerProjectile := preload("res://Projectiles/PlayerProjectile.tscn")
 
 signal cooldown_not_ready
 
-func try_creating_projectile(direction: float) -> void:
+func try_creating_projectile(direction: float) -> bool:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running
 		# Projectile shooting skill is not ready to fire again
 		$CooldownNotReadySound.play()
 		emit_signal("cooldown_not_ready")
-		return
+		return false
 		
 	# create projectile
 	var projectile := PlayerProjectile.instance()
@@ -26,6 +26,7 @@ func try_creating_projectile(direction: float) -> void:
 	# start cooldown timer
 	$ProjectileCooldown.start()
 	GameStatus.CURRENT_UI.get_node("ProjectileCooldownUI").set_blend(0.0)
+	return true
 
 # refresh GUI
 func _process(delta: float) -> void:

@@ -11,6 +11,7 @@ export var FRICTION := 450
 onready var speed := SPEED
 onready var acceleration := ACCELERATION
 onready var friction := FRICTION
+onready var grip_speed := SPEED + 10
 
 func add_velocity(new_velocity: Vector2) -> void:
 	set_velocity(new_velocity + get_velocity())
@@ -26,6 +27,9 @@ func accelerate_and_move(delta: float, direction_vector: Vector2 = Vector2.ZERO)
 	execute_movement()
 
 func accelerate(direction_vector: Vector2, delta: float) -> void:
+	if velocity.length() > grip_speed:
+		velocity = velocity.move_toward(velocity.normalized() * grip_speed, friction * delta)
+		return
 	if direction_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(direction_vector * speed, acceleration * delta)
 	else:

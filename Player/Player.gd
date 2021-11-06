@@ -2,13 +2,35 @@ extends SlideMover
 class_name Player
 
 var aim_direction := 0.0
+var input_vec := Vector2.ZERO
+var last_delta : float
 
 var collective_mouse_movement_input := Vector2.ZERO
 const MIN_TURN := PI / 16
 const CONTROLLER_AIM_THRESHHOLD = 0.05
 
 onready var scent_spawner = $ScentSpawner
+onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 
+enum State {
+	IDLE, WALK, DASH, SHOOT, ATTACK, POISON
+}
+
+const STATE_FROM_STRING = {
+	"idle": State.IDLE,
+	"walk": State.WALK,
+	"dash": State.DASH,
+	"shoot": State.SHOOT,
+	"attack": State.ATTACK,
+	"poison": State.POISON
+}
+
+var state = State.IDLE setget set_state
+
+func _ready() -> void:
+	$AnimationTree.active = true
+
+# input functions
 func get_input_vector() -> Vector2:
 	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -22,16 +44,97 @@ func get_controller_aim_vector() -> Vector2:
 	aim_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	return aim_vector
 
-func handle_nonmovement_input() -> void:
+func _input(event: InputEvent) -> void:
+	# browsers only allow mouse capture after the user has interacted with the 
+	# game, so the mouse mode has to be set in _input
+	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
+	if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event is InputEventMouseMotion:
+		collective_mouse_movement_input += event.relative
+
+func state_idle() -> void:
 	if Input.is_action_just_pressed("player_shoot"):
-		$ProjectileSpawner.try_creating_projectile(aim_direction)
-	# hier dann später die ganzen anderen skills einfügen
+		set_state_and_match(State.SHOOT)
+		return
+	if input_vec != Vector2.ZERO:
+		set_state_and_match(State.WALK)
+		return
+	animation_state.travel("Idle")
+	accelerate_and_move(last_delta)
+
+func state_walk() -> void:
+	if Input.is_action_just_pressed("player_shoot"):
+		set_state_and_match(State.SHOOT)
+		return
+	if input_vec == Vector2.ZERO:
+		set_state_and_match(State.IDLE)
+		return
+	animation_state.travel("Walk")
+	accelerate_and_move(last_delta, input_vec)
+
+func state_dash() -> void:
+	pass
+
+func state_shoot() -> void:
+	if animation_state.get_current_node() != "Shoot":
+		var success = $ProjectileSpawner.try_creating_projectile(aim_direction)
+		if success:
+			animation_state.travel("Shoot")
+			$AnimationTree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(aim_direction))
+		else:
+			set_state(State.IDLE)
+	accelerate_and_move(last_delta)
+
+func state_attack() -> void:
+	pass
+
+func state_poison() -> void:
+	pass
+
+func match_state():
+	match state:
+		State.IDLE:
+			state_idle()
+		State.WALK:
+			state_walk()
+		State.DASH:
+			state_dash()
+		State.SHOOT:
+			state_shoot()
+		State.ATTACK:
+			state_attack()
+		State.POISON:
+			state_poison()
+
+func set_state(new_state) -> void:
+	state = new_state
+
+func set_state_and_match(new_state) -> void:
+	if new_state is String:
+		set_state_string(new_state)
+	else:
+		state = new_state
+	match_state()
+
+func set_state_string(new_state: String) -> void:
+	state = STATE_FROM_STRING[new_state]
 
 func _physics_process(delta: float) -> void:
-	var input_vec = get_input_vector()
-	handle_nonmovement_input()
-	accelerate_and_move(delta, input_vec)
-	
+	last_delta = delta
+	input_vec = get_input_vector()
+	update_animation_facing(input_vec)
+	update_aim()
+	match_state()
+
+
+# update the direction values for the animation tree
+func update_animation_facing(direction: Vector2) -> void:
+	if direction != Vector2.ZERO:
+		$AnimationTree.set("parameters/Idle/blend_position", direction)
+		$AnimationTree.set("parameters/Walk/blend_position", direction)
+
+func update_aim() -> void:
 	update_mouse_aim()
 	var controller_aim := get_controller_aim_vector()
 	if controller_aim.length() > CONTROLLER_AIM_THRESHHOLD:
@@ -63,18 +166,7 @@ func update_mouse_aim():
 	var turn_done := clamp(speed, 0.0, turn_abs) * turn_sign
 	aim_direction += turn_done
 
-func _input(event: InputEvent) -> void:
-	# browsers only allow mouse capture after the user has interacted with the 
-	# game, so the mouse mode has to be set in _input
-	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
-	if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if event is InputEventMouseMotion:
-		collective_mouse_movement_input += event.relative
-
-
 # vector angle calculation functions
-
 func reset_radian_angle(a: float) -> float:
 	return Vector2.RIGHT.rotated(a).angle()
 
@@ -88,7 +180,7 @@ func vector_to_angle(vec: Vector2) -> float:
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if not $Hurtbox/InvincibilityTimer.is_stopped():
 		return
-		
+
 	GameStatus.CURRENT_HEALTH -= 1
 	var projectile := area.get_parent() as Projectile
 	if projectile:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
@@ -36,6 +36,30 @@ blend_point_2/node = SubResource( 5 )
 blend_point_2/pos = Vector2( 0, -1 )
 blend_point_3/node = SubResource( 6 )
 blend_point_3/pos = Vector2( -0.9, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "shoot_down"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "shoot_left"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "shoot_right"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
+animation = "shoot_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=28]
+blend_point_0/node = SubResource( 37 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 38 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 39 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 40 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "walk_down"
@@ -58,17 +82,30 @@ blend_point_2/node = SubResource( 10 )
 blend_point_2/pos = Vector2( 0.9, 0 )
 blend_point_3/node = SubResource( 11 )
 blend_point_3/pos = Vector2( -0.9, 0 )
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
 [sub_resource type="AnimationNodeStateMachine" id=15]
 states/Idle/node = SubResource( 7 )
 states/Idle/position = Vector2( 432, 90 )
+states/Shoot/node = SubResource( 28 )
+states/Shoot/position = Vector2( 516, -14 )
 states/Walk/node = SubResource( 12 )
 states/Walk/position = Vector2( 610, 90 )
-transitions = [ "Idle", "Walk", SubResource( 13 ), "Walk", "Idle", SubResource( 14 ) ]
+transitions = [ "Idle", "Walk", SubResource( 13 ), "Walk", "Idle", SubResource( 14 ), "Idle", "Shoot", SubResource( 29 ), "Shoot", "Idle", SubResource( 30 ), "Walk", "Shoot", SubResource( 31 ), "Shoot", "Walk", SubResource( 32 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 50, -69 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
@@ -178,6 +215,174 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "shoot_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle" ],
+"method": "set_state_string"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "shoot_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle" ],
+"method": "set_state_string"
+} ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "shoot_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle" ],
+"method": "set_state_string"
+} ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "shoot_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "idle" ],
+"method": "set_state_string"
+} ]
 }
 
 [sub_resource type="Animation" id=21]
@@ -335,13 +540,14 @@ FRICTION = 1500
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
+rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
 position = Vector2( -3.71793e-13, -0.635162 )
-rotation = 3.14159
+rotation = -1.5708
 scale = Vector2( 1, 0.88 )
 shape = SubResource( 2 )
 
@@ -358,6 +564,7 @@ tree_root = SubResource( 15 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 16 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Shoot/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -365,6 +572,10 @@ anims/idle_down = SubResource( 17 )
 anims/idle_left = SubResource( 18 )
 anims/idle_right = SubResource( 19 )
 anims/idle_up = SubResource( 20 )
+anims/shoot_down = SubResource( 33 )
+anims/shoot_left = SubResource( 34 )
+anims/shoot_right = SubResource( 35 )
+anims/shoot_up = SubResource( 36 )
 anims/walk_down = SubResource( 21 )
 anims/walk_left = SubResource( 22 )
 anims/walk_right = SubResource( 23 )

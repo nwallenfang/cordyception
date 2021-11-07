@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -19,7 +19,8 @@
 [ext_resource path="res://World/Stones/Stone08.tscn" type="PackedScene" id=17]
 [ext_resource path="res://World/Stones/Stone06.tscn" type="PackedScene" id=18]
 [ext_resource path="res://World/Stones/Stone05.tscn" type="PackedScene" id=19]
-[ext_resource path="res://World/acorn.tscn" type="PackedScene" id=20]
+[ext_resource path="res://World/Acorn.tscn" type="PackedScene" id=20]
+[ext_resource path="res://World/Dandelion.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -95,10 +96,10 @@ position = Vector2( 56, 104 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="GrassBlade03" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 79.359, -232.096 )
+position = Vector2( 54.359, -228.096 )
 
 [node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
-position = Vector2( 127.359, -226.096 )
+position = Vector2( 137.359, -233.096 )
 
 [node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -501.641, -184.096 )
@@ -107,7 +108,7 @@ position = Vector2( -501.641, -184.096 )
 position = Vector2( -214.641, -73.096 )
 
 [node name="Stone2" parent="YSort" instance=ExtResource( 11 )]
-position = Vector2( 33.359, -223.096 )
+position = Vector2( 21.359, -212.096 )
 
 [node name="Stone01" parent="YSort" instance=ExtResource( 7 )]
 position = Vector2( 511.827, -149.973 )
@@ -116,7 +117,7 @@ position = Vector2( 511.827, -149.973 )
 position = Vector2( -108.298, -37.6519 )
 
 [node name="Stone4" parent="YSort" instance=ExtResource( 17 )]
-position = Vector2( 215.359, -213.096 )
+position = Vector2( 227.359, -199.096 )
 
 [node name="Stone3" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( -158.641, -118.096 )
@@ -150,6 +151,9 @@ position = Vector2( -417.641, 381.904 )
 
 [node name="Acorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( -185.641, -221.096 )
+
+[node name="Dandelion" parent="YSort" instance=ExtResource( 21 )]
+position = Vector2( -562.641, -242.096 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 56, 104 )

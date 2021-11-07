@@ -71,6 +71,9 @@ func state_idle() -> void:
 	accelerate_and_move(last_delta)
 
 func state_walk() -> void:
+	if Input.is_action_just_pressed("player_dash"):
+		set_state_and_match(State.DASH)
+		return
 	if Input.is_action_just_pressed("player_shoot"):
 		set_state_and_match(State.SHOOT)
 		return
@@ -84,7 +87,22 @@ func state_walk() -> void:
 	accelerate_and_move(last_delta, input_vec)
 
 func state_dash() -> void:
-	pass
+	if animation_state.get_current_node() != "Dash":
+		add_velocity(GameStatus.PLAYER_DASH_SPEED * input_vec)
+		$AnimationTree.set("parameters/Dash/blend_position", input_vec)
+		animation_state.travel("Dash")
+		$DashParticles.emitting = true
+		var dash_timer := $DashFrameTimer as Timer
+		dash_timer.start(0.1)
+	accelerate_and_move(last_delta, input_vec)
+
+const DASH_FRAME := preload("res://Player/DashFrame.tscn")
+func add_dash_frame() -> void:
+	var dash_frame := DASH_FRAME.instance() as Sprite
+	get_parent().add_child(dash_frame)
+	dash_frame.texture = $Sprite.texture
+	dash_frame.global_position = $Sprite.global_position
+	dash_frame.rotation = $Sprite.rotation
 
 func state_shoot() -> void:
 	if animation_state.get_current_node() != "Shoot":

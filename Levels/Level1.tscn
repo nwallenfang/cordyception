@@ -74,7 +74,7 @@ environment = SubResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 283.894, 476.07 )
+position = Vector2( 284.359, 475.904 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 106.968, 87.5457, 4906.71, 3311.11 )

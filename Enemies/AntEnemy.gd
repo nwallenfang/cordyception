@@ -32,9 +32,13 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	# parent should either be a projectile, poison mist or another weapon
 	if parent is Projectile:
-		var projectile := parent as Projectile
-		$EnemyStats.health -= projectile.damage
-		add_velocity(projectile.knockback_vector())
+		var attack := parent as Projectile
+		$EnemyStats.health -= attack.damage
+		add_velocity(attack.knockback_vector())
+	if parent is PlayerCloseCombat:
+		var attack := parent as PlayerCloseCombat
+		$EnemyStats.health -= attack.damage
+		add_velocity(attack.knockback_vector())
 
 
 func _on_EnemyStats_health_changed() -> void:

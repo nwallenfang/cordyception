@@ -5,6 +5,8 @@ var aim_direction := 0.0
 var input_vec := Vector2.ZERO
 var last_delta : float
 
+var facing := Vector2.RIGHT
+
 var collective_mouse_movement_input := Vector2.ZERO
 const MIN_TURN := PI / 16
 const CONTROLLER_AIM_THRESHHOLD = 0.05
@@ -59,6 +61,9 @@ func state_idle() -> void:
 	if Input.is_action_just_pressed("player_shoot"):
 		set_state_and_match(State.SHOOT)
 		return
+	if Input.is_action_just_pressed("player_attack"):
+		set_state_and_match(State.ATTACK)
+		return
 	if input_vec != Vector2.ZERO:
 		set_state_and_match(State.WALK)
 		return
@@ -68,6 +73,9 @@ func state_idle() -> void:
 func state_walk() -> void:
 	if Input.is_action_just_pressed("player_shoot"):
 		set_state_and_match(State.SHOOT)
+		return
+	if Input.is_action_just_pressed("player_attack"):
+		set_state_and_match(State.ATTACK)
 		return
 	if input_vec == Vector2.ZERO:
 		set_state_and_match(State.IDLE)
@@ -89,7 +97,10 @@ func state_shoot() -> void:
 	accelerate_and_move(last_delta)
 
 func state_attack() -> void:
-	pass
+	if animation_state.get_current_node() != "Attack":
+		$AnimationTree.set("parameters/Attack/blend_position", Vector2.UP.rotated(aim_direction))
+		animation_state.travel("Attack")
+	accelerate_and_move(last_delta, input_vec)
 
 func state_poison() -> void:
 	pass
@@ -132,8 +143,9 @@ func _physics_process(delta: float) -> void:
 # update the direction values for the animation tree
 func update_animation_facing(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
-		$AnimationTree.set("parameters/Idle/blend_position", direction)
-		$AnimationTree.set("parameters/Walk/blend_position", direction)
+		facing = direction
+		$AnimationTree.set("parameters/Idle/blend_position", facing)
+		$AnimationTree.set("parameters/Walk/blend_position", facing)
 
 func update_aim() -> void:
 	update_mouse_aim()

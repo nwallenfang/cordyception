@@ -6,21 +6,18 @@ enum State {
 }
 
 export var IDLE_TIME := 0.5
-export var SHOOT_TIME := 1.5
-
-# these two won't be needed probably but are here for debugging purposes
-export var CHASE_TIME := 1.0
-export var SPRINT_TIME := 1.0
+export var SPRINT_VELOCITY := 400
 
 const idle_transition_chance = {
 	State.IDLE: 0.5,
-	State.CHASE_PLAYER: 0.2,
-	State.SHOOT_STUFF: 0.2,
-	State.SPRINT: 0.1
+	State.CHASE_PLAYER: 0.0,
+	State.SHOOT_STUFF: 0.1,
+	State.SPRINT: 0.4
 }
 
+# will be true for the first frame you are in a new state
+var first_time_entering = true
 var state = State.IDLE
-var first_time_entering := false
 
 func _ready() -> void:
 	if OS.is_debug_build():
@@ -48,25 +45,42 @@ func _on_EnemyStats_health_changed() -> void:
 func _on_EnemyStats_health_zero() -> void:
 	queue_free()
 
-func match_state():
+func match_state(delta):
 	$StateLabel.text = State.keys()[state]
-	var this_was_first_time = first_time_entering
+	var this_was_the_first_time = first_time_entering
 	match state:
 		State.IDLE:
 			state_idle()
 		State.SPRINT:
-			state_sprint()
+			state_sprint(delta)
 		State.CHASE_PLAYER:
 			state_chase_player()
 		State.SHOOT_STUFF:
 			state_shoot_stuff()
 	
-	if this_was_first_time:
+	if this_was_the_first_time:
 		first_time_entering = false
 
-func state_sprint():
-	# see if there is line of sight towards the player	
-	pass
+func state_sprint(delta):
+	if first_time_entering:
+		# see if there is line of sight towards the player
+		var direction = $Line2D.points[1].angle() + PI/2
+		
+		# cast a ray between Enemy and player to see if there's line of sight
+		var space_state = get_world_2d().direct_space_state
+		var ray_result = space_state.intersect_ray(self.position, self.position + $Line2D.points[1])
+		
+		if ray_result != {}:
+			# there is some object between you and the player
+			# maybe this is not the time to go full on sprinting
+			transition_to(State.IDLE)
+			return
+		
+		# know we know there is direct line of sight
+		
+		self.move_and_slide(SPRINT_VELOCITY * direction)
+		
+		
 	
 func state_chase_player():
 	pass
@@ -85,6 +99,9 @@ func state_shoot_stuff():
 
 	# TODO shooting stuff should be depending on distance to player
 	# if too far from the player, don't shoot at all but enter another state instead
+	
+	# go back to being idle in the next frame
+	call_deferred("transition_to", State.IDLE)
 	
 func transition_to(new_state):
 	first_time_entering = true
@@ -111,8 +128,8 @@ func transition_to_random_state():
 	
 	
 func state_idle():
-	# what did you expect??
-	pass
+	if $StateTimer.is_stopped():
+		$StateTimer.start(IDLE_TIME)
 	
 
 func _physics_process(delta: float) -> void:
@@ -120,11 +137,14 @@ func _physics_process(delta: float) -> void:
 	accelerate_and_move(delta)
 	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	
-	match_state()
+	match_state(delta)
 
 
-func _on_StateTimer_timeout() -> void:
+func _on_StateTimer_timeout() -> void:	
 	if state == State.IDLE:
 		transition_to_random_state()
 	else:
+		# this should not happen
 		transition_to(State.IDLE)
+	
+	$StateTimer.stop()

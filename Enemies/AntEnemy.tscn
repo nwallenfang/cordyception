@@ -73,11 +73,12 @@ __meta__ = {
 }
 
 [node name="StateTimer" type="Timer" parent="."]
-one_shot = true
+autostart = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]
 [connection signal="health_zero" from="EnemyStats" to="." method="_on_EnemyStats_health_zero"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_StateTimer_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="EnemyProjectileSpawner"]

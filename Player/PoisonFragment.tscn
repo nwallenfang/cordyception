@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/PoisonFragment.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 62.0
+height = 94.0
+
+[node name="PoisonFragment" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+modulate = Color( 0.12549, 0, 1, 1 )
+position = Vector2( 0, -134 )
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

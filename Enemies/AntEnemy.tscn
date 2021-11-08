@@ -53,6 +53,7 @@ value = 10.0
 [node name="EnemyProjectileSpawner" parent="." instance=ExtResource( 7 )]
 
 [node name="ScentRay" parent="." instance=ExtResource( 8 )]
+visible = false
 enabled = true
 
 [node name="Line2D" type="Line2D" parent="."]

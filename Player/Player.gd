@@ -15,6 +15,7 @@ onready var scent_spawner = $ScentSpawner
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 onready var projectile_spawner := $ProjectileSpawner as PlayerProjectileSpawner
 onready var head := $Sprite/Head as Node2D
+onready var poison := $Sprite/Head/PlayerPoison as PlayerPoison
 
 enum State {
 	IDLE, WALK, DASH, SHOOT, ATTACK, POISON
@@ -58,11 +59,17 @@ func _input(event: InputEvent) -> void:
 		collective_mouse_movement_input += event.relative
 
 func state_idle() -> void:
+	if Input.is_action_just_pressed("player_dash"):
+		set_state_and_match(State.DASH)
+		return
 	if Input.is_action_just_pressed("player_shoot"):
 		set_state_and_match(State.SHOOT)
 		return
 	if Input.is_action_just_pressed("player_attack"):
 		set_state_and_match(State.ATTACK)
+		return
+	if Input.is_action_pressed("player_poison"):
+		set_state_and_match(State.POISON)
 		return
 	if input_vec != Vector2.ZERO:
 		set_state_and_match(State.WALK)
@@ -79,6 +86,9 @@ func state_walk() -> void:
 		return
 	if Input.is_action_just_pressed("player_attack"):
 		set_state_and_match(State.ATTACK)
+		return
+	if Input.is_action_pressed("player_poison"):
+		set_state_and_match(State.POISON)
 		return
 	if input_vec == Vector2.ZERO:
 		set_state_and_match(State.IDLE)
@@ -121,7 +131,16 @@ func state_attack() -> void:
 	accelerate_and_move(last_delta, input_vec)
 
 func state_poison() -> void:
-	pass
+	if !Input.is_action_pressed("player_poison"):
+		poison.active = false
+		set_state_and_match(State.IDLE)
+		return
+	if !poison.active:
+		poison.active = true
+	poison.target_direction = aim_direction
+	update_animation_facing(Vector2.UP.rotated(aim_direction))
+	animation_state.travel("Walk")
+	accelerate_and_move(last_delta, input_vec)
 
 func match_state():
 	match state:

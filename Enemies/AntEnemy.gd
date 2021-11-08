@@ -25,7 +25,7 @@ var first_time_entering := false
 func _ready() -> void:
 	if OS.is_debug_build():
 		$StateLabel.visible = true
-		$Line2D.visible = true
+		#$Line2D.visible = true
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:

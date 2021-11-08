@@ -7,19 +7,20 @@ enum State {
 
 export var IDLE_TIME := 1
 
-const idle_transition_chance = {
+var idle_transition_chance = {
 	State.IDLE: 0.0,
 	State.CHASE_PLAYER: 0.0,
-	State.SHOOT_STUFF: 0.05,
-	State.SPRINT: 0.95
+	State.SHOOT_STUFF: 0.5,
+	State.SPRINT: 0.5
 }
 
 # will be true for the first frame you are in a new state
 var first_time_entering = true
 var state = State.IDLE
 
-
 func _ready() -> void:
+	if not GameStatus.ENEMY_BEHAVIOR:
+		idle_transition_chance[State.IDLE] = 1
 	if OS.is_debug_build():
 		$StateLabel.visible = true
 		$Line2D.visible = true
@@ -31,11 +32,13 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if parent is Projectile:
 		var attack := parent as Projectile
 		$EnemyStats.health -= attack.damage
-		add_velocity(attack.knockback_vector())
+		if state != State.SPRINT:
+			add_velocity(attack.knockback_vector())
 	if parent is PlayerCloseCombat:
 		var attack := parent as PlayerCloseCombat
 		$EnemyStats.health -= attack.damage
-		add_velocity(attack.knockback_vector())
+		if state != State.SPRINT:
+			add_velocity(attack.knockback_vector())
 	if parent is PoisonFragment:
 		var attack := parent as PoisonFragment
 		$EnemyStats.health -= attack.damage
@@ -48,10 +51,11 @@ func _on_EnemyStats_health_changed() -> void:
 func _on_EnemyStats_health_zero() -> void:
 	# TODO I would like not to kick around dead bodies quite as hard..
 	set_velocity(Vector2.ZERO)
+	$Healthbar.visible = false
+	$StateLabel.visible = false
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 
 func match_state(delta):
-	$StateLabel.text = State.keys()[state]
 	var this_was_the_first_time = first_time_entering
 	match state:
 		State.IDLE:
@@ -68,14 +72,13 @@ func match_state(delta):
 
 # variables local to state sprint, if another enemy needs this skill
 # you could take these variables and the method to a new script SprintAttack
-var distance_to_player
-var target_point
 const MAX_SPRINT_DISTANCE := 500
 export var SPRINT_VELOCITY := 400
+export var SPRINT_DELAY := 0.4
 
-func begin_sprinting(delta: float) -> void:
+func begin_sprinting(delta: float):
 	var direction = $Line2D.points[1].angle() + PI/2
-	distance_to_player = ($Line2D.points[1] - $Line2D.points[0]).length()
+	var distance_to_player = ($Line2D.points[1] - $Line2D.points[0]).length()
 	
 	# 1. if this enemy is too far from the player, don't sprint
 	if distance_to_player > MAX_SPRINT_DISTANCE:
@@ -91,40 +94,53 @@ func begin_sprinting(delta: float) -> void:
 		# there is some object between you and the player
 		# maybe this is not the time to go full on sprinting
 		transition_to(State.IDLE)
-		return
+		return 
+
+	# warn the player by showing '!' (TODO prettier)
+	$StateLabel.text = '!'
+	# TODO maybe even play a slight sound
 	
 	# now we know there is direct line of sight and the player is close
-	# TODO wait for a while first and signify to the player that something
-	# gnarly is about to happen (TODO show attention mark above enemy)
-	# TODO maybe even play a slight sound
-	target_point = $Line2D.points[1] + position
-	
-	$SprintMovementTween.interpolate_property(self, "position", position, target_point, 1,
+	# execute the actual sprinting movement
+	# since we know there is clear line of sight there won't be collisions
+	# no reason to use Godot physics to simulate this movement
+	# instead use a tween to interpolate this movement for now
+	# prepare the tween for later 
+	var target_point = $Line2D.points[1] + position
+	var duration = distance_to_player / SPRINT_VELOCITY
+	$SprintMovementTween.reset_all()
+	$SprintMovementTween.interpolate_property(self, "position", position, target_point, duration,
 	Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
-	$SprintMovementTween.start()
+
+	# TODO add grey "dusty" particles
+	# TODO maybe add sprite movement perpendicularily to the movement direction in the tween
 	
-	# TODO add soft collisions
+	# add timer, once this timer has finished, start the Tween movement
+	$SprintDelayTimer.start(SPRINT_DELAY)
 
 func state_sprint(delta):
 	if first_time_entering:
 		begin_sprinting(delta)
 	else:
-		# execute the actual sprinting movement
-		# since we know there is clear line of sight there won't be collisions
-		# no reason to use Godot physics to simulate this movement
-		
-		# we can try to use a tween to interpolate this movement for now
-		# the only question is whether collisions with the player mid-movement
-		# (and soft-collisions) work out of the box
-		pass
+		if not $SprintDelayTimer.is_stopped():  # currently waiting to sprint
+			yield($SprintDelayTimer, "timeout")
+			# sprint delay is over, start actually moving
+			$SprintMovementTween.start()
+		elif $SprintMovementTween.is_active():  # currently sprinting
+			# if already sprinting, wait for the movement to complete
+			yield($SprintMovementTween, "tween_all_completed")
+			# then go back to being idle
+			transition_to(State.IDLE)
+		else:
+			# if not sprinting and having been here before, go back to being idle
+			# this branch should actually not be entered, it's just to make sure
+			transition_to(State.IDLE)
 		
 	
 func state_chase_player():
 	pass
 	
 func state_shoot_stuff():
-	if not first_time_entering:  # with the call_deferred this shouldn't be needed
-		return
 
 	# for now either shoot a cone in the player direction or shoot radial
 	var direction = $Line2D.points[1].angle() + PI/2
@@ -138,10 +154,14 @@ func state_shoot_stuff():
 	# if too far from the player, don't shoot at all but enter another state instead
 	
 	# go back to being idle in the next frame
+	
 	transition_to(State.IDLE)
 
 	
 func transition_to(new_state):
+	$StateLabel.text = State.keys()[state]
+	if new_state == State.IDLE:
+		$IdleTimer.start(1)
 	first_time_entering = true
 	state = new_state
 	
@@ -166,9 +186,9 @@ func transition_to_random_state():
 	
 	
 func state_idle():
-	if $IdleTimer.is_stopped():
+	if first_time_entering and $IdleTimer.is_stopped():
 		$IdleTimer.start(1)
-	
+	pass
 	
 
 func _physics_process(delta: float) -> void:

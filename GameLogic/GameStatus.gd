@@ -1,5 +1,7 @@
 extends Node
 
+export var ENEMY_BEHAVIOR := true
+
 export var PLAYER_MAX_HEALTH := 4
 export var PLAYER_DASH_SPEED := 650.0
 export var PLAYER_PROJECTILE_DAMAGE := 4

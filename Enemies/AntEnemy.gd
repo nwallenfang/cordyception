@@ -25,7 +25,7 @@ var first_time_entering := false
 func _ready() -> void:
 	if OS.is_debug_build():
 		$StateLabel.visible = true
-		#$Line2D.visible = true
+		$Line2D.visible = true
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
@@ -50,6 +50,7 @@ func _on_EnemyStats_health_zero() -> void:
 
 func match_state():
 	$StateLabel.text = State.keys()[state]
+	var this_was_first_time = first_time_entering
 	match state:
 		State.IDLE:
 			state_idle()
@@ -59,26 +60,21 @@ func match_state():
 			state_chase_player()
 		State.SHOOT_STUFF:
 			state_shoot_stuff()
-			
-
 	
+	if this_was_first_time:
+		first_time_entering = false
+
 func state_sprint():
-	if $StateTimer.is_stopped():
-			transition_to_new_state(State.IDLE)
+	# see if there is line of sight towards the player	
+	pass
 	
 func state_chase_player():
-	if $StateTimer.is_stopped():
-			transition_to_new_state(State.IDLE)
+	pass
 	
 func state_shoot_stuff():
 	if not first_time_entering:
-		if $StateTimer.is_stopped():
-			transition_to_new_state(State.IDLE)
-		# check timer if it's time to transition
-		# still running, pass
 		return
 
-	
 	# for now either shoot a cone in the player direction or shoot radial
 	var direction = $Line2D.points[1].angle() + PI/2
 	var random_flip := randi() % 2
@@ -86,34 +82,15 @@ func state_shoot_stuff():
 		$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 30, 5, 0.2, 3)
 	else:
 		$EnemyProjectileSpawner.spawn_radial_projectiles(16)
-		
-	first_time_entering = false
 
 	# TODO shooting stuff should be depending on distance to player
 	# if too far from the player, don't shoot at all but enter another state instead
 	
-func transition_to_new_state(new_state):
+func transition_to(new_state):
 	first_time_entering = true
-	
-	match new_state:
-		State.IDLE:
-			$StateTimer.start(IDLE_TIME)
-		State.SHOOT_STUFF:
-			$StateTimer.start(SHOOT_TIME)
-		State.SPRINT:
-			$StateTimer.start(SPRINT_TIME)
-		State.CHASE_PLAYER:
-			$StateTimer.start(CHASE_TIME)
-			
 	state = new_state
 	
-func state_idle():
-	# wait for a while first
-	# see if we're already idle for longer than minimum
-	if not $StateTimer.is_stopped():
-		# still running, pass
-		return
-	
+func transition_to_random_state():
 	# another day of being an idle enemy ant
 	# who knows what the day may bring
 	# maybe shoot some stuff
@@ -128,11 +105,15 @@ func state_idle():
 	for new_state in State.values():
 		psum += idle_transition_chance[new_state]
 		if rand <= psum:
-			transition_to_new_state(new_state)
+			transition_to(new_state)
 			break
 		# random seed doesn't fit new state, go next
 	
-		
+	
+func state_idle():
+	# what did you expect??
+	pass
+	
 
 func _physics_process(delta: float) -> void:
 	# call for handling knockback
@@ -140,3 +121,10 @@ func _physics_process(delta: float) -> void:
 	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	
 	match_state()
+
+
+func _on_StateTimer_timeout() -> void:
+	if state == State.IDLE:
+		transition_to_random_state()
+	else:
+		transition_to(State.IDLE)

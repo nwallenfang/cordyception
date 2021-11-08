@@ -107,6 +107,7 @@ window/stretch/aspect="keep"
 [global]
 
 default=false
+debug=false
 
 [importer_defaults]
 

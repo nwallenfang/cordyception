@@ -136,7 +136,7 @@ __meta__ = {
 [node name="Particles2D" type="Particles2D" parent="."]
 modulate = Color( 0.309804, 1, 0.498039, 0.658824 )
 material = SubResource( 1 )
-position = Vector2( 12, 15 )
+position = Vector2( 12.25, 13.5 )
 scale = Vector2( 0.2, 0.2 )
 amount = 12
 lifetime = 5.0

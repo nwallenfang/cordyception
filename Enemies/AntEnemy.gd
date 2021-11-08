@@ -36,6 +36,9 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 		var attack := parent as PlayerCloseCombat
 		$EnemyStats.health -= attack.damage
 		add_velocity(attack.knockback_vector())
+	if parent is PoisonFragment:
+		var attack := parent as PoisonFragment
+		$EnemyStats.health -= attack.damage
 
 
 func _on_EnemyStats_health_changed() -> void:

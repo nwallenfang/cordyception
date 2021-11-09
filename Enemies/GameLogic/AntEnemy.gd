@@ -13,9 +13,9 @@ const CHASE_BASE_DISTANCE := 150.0
 
 var idle_transition_chance = {
 	State.IDLE: 0.0,
-	State.CHASE_PLAYER: 0.4,
-	State.SHOOT_STUFF: 0.3,
-	State.SPRINT: 0.3
+	State.CHASE_PLAYER: 0.33,
+	State.SHOOT_STUFF: 0.33,
+	State.SPRINT: 0.34
 }
 
 # will be true for the first frame you are in a new state
@@ -83,8 +83,8 @@ func match_state(delta):
 
 # variables local to state sprint, if another enemy needs this skill
 # you could take these variables and the method to a new script SprintAttack
-const MAX_SPRINT_DISTANCE := 500
-export var SPRINT_VELOCITY := 400  # px (Tween property)
+const MAX_SPRINT_DISTANCE := 400
+export var SPRINT_VELOCITY := 90 # px/s (Tween property)
 export var SPRINT_DELAY := 0.3
 
 func begin_sprinting(delta: float):
@@ -118,11 +118,15 @@ func begin_sprinting(delta: float):
 	# instead use a tween to interpolate this movement for now
 	# prepare the tween for later 
 	# TODO randomize 0.8 - 1.2 player position
-	var target_point = $Line2D.points[1] + position
-	var duration = distance_to_player / SPRINT_VELOCITY
+#	var target_point = $Line2D.points[1] + position
+	var target_point = position + MAX_SPRINT_DISTANCE * Vector2.UP.rotated(direction)
+	# duration should be independent from distance_to_player
+	var duration = 0.68
+	
+	# TODO polish this
 	$SprintMovementTween.reset_all()
 	$SprintMovementTween.interpolate_property(self, "position", position, target_point, duration,
-	Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	Tween.TRANS_LINEAR)
 
 	# TODO add grey "dusty" particles
 	# TODO maybe add sprite movement perpendicularily to the movement direction in the tween
@@ -160,7 +164,7 @@ func should_stop_chasing(distance: float) -> bool:
 	var random_decider = randf()
 	return random_decider < stop_chase_probability
 
-export var CHASE_ACCELERATION := 2680.0
+export var CHASE_ACCELERATION := 2200.0
 var starting_point: Vector2
 var full_length: float
 var progress: float

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shroom2.png-b6da369b1a2aab4087cfef609e102168.stex"
+path="res://.import/Pilz_01_Brown.png-854f45d9738a78fd69d059278675c763.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Shrooms/shroom2.png"
-dest_files=[ "res://.import/shroom2.png-b6da369b1a2aab4087cfef609e102168.stex" ]
+source_file="res://World/Shrooms/Pilz_01_Brown.png"
+dest_files=[ "res://.import/Pilz_01_Brown.png-854f45d9738a78fd69d059278675c763.stex" ]
 
 [params]
 

@@ -17,10 +17,11 @@ var idle_transition_chance = {
 # will be true for the first frame you are in a new state
 var first_time_entering = true
 var state = State.IDLE
+var state_machine_enabled := true
 
 func _ready() -> void:
 	if not GameStatus.ENEMY_BEHAVIOR:
-		idle_transition_chance[State.IDLE] = 1
+		state_machine_enabled = false
 	if OS.is_debug_build():
 		$StateLabel.visible = true
 		$Line2D.visible = true
@@ -53,6 +54,10 @@ func _on_EnemyStats_health_zero() -> void:
 	set_velocity(Vector2.ZERO)
 	$Healthbar.visible = false
 	$StateLabel.visible = false
+	state_machine_enabled = false
+	# stop Tween movement if currently sprinting
+	$SprintMovementTween.stop_all()
+	
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 
 func match_state(delta):
@@ -196,7 +201,8 @@ func _physics_process(delta: float) -> void:
 	accelerate_and_move(delta)
 	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	
-	match_state(delta)
+	if state_machine_enabled:
+		match_state(delta)
 
 
 func _on_IdleTimer_timeout() -> void:

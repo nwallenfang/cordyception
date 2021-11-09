@@ -5,21 +5,27 @@ enum State {
 	CHASE_PLAYER, IDLE, SPRINT, SHOOT_STUFF
 }
 
-export var IDLE_TIME := 1
+export var IDLE_TIME := 0.2
+
+# distance where it's still prob. 0 of stopping the chase
+# basically, the probability of stopping the chase increases by increasing this distance
+const CHASE_BASE_DISTANCE := 150.0
 
 var idle_transition_chance = {
 	State.IDLE: 0.0,
-	State.CHASE_PLAYER: 0.0,
-	State.SHOOT_STUFF: 0.5,
-	State.SPRINT: 0.5
+	State.CHASE_PLAYER: 0.4,
+	State.SHOOT_STUFF: 0.3,
+	State.SPRINT: 0.3
 }
 
 # will be true for the first frame you are in a new state
 var first_time_entering = true
+var previous_non_idle_state
 var state = State.IDLE
 var state_machine_enabled := true
 
 func _ready() -> void:
+	(self.STOP_CHASE_DENSITY as Curve).max_value = CHASE_BASE_DISTANCE
 	if not GameStatus.ENEMY_BEHAVIOR:
 		state_machine_enabled = false
 	if OS.is_debug_build():
@@ -78,8 +84,8 @@ func match_state(delta):
 # variables local to state sprint, if another enemy needs this skill
 # you could take these variables and the method to a new script SprintAttack
 const MAX_SPRINT_DISTANCE := 500
-export var SPRINT_VELOCITY := 400
-export var SPRINT_DELAY := 0.4
+export var SPRINT_VELOCITY := 400  # px (Tween property)
+export var SPRINT_DELAY := 0.3
 
 func begin_sprinting(delta: float):
 	var direction = $Line2D.points[1].angle() + PI/2
@@ -141,33 +147,65 @@ func state_sprint(delta):
 			# if not sprinting and having been here before, go back to being idle
 			# this branch should actually not be entered, it's just to make sure
 			transition_to(State.IDLE)
-		
-	
+
+
+# randomly decide (depending on distance to player) whether it is time to
+# stop chasing
+
+export(Curve) var STOP_CHASE_DENSITY # probability density curve
+func should_stop_chasing(distance: float) -> bool:
+	# cap distance from 0 to CHASE_BASE_DISTANCE
+	var distance_normalized = min(distance, CHASE_BASE_DISTANCE)
+	var stop_chase_probability = max(STOP_CHASE_DENSITY.interpolate_baked(CHASE_BASE_DISTANCE - distance_normalized), 0)
+	var random_decider = randf()
+	return random_decider < stop_chase_probability
+
+export var CHASE_ACCELERATION := 2680.0
+var starting_point: Vector2
+var full_length: float
+var progress: float
 func state_chase_player():
-	pass
+	var distance_vector := ($Line2D.points[1] - $Line2D.points[0]) as Vector2
+	var direction_vector = distance_vector.normalized()
+	var distance_to_player_scent = distance_vector.length()
 	
+	if should_stop_chasing(distance_to_player_scent):
+		transition_to(State.IDLE)
+	
+	add_acceleration(CHASE_ACCELERATION * direction_vector)	
+	
+export var SHOOT_DELAY := 0.2
 func state_shoot_stuff():
 
 	# for now either shoot a cone in the player direction or shoot radial
-	var direction = $Line2D.points[1].angle() + PI/2
-	var random_flip := randi() % 2
-	if random_flip:
-		$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 30, 5, 0.2, 3)
+	if first_time_entering:
+		var direction = $Line2D.points[1].angle() + PI/2
+		var random_flip := randi() % 2
+		if random_flip:
+			$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 30, 5, 0.2, 3)
+		else:
+			$EnemyProjectileSpawner.spawn_radial_projectiles(16)
+			
+		$ShootDelayTimer.start()
 	else:
-		$EnemyProjectileSpawner.spawn_radial_projectiles(16)
-
+		# wait for shoot delay
+		yield($ShootDelayTimer, "timeout")
+		# go back to being idle in the next frame
+		transition_to(State.IDLE)		
+		
 	# TODO shooting stuff should be depending on distance to player
 	# if too far from the player, don't shoot at all but enter another state instead
 	
-	# go back to being idle in the next frame
+
 	
-	transition_to(State.IDLE)
+
 
 	
 func transition_to(new_state):
-	$StateLabel.text = State.keys()[state]
-	if new_state == State.IDLE:
-		$IdleTimer.start(1)
+#	print("transition from ", State.keys()[state], " to ", State.keys()[new_state])
+	$StateLabel.text = State.keys()[new_state]
+#	if new_state == State.IDLE:
+#		$IdleTimer.start(IDLE_TIME)
 	first_time_entering = true
 	state = new_state
 	
@@ -189,21 +227,23 @@ func transition_to_random_state():
 			transition_to(new_state)
 			break
 		# random seed doesn't fit new state, go next
+		
 	
 	
 func state_idle():
-	if first_time_entering and $IdleTimer.is_stopped():
-		$IdleTimer.start(1)
+	if $IdleTimer.is_stopped():
+		$IdleTimer.start(IDLE_TIME)
 	pass
 	
 
 func _physics_process(delta: float) -> void:
-	# call for handling knockback
-	accelerate_and_move(delta)
 	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	
 	if state_machine_enabled:
 		match_state(delta)
+		
+	# call for handling knockback
+	accelerate_and_move(delta)
 
 
 func _on_IdleTimer_timeout() -> void:

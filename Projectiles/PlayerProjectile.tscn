@@ -93,6 +93,18 @@ tracks/2/keys = {
 "points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.4 )
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="PlayerProjectile" type="Node2D"]
 script = ExtResource( 2 )

@@ -1061,9 +1061,6 @@ scale_curve = SubResource( 64 )
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
-SPEED = 420
-ACCELERATION = 1100
-FRICTION = 1500
 
 [node name="Aimer" type="Node2D" parent="."]
 
@@ -1078,6 +1075,7 @@ position = Vector2( 1.13687e-13, -1.90735e-06 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
+rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
@@ -1092,6 +1090,7 @@ position = Vector2( 2.27374e-13, -25 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
 position = Vector2( -3.71793e-13, -0.635162 )
+rotation = -1.5708
 scale = Vector2( 1, 0.88 )
 shape = SubResource( 2 )
 

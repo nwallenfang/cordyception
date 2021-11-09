@@ -9,7 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "SlideMover",
+"base": "KinematicBody2D",
+"class": "PhysicsMover",
+"language": "GDScript",
+"path": "res://Player/PhysicsMover.gd"
+}, {
+"base": "PhysicsMover",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
@@ -70,6 +75,7 @@ _global_script_classes=[ {
 "path": "res://UI/UI.gd"
 } ]
 _global_script_class_icons={
+"PhysicsMover": "",
 "Player": "",
 "PlayerCloseCombat": "",
 "PlayerPoison": "",

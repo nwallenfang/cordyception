@@ -1,4 +1,4 @@
-extends SlideMover
+extends PhysicsMover
 
 
 enum State {
@@ -34,12 +34,12 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 		var attack := parent as Projectile
 		$EnemyStats.health -= attack.damage
 		if state != State.SPRINT:
-			add_velocity(attack.knockback_vector())
+			add_acceleration(attack.knockback_vector())
 	if parent is PlayerCloseCombat:
 		var attack := parent as PlayerCloseCombat
 		$EnemyStats.health -= attack.damage
 		if state != State.SPRINT:
-			add_velocity(attack.knockback_vector())
+			add_acceleration(attack.knockback_vector())
 	if parent is PoisonFragment:
 		var attack := parent as PoisonFragment
 		$EnemyStats.health -= attack.damage
@@ -51,7 +51,7 @@ func _on_EnemyStats_health_changed() -> void:
 
 func _on_EnemyStats_health_zero() -> void:
 	# TODO I would like not to kick around dead bodies quite as hard..
-	set_velocity(Vector2.ZERO)
+	# TODO
 	$Healthbar.visible = false
 	$StateLabel.visible = false
 	state_machine_enabled = false
@@ -111,6 +111,7 @@ func begin_sprinting(delta: float):
 	# no reason to use Godot physics to simulate this movement
 	# instead use a tween to interpolate this movement for now
 	# prepare the tween for later 
+	# TODO randomize 0.8 - 1.2 player position
 	var target_point = $Line2D.points[1] + position
 	var duration = distance_to_player / SPRINT_VELOCITY
 	$SprintMovementTween.reset_all()

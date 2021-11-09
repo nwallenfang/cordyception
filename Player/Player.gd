@@ -1,4 +1,4 @@
-extends SlideMover
+extends PhysicsMover
 class_name Player
 
 var aim_direction := 0.0
@@ -98,7 +98,7 @@ func state_walk() -> void:
 
 func state_dash() -> void:
 	if animation_state.get_current_node() != "Dash":
-		add_velocity(GameStatus.PLAYER_DASH_SPEED * input_vec)
+		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
 		$AnimationTree.set("parameters/Dash/blend_position", input_vec)
 		animation_state.travel("Dash")
 		$DashParticles.emitting = true
@@ -234,7 +234,7 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	GameStatus.CURRENT_HEALTH -= 1
 	var projectile := area.get_parent() as Projectile
 	if projectile:
-		add_velocity(projectile.knockback_vector())
+		add_acceleration(projectile.knockback_vector())
 	$Hurtbox/InvincibilityTimer.start()
 	$InvincibilityPlayer.play("start")
 

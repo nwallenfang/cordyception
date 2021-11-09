@@ -56,7 +56,6 @@ tracks/1/keys = {
 [node name="AntEnemy" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 6 )
-FRICTION = 700
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

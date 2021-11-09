@@ -140,6 +140,7 @@ polygon = PoolVector2Array( -1680.99, -1593.16, -2406.17, -676.195, -2430.15, 23
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 56, 104 )
+FRICTION = 0.9
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -173,6 +174,7 @@ position = Vector2( -158.641, -118.096 )
 
 [node name="EnemyAntTopdown2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 422.477, 210.727 )
+FRICTION = 0.9
 
 [node name="SpeechBubble" parent="YSort/EnemyAntTopdown2" instance=ExtResource( 13 )]
 position = Vector2( -1.11798, -84.823 )

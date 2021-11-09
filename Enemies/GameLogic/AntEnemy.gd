@@ -2,7 +2,7 @@ extends PhysicsMover
 
 
 enum State {
-	CHASE_PLAYER, IDLE, SPRINT, SHOOT_STUFF
+	IDLE, CHASE_PLAYER, SHOOT_STUFF, SPRINT, 
 }
 
 export var IDLE_TIME := 0.2
@@ -11,16 +11,17 @@ export var IDLE_TIME := 0.2
 # basically, the probability of stopping the chase increases by increasing this distance
 const CHASE_BASE_DISTANCE := 150.0
 
+# should be same order as State Enum! 
 var idle_transition_chance = {
 	State.IDLE: 0.0,
-	State.CHASE_PLAYER: 0.33,
+	State.CHASE_PLAYER: 0.34,
 	State.SHOOT_STUFF: 0.33,
-	State.SPRINT: 0.34
+	State.SPRINT: 0.33
 }
 
 # will be true for the first frame you are in a new state
 var first_time_entering = true
-var previous_non_idle_state
+var previous_non_idle_state = State.SPRINT
 var state = State.IDLE
 var state_machine_enabled := true
 
@@ -197,24 +198,22 @@ func state_shoot_stuff():
 		# go back to being idle in the next frame
 		transition_to(State.IDLE)		
 		
-	# TODO shooting stuff should be depending on distance to player
+	# shooting stuff could be depending on distance to player..
 	# if too far from the player, don't shoot at all but enter another state instead
-	
-
-	
-
-
 	
 func transition_to(new_state):
 #	print("transition from ", State.keys()[state], " to ", State.keys()[new_state])
 	$StateLabel.text = State.keys()[new_state]
-#	if new_state == State.IDLE:
-#		$IdleTimer.start(IDLE_TIME)
 	first_time_entering = true
+	if state != State.IDLE:
+		previous_non_idle_state = state
 	state = new_state
 	
 func transition_to_random_state():
-	# another day of being an idle enemy ant
+	transition_to(get_random_next_state(idle_transition_chance))
+
+func get_random_next_state(transition_chances: Dictionary):
+		# another day of being an idle enemy ant
 	# who knows what the day may bring
 	# maybe shoot some stuff
 	# maybe even go for a little walk
@@ -226,13 +225,28 @@ func transition_to_random_state():
 	# states up to some point, enter the state
 	# else go on. For this the state probabilities' sum has to be 1
 	for new_state in State.values():
-		psum += idle_transition_chance[new_state]
+		psum += transition_chances[new_state]
 		if rand <= psum:
-			transition_to(new_state)
-			break
+			return new_state
 		# random seed doesn't fit new state, go next
-		
 	
+	print("ERROR no random state was drawn with ", transition_chances)
+	
+func transition_to_random_different_state():
+	# transition to a new state different from last non-idle state
+	# copy idle transition chances
+	var state_transition_chances = self.idle_transition_chance.duplicate()
+	var prob_to_remove: float = state_transition_chances[previous_non_idle_state]
+	var number_possible_states = 2  # could be calculated to generalize better
+	
+	state_transition_chances[self.previous_non_idle_state] = 0.0
+	
+	# convention that Idle is at number 1 in the keys
+	for i in range(1, 4):
+		if i != self.previous_non_idle_state:
+			state_transition_chances[i] += prob_to_remove / number_possible_states
+			
+	transition_to(get_random_next_state(state_transition_chances))
 	
 func state_idle():
 	if $IdleTimer.is_stopped():
@@ -251,5 +265,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_IdleTimer_timeout() -> void:
-	transition_to_random_state()
+	transition_to_random_different_state()
 	$IdleTimer.stop()

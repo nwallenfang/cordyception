@@ -6,6 +6,7 @@ enum State {
 }
 
 export var IDLE_TIME := 0.2
+export var SOFT_COLLISION_ACC := 71000.0
 
 # distance where it's still prob. 0 of stopping the chase
 # basically, the probability of stopping the chase increases by increasing this distance
@@ -14,8 +15,8 @@ const CHASE_BASE_DISTANCE := 150.0
 # should be same order as State Enum! 
 var idle_transition_chance = {
 	State.IDLE: 0.0,
-	State.CHASE_PLAYER: 0.34,
-	State.SHOOT_STUFF: 0.33,
+	State.CHASE_PLAYER: 0.44,
+	State.SHOOT_STUFF: 0.26,
 	State.SPRINT: 0.33
 }
 
@@ -23,15 +24,16 @@ var idle_transition_chance = {
 var first_time_entering = true
 var previous_non_idle_state = State.SPRINT
 var state = State.IDLE
-var state_machine_enabled := true
+var state_machine_enabled := false
 
 func _ready() -> void:
+	if GameStatus.AUTO_ENEMY_BEHAVIOR:
+		state_machine_enabled = true
 	(self.STOP_CHASE_DENSITY as Curve).max_value = CHASE_BASE_DISTANCE
-	if not GameStatus.ENEMY_BEHAVIOR:
-		state_machine_enabled = false
 	if OS.is_debug_build():
-		$StateLabel.visible = true
-		$Line2D.visible = true
+#		$StateLabel.visible = true
+#		$Line2D.visible = true
+		pass
 
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
@@ -86,8 +88,7 @@ func match_state(delta):
 # you could take these variables and the method to a new script SprintAttack
 const MAX_SPRINT_DISTANCE := 400
 export var SPRINT_VELOCITY := 90 # px/s (Tween property)
-export var SPRINT_DELAY := 0.3
-
+export var SPRINT_DELAY := 0.4
 func begin_sprinting(delta: float):
 	var direction = $Line2D.points[1].angle() + PI/2
 	var distance_to_player = ($Line2D.points[1] - $Line2D.points[0]).length()
@@ -108,10 +109,8 @@ func begin_sprinting(delta: float):
 		transition_to(State.IDLE)
 		return 
 
-	# warn the player by showing '!' (TODO prettier)
-	$StateLabel.text = '!'
-	# TODO maybe even play a slight sound
-	
+	# warn the player by showing '!'
+	$SprintWarning.show()
 	# now we know there is direct line of sight and the player is close
 	# execute the actual sprinting movement
 	# since we know there is clear line of sight there won't be collisions
@@ -129,7 +128,6 @@ func begin_sprinting(delta: float):
 	$SprintMovementTween.interpolate_property(self, "position", position, target_point, duration,
 	Tween.TRANS_LINEAR)
 
-	# TODO add grey "dusty" particles
 	# TODO maybe add sprite movement perpendicularily to the movement direction in the tween
 	
 	# add timer, once this timer has finished, start the Tween movement
@@ -143,8 +141,10 @@ func state_sprint(delta):
 			yield($SprintDelayTimer, "timeout")
 			# sprint delay is over, start actually moving
 			$SprintMovementTween.start()
+			$SprintWarning.hide()
 		elif $SprintMovementTween.is_active():  # currently sprinting
 			# if already sprinting, wait for the movement to complete
+			$AnimationPlayer.play("sprinting")
 			yield($SprintMovementTween, "tween_all_completed")
 			# then go back to being idle
 			transition_to(State.IDLE)
@@ -267,3 +267,19 @@ func _physics_process(delta: float) -> void:
 func _on_IdleTimer_timeout() -> void:
 	transition_to_random_different_state()
 	$IdleTimer.stop()
+
+
+func _on_Hitbox_area_entered(area: Area2D) -> void:
+	# push itself slightly if a body enters the enemy ant's body hitbox
+	var parent = area.get_parent()
+	if parent is Player:
+		var player = parent as Player
+		var push_dir = -(player.global_position - self.global_position).normalized()
+		# or rather: did not JUST turn invincible but was also invincible before this
+		var invincTimer: Timer = player.get_node("Hurtbox/InvincibilityTimer")
+		var is_invincible = invincTimer.time_left < 0.9 * invincTimer.wait_time
+		
+		if self.state != State.SPRINT and not is_invincible :
+			self.add_acceleration(SOFT_COLLISION_ACC * push_dir)
+	else:
+		print("?!?")

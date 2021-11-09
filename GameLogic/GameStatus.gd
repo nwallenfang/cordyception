@@ -1,6 +1,7 @@
 extends Node
 
-export var ENEMY_BEHAVIOR := true
+# start enemy behavior automatically (without calling trigger method or similar)
+export var AUTO_ENEMY_BEHAVIOR := true
 
 export var PLAYER_MAX_HEALTH := 4
 export var PLAYER_DASH_ACC := 50000.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Stones/Stone02.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=12]
+[ext_resource path="res://UI/SpeechBubble.tscn" type="PackedScene" id=13]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=14]
 [ext_resource path="res://World/Stones/Stone09.tscn" type="PackedScene" id=15]
 [ext_resource path="res://World/Stones/Stone07.tscn" type="PackedScene" id=16]
@@ -86,6 +87,20 @@ shader_param/pixel_size = 9
 
 [sub_resource type="Animation" id=4]
 length = 4.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("YSort/AntEnemy/SpeechBubble")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Sprint Particle sucken noch hart", 2.5 ],
+"method": "set_text"
+} ]
+}
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 598.641, 354.096 )
@@ -125,7 +140,6 @@ polygon = PoolVector2Array( -1680.99, -1593.16, -2406.17, -676.195, -2430.15, 23
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 56, 104 )
-FRICTION = 0.9
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -138,6 +152,9 @@ position = Vector2( 137.359, -233.096 )
 
 [node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 349.743, 168.189 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
 
 [node name="AntEnemy2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -382.27, 53.5365 )

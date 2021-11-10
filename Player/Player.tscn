@@ -1041,7 +1041,7 @@ tracks/0/keys = {
 [sub_resource type="Curve" id=63]
 _data = [ Vector2( 0.269737, 0.973864 ), 0.0, 0.0899618, 0, 0, Vector2( 1, 0.0011363 ), -2.86234, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=66]
+[sub_resource type="CurveTexture" id=64]
 curve = SubResource( 63 )
 
 [sub_resource type="ParticlesMaterial" id=65]
@@ -1056,7 +1056,7 @@ angular_velocity_random = 0.6
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.2
-scale_curve = SubResource( 66 )
+scale_curve = SubResource( 64 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 0

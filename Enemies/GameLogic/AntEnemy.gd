@@ -1,12 +1,13 @@
 extends PhysicsMover
 
+class_name AntEnemy
 
 enum State {
 	IDLE, CHASE_PLAYER, SHOOT_STUFF, SPRINT, 
 }
 
 export var IDLE_TIME := 0.2
-export var SOFT_COLLISION_ACC := 71000.0
+export var SELF_SOFT_COLLISION_STRENGTH := 7000.0
 
 # distance where it's still prob. 0 of stopping the chase
 # basically, the probability of stopping the chase increases by increasing this distance
@@ -271,15 +272,29 @@ func _on_IdleTimer_timeout() -> void:
 
 func _on_Hitbox_area_entered(area: Area2D) -> void:
 	# push itself slightly if a body enters the enemy ant's body hitbox
+	pass
+	# PLAYER KNOCKBACK ON CONTACT INSTEAD
+#	var parent = area.get_parent()
+#	if parent is Player:
+#		var player = parent as Player
+#		var push_dir = -(player.global_position - self.global_position).normalized()
+#		# or rather: did not JUST turn invincible but was also invincible before this
+#		var invincTimer: Timer = player.get_node("Hurtbox/InvincibilityTimer")
+#		var is_invincible = invincTimer.time_left < 0.9 * invincTimer.wait_time
+#
+#		if self.state != State.SPRINT and not is_invincible :
+#			self.add_acceleration(SOFT_COLLISION_ACC * push_dir)
+#	if parent is AntEnemy:
+#		print("?!?")
+
+
+func _on_SoftCollision_area_entered(area: Area2D) -> void:
+	# they collide with themself on the first frame I think
 	var parent = area.get_parent()
-	if parent is Player:
-		var player = parent as Player
-		var push_dir = -(player.global_position - self.global_position).normalized()
-		# or rather: did not JUST turn invincible but was also invincible before this
-		var invincTimer: Timer = player.get_node("Hurtbox/InvincibilityTimer")
-		var is_invincible = invincTimer.time_left < 0.9 * invincTimer.wait_time
-		
-		if self.state != State.SPRINT and not is_invincible :
-			self.add_acceleration(SOFT_COLLISION_ACC * push_dir)
-	else:
-		print("?!?")
+	print(parent)  # should be AntEnemy, can't check because of Godot
+	
+	var push_dir = (parent.global_position - self.global_position).normalized()
+	self.add_acceleration(-SELF_SOFT_COLLISION_STRENGTH * push_dir)
+	parent.add_acceleration(SELF_SOFT_COLLISION_STRENGTH * push_dir)
+	
+	

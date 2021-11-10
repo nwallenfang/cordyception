@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Collision/AntHurtbox.gd" type="Script" id=2]
@@ -110,6 +110,9 @@ scale = 1.2
 scale_curve = SubResource( 9 )
 color = Color( 0.37, 0.204795, 0.1591, 1 )
 
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 21.4247
+
 [node name="AntEnemy" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 3 )
@@ -120,13 +123,13 @@ texture = ExtResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 9 )]
-collision_layer = 8
+collision_layer = 40
 collision_mask = 4
 script = ExtResource( 2 )
 
@@ -210,11 +213,20 @@ script = ExtResource( 8 )
 
 [node name="SprintWarningTween" type="Tween" parent="SprintWarning"]
 
+[node name="SoftCollision" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
+scale = Vector2( 0.907084, 1 )
+shape = SubResource( 11 )
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]
 [connection signal="health_zero" from="EnemyStats" to="." method="_on_EnemyStats_health_zero"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
+[connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]
 
 [editable path="Hurtbox"]
 [editable path="EnemyProjectileSpawner"]

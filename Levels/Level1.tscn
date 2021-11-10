@@ -156,6 +156,18 @@ position = Vector2( 349.743, 168.189 )
 [node name="SpeechBubble" parent="YSort/AntEnemy" instance=ExtResource( 13 )]
 position = Vector2( -0.484436, -68.7455 )
 
+[node name="AntEnemy3" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 539.29, -41.3808 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy3" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
+
+[node name="AntEnemy4" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 640.738, 244.275 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy4" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
+
 [node name="AntEnemy2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -382.27, 53.5365 )
 

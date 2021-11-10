@@ -237,6 +237,11 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var projectile := area.get_parent() as Projectile
 	if projectile:
 		add_acceleration(projectile.knockback_vector())
+	
+	var ant_enemy := area.get_parent() as AntEnemy
+	if projectile:
+		add_acceleration(projectile.knockback_vector())	
+	
 	$Hurtbox/InvincibilityTimer.start()
 	$InvincibilityPlayer.play("start")
 

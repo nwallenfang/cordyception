@@ -291,10 +291,10 @@ func _on_Hitbox_area_entered(area: Area2D) -> void:
 func _on_SoftCollision_area_entered(area: Area2D) -> void:
 	# they collide with themself on the first frame I think
 	var parent = area.get_parent()
-	print(parent)  # should be AntEnemy, can't check because of Godot
 	
-	var push_dir = (parent.global_position - self.global_position).normalized()
-	self.add_acceleration(-SELF_SOFT_COLLISION_STRENGTH * push_dir)
-	parent.add_acceleration(SELF_SOFT_COLLISION_STRENGTH * push_dir)
+	if self.state != State.SPRINT and parent.state != State.SPRINT:
+		var push_dir = (parent.global_position - self.global_position).normalized()
+		self.add_acceleration(-SELF_SOFT_COLLISION_STRENGTH * push_dir)
+		parent.add_acceleration(SELF_SOFT_COLLISION_STRENGTH * push_dir)
 	
 	

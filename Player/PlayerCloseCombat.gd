@@ -1,8 +1,8 @@
 extends Node2D
 class_name PlayerCloseCombat
 
-onready var damage := GameStatus.PLAYER_CLOSECOMBAT_DAMAGE
-onready var knockback := GameStatus.PLAYER_CLOSECOMBAT_KNOCKBACK
+onready var damage: int = GameStatus.PLAYER_CLOSECOMBAT_DAMAGE
+onready var knockback: float = GameStatus.PLAYER_CLOSECOMBAT_KNOCKBACK
 onready var hitbox := $Hitbox as Area2D
 
 func _ready() -> void:

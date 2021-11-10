@@ -19,7 +19,6 @@ gradient = SubResource( 2 )
 lifetime_randomness = 0.43
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = -60.0
 angular_velocity_random = 0.15
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -31,53 +30,13 @@ color_ramp = SubResource( 3 )
 [sub_resource type="Animation" id=5]
 resource_name = "one"
 length = 0.8
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("FullControl/Full:modulate:r")
+tracks/0/type = "method"
+tracks/0/path = NodePath("Particles2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.0980392, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0, 0.0980392, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.6 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("FullControl/Full:modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 0.905882, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 0.905882, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.6 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("FullControl/Full:modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 0.027451, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.027451, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.6 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("FullControl/Full:modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.6 )
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("Particles2D")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -85,13 +44,13 @@ tracks/4/keys = {
 "method": "restart"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("Particles2D:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -113,21 +72,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("FullControl/Full:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.160784, 0.768627, 0.356863, 1 ) ]
-}
 
 [node name="ProjectileCooldownUI" type="Control"]
-rect_scale = Vector2( 4, 4 )
+rect_scale = Vector2( 3, 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

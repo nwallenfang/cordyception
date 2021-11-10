@@ -94,12 +94,9 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Sprint Particle sucken noch hart", 2.5 ],
-"method": "set_text"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 
 [node name="Level1" type="Node2D"]
@@ -170,6 +167,9 @@ position = Vector2( -0.484436, -68.7455 )
 
 [node name="AntEnemy2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -382.27, 53.5365 )
+
+[node name="AntEnemy5" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -339.507, -55.1531 )
 
 [node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -501.641, -184.096 )

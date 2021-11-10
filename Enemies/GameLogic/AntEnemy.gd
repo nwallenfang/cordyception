@@ -88,7 +88,7 @@ func match_state(delta):
 # variables local to state sprint, if another enemy needs this skill
 # you could take these variables and the method to a new script SprintAttack
 const MAX_SPRINT_DISTANCE := 400
-export var SPRINT_VELOCITY := 90 # px/s (Tween property)
+export var SPRINT_VELOCITY := 110 # px/s (Tween property)
 export var SPRINT_DELAY := 0.4
 func begin_sprinting(delta: float):
 	var direction = $Line2D.points[1].angle() + PI/2

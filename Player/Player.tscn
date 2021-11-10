@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player_ant_placeholder.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Player/PlayerCloseCombat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Effects/dot_particle.png" type="Texture" id=9]
 [ext_resource path="res://Player/PlayerPoison.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Player/Dash.gd" type="Script" id=11]
+[ext_resource path="res://Sound/cooldown_tick.ogg" type="AudioStream" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -443,7 +445,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("DashFrameTimer")
+tracks/3/path = NodePath("DashStuff/DashFrameTimer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -498,7 +500,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("DashFrameTimer")
+tracks/3/path = NodePath("DashStuff/DashFrameTimer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -553,7 +555,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("DashFrameTimer")
+tracks/3/path = NodePath("DashStuff/DashFrameTimer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -608,7 +610,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("DashFrameTimer")
+tracks/3/path = NodePath("DashStuff/DashFrameTimer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1142,7 +1144,13 @@ anims/stop = SubResource( 62 )
 
 [node name="ScentSpawner" parent="." instance=ExtResource( 7 )]
 
-[node name="DashParticles" type="Particles2D" parent="."]
+[node name="DashStuff" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="DashFrameTimer" type="Timer" parent="DashStuff"]
+wait_time = 0.1
+
+[node name="DashParticles" type="Particles2D" parent="DashStuff"]
 modulate = Color( 0.18, 1.3, 1.5, 1 )
 show_behind_parent = true
 scale = Vector2( 4, 4 )
@@ -1155,11 +1163,15 @@ local_coords = false
 process_material = SubResource( 65 )
 texture = ExtResource( 9 )
 
-[node name="DashFrameTimer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="DashCooldown" type="Timer" parent="DashStuff"]
+wait_time = 1.3
+one_shot = true
+
+[node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="DashStuff"]
+stream = ExtResource( 12 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
-[connection signal="timeout" from="DashFrameTimer" to="." method="add_dash_frame"]
+[connection signal="timeout" from="DashStuff/DashFrameTimer" to="." method="add_dash_frame"]
 
 [editable path="Hurtbox"]

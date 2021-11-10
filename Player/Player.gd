@@ -97,14 +97,21 @@ func state_walk() -> void:
 	accelerate_and_move(last_delta, input_vec)
 
 func state_dash() -> void:
-	var dash_duration: float =  $AnimationPlayer.get_animation("dash_left").length
-	if animation_state.get_current_node() != "Dash":
+	var dash_duration: float = $AnimationPlayer.get_animation("dash_left").length
+
+	if Input.is_action_just_pressed("player_dash"):
+		# easiest way for me to play this sound
+		if self.state == State.DASH and not $DashStuff/DashCooldown.is_stopped():
+			$DashStuff/CooldownNotReadySound.play()
+
+	if animation_state.get_current_node() != "Dash" and $DashStuff/DashCooldown.is_stopped():
 		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
 		$AnimationTree.set("parameters/Dash/blend_position", input_vec)
 		animation_state.travel("Dash")
-		$DashParticles.emitting = true
+		$DashStuff/DashParticles.emitting = true
 		$Hurtbox/InvincibilityTimer.start(dash_duration)
-		var dash_timer := $DashFrameTimer as Timer
+		$DashStuff/DashCooldown.start()
+		var dash_timer := $DashStuff/DashFrameTimer as Timer
 		dash_timer.start(0.1)
 	accelerate_and_move(last_delta, input_vec)
 

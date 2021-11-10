@@ -192,6 +192,7 @@ one_shot = true
 one_shot = true
 
 [node name="SprintParticles" type="Particles2D" parent="."]
+visible = false
 show_behind_parent = true
 scale = Vector2( 4, 4 )
 emitting = false

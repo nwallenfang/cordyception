@@ -42,11 +42,14 @@ func _on_EnemyStats_health_changed() -> void:
 
 
 func _on_EnemyStats_health_zero() -> void:
-	# TODO I would like not to kick around dead bodies quite as hard..
-	# TODO
+	print("sup")
 	$Healthbar.visible = false
 	$StateLabel.visible = false
 	$StateMachine.stop()
+	$Hitbox.set_deferred("monitoring", false)
+	$Hitbox.set_deferred("monitorable", false)
+	$Hurtbox.set_deferred("monitoring", false)
+	$Hurtbox.set_deferred("monitorable", false)
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 
 

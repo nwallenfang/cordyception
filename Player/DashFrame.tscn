@@ -37,7 +37,7 @@ tracks/1/keys = {
 }
 
 [node name="DashFrame" type="Sprite"]
-modulate = Color( 0, 0.811765, 1, 1 )
+modulate = Color( 1, 1, 1, 0.635294 )
 material = SubResource( 1 )
 texture = ExtResource( 1 )
 

@@ -884,7 +884,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="AnimationCopiedFromPlayer" type="AnimationPlayer" parent="."]
 anims/idle_down = SubResource( 12 )
 anims/idle_left = SubResource( 13 )
 anims/idle_right = SubResource( 14 )

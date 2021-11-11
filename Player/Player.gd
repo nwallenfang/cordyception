@@ -219,6 +219,10 @@ func vector_to_angle(vec: Vector2) -> float:
 	vec.y = -vec.y
 	return vec.angle_to(Vector2.DOWN)
 
+# gain 1 HP
+func health_boost():
+	GameStatus.CURRENT_HEALTH += 1
+
 # on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if not $Hurtbox/InvincibilityTimer.is_stopped():

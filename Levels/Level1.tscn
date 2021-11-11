@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=27]
 [ext_resource path="res://UI/Tutorial/moveC.png" type="Texture" id=28]
 [ext_resource path="res://UI/Tutorial/moveK.png" type="Texture" id=29]
+[ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -42,7 +43,7 @@ adjustment_saturation = 0.9
 shader = ExtResource( 2 )
 shader_param/pixel_size = 9
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=3]
 0/name = "sand_and_dirt.png 0"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -65,7 +66,7 @@ shader_param/pixel_size = 9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "sand"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -90,7 +91,22 @@ shader_param/pixel_size = 9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -68.8205, 60.952, 0, 0, 0, 0, -8.3205, 71.952, 0, 0, 0, 0, 26.6795, 77.452, 0, 0, 0, 0, 70.1795, 69.952, 0, 0, 0, 0, 105.18, 56.952, 0, 0, 0, 0, 145.18, 44.452, 0, 0, 0, 0, 187.68, 42.452, 0, 0, 0, 0, 241.18, 47.452, 0, 0, 0, 0, 278.68, 65.952, 0, 0, 0, 0, 312.18, 80.452, 0, 0, 0, 0, 342.18, 90.952, 0, 0, 0, 0, 384.68, 105.452, 0, 0, 0, 0, 411.18, 115.452, 0, 0, 0, 0, 431.18, 130.452, 0, 0, 0, 0, 453.68, 139.452, 0, 0, 0, 0, 473.68, 153.452, 0, 0, 0, 0, 509.68, 159.952 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -88.8205, 10.952, 0, 0, 0, 0, -77.8205, 20.952, 0, 0, 0, 0, -58.3205, 27.952, 0, 0, 0, 0, -33.3205, 30.452, 0, 0, 0, 0, -6.8205, 26.452, 0, 0, 0, 0, 11.6795, 18.452, 0, 0, 0, 0, 28.6795, 12.452, 0, 0, 0, 0, 57.1795, 9.452, 0, 0, 0, 0, 96.6795, 9.452, 0, 0, 0, 0, 127.68, 15.452, 0, 0, 0, 0, 145.68, 25.952, 0, 0, 0, 0, 156.18, 40.952, 0, 0, 0, 0, 166.68, 54.952, 0, 0, 0, 0, 188.18, 67.952, 0, 0, 0, 0, 213.68, 76.952, 0, 0, 0, 0, 250.68, 82.452, 0, 0, 0, 0, 282.18, 81.452, 0, 0, 0, 0, 320.68, 78.952, 0, 0, 0, 0, 358.68, 71.452, 0, 0, 0, 0, 387.68, 63.452, 0, 0, 0, 0, 412.68, 53.452, 0, 0, 0, 0, 432.18, 39.952, 0, 0, 0, 0, 451.18, 26.452, 0, 0, 0, 0, 478.68, 21.952, 0, 0, 0, 0, 508.18, 20.952, 0, 0, 0, 0, 528.18, 22.952, 0, 0, 0, 0, 560.18, 33.952, 0, 0, 0, 0, 579.18, 50.952 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1501.64, 52.904, 0, 0, 0, 0, -1439.64, 48.904, 0, 0, 0, 0, -1360.64, 39.904, 0, 0, 0, 0, -1296.64, 28.904, 0, 0, 0, 0, -1221.64, 4.90399, 0, 0, 0, 0, -1166.64, -24.096, 0, 0, 0, 0, -1099.64, -45.096 )
+}
+
+[sub_resource type="Animation" id=5]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("YSort/AntEnemy/SpeechBubble")
@@ -121,7 +137,7 @@ region_rect = Rect2( 106.968, 87.5457, 4906.71, 3311.11 )
 
 [node name="DirtMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 5 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -132,7 +148,7 @@ script = ExtResource( 24 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -228,7 +244,7 @@ position = Vector2( -562.641, -242.096 )
 position = Vector2( 314.359, 393.904 )
 
 [node name="Shroom2" parent="YSort" instance=ExtResource( 23 )]
-position = Vector2( 428.359, -285.096 )
+position = Vector2( 440.359, -309.096 )
 color = 0
 
 [node name="Shroom3" parent="YSort" instance=ExtResource( 25 )]
@@ -236,6 +252,21 @@ position = Vector2( -392.641, 365.904 )
 
 [node name="Shroom4" parent="YSort" instance=ExtResource( 26 )]
 position = Vector2( 776.359, -168.096 )
+
+[node name="AphidPath2" parent="YSort" instance=ExtResource( 30 )]
+position = Vector2( -600, -500 )
+scale = Vector2( 2, 2 )
+curve = SubResource( 6 )
+
+[node name="AphidPath" parent="YSort" instance=ExtResource( 30 )]
+position = Vector2( -600, 250 )
+scale = Vector2( 2, 2 )
+curve = SubResource( 7 )
+
+[node name="AphidPath3" parent="YSort" instance=ExtResource( 30 )]
+position = Vector2( 1148.36, 127.904 )
+scale = Vector2( 2, 2 )
+curve = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1675.64, -224.096 )
@@ -249,15 +280,15 @@ drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
 autoplay = "talk"
-anims/talk = SubResource( 4 )
+anims/talk = SubResource( 5 )
 
-[node name="TutorialCaption" parent="." instance=ExtResource( 27 )]
+[node name="TutorialMove" parent="." instance=ExtResource( 27 )]
 position = Vector2( -1250.64, -454.096 )
 
-[node name="SpriteC" parent="TutorialCaption" index="0"]
+[node name="SpriteC" parent="TutorialMove" index="0"]
 texture = ExtResource( 28 )
 
-[node name="SpriteK" parent="TutorialCaption" index="1"]
+[node name="SpriteK" parent="TutorialMove" index="1"]
 texture = ExtResource( 29 )
 
-[editable path="TutorialCaption"]
+[editable path="TutorialMove"]

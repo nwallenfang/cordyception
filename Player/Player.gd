@@ -16,6 +16,7 @@ onready var animation_state := $AnimationTree.get("parameters/playback") as Anim
 onready var projectile_spawner := $Head/ProjectileSpawner as PlayerProjectileSpawner
 onready var head := $Head as Node2D
 onready var poison := $Head/PlayerPoison as PlayerPoison
+onready var dash_stuff := $DashStuff as DashStuff
 onready var script_player := $ScriptPlayer as AnimationPlayer
 
 enum State {
@@ -36,6 +37,7 @@ var state_first_frame: bool = false
 
 func _ready() -> void:
 	$AnimationTree.active = true
+	dash_stuff.connect("add_dash_frame", self, "add_dash_frame")
 
 # input functions
 func get_input_vector() -> Vector2:
@@ -74,9 +76,9 @@ func state_dash() -> void:
 	if state_first_frame:
 		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
 		script_player.play("dash")
-		$DashParticles.emitting = true
-		var dash_timer := $DashFrameTimer as Timer
-		dash_timer.start(0.1)
+		var dash_duration: float = script_player.get_animation("dash").length
+		$Hurtbox/InvincibilityTimer.start(dash_duration)
+		dash_stuff.start_dash_effects()
 		state_blocked = true
 	accelerate_and_move(last_delta, input_vec)
 
@@ -137,8 +139,11 @@ func set_state_string(new_state: String) -> void:
 
 func evaluate_action_input() -> void:
 	if Input.is_action_just_pressed("player_dash"):
-		set_state(State.DASH)
-		return
+		if dash_stuff.is_cooldown_ready():
+			set_state(State.DASH)
+			return
+		else:
+			dash_stuff.play_cooldown_sound()
 	if Input.is_action_just_pressed("player_shoot"):
 		if projectile_spawner.is_cooldown_ready():
 			set_state(State.SHOOT)
@@ -223,6 +228,11 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var projectile := area.get_parent() as Projectile
 	if projectile:
 		add_acceleration(projectile.knockback_vector())
+	
+	var ant_enemy := area.get_parent() as AntEnemy
+	if projectile:
+		add_acceleration(projectile.knockback_vector())	
+	
 	$Hurtbox/InvincibilityTimer.start()
 	$InvincibilityPlayer.play("start")
 

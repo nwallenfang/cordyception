@@ -1,12 +1,13 @@
 extends Node
 
-export var ENEMY_BEHAVIOR := true
+# start enemy behavior automatically (without calling trigger method or similar)
+export var AUTO_ENEMY_BEHAVIOR := true
 
 export var PLAYER_MAX_HEALTH := 4
 export var PLAYER_DASH_ACC := 50000.0
 export var PLAYER_PROJECTILE_DAMAGE := 4
-export var PLAYER_PROJECTILE_KNOCKBACK := 35000.0
-export var PLAYER_CLOSECOMBAT_DAMAGE := 2
+export var PLAYER_PROJECTILE_KNOCKBACK := 60000.0
+export var PLAYER_CLOSECOMBAT_DAMAGE: int = 2
 export var PLAYER_CLOSECOMBAT_KNOCKBACK := 5000.0
 export var PLAYER_POISON_DAMAGE := 1
 

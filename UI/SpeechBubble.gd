@@ -6,7 +6,7 @@ onready var text_bg := $Origin/ColorRect
 
 export var CHAR_TIME := 0.04
 export var MARGIN_OFFSET := 8
-export var DEFAULT_WAIT := 3
+export var DEFAULT_WAIT := 3.0
 
 func _ready() -> void:
 	visible = false

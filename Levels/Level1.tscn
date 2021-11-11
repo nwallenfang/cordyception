@@ -2,7 +2,7 @@
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
-[ext_resource path="res://Enemies/AntEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/GameLogic/AntEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World/Stones/Stone03.tscn" type="PackedScene" id=5]
 [ext_resource path="res://World/Stones/Stone01.tscn" type="PackedScene" id=6]
@@ -88,18 +88,15 @@ shader_param/pixel_size = 9
 [sub_resource type="Animation" id=4]
 length = 4.0
 tracks/0/type = "method"
-tracks/0/path = NodePath("YSort/EnemyAntTopdown2/SpeechBubble")
+tracks/0/path = NodePath("YSort/AntEnemy/SpeechBubble")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Buuh! Schalt mich in GameStatus aus...", 2 ],
-"method": "set_text"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 
 [node name="Level1" type="Node2D"]
@@ -150,6 +147,30 @@ position = Vector2( 54.359, -228.096 )
 [node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( 137.359, -233.096 )
 
+[node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 349.743, 168.189 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
+
+[node name="AntEnemy3" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 539.29, -41.3808 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy3" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
+
+[node name="AntEnemy4" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 640.738, 244.275 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy4" instance=ExtResource( 13 )]
+position = Vector2( -0.484436, -68.7455 )
+
+[node name="AntEnemy2" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -382.27, 53.5365 )
+
+[node name="AntEnemy5" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -339.507, -55.1531 )
+
 [node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -501.641, -184.096 )
 
@@ -170,12 +191,6 @@ position = Vector2( 227.359, -199.096 )
 
 [node name="Stone3" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( -158.641, -118.096 )
-
-[node name="EnemyAntTopdown2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 422.477, 210.727 )
-
-[node name="SpeechBubble" parent="YSort/EnemyAntTopdown2" instance=ExtResource( 13 )]
-position = Vector2( -1.11798, -84.823 )
 
 [node name="Stone5" parent="YSort" instance=ExtResource( 16 )]
 position = Vector2( 231.359, 416.904 )

@@ -207,8 +207,6 @@ visibility_rect = Rect2( -100, -100, 200, 100 )
 process_material = SubResource( 9 )
 texture = ExtResource( 11 )
 
-[node name="DebugLine" type="Line2D" parent="StateMachine/Sprint"]
-
 [node name="Chase" type="Node2D" parent="StateMachine"]
 script = ExtResource( 15 )
 STOP_CHASE_DENSITY = ExtResource( 18 )
@@ -229,6 +227,7 @@ one_shot = true
 [node name="EnemyProjectileSpawner" parent="StateMachine/Shoot" instance=ExtResource( 5 )]
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

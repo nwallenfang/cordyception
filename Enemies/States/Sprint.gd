@@ -33,7 +33,6 @@ func begin_sprinting(delta: float):
 	# 2. see if there is line of sight towards the player
 	# cast a ray between Enemy and player for this
 	var space_state = parent.get_world_2d().direct_space_state
-	$DebugLine.points = [parent.global_position, GameStatus.CURRENT_PLAYER.global_position]
 	var ray_result = space_state.intersect_ray(parent.global_position, GameStatus.CURRENT_PLAYER.global_position)
 	# just wanna try something 
 	

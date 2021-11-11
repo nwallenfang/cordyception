@@ -93,15 +93,18 @@ shader_param/pixel_size = 9
 [sub_resource type="Animation" id=5]
 length = 4.0
 tracks/0/type = "method"
-tracks/0/path = NodePath("YSort/AntEnemy/SpeechBubble")
+tracks/0/path = NodePath("YSort/AntEnemy4/SpeechBubble")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Stop right there, criminal scum!" ],
+"method": "set_text"
+} ]
 }
 
 [node name="Level1" type="Node2D"]
@@ -166,9 +169,6 @@ position = Vector2( 137.359, -233.096 )
 [node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 349.743, 168.189 )
 
-[node name="SpeechBubble" parent="YSort/AntEnemy" instance=ExtResource( 13 )]
-position = Vector2( -0.484436, -68.7455 )
-
 [node name="AntEnemy3" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 539.29, -41.3808 )
 
@@ -180,12 +180,6 @@ position = Vector2( 640.738, 244.275 )
 
 [node name="SpeechBubble" parent="YSort/AntEnemy4" instance=ExtResource( 13 )]
 position = Vector2( -0.484436, -68.7455 )
-
-[node name="AntEnemy2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 1230.36, -353.096 )
-
-[node name="AntEnemy5" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 1266.36, -144.096 )
 
 [node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -501.641, -184.096 )
@@ -248,7 +242,6 @@ drag_margin_right = 0.3
 drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
-autoplay = "talk"
 anims/talk = SubResource( 5 )
 
 [node name="TutorialCaption" parent="." instance=ExtResource( 27 )]

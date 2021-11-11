@@ -9,10 +9,16 @@ func _ready() -> void:
 	$Anchor/Particles2D.one_shot = true
 	$Anchor/Particles2D.emitting = false
 
+func is_cooldown_ready() -> bool:
+	return $ProjectileCooldown.is_stopped()
+
+func play_cooldown_sound() -> void:
+	$CooldownNotReadySound.play()
+
 func try_creating_projectile(direction: float) -> bool:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running
 		# Projectile shooting skill is not ready to fire again
-		$CooldownNotReadySound.play()
+		play_cooldown_sound()
 		emit_signal("cooldown_not_ready")
 		return false
 		

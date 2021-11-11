@@ -13,12 +13,13 @@ const CONTROLLER_AIM_THRESHHOLD = 0.05
 
 onready var scent_spawner = $ScentSpawner
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
-onready var projectile_spawner := $ProjectileSpawner as PlayerProjectileSpawner
-onready var head := $Sprite/Head as Node2D
-onready var poison := $Sprite/Head/PlayerPoison as PlayerPoison
+onready var projectile_spawner := $Head/ProjectileSpawner as PlayerProjectileSpawner
+onready var head := $Head as Node2D
+onready var poison := $Head/PlayerPoison as PlayerPoison
+onready var script_player := $ScriptPlayer as AnimationPlayer
 
 enum State {
-	IDLE, WALK, DASH, SHOOT, ATTACK, POISON
+	IDLE, WALK, DASH, SHOOT, POISON
 }
 
 const STATE_FROM_STRING = {
@@ -26,11 +27,12 @@ const STATE_FROM_STRING = {
 	"walk": State.WALK,
 	"dash": State.DASH,
 	"shoot": State.SHOOT,
-	"attack": State.ATTACK,
 	"poison": State.POISON
 }
 
 var state = State.IDLE setget set_state
+var state_blocked: bool = false
+var state_first_frame: bool = false
 
 func _ready() -> void:
 	$AnimationTree.active = true
@@ -59,51 +61,23 @@ func _input(event: InputEvent) -> void:
 		collective_mouse_movement_input += event.relative
 
 func state_idle() -> void:
-	if Input.is_action_just_pressed("player_dash"):
-		set_state_and_match(State.DASH)
-		return
-	if Input.is_action_just_pressed("player_shoot"):
-		set_state_and_match(State.SHOOT)
-		return
-	if Input.is_action_just_pressed("player_attack"):
-		set_state_and_match(State.ATTACK)
-		return
-	if Input.is_action_pressed("player_poison"):
-		set_state_and_match(State.POISON)
-		return
-	if input_vec != Vector2.ZERO:
-		set_state_and_match(State.WALK)
-		return
 	animation_state.travel("Idle")
+	state_blocked = false
 	accelerate_and_move(last_delta)
 
 func state_walk() -> void:
-	if Input.is_action_just_pressed("player_dash"):
-		set_state_and_match(State.DASH)
-		return
-	if Input.is_action_just_pressed("player_shoot"):
-		set_state_and_match(State.SHOOT)
-		return
-	if Input.is_action_just_pressed("player_attack"):
-		set_state_and_match(State.ATTACK)
-		return
-	if Input.is_action_pressed("player_poison"):
-		set_state_and_match(State.POISON)
-		return
-	if input_vec == Vector2.ZERO:
-		set_state_and_match(State.IDLE)
-		return
 	animation_state.travel("Walk")
+	state_blocked = false
 	accelerate_and_move(last_delta, input_vec)
 
 func state_dash() -> void:
-	if animation_state.get_current_node() != "Dash":
+	if state_first_frame:
 		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
-		$AnimationTree.set("parameters/Dash/blend_position", input_vec)
-		animation_state.travel("Dash")
+		script_player.play("dash")
 		$DashParticles.emitting = true
 		var dash_timer := $DashFrameTimer as Timer
 		dash_timer.start(0.1)
+		state_blocked = true
 	accelerate_and_move(last_delta, input_vec)
 
 const DASH_FRAME := preload("res://Player/DashFrame.tscn")
@@ -111,32 +85,30 @@ func add_dash_frame() -> void:
 	var dash_frame := DASH_FRAME.instance() as Sprite
 	get_parent().add_child(dash_frame)
 	dash_frame.texture = $Sprite.texture
+	dash_frame.hframes = $Sprite.hframes
+	dash_frame.frame = $Sprite.frame
 	dash_frame.global_position = $Sprite.global_position
 	dash_frame.rotation = $Sprite.rotation
 
-func state_shoot() -> void:
-	if animation_state.get_current_node() != "Shoot":
-		var success := projectile_spawner.try_creating_projectile(aim_direction)
-		if success:
-			animation_state.travel("Shoot")
-			$AnimationTree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(aim_direction))
-		else:
-			set_state(State.IDLE)
-	accelerate_and_move(last_delta)
+func shoot() -> void:
+	projectile_spawner.try_creating_projectile(aim_direction)
 
-func state_attack() -> void:
-	if animation_state.get_current_node() != "Attack":
-		$AnimationTree.set("parameters/Attack/blend_position", Vector2.UP.rotated(aim_direction))
-		animation_state.travel("Attack")
-	accelerate_and_move(last_delta, input_vec)
+func state_shoot() -> void:
+	if state_first_frame:
+		script_player.play("shoot")
+		animation_state.travel("Shoot")
+		state_blocked = true
+	$AnimationTree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(aim_direction))
+	accelerate_and_move(last_delta)
 
 func state_poison() -> void:
 	if !Input.is_action_pressed("player_poison"):
 		poison.active = false
-		set_state_and_match(State.IDLE)
+		set_state(State.IDLE)
 		return
-	if !poison.active:
+	if state_first_frame:
 		poison.active = true
+		state_blocked = true
 	poison.target_direction = aim_direction
 	update_animation_facing(Vector2.UP.rotated(aim_direction))
 	animation_state.travel("Walk")
@@ -152,29 +124,45 @@ func match_state():
 			state_dash()
 		State.SHOOT:
 			state_shoot()
-		State.ATTACK:
-			state_attack()
 		State.POISON:
 			state_poison()
 
 func set_state(new_state) -> void:
+	if new_state != state:
+		state_first_frame = true
 	state = new_state
 
-func set_state_and_match(new_state) -> void:
-	if new_state is String:
-		set_state_string(new_state)
-	else:
-		state = new_state
-	match_state()
-
 func set_state_string(new_state: String) -> void:
-	state = STATE_FROM_STRING[new_state]
+	set_state(STATE_FROM_STRING[new_state])
+
+func evaluate_action_input() -> void:
+	if Input.is_action_just_pressed("player_dash"):
+		set_state(State.DASH)
+		return
+	if Input.is_action_just_pressed("player_shoot"):
+		if projectile_spawner.is_cooldown_ready():
+			set_state(State.SHOOT)
+			return
+		else:
+			projectile_spawner.play_cooldown_sound()
+	if Input.is_action_pressed("player_poison"):
+		set_state(State.POISON)
+		return
+	if input_vec != Vector2.ZERO:
+		set_state(State.WALK)
+		return
+	else:
+		set_state(State.IDLE)
+		return
 
 func _physics_process(delta: float) -> void:
 	last_delta = delta
 	input_vec = get_input_vector()
 	update_animation_facing(input_vec)
 	update_aim()
+	state_first_frame = false
+	if !state_blocked:
+		evaluate_action_input()
 	match_state()
 
 # update the direction values for the animation tree

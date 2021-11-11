@@ -29,16 +29,16 @@ func stop():
 	$Sprint/SprintMovementTween.stop_all()
 
 func transition_to(new_state_name):
-#	print("transition from ", State.keys()[state], " to ", State.keys()[new_state])
 	if label_exists:
 		get_parent().get_node("StateLabel").text = new_state_name
 	first_time_entering = true
-	if new_state_name != "Idle":
+	if state.name != "Idle":
 		previous_non_idle_state = state
 	state = State[new_state_name]
 	
 func transition_to_random_state():
-	transition_to(get_random_next_state(idle_transition_chance))
+	var new_state = get_random_next_state(idle_transition_chance)
+	transition_to(new_state)
 
 
 
@@ -70,12 +70,12 @@ func transition_to_random_different_state():
 	var prob_to_remove: float = state_transition_chances[previous_non_idle_state.name]
 	var number_possible_states = 2  # could be calculated to generalize better
 	
-	state_transition_chances[self.previous_non_idle_state] = 0.0
+	state_transition_chances[self.previous_non_idle_state.name] = 0.0
 	
 	for state_name in State.keys():
 		if state_name != "Idle":
 			state_transition_chances[state_name] += prob_to_remove / number_possible_states
-			
+
 	transition_to(get_random_next_state(state_transition_chances))
 
 func process(delta: float) -> void:

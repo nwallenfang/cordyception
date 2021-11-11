@@ -4,6 +4,8 @@ const MAX_SPRINT_DISTANCE := 400
 export var SPRINT_VELOCITY := 110 # px/s (Tween property)
 export var SPRINT_DELAY := 0.4
 
+var world2d: World2D
+var sprint_direction: Vector2
 
 func _ready():
 	# parent has to be a physical body for this state
@@ -30,14 +32,17 @@ func begin_sprinting(delta: float):
 	
 	# 2. see if there is line of sight towards the player
 	# cast a ray between Enemy and player for this
-	var space_state = self.parent.get_world_2d().direct_space_state
-	var ray_result = space_state.intersect_ray(self.global_position, GameStatus.CURRENT_PLAYER.global_position)
+	var space_state = parent.get_world_2d().direct_space_state
+	$DebugLine.points = [parent.global_position, GameStatus.CURRENT_PLAYER.global_position]
+	var ray_result = space_state.intersect_ray(parent.global_position, GameStatus.CURRENT_PLAYER.global_position)
+	# just wanna try something 
 	
-	if not ray_result.empty():
-		# there is some object between you and the player
-		# maybe this is not the time to go full on sprinting
-		state_machine.transition_to("Idle")
-		return 
+#	if not ray_result.empty():
+#		# there is some object between you and the player
+#		# maybe this is not the time to go full on sprinting
+#		print("stopped due to ray")
+#		state_machine.transition_to("Idle")
+#		return 
 
 	# warn the player by showing '!'
 	$SprintWarning.show()
@@ -48,16 +53,9 @@ func begin_sprinting(delta: float):
 	# instead use a tween to interpolate this movement for now
 	# prepare the tween for later 
 	# TODO randomize 0.8 - 1.2 player position
-#	var target_point = $Line2D.points[1] + position
-	var target_point = parent.position + MAX_SPRINT_DISTANCE * Vector2.UP.rotated(direction)
-	# duration should be independent from distance_to_player
-	var duration = 0.68
-	
-	# TODO polish this
-	$SprintMovementTween.reset_all()
-	$SprintMovementTween.interpolate_property(parent, "position", parent.position, target_point, duration,
-	Tween.TRANS_LINEAR)
+	sprint_direction = Vector2.UP.rotated(direction)
 
+	# TODO polish this
 	# TODO maybe add sprite movement perpendicularily to the movement direction in the tween
 	
 	# add timer, once this timer has finished, start the Tween movement
@@ -72,9 +70,16 @@ func process(delta: float, first_time_entering: bool):
 			# sprint delay is over, start actually moving
 			$SprintMovementTween.start()
 			$SprintWarning.hide()
+			$SprintMovementTween.reset_all()
+			# duration should be independent from distance_to_player (which it is :)
+			var duration = 0.68
+			var sprint_target = parent.position + MAX_SPRINT_DISTANCE * sprint_direction
+			$SprintMovementTween.interpolate_property(parent, "position", parent.position, sprint_target, duration,
+				Tween.TRANS_LINEAR)
 		elif $SprintMovementTween.is_active():  # currently sprinting
 			# if already sprinting, wait for the movement to complete
 			parent.get_node("AnimationPlayer").play("sprinting")
+			
 			yield($SprintMovementTween, "tween_all_completed")
 			# then go back to being idle
 			state_machine.transition_to("Idle")

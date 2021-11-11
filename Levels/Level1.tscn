@@ -42,7 +42,7 @@ adjustment_saturation = 0.9
 shader = ExtResource( 2 )
 shader_param/pixel_size = 9
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=3]
 0/name = "sand_and_dirt.png 0"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -65,7 +65,7 @@ shader_param/pixel_size = 9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "sand"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -90,7 +90,7 @@ shader_param/pixel_size = 9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("YSort/AntEnemy/SpeechBubble")
@@ -121,7 +121,7 @@ region_rect = Rect2( 106.968, 87.5457, 4906.71, 3311.11 )
 
 [node name="DirtMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 5 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -132,7 +132,7 @@ script = ExtResource( 24 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -249,7 +249,7 @@ drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
 autoplay = "talk"
-anims/talk = SubResource( 4 )
+anims/talk = SubResource( 5 )
 
 [node name="TutorialCaption" parent="." instance=ExtResource( 27 )]
 position = Vector2( -1250.64, -454.096 )

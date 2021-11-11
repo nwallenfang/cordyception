@@ -30,7 +30,7 @@ height = 25.9323
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 27.3543
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -70,7 +70,7 @@ tracks/2/keys = {
 "values": [ 0.9, 0.5 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "sprinting"
 length = 0.68
 tracks/0/type = "method"
@@ -88,7 +88,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 21.4247
 
 [sub_resource type="Curve" id=7]
@@ -112,7 +112,7 @@ scale = 1.2
 scale_curve = SubResource( 8 )
 color = Color( 0.37, 0.204795, 0.1591, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=10]
 size = 24
 font_data = ExtResource( 9 )
 
@@ -162,8 +162,8 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dying = SubResource( 5 )
-anims/sprinting = SubResource( 6 )
+anims/dying = SubResource( 4 )
+anims/sprinting = SubResource( 5 )
 
 [node name="SoftCollision" type="Area2D" parent="."]
 collision_layer = 32
@@ -171,7 +171,7 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
 scale = Vector2( 0.907084, 1 )
-shape = SubResource( 10 )
+shape = SubResource( 6 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 13 )
@@ -207,6 +207,8 @@ visibility_rect = Rect2( -100, -100, 200, 100 )
 process_material = SubResource( 9 )
 texture = ExtResource( 11 )
 
+[node name="DebugLine" type="Line2D" parent="StateMachine/Sprint"]
+
 [node name="Chase" type="Node2D" parent="StateMachine"]
 script = ExtResource( 15 )
 STOP_CHASE_DENSITY = ExtResource( 18 )
@@ -227,13 +229,12 @@ one_shot = true
 [node name="EnemyProjectileSpawner" parent="StateMachine/Shoot" instance=ExtResource( 5 )]
 
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784
 margin_right = 122.0
 margin_bottom = -41.1784
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 10 )
 align = 1
 valign = 1
 __meta__ = {

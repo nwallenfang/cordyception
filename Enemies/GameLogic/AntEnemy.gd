@@ -28,6 +28,7 @@ var state = State.IDLE
 var state_machine_enabled := false
 
 func _ready() -> void:
+	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	if GameStatus.AUTO_ENEMY_BEHAVIOR:
 		state_machine_enabled = true
 	(self.STOP_CHASE_DENSITY as Curve).max_value = CHASE_BASE_DISTANCE
@@ -53,6 +54,8 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if parent is PoisonFragment:
 		var attack := parent as PoisonFragment
 		$EnemyStats.health -= attack.damage
+		if state != State.SPRINT:
+			add_acceleration(attack.knockback_vector())
 
 
 func _on_EnemyStats_health_changed() -> void:

@@ -585,9 +585,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=35]
 resource_name = "walk_down"
-length = 0.5
+length = 0.4
 loop = true
-step = 0.125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Anchor:rotation_degrees")
 tracks/0/interp = 1
@@ -619,7 +618,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 20, 21, 22, 23 ]
@@ -639,9 +638,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=36]
 resource_name = "walk_left"
-length = 0.5
+length = 0.4
 loop = true
-step = 0.125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Anchor:rotation_degrees")
 tracks/0/interp = 1
@@ -673,7 +671,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 11, 12, 13, 14 ]
@@ -693,9 +691,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=37]
 resource_name = "walk_right"
-length = 0.5
+length = 0.4
 loop = true
-step = 0.125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Anchor:rotation_degrees")
 tracks/0/interp = 1
@@ -727,7 +724,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 2, 3, 4, 5 ]
@@ -747,9 +744,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=38]
 resource_name = "walk_up"
-length = 0.5
+length = 0.4
 loop = true
-step = 0.125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Anchor:rotation_degrees")
 tracks/0/interp = 1
@@ -781,7 +777,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 29, 30, 31, 32 ]
@@ -837,7 +833,7 @@ scale = Vector2( 1.25, 1.25 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
 position = Vector2( 0.5, -2 )
-rotation = 3.14159
+rotation = -3.14159
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -868,7 +864,7 @@ anims/walk_up = SubResource( 38 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0.5, -2 )
-rotation = 3.14159
+rotation = -3.14159
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -891,7 +887,7 @@ anims/stop = SubResource( 41 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 36
-frame = 18
+frame = 20
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )

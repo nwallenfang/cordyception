@@ -67,22 +67,35 @@ func process(delta: float, first_time_entering: bool):
 		if not $SprintDelayTimer.is_stopped():  # currently waiting to sprint
 			yield($SprintDelayTimer, "timeout")
 			# sprint delay is over, start actually moving
-			$SprintMovementTween.start()
-			$SprintWarning.hide()
 			$SprintMovementTween.reset_all()
+			$SprintWarning.hide()
+
 			# duration should be independent from distance_to_player (which it is :)
 			var duration = 0.68
 			var sprint_target = parent.position + MAX_SPRINT_DISTANCE * sprint_direction
 			$SprintMovementTween.interpolate_property(parent, "position", parent.position, sprint_target, duration,
 				Tween.TRANS_LINEAR)
+			$SprintMovementTween.start()
+			$DashStuff.start_dash_effects()
 		elif $SprintMovementTween.is_active():  # currently sprinting
 			# if already sprinting, wait for the movement to complete
 			parent.get_node("AnimationPlayer").play("sprinting")
-			
+
 			yield($SprintMovementTween, "tween_all_completed")
+			$DashStuff.stop_dash_effects()
 			# then go back to being idle
 			state_machine.transition_to("Idle")
 		else:
 			# if not sprinting and having been here before, go back to being idle
 			# this branch should actually not be entered, it's just to make sure
 			state_machine.transition_to("Idle")
+
+const DASH_FRAME := preload("res://Enemies/EnemyDashFrame.tscn")
+func _on_DashStuff_add_dash_frame() -> void:
+	var dash_frame := DASH_FRAME.instance() as Sprite
+	dash_frame.texture = parent.get_node("Sprite").texture
+	dash_frame.hframes = parent.get_node("Sprite").hframes
+	dash_frame.frame = parent.get_node("Sprite").frame
+	dash_frame.position = parent.position
+	dash_frame.rotation = parent.get_node("Sprite").rotation
+	GameStatus.CURRENT_YSORT.add_child(dash_frame)

@@ -104,7 +104,6 @@ process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color( 0.556863, 0.556863, 0.556863, 1 )
 margin_right = 24.0
 margin_bottom = 27.0
 texture = ExtResource( 5 )
@@ -139,7 +138,7 @@ __meta__ = {
 }
 
 [node name="Grey2" type="TextureRect" parent="FullControl"]
-modulate = Color( 0, 1, 1, 1 )
+modulate = Color( 0, 0.87451, 1, 1 )
 material = SubResource( 5 )
 anchor_left = -0.0277786
 anchor_top = -2.26056e-06

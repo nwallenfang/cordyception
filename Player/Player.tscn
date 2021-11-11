@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/ant.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Projectiles/PlayerProjectileSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/DashStuff.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player/ScentSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=8]
 [ext_resource path="res://Player/PlayerPoison.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Player/Aimer.gd" type="Script" id=13]
 
@@ -804,9 +805,37 @@ height = 30.0
 length = 0.24
 loop = true
 step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=41]
 length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="ShaderMaterial" id=42]
+shader = ExtResource( 8 )
+shader_param/active = false
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -887,6 +916,7 @@ anims/stop = SubResource( 41 )
 [node name="DashStuff" parent="." instance=ExtResource( 6 )]
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 42 )
 texture = ExtResource( 2 )
 hframes = 36
 frame = 20

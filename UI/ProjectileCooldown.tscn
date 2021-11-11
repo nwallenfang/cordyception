@@ -95,7 +95,6 @@ process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
 margin_right = 24.0
 margin_bottom = 27.0
 texture = ExtResource( 4 )

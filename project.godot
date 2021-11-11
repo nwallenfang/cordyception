@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AbstractState",
+"language": "GDScript",
+"path": "res://Enemies/States/AbstractState.gd"
+}, {
 "base": "PhysicsMover",
 "class": "AntEnemy",
 "language": "GDScript",
-"path": "res://Enemies/GameLogic/AntEnemy.gd"
+"path": "res://Enemies/Logic/AntEnemy.gd"
+}, {
+"base": "StateMachine",
+"class": "AntEnemyStateMachine",
+"language": "GDScript",
+"path": "res://Enemies/States/AntEnemyStateMachine.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PhysicsMover",
@@ -74,13 +84,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/SpeechBubble.gd"
 }, {
+"base": "Node2D",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Enemies/States/StateMachine.gd"
+}, {
 "base": "CanvasLayer",
 "class": "UI",
 "language": "GDScript",
 "path": "res://UI/UI.gd"
 } ]
 _global_script_class_icons={
+"AbstractState": "",
 "AntEnemy": "",
+"AntEnemyStateMachine": "",
 "PhysicsMover": "",
 "Player": "",
 "PlayerCloseCombat": "",
@@ -93,6 +110,7 @@ _global_script_class_icons={
 "SingleHeartUI": "",
 "SlideMover": "",
 "SpeechBubble": "",
+"StateMachine": "",
 "UI": ""
 }
 

@@ -21,3 +21,11 @@ func set_health(new_health:int):
 	CURRENT_HEALTH = new_health
 	CURRENT_UI.get_node("HealthUI").set_hearts(new_health)
 	
+
+var CONTROLLER_USED := false
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("any_controller_input"):
+		CONTROLLER_USED = true
+	if Input.is_action_just_pressed("any_keyboard_input"):
+		CONTROLLER_USED = false

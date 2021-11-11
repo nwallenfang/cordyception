@@ -833,7 +833,7 @@ scale = Vector2( 1.25, 1.25 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
 position = Vector2( 0.5, -2 )
-rotation = -3.14159
+rotation = 3.14159
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -864,7 +864,7 @@ anims/walk_up = SubResource( 38 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0.5, -2 )
-rotation = -3.14159
+rotation = 3.14159
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]

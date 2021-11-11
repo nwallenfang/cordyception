@@ -8,6 +8,7 @@ onready var State: Dictionary
 
 
 func _ready():
+	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	State = $StateMachine.State
 
 
@@ -32,6 +33,8 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if parent is PoisonFragment:
 		var attack := parent as PoisonFragment
 		$EnemyStats.health -= attack.damage
+		if get_state() != "Sprint":
+			add_acceleration(attack.knockback_vector())
 
 
 func _on_EnemyStats_health_changed() -> void:

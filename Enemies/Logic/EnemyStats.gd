@@ -1,6 +1,6 @@
 extends Node2D
 
-export var MAX_HEALTH := 10
+export var MAX_HEALTH := 20
 export var DAMAGE := 1
 
 # TODO doesn't this affect every enemy then?

@@ -1,85 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProjectileCooldown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/PlayerHealthUI.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/dash_symbol.png" type="Texture" id=4]
-[ext_resource path="res://UI/ProjectileCooldown.gd" type="Script" id=5]
-[ext_resource path="res://Effects/vortex.png" type="Texture" id=6]
-[ext_resource path="res://UI/cooldown_background.png" type="Texture" id=7]
-[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=8]
-
-[sub_resource type="CanvasItemMaterial" id=1]
-blend_mode = 1
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.0852713, 0.317829, 0.883721 )
-colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="ParticlesMaterial" id=4]
-lifetime_randomness = 0.43
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-angular_velocity_random = 0.15
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = 150.7
-angle_random = 0.55
-scale_random = 0.28
-color_ramp = SubResource( 3 )
-
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 8 )
-shader_param/active = true
-
-[sub_resource type="Animation" id=5]
-resource_name = "one"
-length = 0.8
-tracks/0/type = "method"
-tracks/0/path = NodePath("Particles2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "restart"
-} ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "zero"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Particles2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
+[ext_resource path="res://UI/DashCooldownUI.tscn" type="PackedScene" id=4]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -90,83 +14,7 @@ margin_top = 593.205
 margin_right = 40.0589
 margin_bottom = 593.205
 
-[node name="DashCooldownUI" type="Control" parent="."]
-margin_left = 159.825
-margin_top = 592.675
-margin_right = 159.825
-margin_bottom = 592.675
-rect_scale = Vector2( 3, 3 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Particles2D" type="Particles2D" parent="DashCooldownUI"]
-modulate = Color( 0.309804, 1, 0.498039, 0.658824 )
-material = SubResource( 1 )
-position = Vector2( 12.25, 13.5 )
-scale = Vector2( 0.2, 0.2 )
-amount = 12
-lifetime = 5.0
-speed_scale = 2.0
-explosiveness = 0.2
-randomness = 0.2
-process_material = SubResource( 4 )
-texture = ExtResource( 6 )
-
-[node name="Background" type="TextureRect" parent="DashCooldownUI"]
-modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
-margin_right = 24.0
-margin_bottom = 27.0
-texture = ExtResource( 7 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey" type="TextureRect" parent="DashCooldownUI"]
-modulate = Color( 0.378, 0.4368, 0.45, 1 )
-material = SubResource( 7 )
-margin_left = 3.25002
-margin_top = 3.58331
-margin_right = 68.25
-margin_bottom = 68.5833
-rect_scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 4 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FullControl" type="Control" parent="DashCooldownUI"]
-margin_left = 22.5
-margin_top = 24.5834
-margin_right = 46.5
-margin_bottom = 51.5834
-rect_rotation = 180.0
-rect_clip_content = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey2" type="TextureRect" parent="DashCooldownUI/FullControl"]
-modulate = Color( 0, 0.811765, 1, 1 )
-material = SubResource( 7 )
-margin_left = 19.41
-margin_top = 20.703
-margin_right = 84.41
-margin_bottom = 85.703
-rect_rotation = 180.0
-rect_scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 4 )
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DashCooldownUI"]
-anims/one = SubResource( 5 )
-anims/zero = SubResource( 6 )
+[node name="DashCooldownUI" parent="." instance=ExtResource( 4 )]
 
 [node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
 

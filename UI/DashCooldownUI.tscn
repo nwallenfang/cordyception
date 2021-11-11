@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://UI/drops_symbol.png" type="Texture" id=1]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=1]
 [ext_resource path="res://UI/ProjectileCooldown.gd" type="Script" id=2]
 [ext_resource path="res://Effects/vortex.png" type="Texture" id=3]
-[ext_resource path="res://UI/cooldown_background.png" type="Texture" id=4]
+[ext_resource path="res://UI/dash_symbol.png" type="Texture" id=4]
+[ext_resource path="res://UI/cooldown_background.png" type="Texture" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -28,7 +29,11 @@ angle_random = 0.55
 scale_random = 0.28
 color_ramp = SubResource( 3 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/active = true
+
+[sub_resource type="Animation" id=6]
 resource_name = "one"
 length = 0.8
 tracks/0/type = "method"
@@ -58,7 +63,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 resource_name = "zero"
 length = 0.1
 tracks/0/type = "value"
@@ -74,7 +79,11 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[node name="ProjectileCooldownUI" type="Control"]
+[node name="DashCooldownUI" type="Control"]
+margin_left = 159.825
+margin_top = 592.675
+margin_right = 159.825
+margin_bottom = 592.675
 rect_scale = Vector2( 3, 3 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -95,50 +104,59 @@ process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+modulate = Color( 0.556863, 0.556863, 0.556863, 1 )
 margin_right = 24.0
 margin_bottom = 27.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Grey" type="TextureRect" parent="."]
-modulate = Color( 0.509804, 0.701961, 0.509804, 0.682353 )
-margin_right = 24.0
-margin_bottom = 27.0
-texture = ExtResource( 1 )
+modulate = Color( 0.345098, 0.4, 0.411765, 1 )
+material = SubResource( 5 )
+margin_left = 3.25002
+margin_top = 3.58331
+margin_right = 68.25
+margin_bottom = 68.5833
+rect_scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 4 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FullControl" type="Control" parent="."]
-margin_left = 24.0
-margin_top = 27.0
-margin_right = 48.0
-margin_bottom = 54.0
+margin_left = 22.5
+margin_top = 24.5834
+margin_right = 46.5
+margin_bottom = 51.5834
 rect_rotation = 180.0
 rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Full" type="TextureRect" parent="FullControl"]
-modulate = Color( 0.0980392, 0.905882, 0.027451, 1 )
-margin_left = 24.25
-margin_top = 26.75
-margin_right = 48.25
-margin_bottom = 53.75
+[node name="Grey2" type="TextureRect" parent="FullControl"]
+modulate = Color( 0, 1, 1, 1 )
+material = SubResource( 5 )
+anchor_left = -0.0277786
+anchor_top = -2.26056e-06
+anchor_right = -0.0277786
+anchor_bottom = -2.26056e-06
+margin_left = 20.6667
+margin_top = 21.0001
+margin_right = 85.6667
+margin_bottom = 86.0001
 rect_rotation = 180.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 2
+rect_scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 4 )
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/one = SubResource( 5 )
-anims/zero = SubResource( 6 )
+anims/one = SubResource( 6 )
+anims/zero = SubResource( 7 )

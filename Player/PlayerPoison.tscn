@@ -81,6 +81,7 @@ self_modulate = Color( 1, 1, 1, 0.478431 )
 show_behind_parent = true
 position = Vector2( 0, -3.8147e-06 )
 scale = Vector2( 2, 2 )
+emitting = false
 amount = 200
 process_material = SubResource( 7 )
 
@@ -90,6 +91,7 @@ self_modulate = Color( 1, 1, 1, 0.443137 )
 show_behind_parent = true
 position = Vector2( -2.27374e-13, -10 )
 scale = Vector2( 2, 2 )
+emitting = false
 amount = 100
 lifetime = 2.0
 process_material = SubResource( 12 )

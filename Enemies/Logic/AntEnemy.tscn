@@ -849,12 +849,11 @@ start_node = "Idle"
 [node name="AntEnemy" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
-FRICTION = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 10 )
 hframes = 36
-frame = 18
+frame = 19
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )

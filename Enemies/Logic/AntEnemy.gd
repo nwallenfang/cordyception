@@ -1,11 +1,11 @@
 extends PhysicsMover
-
 class_name AntEnemy
 
 
 export var SELF_SOFT_COLLISION_STRENGTH := 7000.0
 onready var State: Dictionary
 
+onready var anchor := $Anchor as Node2D
 
 func _ready():
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH

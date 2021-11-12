@@ -15,6 +15,7 @@ onready var scent_spawner = $ScentSpawner
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 onready var projectile_spawner := $Head/ProjectileSpawner as PlayerProjectileSpawner
 onready var head := $Head as Node2D
+onready var anchor := $Anchor as Node2D
 onready var poison := $Head/PlayerPoison as PlayerPoison
 onready var dash_stuff := $DashStuff as DashStuff
 onready var script_player := $ScriptPlayer as AnimationPlayer
@@ -231,8 +232,8 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 		add_acceleration(projectile.knockback_vector())
 	
 	var ant_enemy := area.get_parent() as AntEnemy
-	if projectile:
-		add_acceleration(projectile.knockback_vector())
+	if ant_enemy:
+		add_acceleration(ant_enemy.anchor.global_position.direction_to(anchor.global_position) * GameStatus.ENEMY_KNOCKBACK)
 	
 	$Hurtbox/InvincibilityTimer.start()
 	$InvincibilityPlayer.play("start")

@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 			CONTROLLER_USED = false
 			emit_signal("input_device_changed")
 
-var MOUSE_CAPTURE : bool = true setget set_mouse_capture
+var MOUSE_CAPTURE : bool = false setget set_mouse_capture
 
 func set_mouse_capture(capture: bool) -> void:
 	MOUSE_CAPTURE = capture
@@ -47,3 +47,7 @@ func _input(event: InputEvent) -> void:
 	if MOUSE_CAPTURE:
 		if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+var SETTINGS_MUSIC : float = 0.5
+var SETTINGS_SOUND : float = 0.5
+var USE_CROSSHAIR : bool = false

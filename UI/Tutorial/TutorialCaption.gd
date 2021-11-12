@@ -4,6 +4,7 @@ class_name TutorialCaption
 onready var tween := $Tween as Tween
 
 func _ready() -> void:
+	self.modulate = Color.transparent
 	$Area2D.monitoring = true
 	$Area2D.monitorable = true
 	GameStatus.connect("input_device_changed", self, "on_input_device_changed")

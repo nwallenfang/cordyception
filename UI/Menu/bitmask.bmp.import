@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/bitmask.bmp-e16be90bace6d1d2a84620f4745c58b1.res"
+
+[deps]
+
+source_file="res://UI/Menu/bitmask.bmp"
+dest_files=[ "res://.import/bitmask.bmp-e16be90bace6d1d2a84620f4745c58b1.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

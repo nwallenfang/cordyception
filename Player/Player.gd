@@ -54,11 +54,7 @@ func get_controller_aim_vector() -> Vector2:
 	return aim_vector
 
 func _input(event: InputEvent) -> void:
-	# browsers only allow mouse capture after the user has interacted with the 
-	# game, so the mouse mode has to be set in _input
-	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
-	if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# mouse capture now in Game Status
 	if event is InputEventMouseMotion:
 		collective_mouse_movement_input += event.relative
 

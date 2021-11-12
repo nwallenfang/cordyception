@@ -16,7 +16,6 @@ var CURRENT_YSORT: YSort
 var CURRENT_UI: UI
 var CURRENT_PLAYER: Player
 
-
 func set_health(new_health:int):
 	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)
 	CURRENT_UI.get_node("HealthUI").set_hearts(new_health)
@@ -34,3 +33,17 @@ func _physics_process(delta: float) -> void:
 		if CONTROLLER_USED:
 			CONTROLLER_USED = false
 			emit_signal("input_device_changed")
+
+var MOUSE_CAPTURE : bool = true setget set_mouse_capture
+
+func set_mouse_capture(capture: bool) -> void:
+	MOUSE_CAPTURE = capture
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if MOUSE_CAPTURE else Input.MOUSE_MODE_VISIBLE)
+
+func _input(event: InputEvent) -> void:
+	# browsers only allow mouse capture after the user has interacted with the 
+	# game, so the mouse mode has to be set in _input
+	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
+	if MOUSE_CAPTURE:
+		if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

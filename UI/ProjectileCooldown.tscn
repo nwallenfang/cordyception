@@ -30,7 +30,7 @@ color_ramp = SubResource( 3 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "one"
-length = 0.8
+length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("Particles2D")
 tracks/0/interp = 1

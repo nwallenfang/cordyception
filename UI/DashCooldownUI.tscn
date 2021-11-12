@@ -35,7 +35,7 @@ shader_param/active = true
 
 [sub_resource type="Animation" id=6]
 resource_name = "one"
-length = 0.8
+length = 0.1
 tracks/0/type = "method"
 tracks/0/path = NodePath("Particles2D")
 tracks/0/interp = 1
@@ -91,7 +91,7 @@ __meta__ = {
 }
 
 [node name="Particles2D" type="Particles2D" parent="."]
-modulate = Color( 0.309804, 1, 0.498039, 0.658824 )
+modulate = Color( 0.309804, 0.870588, 0.996078, 0.658824 )
 material = SubResource( 1 )
 position = Vector2( 12.25, 13.5 )
 scale = Vector2( 0.2, 0.2 )
@@ -107,49 +107,41 @@ texture = ExtResource( 3 )
 margin_right = 24.0
 margin_bottom = 27.0
 texture = ExtResource( 5 )
-stretch_mode = 2
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Grey" type="TextureRect" parent="."]
-modulate = Color( 0.345098, 0.4, 0.411765, 1 )
+modulate = Color( 0.227451, 0.235294, 0.243137, 0.737255 )
 material = SubResource( 5 )
-margin_left = 3.25002
-margin_top = 3.58331
-margin_right = 68.25
-margin_bottom = 68.5833
-rect_scale = Vector2( 0.28, 0.28 )
+margin_right = 24.0
+margin_bottom = 27.0
 texture = ExtResource( 4 )
-stretch_mode = 2
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FullControl" type="Control" parent="."]
-margin_left = 22.5
-margin_top = 24.5834
-margin_right = 46.5
-margin_bottom = 51.5834
+margin_left = 27.0
+margin_top = 27.0
+margin_right = 54.0
+margin_bottom = 54.0
 rect_rotation = 180.0
 rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grey2" type="TextureRect" parent="FullControl"]
+[node name="Full" type="TextureRect" parent="FullControl"]
 modulate = Color( 0, 0.87451, 1, 1 )
 material = SubResource( 5 )
-anchor_left = -0.0277786
-anchor_top = -2.26056e-06
-anchor_right = -0.0277786
-anchor_bottom = -2.26056e-06
-margin_left = 20.6667
-margin_top = 21.0001
-margin_right = 85.6667
-margin_bottom = 86.0001
+margin_left = 27.0
+margin_top = 27.0
+margin_right = 51.0
+margin_bottom = 54.0
 rect_rotation = 180.0
-rect_scale = Vector2( 0.28, 0.28 )
 texture = ExtResource( 4 )
 stretch_mode = 1
 __meta__ = {

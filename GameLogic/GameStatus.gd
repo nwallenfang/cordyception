@@ -5,8 +5,8 @@ export var AUTO_ENEMY_BEHAVIOR := false
 
 export var PLAYER_MAX_HEALTH := 4
 export var PLAYER_DASH_ACC := 50000.0
-export var PLAYER_PROJECTILE_DAMAGE := 4
-export var PLAYER_PROJECTILE_KNOCKBACK := 60000.0
+export var PLAYER_PROJECTILE_DAMAGE := 7
+export var PLAYER_PROJECTILE_KNOCKBACK := 70000.0
 export var PLAYER_POISON_DAMAGE := 1
 export var PLAYER_POISON_KNOCKBACK := 16000.0
 
@@ -18,7 +18,7 @@ var CURRENT_PLAYER: Player
 
 
 func set_health(new_health:int):
-	CURRENT_HEALTH = new_health
+	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)
 	CURRENT_UI.get_node("HealthUI").set_hearts(new_health)
 	
 

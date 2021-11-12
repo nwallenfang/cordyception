@@ -42,7 +42,7 @@ func _on_EnemyStats_health_changed() -> void:
 
 
 func _on_EnemyStats_health_zero() -> void:
-	print("sup")
+	#print("sup")
 	$Healthbar.visible = false
 	$StateLabel.visible = false
 	$StateMachine.stop()

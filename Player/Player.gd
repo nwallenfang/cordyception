@@ -113,7 +113,7 @@ func state_poison() -> void:
 		state_blocked = true
 	poison.target_direction = aim_direction
 	update_animation_facing(Vector2.UP.rotated(aim_direction))
-	animation_state.travel("Walk")
+	animation_state.travel("Walk" if input_vec != Vector2.ZERO else "Idle")
 	accelerate_and_move(last_delta, input_vec)
 
 func match_state():
@@ -222,6 +222,7 @@ func vector_to_angle(vec: Vector2) -> float:
 # gain 1 HP
 func health_boost():
 	GameStatus.CURRENT_HEALTH += 1
+	script_player.play("heal")
 
 # on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:

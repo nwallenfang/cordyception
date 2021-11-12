@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/ant.png" type="Texture" id=2]
@@ -138,6 +138,47 @@ tracks/1/keys = {
 "args": [  ],
 "method": "stop_dash_effects"
 } ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "heal"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 1.2, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HealParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=26]
@@ -837,6 +878,45 @@ tracks/0/keys = {
 shader = ExtResource( 8 )
 shader_param/active = false
 
+[sub_resource type="Gradient" id=44]
+offsets = PoolRealArray( 0, 0.289474, 0.677632 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=45]
+gradient = SubResource( 44 )
+
+[sub_resource type="Curve" id=46]
+_data = [ Vector2( 0.222857, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.8, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=47]
+curve = SubResource( 46 )
+
+[sub_resource type="Gradient" id=48]
+offsets = PoolRealArray( 0.440789, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.0901961 )
+
+[sub_resource type="GradientTexture" id=49]
+gradient = SubResource( 48 )
+
+[sub_resource type="ParticlesMaterial" id=50]
+trail_color_modifier = SubResource( 49 )
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 55.0
+gravity = Vector3( 0, 180, 0 )
+initial_velocity = 160.0
+initial_velocity_random = 0.28
+angular_velocity = 209.21
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 0.44
+scale_curve = SubResource( 47 )
+color_ramp = SubResource( 45 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -852,8 +932,7 @@ texture = ExtResource( 3 )
 
 [node name="Head" type="Node2D" parent="."]
 show_behind_parent = true
-position = Vector2( 0.5, 8 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 17, -2 )
 
 [node name="ProjectileSpawner" parent="Head" instance=ExtResource( 5 )]
 position = Vector2( -1.90735e-06, -1.90735e-06 )
@@ -863,8 +942,8 @@ scale = Vector2( 1.25, 1.25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color( 1, 1, 1, 0.376471 )
-position = Vector2( 0.5, -2 )
-rotation = -3.14159
+position = Vector2( -1, 2 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -877,6 +956,7 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="ScriptPlayer" type="AnimationPlayer" parent="."]
 anims/dash = SubResource( 25 )
+anims/heal = SubResource( 43 )
 anims/shoot = SubResource( 26 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -894,8 +974,8 @@ anims/walk_right = SubResource( 37 )
 anims/walk_up = SubResource( 38 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
-position = Vector2( 0.5, -2 )
-rotation = -3.14159
+position = Vector2( -1, 2 )
+rotation = 1.5708
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -917,14 +997,12 @@ anims/stop = SubResource( 41 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 42 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 hframes = 36
-frame = 18
 
 [node name="Anchor" type="Node2D" parent="."]
-position = Vector2( 0.5, -2 )
-rotation = 3.14159
+position = Vector2( -1, 2 )
+rotation = 1.5708
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Anchor"]
 remote_path = NodePath("../../CollisionShape2D")
@@ -933,6 +1011,17 @@ update_scale = false
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Anchor"]
 remote_path = NodePath("../../Hurtbox")
 update_scale = false
+
+[node name="HealParticles" type="Particles2D" parent="."]
+modulate = Color( 0.5, 3, 0.5, 1 )
+position = Vector2( 0.5, -2 )
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.3
+explosiveness = 0.92
+process_material = SubResource( 50 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Enemies/SprintWarning.gd" type="Script" id=7]
 [ext_resource path="res://Collision/AntHurtbox.gd" type="Script" id=8]
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Enemies/enemy_ant_placeholder.png" type="Texture" id=10]
+[ext_resource path="res://Enemies/ant_enemy.png" type="Texture" id=10]
 [ext_resource path="res://Effects/dot_particle.png" type="Texture" id=11]
 [ext_resource path="res://Enemies/sprint_warning.png" type="Texture" id=12]
 [ext_resource path="res://Enemies/States/AntEnemyStateMachine.gd" type="Script" id=13]
@@ -22,17 +22,21 @@
 [ext_resource path="res://Enemies/Logic/EnemyDash.gd" type="Script" id=20]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 16.0
+radius = 12.0
 height = 22.5
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 24.3349
-height = 25.9323
+radius = 23.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 27.3543
+radius = 25.356
+height = 17.288
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 15.0
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -72,8 +76,7 @@ tracks/2/keys = {
 "values": [ 0.9, 0.5 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "sprinting"
+[sub_resource type="Animation" id=6]
 length = 0.68
 tracks/0/type = "method"
 tracks/0/path = NodePath("StateMachine/Sprint/SprintParticles")
@@ -89,9 +92,6 @@ tracks/0/keys = {
 "method": "restart"
 } ]
 }
-
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 21.4247
 
 [sub_resource type="Curve" id=7]
 _data = [ Vector2( 0.269737, 0.973864 ), 0.0, 0.0899618, 0, 0, Vector2( 1, 0.0011363 ), -2.86234, 0.0, 0, 0 ]
@@ -114,11 +114,11 @@ scale = 1.2
 scale_curve = SubResource( 8 )
 color = Color( 0.37, 0.204795, 0.1591, 1 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 24
 font_data = ExtResource( 9 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 resource_name = "idle_down"
 length = 0.6
 loop = true
@@ -171,7 +171,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "idle_left"
 length = 0.6
 loop = true
@@ -224,7 +224,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=13]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -276,7 +276,7 @@ tracks/3/keys = {
 "values": [ Vector2( -1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=14]
 resource_name = "idle_up"
 length = 0.6
 loop = true
@@ -329,7 +329,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=15]
 resource_name = "shoot_down"
 length = 0.45
 step = 0.15
@@ -382,7 +382,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=16]
 resource_name = "shoot_left"
 length = 0.45
 step = 0.15
@@ -435,7 +435,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=17]
 resource_name = "shoot_right"
 length = 0.45
 step = 0.15
@@ -488,7 +488,7 @@ tracks/3/keys = {
 "values": [ Vector2( -1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=18]
 resource_name = "shoot_up"
 length = 0.45
 step = 0.15
@@ -541,7 +541,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=19]
 resource_name = "walk_down"
 length = 0.4
 loop = true
@@ -594,7 +594,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=20]
 resource_name = "walk_left"
 length = 0.4
 loop = true
@@ -647,7 +647,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=21]
 resource_name = "walk_right"
 length = 0.4
 loop = true
@@ -700,7 +700,7 @@ tracks/3/keys = {
 "values": [ Vector2( -1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=22]
 resource_name = "walk_up"
 length = 0.4
 loop = true
@@ -753,6 +753,99 @@ tracks/3/keys = {
 "values": [ Vector2( 0.5, -2 ) ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=27]
+blend_point_0/node = SubResource( 23 )
+blend_point_0/pos = Vector2( 0, 0.9 )
+blend_point_1/node = SubResource( 24 )
+blend_point_1/pos = Vector2( 0, -0.9 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 26 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "shoot_down"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "shoot_up"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "shoot_left"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "shoot_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=32]
+blend_point_0/node = SubResource( 28 )
+blend_point_0/pos = Vector2( 0, 0.9 )
+blend_point_1/node = SubResource( 29 )
+blend_point_1/pos = Vector2( 0, -0.9 )
+blend_point_2/node = SubResource( 30 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 31 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "walk_up"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=37]
+blend_point_0/node = SubResource( 33 )
+blend_point_0/pos = Vector2( 0, 0.9 )
+blend_point_1/node = SubResource( 34 )
+blend_point_1/pos = Vector2( 0, -0.9 )
+blend_point_2/node = SubResource( 35 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 36 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachine" id=44]
+states/Idle/node = SubResource( 27 )
+states/Idle/position = Vector2( 366, 148 )
+states/Shoot/node = SubResource( 32 )
+states/Shoot/position = Vector2( 606, 148 )
+states/Walk/node = SubResource( 37 )
+states/Walk/position = Vector2( 485, 35 )
+transitions = [ "Idle", "Walk", SubResource( 38 ), "Walk", "Shoot", SubResource( 39 ), "Shoot", "Idle", SubResource( 40 ), "Idle", "Shoot", SubResource( 41 ), "Shoot", "Walk", SubResource( 42 ), "Walk", "Idle", SubResource( 43 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
+
 [node name="AntEnemy" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
@@ -760,8 +853,29 @@ FRICTION = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 10 )
+hframes = 36
+frame = 18
+
+[node name="Anchor" type="Node2D" parent="."]
+position = Vector2( 0.5, -2 )
+rotation = 3.14159
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Anchor"]
+remote_path = NodePath("../../PhysicsCollisionShape")
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Anchor"]
+remote_path = NodePath("../../Hitbox")
+
+[node name="RemoteTransform2D3" type="RemoteTransform2D" parent="Anchor"]
+remote_path = NodePath("../../Hurtbox")
+
+[node name="RemoteTransform2D4" type="RemoteTransform2D" parent="Anchor"]
+remote_path = NodePath("../../SoftCollision")
 
 [node name="Hitbox" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2( 0.5, -2 )
+rotation = -3.14159
 collision_layer = 0
 collision_mask = 12
 
@@ -769,16 +883,33 @@ collision_mask = 12
 shape = SubResource( 1 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 6 )]
-collision_layer = 40
+show_behind_parent = true
+position = Vector2( 0.5, -2 )
+rotation = -3.14159
+collision_layer = 8
 collision_mask = 4
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 2 )
 
+[node name="SoftCollision" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2( 0.5, -2 )
+rotation = -3.14159
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
+scale = Vector2( 0.907084, 1 )
+shape = SubResource( 3 )
+
 [node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
 modulate = Color( 0.192157, 0.192157, 0.192157, 1 )
-shape = SubResource( 3 )
+show_behind_parent = true
+position = Vector2( 0.5, -2 )
+rotation = -3.14159
+shape = SubResource( 4 )
 
 [node name="Healthbar" parent="." instance=ExtResource( 2 )]
 margin_left = -32.0
@@ -800,16 +931,8 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dying = SubResource( 4 )
-anims/sprinting = SubResource( 5 )
-
-[node name="SoftCollision" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
-scale = Vector2( 0.907084, 1 )
-shape = SubResource( 6 )
+anims/dying = SubResource( 5 )
+anims/sprinting = SubResource( 6 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 13 )
@@ -877,7 +1000,7 @@ margin_left = -122.0
 margin_top = -57.1784
 margin_right = 122.0
 margin_bottom = -41.1784
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 align = 1
 valign = 1
 __meta__ = {
@@ -885,24 +1008,36 @@ __meta__ = {
 }
 
 [node name="AnimationCopiedFromPlayer" type="AnimationPlayer" parent="."]
-anims/idle_down = SubResource( 12 )
-anims/idle_left = SubResource( 13 )
-anims/idle_right = SubResource( 14 )
-anims/idle_up = SubResource( 15 )
-anims/shoot_down = SubResource( 16 )
-anims/shoot_left = SubResource( 17 )
-anims/shoot_right = SubResource( 18 )
-anims/shoot_up = SubResource( 19 )
-anims/walk_down = SubResource( 20 )
-anims/walk_left = SubResource( 21 )
-anims/walk_right = SubResource( 22 )
-anims/walk_up = SubResource( 23 )
+anims/idle_down = SubResource( 11 )
+anims/idle_left = SubResource( 12 )
+anims/idle_right = SubResource( 13 )
+anims/idle_up = SubResource( 14 )
+anims/shoot_down = SubResource( 15 )
+anims/shoot_left = SubResource( 16 )
+anims/shoot_right = SubResource( 17 )
+anims/shoot_up = SubResource( 18 )
+anims/walk_down = SubResource( 19 )
+anims/walk_left = SubResource( 20 )
+anims/walk_right = SubResource( 21 )
+anims/walk_up = SubResource( 22 )
+
+[node name="Head" type="Node2D" parent="."]
+position = Vector2( 0.5, 8 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 44 )
+anim_player = NodePath("../AnimationCopiedFromPlayer")
+active = true
+parameters/playback = SubResource( 45 )
+parameters/Idle/blend_position = Vector2( 0, 0 )
+parameters/Shoot/blend_position = Vector2( 0, 0 )
+parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]
 [connection signal="health_zero" from="EnemyStats" to="." method="_on_EnemyStats_health_zero"]
-[connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]
 [connection signal="add_dash_frame" from="StateMachine/Sprint/DashStuff" to="StateMachine/Sprint" method="_on_DashStuff_add_dash_frame"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_IdleTimer_timeout"]
 

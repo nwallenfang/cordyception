@@ -159,6 +159,7 @@ config/icon="res://Player/player_ant_placeholder.png"
 [autoload]
 
 GameStatus="*res://GameLogic/GameStatus.tscn"
+GameEvents="*res://GameLogic/GameEvents.tscn"
 
 [debug]
 

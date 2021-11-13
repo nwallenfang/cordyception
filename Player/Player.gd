@@ -76,6 +76,7 @@ func state_dash() -> void:
 		var dash_duration: float = script_player.get_animation("dash").length
 		$Hurtbox/InvincibilityTimer.start(dash_duration)
 		dash_stuff.start_dash_effects()
+		$Sounds/Dash.play(0.15)
 		state_blocked = true
 	accelerate_and_move(last_delta, input_vec)
 
@@ -104,8 +105,10 @@ func state_poison() -> void:
 	if !Input.is_action_pressed("player_poison"):
 		poison.active = false
 		set_state(State.IDLE)
+		$Sounds/PoisonCloud.stop()
 		return
 	if state_first_frame:
+		$Sounds/PoisonCloud.play()
 		poison.active = true
 		state_blocked = true
 	poison.target_direction = aim_direction

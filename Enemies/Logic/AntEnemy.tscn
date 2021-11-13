@@ -847,6 +847,7 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=45]
 
 [node name="AntEnemy" type="KinematicBody2D"]
+scale = Vector2( 1.45, 1.45 )
 collision_layer = 0
 script = ExtResource( 1 )
 
@@ -875,6 +876,7 @@ remote_path = NodePath("../../SoftCollision")
 show_behind_parent = true
 position = Vector2( 0.5, -2 )
 rotation = -3.14159
+scale = Vector2( 1, 1 )
 collision_layer = 0
 collision_mask = 12
 
@@ -885,6 +887,7 @@ shape = SubResource( 1 )
 show_behind_parent = true
 position = Vector2( 0.5, -2 )
 rotation = -3.14159
+scale = Vector2( 1, 1 )
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 8 )
@@ -896,6 +899,7 @@ shape = SubResource( 2 )
 show_behind_parent = true
 position = Vector2( 0.5, -2 )
 rotation = -3.14159
+scale = Vector2( 1, 1 )
 collision_layer = 32
 collision_mask = 32
 
@@ -908,6 +912,7 @@ modulate = Color( 0.192157, 0.192157, 0.192157, 1 )
 show_behind_parent = true
 position = Vector2( 0.5, -2 )
 rotation = -3.14159
+scale = Vector2( 1, 1 )
 shape = SubResource( 4 )
 
 [node name="Healthbar" parent="." instance=ExtResource( 2 )]

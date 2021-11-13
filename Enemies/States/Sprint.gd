@@ -53,6 +53,11 @@ func begin_sprinting(delta: float):
 	# prepare the tween for later 
 	# TODO randomize 0.8 - 1.2 player position
 	sprint_direction = Vector2.UP.rotated(direction)
+	
+	if parent.animation_tree != null:
+		# set idle blend position as last movement blend position
+		parent.animation_tree.set("parameters/Walk/blend_position", sprint_direction)
+
 
 	# TODO polish this
 	# TODO maybe add sprite movement perpendicularily to the movement direction in the tween
@@ -62,6 +67,9 @@ func begin_sprinting(delta: float):
 
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
+		if parent.animation_state != null:
+			parent.animation_state.travel("Idle")
+			
 		begin_sprinting(delta)
 	else:
 		if not $SprintDelayTimer.is_stopped():  # currently waiting to sprint

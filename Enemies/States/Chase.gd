@@ -23,7 +23,7 @@ var full_length: float
 var progress: float
 
 	
-func process(delta: float, first_time_entering: bool):
+func process(delta: float, first_time_entering: bool):	
 	var line2d = parent.get_node("Line2D")
 	var distance_vector := (line2d.points[1] - line2d.points[0]) as Vector2
 	var direction_vector = distance_vector.normalized()
@@ -31,5 +31,14 @@ func process(delta: float, first_time_entering: bool):
 	
 	if should_stop_chasing(distance_to_player_scent):
 		state_machine.transition_to("Idle")
+		
+	if first_time_entering:
+		if parent.animation_state != null:
+			parent.animation_state.travel("Walk")
+			
+	if parent.animation_tree != null:
+		# set idle blend position as last movement blend position
+		parent.animation_tree.set("parameters/Walk/blend_position", direction_vector)
+
 	
 	parent.add_acceleration(CHASE_ACCELERATION * direction_vector)	

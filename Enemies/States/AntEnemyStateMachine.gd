@@ -8,6 +8,7 @@ var first_time_entering = true
 # TODO this will be removed
 onready var idle_transition_chance
 
+
 var label_exists := false
 
 func _ready() -> void:	

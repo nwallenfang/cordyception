@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://World/BigElements/wood.png" type="Texture" id=1]
+[ext_resource path="res://World/BigElements/woodhighres.png" type="Texture" id=1]
 
 [node name="Wood" type="StaticBody2D"]
 scale = Vector2( 2, 2 )

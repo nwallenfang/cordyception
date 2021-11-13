@@ -86,12 +86,12 @@ adjustment_saturation = 0.9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -1501.64, 52.904, 0, 0, 0, 0, -1466.48, 70.4143, 0, 0, 0, 0, -1436.23, 75.7912, 0, 0, 0, 0, -1407.61, 89.822, 0, 0, 0, 0, -1389.65, 106.659, 0, 0, 0, 0, -1368.32, 115.639, 0, 0, 0, 0, -1346.44, 117.884, 0, 0, 0, 0, -1326.23, 115.077, 0, 0, 0, 0, -1304.34, 103.292, 0, 0, 0, 0, -1276.28, 94.873, 0, 0, 0, 0, -1251.03, 94.3118, 0, 0, 0, 0, -1221.28, 101.047, 0, 0, 0, 0, -1197.71, 110.026, 0, 0, 0, 0, -1169.65, 123.496, 0, 0, 0, 0, -1143.83, 129.669, 0, 0, 0, 0, -1118.58, 131.914, 0, 0, 0, 0, -1097.81, 129.108, 0, 0, 0, 0, -1075.36, 121.812, 0, 0, 0, 0, -1052.91, 107.781, 0, 0, 0, 0, -1026.53, 95.4343, 0, 0, 0, 0, -999.595, 93.7506, 0, 0, 0, 0, -973.217, 99.9241, 0, 0, 0, 0, -953.013, 105.536 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 length = 4.0
 
 [node name="Level1" type="Node2D"]
@@ -188,7 +188,7 @@ scale = Vector2( 3, 3 )
 [node name="AphidPath3" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( 2386.47, 902.726 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 6 )
+curve = SubResource( 4 )
 
 [node name="Stone" parent="YSort" instance=ExtResource( 18 )]
 position = Vector2( -242.389, 597.144 )
@@ -252,7 +252,7 @@ drag_margin_right = 0.3
 drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
-anims/talk = SubResource( 7 )
+anims/talk = SubResource( 5 )
 
 [node name="TutorialMove" parent="." instance=ExtResource( 27 )]
 position = Vector2( -1348.66, 1175.11 )

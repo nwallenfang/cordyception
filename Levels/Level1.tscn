@@ -272,6 +272,9 @@ position = Vector2( 231.359, 416.904 )
 position = Vector2( -928.641, 235.904 )
 color = 2
 
+[node name="Light2D" parent="YSort/Shroom5" index="0"]
+energy = 0.517003
+
 [node name="Sprite" parent="YSort/Shroom5" index="5"]
 texture = ExtResource( 37 )
 

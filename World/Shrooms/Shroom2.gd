@@ -14,6 +14,7 @@ export(ShroomColor) var color : int setget set_color
 
 func _ready() -> void:
 	set_color(color)
+	$AnimationPlayer.play("shine")
 
 func set_color(new_color) -> void:
 	color = new_color

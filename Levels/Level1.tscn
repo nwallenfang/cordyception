@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://World/Stones/Stone03.tscn" type="PackedScene" id=5]
 [ext_resource path="res://World/Stones/Stone01.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Stones/Stone04.tscn" type="PackedScene" id=7]
-[ext_resource path="res://World/Grass/GrassBlade01.tscn" type="PackedScene" id=8]
-[ext_resource path="res://World/Grass/WindyGrassBlade01.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Effects/Shaders/Wind.shader" type="Shader" id=8]
+[ext_resource path="res://World/Grass/GrassBlade01.tscn" type="PackedScene" id=9]
 [ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Stones/Stone02.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Levels/Level1.gd" type="Script" id=12]
@@ -36,6 +36,7 @@
 [ext_resource path="res://UI/Tutorial/dashC.png" type="Texture" id=34]
 [ext_resource path="res://UI/Tutorial/shootK.png" type="Texture" id=35]
 [ext_resource path="res://UI/Tutorial/shootC.png" type="Texture" id=36]
+[ext_resource path="res://World/Shrooms/Pilz_02_Violet.png" type="Texture" id=37]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -97,22 +98,52 @@ shader_param/pixel_size = 9
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 8 )
+shader_param/speed = 1.0
+shader_param/minStrength = 0.05
+shader_param/maxStrength = 0.01
+shader_param/strengthScale = 250.0
+shader_param/interval = 3.5
+shader_param/detail = 1.0
+shader_param/distortion = null
+shader_param/heightOffset = null
+shader_param/offset = 0.6
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/GrassBlade01.png-78c89f740398a74509769b128047bd90.stex"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 8 )
+shader_param/speed = 1.0
+shader_param/minStrength = 0.05
+shader_param/maxStrength = 0.01
+shader_param/strengthScale = 250.0
+shader_param/interval = 3.5
+shader_param/detail = 1.0
+shader_param/distortion = null
+shader_param/heightOffset = null
+shader_param/offset = 0.7
+
+[sub_resource type="StreamTexture" id=12]
+load_path = "res://.import/GrassBlade02.png-591754e9cbaa20a230cb5075a495a5df.stex"
+
+[sub_resource type="Curve2D" id=7]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -68.8205, 60.952, 0, 0, 0, 0, -8.3205, 71.952, 0, 0, 0, 0, 26.6795, 77.452, 0, 0, 0, 0, 70.1795, 69.952, 0, 0, 0, 0, 105.18, 56.952, 0, 0, 0, 0, 145.18, 44.452, 0, 0, 0, 0, 187.68, 42.452, 0, 0, 0, 0, 241.18, 47.452, 0, 0, 0, 0, 278.68, 65.952, 0, 0, 0, 0, 312.18, 80.452, 0, 0, 0, 0, 342.18, 90.952, 0, 0, 0, 0, 384.68, 105.452, 0, 0, 0, 0, 411.18, 115.452, 0, 0, 0, 0, 431.18, 130.452, 0, 0, 0, 0, 453.68, 139.452, 0, 0, 0, 0, 473.68, 153.452, 0, 0, 0, 0, 509.68, 159.952 )
 }
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=8]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -88.8205, 10.952, 0, 0, 0, 0, -77.8205, 20.952, 0, 0, 0, 0, -58.3205, 27.952, 0, 0, 0, 0, -33.3205, 30.452, 0, 0, 0, 0, -6.8205, 26.452, 0, 0, 0, 0, 11.6795, 18.452, 0, 0, 0, 0, 28.6795, 12.452, 0, 0, 0, 0, 57.1795, 9.452, 0, 0, 0, 0, 96.6795, 9.452, 0, 0, 0, 0, 127.68, 15.452, 0, 0, 0, 0, 145.68, 25.952, 0, 0, 0, 0, 156.18, 40.952, 0, 0, 0, 0, 166.68, 54.952, 0, 0, 0, 0, 188.18, 67.952, 0, 0, 0, 0, 213.68, 76.952, 0, 0, 0, 0, 250.68, 82.452, 0, 0, 0, 0, 282.18, 81.452, 0, 0, 0, 0, 320.68, 78.952, 0, 0, 0, 0, 358.68, 71.452, 0, 0, 0, 0, 387.68, 63.452, 0, 0, 0, 0, 412.68, 53.452, 0, 0, 0, 0, 432.18, 39.952, 0, 0, 0, 0, 451.18, 26.452, 0, 0, 0, 0, 478.68, 21.952, 0, 0, 0, 0, 508.18, 20.952, 0, 0, 0, 0, 528.18, 22.952, 0, 0, 0, 0, 560.18, 33.952, 0, 0, 0, 0, 579.18, 50.952 )
 }
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=9]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -1501.64, 52.904, 0, 0, 0, 0, -1439.64, 48.904, 0, 0, 0, 0, -1360.64, 39.904, 0, 0, 0, 0, -1296.64, 28.904, 0, 0, 0, 0, -1221.64, 4.90399, 0, 0, 0, 0, -1166.64, -24.096, 0, 0, 0, 0, -1099.64, -45.096 )
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("YSort/AntEnemy4/SpeechBubble")
@@ -182,11 +213,20 @@ position = Vector2( -1675.64, -224.096 )
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
 
-[node name="GrassBlade03" parent="YSort" instance=ExtResource( 8 )]
+[node name="GrassBlade03" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 54.359, -228.096 )
+
+[node name="Sprite" parent="YSort/GrassBlade03" index="0"]
+material = SubResource( 5 )
+texture = SubResource( 6 )
 
 [node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( 137.359, -233.096 )
+
+[node name="Sprite" parent="YSort/GrassBlade02" index="0"]
+material = SubResource( 11 )
+position = Vector2( 93, -106 )
+texture = SubResource( 12 )
 
 [node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 349.743, 168.189 )
@@ -203,7 +243,7 @@ position = Vector2( 640.738, 244.275 )
 [node name="SpeechBubble" parent="YSort/AntEnemy4" instance=ExtResource( 13 )]
 position = Vector2( -0.484436, -68.7455 )
 
-[node name="WindyGrassBlade01" parent="YSort" instance=ExtResource( 9 )]
+[node name="GrassBlade01" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -501.641, -184.096 )
 
 [node name="Stone" parent="YSort" instance=ExtResource( 6 )]
@@ -227,11 +267,24 @@ position = Vector2( -158.641, -118.096 )
 [node name="Stone5" parent="YSort" instance=ExtResource( 16 )]
 position = Vector2( 231.359, 416.904 )
 
+[node name="Shroom5" parent="YSort" instance=ExtResource( 26 )]
+position = Vector2( -928.641, 235.904 )
+color = 2
+
+[node name="Light2D4" parent="YSort/Shroom5" index="3"]
+energy = 0.569302
+
+[node name="Sprite" parent="YSort/Shroom5" index="5"]
+texture = ExtResource( 37 )
+
+[node name="AnimationPlayer" parent="YSort/Shroom5" index="7"]
+autoplay = "shine"
+
 [node name="Stone6" parent="YSort" instance=ExtResource( 18 )]
-position = Vector2( -485.641, 403.904 )
+position = Vector2( -744.641, 407.904 )
 
 [node name="Stone7" parent="YSort" instance=ExtResource( 19 )]
-position = Vector2( -451.641, 460.904 )
+position = Vector2( -692.641, 452.904 )
 
 [node name="Acorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( -185.641, -221.096 )
@@ -256,17 +309,17 @@ position = Vector2( 776.359, -168.096 )
 [node name="AphidPath2" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( -600, -500 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 5 )
+curve = SubResource( 7 )
 
 [node name="AphidPath" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( -600, 250 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 6 )
+curve = SubResource( 8 )
 
 [node name="AphidPath3" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( 1148.36, 127.904 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 7 )
+curve = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1675.64, -224.096 )
@@ -279,7 +332,7 @@ drag_margin_right = 0.3
 drag_margin_bottom = 0.3
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
-anims/talk = SubResource( 8 )
+anims/talk = SubResource( 10 )
 
 [node name="TutorialMove" parent="." instance=ExtResource( 27 )]
 position = Vector2( -1658.64, -477.096 )
@@ -326,6 +379,9 @@ texture = ExtResource( 35 )
 [node name="CollisionShape2D" parent="TutorialShoot/Area2D" index="0"]
 position = Vector2( -36, 299 )
 
+[editable path="YSort/GrassBlade03"]
+[editable path="YSort/GrassBlade02"]
+[editable path="YSort/Shroom5"]
 [editable path="TutorialMove"]
 [editable path="TutorialSpray"]
 [editable path="TutorialDash"]

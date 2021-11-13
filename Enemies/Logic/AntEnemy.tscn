@@ -853,7 +853,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 10 )
 hframes = 36
-frame = 19
+frame = 18
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )

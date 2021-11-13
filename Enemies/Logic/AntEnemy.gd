@@ -7,6 +7,9 @@ onready var State: Dictionary
 
 onready var anchor := $Anchor as Node2D
 
+onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+onready var animation_tree := $AnimationTree as AnimationTree
+
 func _ready():
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	State = $StateMachine.State
@@ -42,7 +45,6 @@ func _on_EnemyStats_health_changed() -> void:
 
 
 func _on_EnemyStats_health_zero() -> void:
-	#print("sup")
 	$Healthbar.visible = false
 	$StateLabel.visible = false
 	$StateMachine.stop()

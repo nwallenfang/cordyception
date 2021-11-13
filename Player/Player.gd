@@ -105,8 +105,10 @@ func state_poison() -> void:
 	if !Input.is_action_pressed("player_poison"):
 		poison.active = false
 		set_state(State.IDLE)
+		$Sounds/PoisonCloud.stop()
 		return
 	if state_first_frame:
+		$Sounds/PoisonCloud.play()
 		poison.active = true
 		state_blocked = true
 	poison.target_direction = aim_direction

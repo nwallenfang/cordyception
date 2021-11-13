@@ -76,6 +76,7 @@ func state_dash() -> void:
 		var dash_duration: float = script_player.get_animation("dash").length
 		$Hurtbox/InvincibilityTimer.start(dash_duration)
 		dash_stuff.start_dash_effects()
+		$Sounds/Dash.play(0.15)
 		state_blocked = true
 	accelerate_and_move(last_delta, input_vec)
 

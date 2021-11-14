@@ -309,7 +309,7 @@ position = Vector2( -928.641, 235.904 )
 color = 2
 
 [node name="Light2D" parent="YSort/Shroom5" index="0"]
-energy = 0.564916
+energy = 0.54547
 
 [node name="Sprite" parent="YSort/Shroom5" index="5"]
 texture = ExtResource( 37 )
@@ -419,6 +419,9 @@ position = Vector2( -36, 299 )
 
 [node name="Dandelion" parent="." instance=ExtResource( 21 )]
 position = Vector2( -1329.64, -565.096 )
+
+[node name="AntTarget" type="Position2D" parent="."]
+position = Vector2( -151.453, 48.1086 )
 
 [editable path="YSort/GrassBlade03"]
 [editable path="YSort/GrassBlade02"]

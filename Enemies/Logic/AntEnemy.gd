@@ -19,6 +19,20 @@ func get_state() -> String:
 	# return current state name
 	return $StateMachine.state.name
 
+var was_enabled_previously = false
+func _on_FollowPath_movement_completed() -> void:
+	# disable state machine when done with moving
+	# if it was disabled before
+	if not was_enabled_previously:
+		$StateMachine.enabled = false
+
+
+func follow_path(target_position: Vector2):
+	was_enabled_previously = $StateMachine.enabled
+	$StateMachine/FollowPath.target_position = target_position
+	$StateMachine.transition_to("FollowPath")
+	$StateMachine.enabled = true
+	
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
@@ -77,5 +91,3 @@ func _on_SoftCollision_area_entered(area: Area2D) -> void:
 		var push_dir = (parent.global_position - self.global_position).normalized()
 		self.add_acceleration(-SELF_SOFT_COLLISION_STRENGTH * push_dir)
 		parent.add_acceleration(SELF_SOFT_COLLISION_STRENGTH * push_dir)
-	
-	

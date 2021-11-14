@@ -56,7 +56,7 @@ func begin_sprinting(delta: float):
 	
 	if parent.animation_tree != null:
 		# set idle blend position as last movement blend position
-		parent.animation_tree.set("parameters/Walk/blend_position", sprint_direction)
+		parent.animation_tree.set("parameters/Idle/blend_position", sprint_direction)
 
 
 	# TODO polish this
@@ -83,6 +83,10 @@ func process(delta: float, first_time_entering: bool):
 			var sprint_target = parent.position + MAX_SPRINT_DISTANCE * sprint_direction
 			$SprintMovementTween.interpolate_property(parent, "position", parent.position, sprint_target, duration,
 				Tween.TRANS_LINEAR)
+			if parent.animation_tree != null:
+				# set idle blend position as last movement blend position
+				parent.animation_tree.set("parameters/Walk/blend_position", sprint_direction)
+				parent.animation_state.travel("Walk")
 			$SprintMovementTween.start()
 			$DashStuff.start_dash_effects()
 		elif $SprintMovementTween.is_active():  # currently sprinting

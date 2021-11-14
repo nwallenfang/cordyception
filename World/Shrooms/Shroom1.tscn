@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://World/Shrooms/Pilz_01_Violet.png" type="Texture" id=1]
 [ext_resource path="res://World/Shrooms/Shroom1.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "size"
+length = 15.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 6.8, 8.3, 14.2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 6.8, 8.3, 14.2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Sprite:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -38.5, -0.25, 0, 0.25, 0, -34.5, -0.25, 0, 0.25, 0, -34.5, -0.25, 0, 0.25, 0, -38.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 6.8, 8.3, 14.2 )
+}
 
 [node name="Shroom" type="StaticBody2D"]
 scale = Vector2( 2, 2 )
@@ -17,3 +52,7 @@ texture = ExtResource( 1 )
 modulate = Color( 1, 1, 1, 0.164706 )
 position = Vector2( -0.5, -30.5 )
 polygon = PoolVector2Array( 17, 34.5, 26.5, 26, 27.5, 13.5, 14, 5, -9, 1.5, -20, 6, -24, 19.5, -16.5, 32.5, 1.5, 37 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "size"
+anims/size = SubResource( 1 )

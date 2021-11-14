@@ -20,10 +20,39 @@ var CURRENT_PLAYER: Player
 var CURRENT_CAMERA: ScriptedCamera
 var CURRENT_CAM_REMOTE: RemoteTransform2D
 
+var MOVE_ENABLED := true setget set_move_enabled
+var SPRAY_ENABLED := false setget set_spray_enabled
+var SHOOT_ENABLED := false setget set_shoot_enabled
+var DASH_ENABLED := false setget set_dash_enabled
+var AIMER_VISIBLE := true setget set_aimer_visible
+var HEALTH_VISIBLE := false setget set_health_visible
+
+func set_move_enabled(enabled: bool) -> void:
+	MOVE_ENABLED = enabled
+
+func set_spray_enabled(enabled: bool) -> void:
+	SPRAY_ENABLED = enabled
+
+func set_shoot_enabled(enabled: bool) -> void:
+	SHOOT_ENABLED = enabled
+	CURRENT_UI.show_shoot = enabled
+
+func set_dash_enabled(enabled: bool) -> void:
+	DASH_ENABLED = enabled
+	CURRENT_UI.show_dash = enabled
+
+func set_aimer_visible(vis: bool) -> void:
+	AIMER_VISIBLE = vis
+	CURRENT_PLAYER.aimer.visible = vis
+
+func set_health_visible(vis: bool) -> void:
+	HEALTH_VISIBLE = vis
+	CURRENT_UI.show_health = vis
+
 func set_health(new_health:int):
 	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)
-	CURRENT_UI.get_node("HealthUI").set_hearts(new_health)
-	
+	CURRENT_UI.set_hearts(new_health)
+
 
 signal input_device_changed
 var CONTROLLER_USED := false

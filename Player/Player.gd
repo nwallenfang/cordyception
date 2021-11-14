@@ -19,6 +19,7 @@ onready var anchor := $Anchor as Node2D
 onready var poison := $Head/PlayerPoison as PlayerPoison
 onready var dash_stuff := $DashStuff as DashStuff
 onready var script_player := $ScriptPlayer as AnimationPlayer
+onready var aimer := $Aimer as Node2D
 
 enum State {
 	IDLE, WALK, DASH, SHOOT, POISON
@@ -138,22 +139,22 @@ func set_state_string(new_state: String) -> void:
 	set_state(STATE_FROM_STRING[new_state])
 
 func evaluate_action_input() -> void:
-	if Input.is_action_just_pressed("player_dash"):
+	if Input.is_action_just_pressed("player_dash") and GameStatus.DASH_ENABLED:
 		if dash_stuff.is_cooldown_ready():
 			set_state(State.DASH)
 			return
 		else:
 			dash_stuff.play_cooldown_sound()
-	if Input.is_action_just_pressed("player_shoot"):
+	if Input.is_action_just_pressed("player_shoot") and GameStatus.SHOOT_ENABLED:
 		if projectile_spawner.is_cooldown_ready():
 			set_state(State.SHOOT)
 			return
 		else:
 			projectile_spawner.play_cooldown_sound()
-	if Input.is_action_pressed("player_poison"):
+	if Input.is_action_pressed("player_poison") and GameStatus.SPRAY_ENABLED:
 		set_state(State.POISON)
 		return
-	if input_vec != Vector2.ZERO:
+	if input_vec != Vector2.ZERO and GameStatus.MOVE_ENABLED:
 		set_state(State.WALK)
 		return
 	else:
@@ -172,7 +173,7 @@ func _physics_process(delta: float) -> void:
 
 # update the direction values for the animation tree
 func update_animation_facing(direction: Vector2) -> void:
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO and GameStatus.MOVE_ENABLED:
 		facing = direction
 		$AnimationTree.set("parameters/Idle/blend_position", facing)
 		$AnimationTree.set("parameters/Walk/blend_position", facing)

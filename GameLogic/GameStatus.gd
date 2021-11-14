@@ -17,6 +17,8 @@ var CURRENT_HEALTH := PLAYER_MAX_HEALTH setget set_health
 var CURRENT_YSORT: YSort
 var CURRENT_UI: UI
 var CURRENT_PLAYER: Player
+var CURRENT_CAMERA: ScriptedCamera
+var CURRENT_CAM_REMOTE: RemoteTransform2D
 
 func set_health(new_health:int):
 	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)

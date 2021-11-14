@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/ScentRay.gd"
 }, {
+"base": "Camera2D",
+"class": "ScriptedCamera",
+"language": "GDScript",
+"path": "res://Levels/Camera.gd"
+}, {
 "base": "Control",
 "class": "Settings",
 "language": "GDScript",
@@ -147,6 +152,7 @@ _global_script_class_icons={
 "Projectile": "",
 "Scent": "",
 "ScentRay": "",
+"ScriptedCamera": "",
 "Settings": "",
 "SingleHeartUI": "",
 "SlideMover": "",
@@ -158,8 +164,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ant game"
-run/main_scene="res://UI/Menu/TitleScreen.tscn"
+config/name="Cordyception"
+run/main_scene="res://Levels/Level1.tscn"
 config/icon="res://Player/player_ant_placeholder.png"
 
 [autoload]

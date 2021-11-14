@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://World/dirt-texture-10.jpg" type="Texture" id=1]
 [ext_resource path="res://Effects/Shaders/Pixel.shader" type="Shader" id=2]
@@ -38,6 +38,7 @@
 [ext_resource path="res://UI/Tutorial/shootC.png" type="Texture" id=36]
 [ext_resource path="res://World/Shrooms/Pilz_02_Violet.png" type="Texture" id=37]
 [ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=39]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -162,7 +163,6 @@ tracks/0/keys = {
 }
 
 [node name="Level1" type="Node2D"]
-position = Vector2( 598.641, 354.096 )
 script = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -214,8 +214,10 @@ position = Vector2( -1544, -1038 )
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( -1675.64, -224.096 )
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+[node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
+update_rotation = false
+update_scale = false
 
 [node name="GrassBlade03" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 54.359, -228.096 )
@@ -308,8 +310,11 @@ position = Vector2( 231.359, 416.904 )
 position = Vector2( -928.641, 235.904 )
 color = 2
 
-[node name="Light2D" parent="YSort/Shroom5" index="0"]
-energy = 0.54547
+[node name="Light2D3" parent="YSort/Shroom5" index="2"]
+energy = 0.0
+
+[node name="Light2D5" parent="YSort/Shroom5" index="4"]
+energy = 0.416678
 
 [node name="Sprite" parent="YSort/Shroom5" index="5"]
 texture = ExtResource( 37 )
@@ -358,16 +363,7 @@ position = Vector2( 1148.36, 127.904 )
 scale = Vector2( 2, 2 )
 curve = SubResource( 11 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -1675.64, -224.096 )
-scale = Vector2( 1.5, 1.5 )
-current = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-drag_margin_left = 0.3
-drag_margin_top = 0.3
-drag_margin_right = 0.3
-drag_margin_bottom = 0.3
+[node name="Camera2D" parent="." instance=ExtResource( 39 )]
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
 anims/talk = SubResource( 12 )

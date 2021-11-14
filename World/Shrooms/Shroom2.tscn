@@ -81,7 +81,7 @@ energy = 0.0
 [node name="Light2D3" type="Light2D" parent="."]
 position = Vector2( 0, -40 )
 texture = ExtResource( 5 )
-energy = 0.0
+energy = 0.233413
 
 [node name="Light2D4" type="Light2D" parent="."]
 position = Vector2( 0, -40 )

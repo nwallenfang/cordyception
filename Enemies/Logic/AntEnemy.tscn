@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -20,6 +20,12 @@
 [ext_resource path="res://Enemies/States/StopChaseCurve.tres" type="Curve" id=18]
 [ext_resource path="res://Player/DashStuff.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Enemies/Logic/EnemyDash.gd" type="Script" id=20]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=21]
+
+[sub_resource type="ShaderMaterial" id=46]
+resource_local_to_scene = true
+shader = ExtResource( 21 )
+shader_param/active = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.0
@@ -35,6 +41,21 @@ height = 17.288
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 15.0
+
+[sub_resource type="Animation" id=47]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 tracks/0/type = "method"
@@ -846,15 +867,32 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=45]
 
+[sub_resource type="Animation" id=48]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
 [node name="AntEnemy" type="KinematicBody2D"]
 scale = Vector2( 1.45, 1.45 )
 collision_layer = 0
 script = ExtResource( 1 )
+FRICTION = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 46 )
 texture = ExtResource( 10 )
 hframes = 36
-frame = 18
+frame = 19
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )
@@ -935,6 +973,7 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 47 )
 anims/dying = SubResource( 5 )
 anims/sprinting = SubResource( 6 )
 
@@ -1036,6 +1075,9 @@ parameters/playback = SubResource( 45 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Shoot/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[node name="InvincibilityPlayer" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 48 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

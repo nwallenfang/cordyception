@@ -22,6 +22,8 @@ func get_state() -> String:
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
+	if not ($InvincibilityPlayer.is_playing() and $InvincibilityPlayer.current_animation == "hit"):
+		$InvincibilityPlayer.play("hit")
 	# parent should either be a projectile, poison mist or another weapon
 	if parent is Projectile:
 		var attack := parent as Projectile

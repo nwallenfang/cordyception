@@ -272,8 +272,8 @@ position = Vector2( 231.359, 416.904 )
 position = Vector2( -928.641, 235.904 )
 color = 2
 
-[node name="Light2D" parent="YSort/Shroom5" index="0"]
-energy = 0.517003
+[node name="Light2D3" parent="YSort/Shroom5" index="2"]
+energy = 0.172324
 
 [node name="Sprite" parent="YSort/Shroom5" index="5"]
 texture = ExtResource( 37 )
@@ -324,6 +324,7 @@ curve = SubResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -1675.64, -224.096 )
+scale = Vector2( 1.5, 1.5 )
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true

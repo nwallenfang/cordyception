@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Enemies/Logic/EnemyDash.gd" type="Script" id=20]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=21]
 [ext_resource path="res://Enemies/States/FollowPath.gd" type="Script" id=22]
+[ext_resource path="res://UI/Speech/OldSpeechBubble.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -881,7 +882,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 texture = ExtResource( 10 )
 hframes = 36
-frame = 19
+frame = 18
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )
@@ -1072,6 +1073,10 @@ parameters/Walk/blend_position = Vector2( 0, 0 )
 
 [node name="InvincibilityPlayer" type="AnimationPlayer" parent="."]
 anims/hit = SubResource( 48 )
+
+[node name="SpeechBubble" parent="." instance=ExtResource( 23 )]
+position = Vector2( 0, -55.238 )
+scale = Vector2( 0.71, 0.71 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

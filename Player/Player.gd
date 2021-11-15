@@ -5,6 +5,8 @@ var aim_direction := 0.0
 var input_vec := Vector2.ZERO
 var last_delta : float
 
+export var MOVEMENT_ACCELERATION := 3000.0
+
 var facing := Vector2.RIGHT
 
 var collective_mouse_movement_input := Vector2.ZERO

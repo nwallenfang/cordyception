@@ -911,6 +911,7 @@ color_ramp = SubResource( 45 )
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 2
 script = ExtResource( 1 )
+OLD_DEFAULT_ACC_STRENGTH = 3000
 
 [node name="Aimer" type="Node2D" parent="."]
 scale = Vector2( 0.75, 0.75 )

@@ -34,6 +34,10 @@ func follow_path(target_position: Vector2):
 	$StateMachine.enabled = true
 	
 
+func set_facing_direction(direction: Vector2):
+	# im animation tree setzen.
+	$AnimationTree.set("parameters/Idle/blend_position", direction)
+
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if not ($InvincibilityPlayer.is_playing() and $InvincibilityPlayer.current_animation == "hit"):

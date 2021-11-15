@@ -117,7 +117,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "SpeechBubble",
 "language": "GDScript",
-"path": "res://UI/SpeechBubble.gd"
+"path": "res://UI/Speech/SpeechBubble.gd"
 }, {
 "base": "Node2D",
 "class": "StateMachine",
@@ -164,8 +164,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Cordyception"
-run/main_scene="res://Levels/Level1.tscn"
+config/name="Ant game"
+run/main_scene="res://UI/Menu/TitleScreen.tscn"
 config/icon="res://Player/player_ant_placeholder.png"
 
 [autoload]

@@ -913,6 +913,7 @@ collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Aimer" type="Node2D" parent="."]
+scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Aimer"]

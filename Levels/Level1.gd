@@ -12,3 +12,7 @@ func _ready() -> void:
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.HEALTH_VISIBLE = true
+	
+	# one will fight you and one will move to some location
+	$YSort/AntEnemy/StateMachine.enabled = true
+	$YSort/AntEnemy3.follow_path($AntTarget.global_position)

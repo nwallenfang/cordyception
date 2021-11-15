@@ -2,11 +2,11 @@ extends Node
 
 class_name AbstractState
 
-# overwrite this if you want to
+# edit this in the property editor if you want to
 export var RELATIVE_TRANSITION_CHANCE: float = 1.0
 
 onready var state_machine
-onready var State: Dictionary
+onready var State: Dictionary  # {"Idle" -> IdleStateNode, ...}
 onready var parent = get_parent().get_parent()
 
 

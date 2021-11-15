@@ -23,3 +23,13 @@ func dandelion_dialog():
 func _on_Area2D_body_entered(body: Node) -> void:
 	GameStatus.SPRAY_ENABLED = true
 
+
+
+func _on_ScriptedCamera_slide_finished() -> void:
+	# we're at the dandelion
+	$YSort/AntEnemyClimber/SpeechBubble.set_text("Man, look at that cute aphid sitting on there..")
+	$YSort/AntEnemy2/SpeechBubble.set_text("I could really go for some of his sweet, sweet nectar")
+	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too, now come down you stupid SHI")
+	
+	# manually configure the camera to go back just in time for comedic timing
+

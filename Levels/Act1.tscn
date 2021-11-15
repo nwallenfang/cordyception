@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -15,14 +15,15 @@
 [ext_resource path="res://UI/Tutorial/sprayK.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Logic/AntEnemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Levels/DetectorAct1.gd" type="Script" id=15]
+[ext_resource path="res://UI/Speech/OldSpeechBubble.tscn" type="PackedScene" id=16]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 300, 266 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1795.72, 266 )
 
 [sub_resource type="CapsuleShape2D" id=4]
@@ -60,13 +61,19 @@ update_scale = false
 position = Vector2( 6177.17, -646.398 )
 
 [node name="Sprite" parent="YSort/SpecialDandelion" index="0"]
-material = SubResource( 3 )
+material = SubResource( 1 )
 
-[node name="AntEnemy" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 6006.89, -586.313 )
+[node name="AntEnemyClimber" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 6013.96, -577.121 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemyClimber" instance=ExtResource( 16 )]
+position = Vector2( -0.689453, -68.2759 )
+scale = Vector2( 0.71, 0.71 )
 
 [node name="AntEnemy2" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 6333.1, -585.888 )
+
+[node name="SpeechBubble" parent="YSort/AntEnemy2" instance=ExtResource( 16 )]
 
 [node name="AntEnemy3" parent="YSort" instance=ExtResource( 14 )]
 position = Vector2( 6030.7, -868.478 )
@@ -116,7 +123,7 @@ texture = ExtResource( 10 )
 texture = ExtResource( 11 )
 
 [node name="CollisionShape2D" parent="TutorialMove/Area2D" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Tutorials" type="Node2D" parent="."]
 
@@ -132,7 +139,7 @@ texture = ExtResource( 13 )
 [node name="CollisionShape2D" parent="TutorialSpray/Area2D" index="0"]
 position = Vector2( 4.36328, 416.725 )
 scale = Vector2( 0.244854, 1.488 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
@@ -152,6 +159,7 @@ position = Vector2( 5348.1, 1136.89 )
 
 [connection signal="body_entered" from="TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="Detector" method="_on_Zone_body_entered"]
+[connection signal="slide_finished" from="ScriptedCamera" to="." method="_on_ScriptedCamera_slide_finished"]
 
 [editable path="YSort/SpecialDandelion"]
 [editable path="TutorialMove"]

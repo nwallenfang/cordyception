@@ -24,11 +24,10 @@ func deactivate_drag():
 	$DragTween.start()
 
 func activate_drag():
-	$DragTween.interpolate_property(self, "drag_margin_left", 0, default_drag, drag_activation_time)
-	$DragTween.interpolate_property(self, "drag_margin_right", 0, default_drag, drag_activation_time)
-	$DragTween.interpolate_property(self, "drag_margin_top", 0, default_drag, drag_activation_time)
-	$DragTween.interpolate_property(self, "drag_margin_bottom", 0, default_drag, drag_activation_time)
-	$DragTween.start()
+	drag_margin_bottom = default_drag
+	drag_margin_top = default_drag
+	drag_margin_right = default_drag
+	drag_margin_bottom = default_drag
 
 func zoom_back(time: float = 2.0):
 	zoom(default_zoom, time)
@@ -61,21 +60,17 @@ func __slide_to(pos: Vector2, time: float = 2.0) -> void:
 
 func back_to_player(time: float = 2.0) -> void:
 	on_player = true
-	activate_drag()
 	__slide_to(GameStatus.CURRENT_PLAYER.global_position, time)
 
 func _on_Tween_tween_all_completed() -> void:
-	print(position)
-	print(global_position)
-	emit_signal("slide_finished", return_signal)
 	if on_player:
 		GameStatus.CURRENT_CAM_REMOTE.update_position = true
-		drag_margin_h_enabled = true
-		drag_margin_v_enabled = true
+		activate_drag()
 		emit_signal("back_at_player", return_signal)
 	if follow_target != null:
 		following = true
 		emit_signal("follow_target_reached", return_signal)
+	emit_signal("slide_finished", return_signal)
 
 func _process(delta: float) -> void:
 	if following:

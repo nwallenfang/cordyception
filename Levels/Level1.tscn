@@ -224,6 +224,7 @@ cell_quadrant_size = 32
 collision_layer = 0
 collision_mask = 0
 format = 1
+tile_data = PoolIntArray( -1048600, 0, 0, -983067, 0, 0, -983066, 3, 0, -917534, 3, 0, -917533, 3, 0, -852003, 0, 0, -852002, 0, 0, -852001, 3, 0, -852000, 3, 0, -786468, 3, 0, -786467, 3, 0, -786466, 3, 0, -720934, 3, 0, -720933, 3, 0, -720932, 3, 0, -655400, 3, 0, -589867, 0, 0, -589865, 3, 0, -196641, 2, 0 )
 script = ExtResource( 24 )
 
 [node name="UI" parent="." instance=ExtResource( 14 )]

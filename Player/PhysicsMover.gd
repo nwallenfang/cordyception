@@ -5,7 +5,6 @@ class_name PhysicsMover
 # doesn't have to be this value, it's just for readability
 const EXPECTED_FPS = 60
 
-export var MAX_SPEED := 100
 export var FRICTION := 0.9
 export var OLD_DEFAULT_ACC_STRENGTH := 3500
 

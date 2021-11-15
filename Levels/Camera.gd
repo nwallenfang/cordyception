@@ -30,19 +30,26 @@ func stop_following() -> void:
 func slide_to_object(obj: Node2D, time: float = 2.0) -> void:
 	slide_away_to(obj.global_position, time)
 
+func print_pos():
+	print("f ", global_position)
+
 func slide_away_to(pos: Vector2, time: float = 2.0) -> void:
 	on_player = false
 	GameStatus.CURRENT_CAM_REMOTE.update_position = false
+	var prev_position = global_position
+	print("pre ", global_position)
+	# instead of disabling drag margin tween towards 0.0
 	drag_margin_h_enabled = false
 	drag_margin_v_enabled = false
-	__slide_to(pos, time)
+	print("post ", global_position)
+#	__slide_to(pos, time)
 
 func __slide_to(pos: Vector2, time: float = 2.0) -> void:
-	print(pos)
-	print("---------")
-	print(global_position)
+#	print(pos)
+#	print("---------")
+#	print(global_position)
 	$Tween.remove_all()
-	$Tween.interpolate_property(self, "position", position, pos, time,Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(self, "global_position", global_position, pos, time,Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	$Tween.start()
 
 func back_to_player(time: float = 2.0) -> void:
@@ -50,8 +57,6 @@ func back_to_player(time: float = 2.0) -> void:
 	__slide_to(GameStatus.CURRENT_PLAYER.global_position, time)
 
 func _on_Tween_tween_all_completed() -> void:
-	print(position)
-	print(global_position)
 	emit_signal("slide_finished")
 	if on_player:
 		GameStatus.CURRENT_CAM_REMOTE.update_position = true

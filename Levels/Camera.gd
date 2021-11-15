@@ -3,6 +3,7 @@ class_name ScriptedCamera
 
 export var default_zoom := 1.0
 export var default_drag := 0.3
+export var drag_activation_time := 1.0
 
 var on_player := true
 var follow_target: Node2D = null
@@ -16,17 +17,17 @@ signal back_at_player(id)
 signal follow_target_reached(id)
 
 func deactivate_drag():
-	$DragTween.interpolate_property(self, "drag_margin_left", default_drag, 0, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_right", default_drag, 0, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_top", default_drag, 0, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_bottom", default_drag, 0, 0.5)
+	$DragTween.interpolate_property(self, "drag_margin_left", default_drag, 0, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_right", default_drag, 0, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_top", default_drag, 0, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_bottom", default_drag, 0, drag_activation_time)
 	$DragTween.start()
 
 func activate_drag():
-	$DragTween.interpolate_property(self, "drag_margin_left", 0, default_drag, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_right", 0, default_drag, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_top", 0, default_drag, 0.5)
-	$DragTween.interpolate_property(self, "drag_margin_bottom", 0, default_drag, 0.5)
+	$DragTween.interpolate_property(self, "drag_margin_left", 0, default_drag, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_right", 0, default_drag, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_top", 0, default_drag, drag_activation_time)
+	$DragTween.interpolate_property(self, "drag_margin_bottom", 0, default_drag, drag_activation_time)
 	$DragTween.start()
 
 func zoom_back(time: float = 2.0):
@@ -46,9 +47,6 @@ func stop_following() -> void:
 
 func slide_to_object(obj: Node2D, time: float = 2.0) -> void:
 	slide_away_to(obj.global_position, time)
-
-func print_pos():
-	print("f ", global_position)
 
 func slide_away_to(pos: Vector2, time: float = 2.0) -> void:
 	on_player = false

@@ -8,6 +8,8 @@ export var CHAR_TIME := 0.04
 export var MARGIN_OFFSET := 8
 export var DEFAULT_WAIT := 3.0
 
+signal dialog_completed
+
 func _ready() -> void:
 	visible = false
 
@@ -48,3 +50,4 @@ func _on_Tween_tween_all_completed() -> void:
 
 func _on_Timer_timeout() -> void:
 	visible = false
+	emit_signal("dialog_completed")

@@ -53,13 +53,8 @@ func print_pos():
 func slide_away_to(pos: Vector2, time: float = 2.0) -> void:
 	on_player = false
 	GameStatus.CURRENT_CAM_REMOTE.update_position = false
-	var prev_position = global_position
-	print("pre ", global_position)
-	# instead of disabling drag margin tween towards 0.0
-	drag_margin_h_enabled = false
-	drag_margin_v_enabled = false
-	print("post ", global_position)
-#	__slide_to(pos, time)
+	deactivate_drag()
+	__slide_to(pos, time)
 
 func __slide_to(pos: Vector2, time: float = 2.0) -> void:
 	$Tween.remove_all()
@@ -68,6 +63,7 @@ func __slide_to(pos: Vector2, time: float = 2.0) -> void:
 
 func back_to_player(time: float = 2.0) -> void:
 	on_player = true
+	activate_drag()
 	__slide_to(GameStatus.CURRENT_PLAYER.global_position, time)
 
 func _on_Tween_tween_all_completed() -> void:

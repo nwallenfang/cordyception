@@ -6,9 +6,13 @@ var show_shoot := false setget set_show_shoot
 var show_dash := false setget set_show_dash
 
 func _ready() -> void:
+	# everything starts transparent (only with modulate)
 	$HealthUI.modulate = Color.transparent
 	$ProjectileCooldownUI.modulate = Color.transparent
 	$DashCooldownUI.modulate = Color.transparent
+	$HealthUI.visible = true
+	$ProjectileCooldownUI.visible = true
+	$DashCooldownUI.visible = true
 
 func set_show_health(show: bool) -> void:
 	if show_health != show:

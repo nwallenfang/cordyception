@@ -1,13 +1,23 @@
 extends Camera2D
 class_name ScriptedCamera
 
+export var default_zoom := 1.0
+
 var on_player := true
 var follow_target: Node2D = null
 var following := false
 
 signal slide_finished
+signal zoom_finished
 signal back_at_player
 signal follow_target_reached
+
+func zoom_back(time: float = 2.0):
+	zoom(default_zoom, time)
+
+func zoom(target_zoom: float, time: float = 2.0) -> void:
+	$ZoomTween.interpolate_property(self, "zoom", zoom, Vector2(target_zoom, target_zoom), time)
+	$ZoomTween.start()
 
 func follow(obj: Node2D, time: float = 2.0) -> void:
 	slide_to_object(obj, time)
@@ -55,3 +65,6 @@ func _on_Tween_tween_all_completed() -> void:
 func _process(delta: float) -> void:
 	if following:
 		global_position = follow_target.global_position
+
+func _on_ZoomTween_tween_all_completed() -> void:
+	emit_signal("zoom_finished")

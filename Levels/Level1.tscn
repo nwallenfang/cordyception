@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://World/TileMaps/DirtMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Effects/Environment.tres" type="Environment" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://UI/Tutorial/aphid_bright.png" type="Texture" id=37]
 [ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=38]
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=39]
+[ext_resource path="res://World/BigElements/Wood_Long.tscn" type="PackedScene" id=40]
 
 [sub_resource type="TileSet" id=1]
 0/name = "sand"
@@ -163,8 +164,12 @@ collision_mask = 67
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelBoundary"]
 polygon = PoolVector2Array( -1680.99, -1593.16, -2406.17, -676.195, -2430.15, 2362.37, -68.8135, 2386.34, 2496.29, 2434.29, 2957.77, 2452.27, 2927.8, 702.248, 2849.89, -1245.55, 1753.13, -1677.06, 506.536, -1695.04, -1309.41, -1653.09, -56.8271, -1946.76, 1884.98, -1940.77, 3041.67, -1413.36, 3167.53, 714.234, 3113.59, 2554.16, 1267.68, 2674.02, -1938.7, 2644.05, -2807.72, 2536.18, -2801.73, 1073.83, -2897.62, -820.032, -1830.82, -1868.85, -1321.4, -1683.06 )
 
+[node name="WoodLong" parent="." instance=ExtResource( 40 )]
+position = Vector2( -1637, -1237 )
+
 [node name="Wood" parent="." instance=ExtResource( 38 )]
-position = Vector2( -1544, -1038 )
+position = Vector2( 443, -1279 )
+rotation = 1.02625
 
 [node name="YSort" type="YSort" parent="."]
 

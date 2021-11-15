@@ -14,7 +14,7 @@
 [ext_resource path="res://Player/Aimer.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 34.0
+height = 30.0
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "idle_right"
@@ -830,7 +830,7 @@ tracks/3/keys = {
 
 [sub_resource type="CapsuleShape2D" id=40]
 radius = 7.0
-height = 30.0
+height = 29.3333
 
 [sub_resource type="Animation" id=41]
 length = 0.24
@@ -914,6 +914,7 @@ script = ExtResource( 1 )
 
 [node name="Aimer" type="Node2D" parent="."]
 scale = Vector2( 0.75, 0.75 )
+z_index = 1
 script = ExtResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Aimer"]

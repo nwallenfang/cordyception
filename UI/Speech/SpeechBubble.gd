@@ -12,7 +12,6 @@ export var arrow_reversed := true
 
 func _ready() -> void:
 	visible = false
-	set_text(["Hallo, du Huuuurensohn!"])
 
 const MIN_SIZE = Vector2(44, 44)
 var bubble_size: Vector2 = MIN_SIZE setget set_bubble_size

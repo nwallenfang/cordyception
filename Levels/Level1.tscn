@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://World/TileMaps/DirtMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Effects/Environment.tres" type="Environment" id=2]
@@ -36,10 +36,11 @@
 [ext_resource path="res://UI/Tutorial/dashC.png" type="Texture" id=34]
 [ext_resource path="res://UI/Tutorial/shootK.png" type="Texture" id=35]
 [ext_resource path="res://UI/Tutorial/shootC.png" type="Texture" id=36]
+[ext_resource path="res://UI/Tutorial/aphid_bright.png" type="Texture" id=37]
 [ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=38]
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=39]
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=1]
 0/name = "sand"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -64,7 +65,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 8 )
 shader_param/speed = 1.0
 shader_param/minStrength = 0.05
@@ -76,10 +77,10 @@ shader_param/distortion = null
 shader_param/heightOffset = null
 shader_param/offset = 0.6
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="StreamTexture" id=3]
 load_path = "res://.import/GrassBlade01.png-78c89f740398a74509769b128047bd90.stex"
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 8 )
 shader_param/speed = 1.0
 shader_param/minStrength = 0.05
@@ -91,25 +92,25 @@ shader_param/distortion = null
 shader_param/heightOffset = null
 shader_param/offset = 0.7
 
-[sub_resource type="StreamTexture" id=6]
+[sub_resource type="StreamTexture" id=5]
 load_path = "res://.import/GrassBlade02.png-591754e9cbaa20a230cb5075a495a5df.stex"
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=6]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -68.8205, 60.952, 0, 0, 0, 0, -8.3205, 71.952, 0, 0, 0, 0, 26.6795, 77.452, 0, 0, 0, 0, 70.1795, 69.952, 0, 0, 0, 0, 105.18, 56.952, 0, 0, 0, 0, 145.18, 44.452, 0, 0, 0, 0, 187.68, 42.452, 0, 0, 0, 0, 241.18, 47.452, 0, 0, 0, 0, 278.68, 65.952, 0, 0, 0, 0, 312.18, 80.452, 0, 0, 0, 0, 342.18, 90.952, 0, 0, 0, 0, 384.68, 105.452, 0, 0, 0, 0, 411.18, 115.452, 0, 0, 0, 0, 431.18, 130.452, 0, 0, 0, 0, 453.68, 139.452, 0, 0, 0, 0, 473.68, 153.452, 0, 0, 0, 0, 509.68, 159.952 )
 }
 
-[sub_resource type="Curve2D" id=8]
+[sub_resource type="Curve2D" id=7]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -88.8205, 10.952, 0, 0, 0, 0, -77.8205, 20.952, 0, 0, 0, 0, -58.3205, 27.952, 0, 0, 0, 0, -33.3205, 30.452, 0, 0, 0, 0, -6.8205, 26.452, 0, 0, 0, 0, 11.6795, 18.452, 0, 0, 0, 0, 28.6795, 12.452, 0, 0, 0, 0, 57.1795, 9.452, 0, 0, 0, 0, 96.6795, 9.452, 0, 0, 0, 0, 127.68, 15.452, 0, 0, 0, 0, 145.68, 25.952, 0, 0, 0, 0, 156.18, 40.952, 0, 0, 0, 0, 166.68, 54.952, 0, 0, 0, 0, 188.18, 67.952, 0, 0, 0, 0, 213.68, 76.952, 0, 0, 0, 0, 250.68, 82.452, 0, 0, 0, 0, 282.18, 81.452, 0, 0, 0, 0, 320.68, 78.952, 0, 0, 0, 0, 358.68, 71.452, 0, 0, 0, 0, 387.68, 63.452, 0, 0, 0, 0, 412.68, 53.452, 0, 0, 0, 0, 432.18, 39.952, 0, 0, 0, 0, 451.18, 26.452, 0, 0, 0, 0, 478.68, 21.952, 0, 0, 0, 0, 508.18, 20.952, 0, 0, 0, 0, 528.18, 22.952, 0, 0, 0, 0, 560.18, 33.952, 0, 0, 0, 0, 579.18, 50.952 )
 }
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=8]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -1501.64, 52.904, 0, 0, 0, 0, -1439.64, 48.904, 0, 0, 0, 0, -1360.64, 39.904, 0, 0, 0, 0, -1296.64, 28.904, 0, 0, 0, 0, -1221.64, 4.90399, 0, 0, 0, 0, -1166.64, -24.096, 0, 0, 0, 0, -1099.64, -45.096 )
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 length = 4.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("YSort/AntEnemy4/SpeechBubble")
@@ -145,7 +146,7 @@ script = ExtResource( 24 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 2 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -179,16 +180,16 @@ update_scale = false
 position = Vector2( 54.359, -228.096 )
 
 [node name="Sprite" parent="YSort/GrassBlade03" index="0"]
-material = SubResource( 3 )
-texture = SubResource( 4 )
+material = SubResource( 2 )
+texture = SubResource( 3 )
 
 [node name="GrassBlade02" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( 137.359, -233.096 )
 
 [node name="Sprite" parent="YSort/GrassBlade02" index="2"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 93, -106 )
-texture = SubResource( 6 )
+texture = SubResource( 5 )
 
 [node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 349.743, 168.189 )
@@ -295,23 +296,23 @@ position = Vector2( 776.359, -168.096 )
 [node name="AphidPath2" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( -600, -500 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 7 )
+curve = SubResource( 6 )
 
 [node name="AphidPath" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( -600, 250 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 8 )
+curve = SubResource( 7 )
 
 [node name="AphidPath3" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( 1148.36, 127.904 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 9 )
+curve = SubResource( 8 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 39 )]
 position = Vector2( -1675.64, -224.096 )
 
 [node name="DialogPlayer" type="AnimationPlayer" parent="."]
-anims/talk = SubResource( 10 )
+anims/talk = SubResource( 9 )
 
 [node name="TutorialMove" parent="." instance=ExtResource( 27 )]
 position = Vector2( -1658.64, -477.096 )
@@ -358,6 +359,18 @@ texture = ExtResource( 35 )
 [node name="CollisionShape2D" parent="TutorialShoot/Area2D" index="0"]
 position = Vector2( -36, 299 )
 
+[node name="TutorialShoot2" parent="." instance=ExtResource( 27 )]
+position = Vector2( -450, -605 )
+
+[node name="SpriteC" parent="TutorialShoot2" index="0"]
+texture = ExtResource( 37 )
+
+[node name="SpriteK" parent="TutorialShoot2" index="1"]
+texture = ExtResource( 37 )
+
+[node name="CollisionShape2D" parent="TutorialShoot2/Area2D" index="0"]
+position = Vector2( -36, 299 )
+
 [node name="Dandelion" parent="." instance=ExtResource( 21 )]
 position = Vector2( -1329.64, -565.096 )
 
@@ -370,3 +383,4 @@ position = Vector2( -151.453, 48.1086 )
 [editable path="TutorialSpray"]
 [editable path="TutorialDash"]
 [editable path="TutorialShoot"]
+[editable path="TutorialShoot2"]

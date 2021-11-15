@@ -164,7 +164,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ant game"
+config/name="Cordyception"
 run/main_scene="res://UI/Menu/TitleScreen.tscn"
 config/icon="res://Player/player_ant_placeholder.png"
 

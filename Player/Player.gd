@@ -19,6 +19,7 @@ onready var anchor := $Anchor as Node2D
 onready var poison := $Head/PlayerPoison as PlayerPoison
 onready var dash_stuff := $DashStuff as DashStuff
 onready var script_player := $ScriptPlayer as AnimationPlayer
+onready var heal_player := $HealPlayer as AnimationPlayer
 onready var aimer := $Aimer as Node2D
 
 enum State {
@@ -223,7 +224,7 @@ func vector_to_angle(vec: Vector2) -> float:
 # gain 1 HP
 func health_boost():
 	GameStatus.CURRENT_HEALTH += 1
-	script_player.play("heal")
+	heal_player.play("heal")
 
 # on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:

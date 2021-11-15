@@ -25,11 +25,15 @@ func _on_Area2D_body_entered(body: Node) -> void:
 
 
 
-func _on_ScriptedCamera_slide_finished() -> void:
+func _on_ScriptedCamera_slide_finished(name: String) -> void:
+	print("hi")
 	# we're at the dandelion
-	$YSort/AntEnemyClimber/SpeechBubble.set_text("Man, look at that cute aphid sitting on there..")
-	$YSort/AntEnemy2/SpeechBubble.set_text("I could really go for some of his sweet, sweet nectar")
-	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too, now come down you stupid SHI")
+#	$YSort/AntEnemyClimber/SpeechBubble.set_text("Man, look at that cute aphid sitting on there..")
+	# TODO wait
+#	$YSort/AntEnemy2/SpeechBubble.set_text("I could really go for some of his sweet, sweet nectar")
+	# TODO wait
+#	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too, now come down you stupid SHI")
 	
 	# manually configure the camera to go back just in time for comedic timing
+	$ScriptedCamera.back_to_player()
 

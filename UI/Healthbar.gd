@@ -19,5 +19,13 @@ func set_health(new_health) -> void:
 	self.value = health
 #	$Tween.interpolate_property(self, 'value', self.value, new_health, 0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 
+func show():
+	# TODO
+	pass
+	
+func hide():
+	pass
+
+
 func _ready() -> void:
 	pass

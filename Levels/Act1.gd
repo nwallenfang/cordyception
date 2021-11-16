@@ -21,11 +21,14 @@ func dandelion_dialog():
 	yield($YSort/AntEnemyClimber/SpeechBubble, "dialog_completed")
 	$YSort/AntEnemy2/SpeechBubble.set_text("I could really go for some of its sweet, sweet nectar", 0.8)
 	yield($YSort/AntEnemy2/SpeechBubble, "dialog_completed")
-	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too, now come down you stupid SHI", 0.0)
+	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too!", 0.5) 
+	yield($YSort/AntEnemy2/SpeechBubble, "dialog_completed")
+	$YSort/AntEnemyClimber/SpeechBubble.set_text("Now come down you stupid SHI")
 	var comedic_timer = get_tree().create_timer(1.3)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
-	$ScriptedCamera.back_to_player()
+	$ScriptedCamera.back_to_player(1.2)
+	GameStatus.MOVE_ENABLED = true
 
 
 # TutorialSpray Area2D

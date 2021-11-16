@@ -22,6 +22,8 @@ export var arrow_reversed_h := false
 export var arrow_reversed_v := false
 export var center := false
 
+signal dialog_completed
+
 func set_nodes() -> void:
 	text_node = $Origin/RichTextLabel as RichTextLabel
 	text_bg = $Origin/ColorRect as ColorRect
@@ -41,7 +43,6 @@ func _ready() -> void:
 	set_nodes()
 	visible = false
 	is_ready = true
-	set_text("Hey, das hier ist ein echt toller Text Juhu!")
 
 const MIN_SIZE = Vector2(44, 44)
 export var bubble_size: Vector2 = Vector2(44, 44) setget set_bubble_size
@@ -141,4 +142,5 @@ func _on_Tween_tween_all_completed() -> void:
 	$Timer.start()
 
 func _on_Timer_timeout() -> void:
+	emit_signal("dialog_completed")
 	visible = false

@@ -1,39 +1,84 @@
 extends Node2D
 class_name SpeechBubble
 
-onready var text_node := $Origin/RichTextLabel
-onready var text_bg := $Origin/ColorRect
+onready var text_node := $Origin/RichTextLabel as RichTextLabel
+onready var text_bg := $Origin/ColorRect as ColorRect
+onready var sideA := $Origin/SideA as TextureRect
+onready var sideB := $Origin/SideB as TextureRect
+onready var sideC := $Origin/SideC as TextureRect
+onready var sideD := $Origin/SideD as TextureRect
+onready var cornerA := $Origin/CornerA as TextureRect
+onready var cornerB := $Origin/CornerB as TextureRect
+onready var cornerC := $Origin/CornerC as TextureRect
+onready var cornerD := $Origin/CornerD as TextureRect
+onready var arrow := $Origin/Arrow as TextureRect
+onready var origin := $Origin as Node2D
 
 export var CHAR_TIME := 0.04
-export var MARGIN_OFFSET := 20
+export var MARGIN_OFFSET := 10
 export var DEFAULT_WAIT := 3.0
 export var arrow_pos := 0.8
-export var arrow_reversed := true
+export var arrow_reversed_h := false
+export var arrow_reversed_v := false
+export var center := false
 
+func set_nodes() -> void:
+	text_node = $Origin/RichTextLabel as RichTextLabel
+	text_bg = $Origin/ColorRect as ColorRect
+	sideA = $Origin/SideA as TextureRect
+	sideB = $Origin/SideB as TextureRect
+	sideC = $Origin/SideC as TextureRect
+	sideD = $Origin/SideD as TextureRect
+	cornerA = $Origin/CornerA as TextureRect
+	cornerB = $Origin/CornerB as TextureRect
+	cornerC = $Origin/CornerC as TextureRect
+	cornerD = $Origin/CornerD as TextureRect
+	arrow = $Origin/Arrow as TextureRect
+	origin = $Origin as Node2D
+
+var is_ready := false
 func _ready() -> void:
+	set_nodes()
 	visible = false
+	is_ready = true
+	set_text("Hey, das hier ist ein echt toller Text Juhu!")
 
 const MIN_SIZE = Vector2(44, 44)
-var bubble_size: Vector2 = MIN_SIZE setget set_bubble_size
+export var bubble_size: Vector2 = Vector2(44, 44) setget set_bubble_size
 
 func set_bubble_size(size: Vector2) -> void:
+	if !is_ready:
+		return
+
 	size.x = max(MIN_SIZE.x, size.x)
 	size.y = max(MIN_SIZE.y, size.y)
 	bubble_size = size
+	
 	var offset := size - MIN_SIZE
-	for element in [$Origin/CornerB, $Origin/CornerD, $Origin/SideD]:
+	for element in [cornerB, cornerD, sideD]:
 		element.rect_position.x = 28 + offset.x
-	for element in [$Origin/SideB, $Origin/SideC]:
+	for element in [sideB, sideC]:
 		element.rect_size.x = 16 + offset.x
-	for element in [$Origin/CornerC, $Origin/CornerD, $Origin/SideC]:
+	for element in [cornerC, cornerD, sideC]:
 		element.rect_position.y = 28 + offset.y
-	for element in [$Origin/SideA, $Origin/SideD]:
+	for element in [sideA, sideD]:
 		element.rect_size.y = 16 + offset.y
-	$Origin/ColorRect.rect_size = Vector2(36, 36) + offset
-	$Origin/RichTextLabel.rect_size = Vector2(32, 32) + offset
-	$Arrow.rect_position.y = 42 + offset.y
-	$Arrow.rect_position.x = 4 + int((size.x - 24) * arrow_pos)
-	$Arrow.flip_h = arrow_reversed
+	text_bg.rect_size = Vector2(36, 36) + offset
+	text_node.rect_size = Vector2(32, 26) + offset# + Vector2(28, 0)
+	if !center:
+		text_node.rect_size = Vector2(2000, 400)
+	arrow.flip_h = arrow_reversed_h
+	arrow.flip_v = arrow_reversed_v
+	if arrow_reversed_v:
+		arrow.rect_position.y = -14
+	else:
+		arrow.rect_position.y = 42 + offset.y
+	arrow.rect_position.x = 4 + int((size.x - 24) * arrow_pos)
+	
+	var flip_offset := Vector2(0 if !arrow_reversed_h else -16, 0 if arrow_reversed_v else -16)
+	
+	origin.position = - arrow.rect_position + flip_offset
+	print(".")
 
 func set_text(lines, wait_time = DEFAULT_WAIT):
 	if lines is String:
@@ -46,7 +91,10 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	
 	for _line in lines:
 		var line : String = _line as String
-		text = text + "[center]" + line + "[/center]\n"
+		if center:
+			text = text + "[center]" + line + "[/center]\n"
+		else:
+			text = text + line + "\n"
 		
 		var line_without_tags = ""
 		var splitA := line.split("[")
@@ -62,7 +110,7 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	$Timer.wait_time = wait_time
 	$Timer.stop()
 	
-	set_bubble_size(text_size + Vector2(MARGIN_OFFSET, 2))
+	#set_bubble_size(text_size + Vector2(MARGIN_OFFSET, 2))
 	
 	text_node.bbcode_text = text
 	
@@ -72,6 +120,7 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	# Animation
 	$Tween.remove_all()
 	$Tween.interpolate_property(text_node, "percent_visible", 0, 1, duration)
+	$Tween.interpolate_property(self, "bubble_size", Vector2(2*MARGIN_OFFSET, 0), text_size + Vector2(2*MARGIN_OFFSET, 0), duration)
 	$Tween.start()
 #	$Tween.interpolate_property(text_bg, "margin_right", 3*BUBBLE_BORDER, text_size.x + 2 * MARGIN_OFFSET, duration)
 #	for element in [$Origin/CornerB, $Origin/CornerD, $Origin/SideD]:

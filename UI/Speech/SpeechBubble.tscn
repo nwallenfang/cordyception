@@ -18,15 +18,20 @@ extra_spacing_space = 1
 font_data = SubResource( 1 )
 
 [node name="SpeechBubble" type="Node2D"]
+position = Vector2( 594, 259 )
 scale = Vector2( 0.7, 0.7 )
 script = ExtResource( 1 )
+arrow_pos = 0.5
+arrow_reversed_h = true
+bubble_size = Vector2( 70, 44 )
 
 [node name="Origin" type="Node2D" parent="."]
+position = Vector2( -43, -58 )
 
 [node name="ColorRect" type="ColorRect" parent="Origin"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 40.0
+margin_right = 66.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 36, 36 )
 __meta__ = {
@@ -47,7 +52,7 @@ __meta__ = {
 
 [node name="SideB" type="TextureRect" parent="Origin"]
 margin_left = 14.0
-margin_right = 30.0
+margin_right = 56.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 rect_pivot_offset = Vector2( 8, 8 )
@@ -60,7 +65,7 @@ __meta__ = {
 [node name="SideC" type="TextureRect" parent="Origin"]
 margin_left = 14.0
 margin_top = 28.0
-margin_right = 30.0
+margin_right = 56.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 16, 16 )
 rect_pivot_offset = Vector2( 8, 8 )
@@ -71,9 +76,9 @@ __meta__ = {
 }
 
 [node name="SideD" type="TextureRect" parent="Origin"]
-margin_left = 28.0
+margin_left = 54.0
 margin_top = 14.0
-margin_right = 44.0
+margin_right = 70.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 16, 16 )
 rect_pivot_offset = Vector2( 8, 8 )
@@ -96,8 +101,8 @@ __meta__ = {
 }
 
 [node name="CornerB" type="TextureRect" parent="Origin"]
-margin_left = 28.0
-margin_right = 44.0
+margin_left = 54.0
+margin_right = 70.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 16, 16 )
 rect_rotation = 180.0
@@ -121,9 +126,9 @@ __meta__ = {
 }
 
 [node name="CornerD" type="TextureRect" parent="Origin"]
-margin_left = 28.0
+margin_left = 54.0
 margin_top = 28.0
-margin_right = 44.0
+margin_right = 70.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 16, 16 )
 rect_rotation = -90.0
@@ -134,31 +139,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Origin"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 220.0
-margin_bottom = 132.0
-custom_fonts/normal_font = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode_enabled = true
-visible_characters = 0
-percent_visible = 0.0
-fit_content_height = true
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Arrow" type="TextureRect" parent="."]
-margin_left = 24.0
+[node name="Arrow" type="TextureRect" parent="Origin"]
+margin_left = 27.0
 margin_top = 42.0
-margin_right = 40.0
+margin_right = 43.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 16, 16 )
 rect_pivot_offset = Vector2( 8, 8 )
 texture = ExtResource( 5 )
 expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Origin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 36.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+text = "sdfasdfasdf"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -166,6 +170,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="SpeechSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )

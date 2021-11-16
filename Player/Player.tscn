@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/ant.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sound/nicer_dash_shorter.wav" type="AudioStream" id=9]
 [ext_resource path="res://Player/PlayerPoison.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sound/poison_sound.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Sound/health_boost.wav" type="AudioStream" id=12]
 [ext_resource path="res://Player/Aimer.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -202,6 +203,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Sounds/HealthBoost")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.203761,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=28]
@@ -1011,7 +1026,6 @@ update_scale = false
 [node name="HealParticles" type="Particles2D" parent="."]
 modulate = Color( 0.5, 3, 0.5, 1 )
 position = Vector2( 0.5, -2 )
-emitting = false
 amount = 30
 lifetime = 2.0
 one_shot = true
@@ -1029,6 +1043,11 @@ bus = "SFX"
 [node name="PoisonCloud" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 11 )
 volume_db = -16.0
+bus = "SFX"
+
+[node name="HealthBoost" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 12 )
+volume_db = -10.603
 bus = "SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]

@@ -42,6 +42,7 @@ var state_first_frame: bool = false
 
 func _ready() -> void:
 	$AnimationTree.active = true
+	$HealParticles.emitting = false
 	dash_stuff.connect("add_dash_frame", self, "add_dash_frame")
 
 # input functions

@@ -13,7 +13,7 @@ func is_cooldown_ready() -> bool:
 	return $ProjectileCooldown.is_stopped()
 
 func play_cooldown_sound() -> void:
-	$CooldownNotReadySound.play()
+	$CooldownNotReadySound.play(0.08)
 
 func try_creating_projectile(direction: float) -> bool:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running

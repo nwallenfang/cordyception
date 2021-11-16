@@ -1042,6 +1042,7 @@ update_scale = false
 [node name="HealParticles" type="Particles2D" parent="."]
 modulate = Color( 0.5, 3, 0.5, 1 )
 position = Vector2( 0.5, -2 )
+emitting = false
 amount = 30
 lifetime = 2.0
 one_shot = true

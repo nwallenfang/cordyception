@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/nicer_dash.wav-7b07ed221795f50e44ec80a5e820cd9c.sample"
+
+[deps]
+
+source_file="res://Sound/nicer_dash.wav"
+dest_files=[ "res://.import/nicer_dash.wav-7b07ed221795f50e44ec80a5e820cd9c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

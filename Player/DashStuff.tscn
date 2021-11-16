@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Dash.gd" type="Script" id=1]
 [ext_resource path="res://Effects/dot_particle.png" type="Texture" id=2]
-[ext_resource path="res://Sound/cooldown_tick.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.269737, 0.973864 ), 0.0, 0.0899618, 0, 0, Vector2( 1, 0.0011363 ), -2.86234, 0.0, 0, 0 ]
@@ -46,8 +45,5 @@ texture = ExtResource( 2 )
 [node name="DashCooldown" type="Timer" parent="."]
 wait_time = 1.3
 one_shot = true
-
-[node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 
 [connection signal="timeout" from="DashFrameTimer" to="." method="_on_DashFrameTimer_timeout"]

@@ -3,7 +3,6 @@ class_name PlayerProjectileSpawner
 
 const PlayerProjectile := preload("res://Projectiles/PlayerProjectile.tscn")
 
-signal cooldown_not_ready
 
 func _ready() -> void:
 	$Anchor/Particles2D.one_shot = true
@@ -12,14 +11,12 @@ func _ready() -> void:
 func is_cooldown_ready() -> bool:
 	return $ProjectileCooldown.is_stopped()
 
-func play_cooldown_sound() -> void:
-	$CooldownNotReadySound.play(0.08)
 
 func try_creating_projectile(direction: float) -> bool:
 	if not $ProjectileCooldown.is_stopped(): # Timer still running
 		# Projectile shooting skill is not ready to fire again
-		play_cooldown_sound()
 		emit_signal("cooldown_not_ready")
+		GameStatus.CURRENT_UI.cooldown_not_ready()
 		return false
 		
 	# create projectile

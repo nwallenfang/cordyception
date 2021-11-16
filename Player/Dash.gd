@@ -11,9 +11,6 @@ func _process(delta: float) -> void:
 		var blend = 1.0 - (time_left / $DashCooldown.wait_time)
 		GameStatus.CURRENT_UI.get_node("DashCooldownUI").set_blend(blend)
 
-func play_cooldown_sound() -> void:
-	$CooldownNotReadySound.play()
-
 func is_cooldown_ready() -> bool:
 	return $DashCooldown.is_stopped()
 

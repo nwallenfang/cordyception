@@ -75,6 +75,10 @@ func state_walk() -> void:
 	accelerate_and_move(last_delta, input_vec)
 
 func state_dash() -> void:
+	if not state_first_frame and Input.is_action_just_pressed("player_dash"):
+		# player trying to dash while still dash is alreayd active
+		GameStatus.CURRENT_UI.cooldown_not_ready()
+		
 	if state_first_frame:
 		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
 		script_player.play("dash")
@@ -149,13 +153,13 @@ func evaluate_action_input() -> void:
 			set_state(State.DASH)
 			return
 		else:
-			dash_stuff.play_cooldown_sound()
+			GameStatus.CURRENT_UI.cooldown_not_ready()
 	if Input.is_action_just_pressed("player_shoot") and GameStatus.SHOOT_ENABLED:
 		if projectile_spawner.is_cooldown_ready():
 			set_state(State.SHOOT)
 			return
 		else:
-			projectile_spawner.play_cooldown_sound()
+			GameStatus.CURRENT_UI.cooldown_not_ready()
 	if Input.is_action_just_pressed("player_poison") and GameStatus.SPRAY_ENABLED:
 		set_state(State.POISON)
 		return

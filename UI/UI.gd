@@ -5,6 +5,8 @@ var show_health := false setget set_show_health
 var show_shoot := false setget set_show_shoot
 var show_dash := false setget set_show_dash
 
+signal cooldown_not_ready  # TODO add string arg with skill name
+
 func _ready() -> void:
 	# everything starts transparent (only with modulate)
 	$HealthUI.modulate = Color.transparent
@@ -32,9 +34,12 @@ func set_show_dash(show: bool) -> void:
 		$Tween.interpolate_property($DashCooldownUI, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
 		$Tween.start()
 
-func cooldown_not_ready_visual():
-	# TODO reference argument, which skill cooldown is not ready
-	pass
+	
+func cooldown_not_ready():
+	$CooldownNotReadySound.play(0.18)
+	# play sound
+	# play visual
+	# TODO
 
 func set_hearts(value):
 	$HealthUI.set_hearts(value)

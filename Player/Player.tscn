@@ -1075,6 +1075,7 @@ bus = "SFX"
 [node name="Projectile" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 15 )
 volume_db = -3.671
+bus = "SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

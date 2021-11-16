@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/ant.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Sound/poison_sound.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Sound/health_boost.wav" type="AudioStream" id=12]
 [ext_resource path="res://Player/Aimer.gd" type="Script" id=13]
+[ext_resource path="res://Sound/player_hit.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sound/player_projectile.wav" type="AudioStream" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 30.0
@@ -162,6 +164,20 @@ tracks/0/keys = {
 "args": [ "idle" ],
 "method": "set_state_string"
 } ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Sounds/Projectile")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 15 )
+} ],
+"times": PoolRealArray( 0.148009 )
 }
 
 [sub_resource type="Animation" id=27]
@@ -1049,6 +1065,15 @@ bus = "SFX"
 stream = ExtResource( 12 )
 volume_db = -10.603
 bus = "SFX"
+
+[node name="TakeHit" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 14 )
+volume_db = -4.221
+bus = "SFX"
+
+[node name="Projectile" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 15 )
+volume_db = -3.671
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

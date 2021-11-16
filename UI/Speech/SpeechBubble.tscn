@@ -20,6 +20,7 @@ font_data = SubResource( 1 )
 [node name="SpeechBubble" type="Node2D"]
 position = Vector2( 594, 259 )
 scale = Vector2( 0.7, 0.7 )
+z_index = 1
 script = ExtResource( 1 )
 arrow_pos = 0.5
 arrow_reversed_h = true
@@ -176,6 +177,8 @@ wait_time = 3.0
 stream = ExtResource( 2 )
 volume_db = -9.871
 bus = "SFX"
+
+[node name="BlendTween" type="Tween" parent="."]
 
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

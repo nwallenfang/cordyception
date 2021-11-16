@@ -2,11 +2,12 @@ extends StateMachine
 
 class_name AntEnemyStateMachine
 
+onready var label_was_visible = get_parent().get_node("StateLabel").visible
 
 func start():
 	enabled = true
 	get_parent().get_node("Healthbar").visible = true
-	get_parent().get_node("StateLabel").visible = true
+	get_parent().get_node("StateLabel").visible = label_was_visible
 	get_parent().get_node("Hitbox").set_deferred("monitoring", true)
 	get_parent().get_node("Hitbox").set_deferred("monitorable", true)
 	get_parent().get_node("Hurtbox").set_deferred("monitoring", true)

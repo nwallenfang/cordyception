@@ -13,7 +13,24 @@ onready var animation_tree := $AnimationTree as AnimationTree
 func _ready():
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	State = $StateMachine.State
+	$StateMachine.stop()
+	
+func trigger():
+	$StateMachine.start()
 
+func set_behavior(probabilities: Dictionary):
+	# first set probability property in child state
+	var state: AbstractState
+	for state_name in probabilities.keys():
+		state = $StateMachine.get_node(state_name)
+		if state != null:
+			state.RELATIVE_TRANSITION_CHANCE = probabilities[state_name]
+		else:
+			print("behavior WARN: state ", state_name, " doesn't exist!")
+
+	# second force transition chance recalculation
+	$StateMachine.idle_transition_chance = $StateMachine.build_absolute_transition_chances()
+	$StateMachine.find_initial_state_and_prev()
 
 func get_state() -> String:
 	# return current state name
@@ -29,7 +46,7 @@ func _on_FollowPath_movement_completed() -> void:
 		
 func shoot_single_projectile(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
-	$StateMachine/Shoot.start_shooting_single_projectile(target_position)
+	$StateMachine/SimpleShoot.start_shooting_single_projectile(target_position)
 
 
 func follow_path(target_position: Vector2):

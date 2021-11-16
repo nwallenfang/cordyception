@@ -1,6 +1,6 @@
 extends Node2D
 
-export var MAX_HEALTH := 20
+export var MAX_HEALTH := 20 setget set_max_health
 export var DAMAGE := 1
 
 # TODO doesn't this affect every enemy then?
@@ -18,3 +18,7 @@ func set_health(new_health: int) -> void:
 		emit_signal("health_zero")
 	
 
+func set_max_health(new_max: int):
+	MAX_HEALTH = new_max
+	set_health(min(MAX_HEALTH, health))
+	get_parent().get_node("Healthbar").set_max(MAX_HEALTH)

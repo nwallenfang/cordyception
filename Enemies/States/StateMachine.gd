@@ -75,9 +75,9 @@ func transition_to_random_different_state():
 	# copy idle transition chances
 	var state_transition_chances = self.idle_transition_chance.duplicate()
 	var prob_to_remove: float = state_transition_chances[previous_non_idle_state.name]
-	# possibles state are those which are not IDLE, not the last state, and not impossible (0) to begin with
-	# start at -2 due to IDLE and last state
-	var number_possible_states = -2
+	# possibles state are those which not the last state, and not impossible (0) to begin with
+	# note that idle is already accounted for since it's probability 0
+	var number_possible_states = -1
 	
 	for state_name in State.keys():
 		if state_transition_chances[state_name] != 0.0:
@@ -110,20 +110,37 @@ func build_absolute_transition_chances() -> Dictionary:
 		relative_transition_chances[state_name] /= relative_sum
 		
 	return relative_transition_chances
+
+
+func find_initial_state_and_prev():
+	# initial state and previous state should at least make sense for the 
+	# transition chances
+	var first_possible_state := ""
+	var second_possible_state := ""
+	for name in idle_transition_chance.keys():
+		if idle_transition_chance[name] > 0.0:
+			if first_possible_state.empty():
+				first_possible_state = name
+			elif second_possible_state.empty():
+				second_possible_state = name
+			else:
+				break
+	if first_possible_state.empty() or second_possible_state.empty():
+		print("WARNING: find_initial_state_and_prev(): Not enough possible states!!")
 	
+	state = State[first_possible_state]
+	previous_non_idle_state = State[second_possible_state]
+
 func _ready() -> void:
 	State = build_state_dict()
-	state = State[State.keys()[0]]  # make initial state random more or less
-	previous_non_idle_state = State[State.keys()[0]]
 	make_state_list_available()
 	
 	if GameStatus.AUTO_ENEMY_BEHAVIOR:  # should only be enabled for debugging
 		enabled = true
 		
-	# for clean code assert that there is an Idle state as a child
+	# TODO for cleaner code assert that there is an Idle state as a child
 	idle_transition_chance = build_absolute_transition_chances()
-	
-	previous_non_idle_state = State["Sprint"]
+	find_initial_state_and_prev()
 	label_exists = get_parent().has_node("StateLabel")
 		
 		

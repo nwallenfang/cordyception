@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -14,9 +14,16 @@
 [ext_resource path="res://UI/Tutorial/sprayC.png" type="Texture" id=12]
 [ext_resource path="res://UI/Tutorial/sprayK.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Logic/AntEnemy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
+
+[sub_resource type="Curve2D" id=6]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 80.6863, -191.334, 0, 0, 0, 0, 99.4875, -180.951, 0, 0, 0, 0, 115.483, -186.564, 0, 0, 0, 0, 122.779, -189.931 )
+}
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 300, 266 )
@@ -58,20 +65,30 @@ remote_path = NodePath("../../../ScriptedCamera")
 update_rotation = false
 update_scale = false
 
-[node name="SpecialDandelion" parent="YSort" instance=ExtResource( 8 )]
+[node name="DandelionRoom" type="YSort" parent="YSort"]
+
+[node name="SpecialDandelion" parent="YSort/DandelionRoom" instance=ExtResource( 8 )]
 position = Vector2( 6177.17, -646.398 )
 
-[node name="Sprite" parent="YSort/SpecialDandelion" index="0"]
+[node name="Sprite" parent="YSort/DandelionRoom/SpecialDandelion" index="0"]
 material = SubResource( 1 )
 
-[node name="AntEnemyClimber" parent="YSort" instance=ExtResource( 14 )]
+[node name="AntEnemyClimber" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6327.95, -710.245 )
 
-[node name="AntEnemy1" parent="YSort" instance=ExtResource( 14 )]
+[node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6011.68, -694.032 )
 
-[node name="AntEnemy2" parent="YSort" instance=ExtResource( 14 )]
+[node name="AntEnemy2" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6120.5, -823.208 )
+
+[node name="AphidPath" parent="YSort" instance=ExtResource( 15 )]
+position = Vector2( 6000, -500 )
+scale = Vector2( 2, 2 )
+curve = SubResource( 6 )
+
+[node name="PathFollow2D" parent="YSort/AphidPath" index="0"]
+position = Vector2( 80.6863, -191.334 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -105,32 +122,32 @@ polygon = PoolVector2Array( 666.476, -185.031, 1897.29, -434.213, 3014.84, 184.9
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries/boundary5"]
 polygon = PoolVector2Array( 794.843, 192.519, 2373, 1227.01, 3505.65, 1476.19, 5718.09, 1649.86, 6473.19, 1045.78, 5989.93, 1861.29, 4177.69, 1853.74, 2312.59, 1506.39, 953.414, 736.191 )
 
-[node name="TutorialMove" parent="." instance=ExtResource( 9 )]
-position = Vector2( 8.41614, -297.588 )
-
-[node name="SpriteC" parent="TutorialMove" index="0"]
-texture = ExtResource( 10 )
-
-[node name="SpriteK" parent="TutorialMove" index="1"]
-texture = ExtResource( 11 )
-
-[node name="CollisionShape2D" parent="TutorialMove/Area2D" index="0"]
-shape = SubResource( 2 )
-
 [node name="Tutorials" type="Node2D" parent="."]
 
-[node name="TutorialSpray" parent="." instance=ExtResource( 9 )]
+[node name="TutorialMove" parent="Tutorials" instance=ExtResource( 9 )]
+position = Vector2( 8.41614, -297.588 )
+
+[node name="SpriteC" parent="Tutorials/TutorialMove" index="0"]
+texture = ExtResource( 10 )
+
+[node name="SpriteK" parent="Tutorials/TutorialMove" index="1"]
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialMove/Area2D" index="0"]
+shape = SubResource( 2 )
+
+[node name="TutorialSpray" parent="Tutorials" instance=ExtResource( 9 )]
 position = Vector2( 5934.91, 136.435 )
 
-[node name="SpriteC" parent="TutorialSpray" index="0"]
+[node name="SpriteC" parent="Tutorials/TutorialSpray" index="0"]
 position = Vector2( 42.7632, 351.014 )
 texture = ExtResource( 12 )
 
-[node name="SpriteK" parent="TutorialSpray" index="1"]
+[node name="SpriteK" parent="Tutorials/TutorialSpray" index="1"]
 position = Vector2( 42.7632, 351.014 )
 texture = ExtResource( 13 )
 
-[node name="CollisionShape2D" parent="TutorialSpray/Area2D" index="0"]
+[node name="CollisionShape2D" parent="Tutorials/TutorialSpray/Area2D" index="0"]
 position = Vector2( 4.36328, 511.16 )
 scale = Vector2( 0.244854, 1.488 )
 shape = SubResource( 3 )
@@ -160,13 +177,19 @@ shape = SubResource( 5 )
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 6113.23, 213.023 )
 
-[node name="PlayerTargetPos" type="Position2D" parent="."]
+[node name="Positions" type="Node2D" parent="."]
+
+[node name="PlayerTargetPos" type="Position2D" parent="Positions"]
 position = Vector2( 6177.37, -460.99 )
 
-[connection signal="body_entered" from="TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
+[node name="PlayerStart" type="Position2D" parent="Positions"]
+position = Vector2( 6176.79, 63.1586 )
+
+[connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
 [connection signal="body_entered" from="Detector/Zone2" to="." method="_on_Zone2_body_entered"]
 
-[editable path="YSort/SpecialDandelion"]
-[editable path="TutorialMove"]
-[editable path="TutorialSpray"]
+[editable path="YSort/DandelionRoom/SpecialDandelion"]
+[editable path="YSort/AphidPath"]
+[editable path="Tutorials/TutorialMove"]
+[editable path="Tutorials/TutorialSpray"]

@@ -136,14 +136,24 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	$SpeechSound.play(rand_range($SpeechSound.stream.loop_begin, $SpeechSound.stream.loop_end))
 
 	visible = true
+	
+# for interruptions:
+func stop_and_blend(blend_time:=0.4):
+	$SpeechSound.stop()
+	$Timer.stop()
+	$Tween.stop_all()
+	$Tween.remove_all()
+	var target_color = Color(modulate.r, modulate.b, modulate.g, 0)
+	$BlendTween.interpolate_property(self, "modulate", self.modulate, target_color, blend_time)
+	$BlendTween.start()
 
 func _on_Tween_tween_all_completed() -> void:
 	$SpeechSound.stop()
 	$Timer.start()
 
 func _on_Timer_timeout() -> void:
-	emit_signal("dialog_completed")
 	text_node.percent_visible = 0
 	text_node.bbcode_text = ""
 	set_bubble_size(Vector2.ZERO)
 	visible = false
+	emit_signal("dialog_completed")

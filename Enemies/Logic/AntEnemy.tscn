@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=21]
 [ext_resource path="res://Enemies/States/FollowPath.gd" type="Script" id=22]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Enemies/States/SimpleShoot.gd" type="Script" id=24]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -170,6 +171,73 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=50]
+resource_name = "shoot_single"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.494453 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "__shoot_single"
+}, {
+"args": [  ],
+"method": "__reset"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle" ],
+"method": "transition_to"
+} ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "shoot"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_projectiles"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle" ],
+"method": "transition_to"
+} ]
+}
+
+[sub_resource type="Animation" id=53]
 resource_name = "shoot_single"
 length = 0.5
 tracks/0/type = "method"
@@ -949,7 +1017,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 texture = ExtResource( 10 )
 hframes = 36
-frame = 19
+frame = 18
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )
@@ -1100,6 +1168,19 @@ one_shot = true
 anims/shoot = SubResource( 49 )
 anims/shoot_single = SubResource( 50 )
 
+[node name="SimpleShoot" type="Node2D" parent="StateMachine"]
+script = ExtResource( 24 )
+
+[node name="ShootDelayTimer" type="Timer" parent="StateMachine/SimpleShoot"]
+wait_time = 0.3
+one_shot = true
+
+[node name="EnemyProjectileSpawner" parent="StateMachine/SimpleShoot" instance=ExtResource( 5 )]
+
+[node name="ScriptedPlayer" type="AnimationPlayer" parent="StateMachine/SimpleShoot"]
+anims/shoot = SubResource( 52 )
+anims/shoot_single = SubResource( 53 )
+
 [node name="FollowPath" type="Node2D" parent="StateMachine"]
 script = ExtResource( 22 )
 RELATIVE_TRANSITION_CHANCE = 0.0
@@ -1162,3 +1243,4 @@ position = Vector2( -25.4026, -38.6664 )
 [editable path="Hurtbox"]
 [editable path="StateMachine/Sprint/DashStuff"]
 [editable path="StateMachine/Shoot/EnemyProjectileSpawner"]
+[editable path="SpeechBubble"]

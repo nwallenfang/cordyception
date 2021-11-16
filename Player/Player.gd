@@ -93,10 +93,12 @@ func state_follow() -> void:
 		state_blocked = true
 	
 	var distance_vec := (target_position - self.global_position) as Vector2
-	$AnimationTree.set("parameters/Move/blend_position", distance_vec)
+	$AnimationTree.set("parameters/Walk/blend_position", distance_vec)
 	
 	# stop condition	
 	if distance_vec.length() < STOP_DISTANCE:
+		# set idle position to same as follow so it looks nicer after moving
+		$AnimationTree.set("parameters/Idle/blend_position", distance_vec)
 		emit_signal("follow_completed")
 		set_state(State.IDLE)
 		

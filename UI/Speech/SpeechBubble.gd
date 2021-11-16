@@ -78,7 +78,7 @@ func set_bubble_size(size: Vector2) -> void:
 	var flip_offset := Vector2(0 if !arrow_reversed_h else -16, 0 if arrow_reversed_v else -16)
 	
 	origin.position = - arrow.rect_position + flip_offset
-	print(".")
+
 
 func set_text(lines, wait_time = DEFAULT_WAIT):
 	if lines is String:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -136,6 +136,38 @@ orbit_velocity_random = 0.0
 scale = 1.2
 scale_curve = SubResource( 10 )
 color = Color( 0.37, 0.204795, 0.1591, 1 )
+
+[sub_resource type="Animation" id=49]
+resource_name = "shoot"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_projectiles"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle" ],
+"method": "transition_to"
+} ]
+}
 
 [sub_resource type="DynamicFont" id=12]
 size = 24
@@ -1024,9 +1056,13 @@ script = ExtResource( 17 )
 RELATIVE_TRANSITION_CHANCE = 1.18
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/Shoot"]
+wait_time = 0.3
 one_shot = true
 
 [node name="EnemyProjectileSpawner" parent="StateMachine/Shoot" instance=ExtResource( 5 )]
+
+[node name="ScriptedPlayer" type="AnimationPlayer" parent="StateMachine/Shoot"]
+anims/shoot = SubResource( 49 )
 
 [node name="FollowPath" type="Node2D" parent="StateMachine"]
 script = ExtResource( 22 )

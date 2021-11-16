@@ -2,7 +2,7 @@ extends Node2D
 
 class_name StateMachine
 
-var enabled := false
+var enabled := false setget set_enabled
 # state dictionary (was an enum earlier)
 export onready var State: Dictionary  # name -> AbstractState
 # current state of the State machine, whenever the StateMachine's process gets called,
@@ -133,4 +133,8 @@ func stop() -> void:
 	
 func process(delta: float):
 	# overwrite this
+	pass
+	
+func set_enabled(enable: bool):
+	# overwrite this in subclass
 	pass

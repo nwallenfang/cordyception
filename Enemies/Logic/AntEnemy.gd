@@ -38,26 +38,26 @@ func set_facing_direction(direction: Vector2):
 	# im animation tree setzen.
 	$AnimationTree.set("parameters/Idle/blend_position", direction)
 
+func handle_damage(attack, should_play_hit):
+	$EnemyStats.health -= attack.damage
+	if get_state() != "Sprint":
+		add_acceleration(attack.knockback_vector())
+	if should_play_hit:
+		$InvincibilityPlayer.play("hit")
+		
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
-	if not ($InvincibilityPlayer.is_playing() and $InvincibilityPlayer.current_animation == "hit"):
-		$InvincibilityPlayer.play("hit")
+	var should_play_hit = not ($InvincibilityPlayer.is_playing() 
+						  and $InvincibilityPlayer.current_animation == "hit")
+
+	
 	# parent should either be a projectile, poison mist or another weapon
 	if parent is Projectile:
-		var attack := parent as Projectile
-		$EnemyStats.health -= attack.damage
-		if get_state() != "Sprint":
-			add_acceleration(attack.knockback_vector())
+		handle_damage(parent as Projectile, should_play_hit)
 	if parent is PlayerCloseCombat:
-		var attack := parent as PlayerCloseCombat
-		$EnemyStats.health -= attack.damage
-		if get_state() != "Sprint":
-			add_acceleration(attack.knockback_vector())
+		handle_damage(parent as PlayerCloseCombat, should_play_hit)
 	if parent is PoisonFragment:
-		var attack := parent as PoisonFragment
-		$EnemyStats.health -= attack.damage
-		if get_state() != "Sprint":
-			add_acceleration(attack.knockback_vector())
+		handle_damage(parent as PoisonFragment, should_play_hit)
 
 
 func _on_EnemyStats_health_changed() -> void:
@@ -72,6 +72,12 @@ func _on_EnemyStats_health_zero() -> void:
 	$Hitbox.set_deferred("monitorable", false)
 	$Hurtbox.set_deferred("monitoring", false)
 	$Hurtbox.set_deferred("monitorable", false)
+	
+	var last_state: String = animation_state.get_current_node()
+	# set idle blend position as last movement blend position
+	var last_blend = animation_tree.get("parameters/"+ last_state + "/blend_position")
+	animation_tree.set("parameters/Idle/blend_position", last_blend)
+	animation_state.travel("Idle")
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 
 

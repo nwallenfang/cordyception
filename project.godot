@@ -130,6 +130,11 @@ _global_script_classes=[ {
 "path": "res://Enemies/States/StateMachine.gd"
 }, {
 "base": "Node2D",
+"class": "Thorn",
+"language": "GDScript",
+"path": "res://World/Thorns/Thorn.gd"
+}, {
+"base": "Node2D",
 "class": "TutorialCaption",
 "language": "GDScript",
 "path": "res://UI/Tutorial/TutorialCaption.gd"
@@ -164,6 +169,7 @@ _global_script_class_icons={
 "SlideMover": "",
 "SpeechBubble": "",
 "StateMachine": "",
+"Thorn": "",
 "TutorialCaption": "",
 "UI": ""
 }

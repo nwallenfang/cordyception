@@ -5,7 +5,7 @@ var aim_direction := 0.0
 var input_vec := Vector2.ZERO
 var last_delta : float
 
-export var MOVEMENT_ACCELERATION := 3000.0
+export var invinc_time := 0.4
 
 var facing := Vector2.RIGHT
 
@@ -278,7 +278,11 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if ant_enemy:
 		add_acceleration(ant_enemy.anchor.global_position.direction_to(anchor.global_position) * GameStatus.ENEMY_KNOCKBACK)
 	
-	$Hurtbox/InvincibilityTimer.start()
+	var thorn := area.get_parent() as Thorn
+	if thorn:
+		add_acceleration(thorn.knockback_vector())
+	
+	$Hurtbox/InvincibilityTimer.start(invinc_time)
 	$InvincibilityPlayer.play("start")
 
 

@@ -106,7 +106,8 @@ func state_shoot() -> void:
 	accelerate_and_move(last_delta)
 
 func state_poison() -> void:
-	if !Input.is_action_pressed("player_poison"):
+	var sound_is_over = (not state_first_frame) and (not $Sounds/PoisonCloud.playing)
+	if !Input.is_action_pressed("player_poison") or sound_is_over:
 		poison.active = false
 		set_state(State.IDLE)
 		$Sounds/PoisonCloud.stop()
@@ -154,7 +155,7 @@ func evaluate_action_input() -> void:
 			return
 		else:
 			projectile_spawner.play_cooldown_sound()
-	if Input.is_action_pressed("player_poison") and GameStatus.SPRAY_ENABLED:
+	if Input.is_action_just_pressed("player_poison") and GameStatus.SPRAY_ENABLED:
 		set_state(State.POISON)
 		return
 	if input_vec != Vector2.ZERO and GameStatus.MOVE_ENABLED:

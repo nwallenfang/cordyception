@@ -17,7 +17,7 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -30,10 +30,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=5]
+[sub_resource type="StreamTexture" id=3]
 load_path = "res://.import/006.png-99a3e870a8a1c552f74029b2e893e306.stex"
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -46,10 +46,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=7]
+[sub_resource type="StreamTexture" id=5]
 load_path = "res://.import/005.png-b7f1a1d853adb8321d1b9c04d62715d2.stex"
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -62,10 +62,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=9]
+[sub_resource type="StreamTexture" id=7]
 load_path = "res://.import/004.png-279df7e1a673be3becee3ee87ef5fc25.stex"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -78,10 +78,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=11]
+[sub_resource type="StreamTexture" id=9]
 load_path = "res://.import/003.png-725088147224a631cf08a95e8345dce0.stex"
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -94,10 +94,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=13]
+[sub_resource type="StreamTexture" id=11]
 load_path = "res://.import/002.png-675ceace454382b70e05c93198100abf.stex"
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id=12]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -110,10 +110,10 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=15]
+[sub_resource type="StreamTexture" id=13]
 load_path = "res://.import/001.png-c9ddb8073b71ec4723ede69330907b47.stex"
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/speed = 1.0
@@ -126,14 +126,14 @@ shader_param/distortion = 0.0
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="StreamTexture" id=17]
+[sub_resource type="StreamTexture" id=15]
 load_path = "res://.import/000.png-296a2732f1e244406bf844d008726333.stex"
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=16]
 radius = 6.3851
 height = 6.11324
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=17]
 radius = 26.5284
 height = 37.563
 
@@ -148,44 +148,44 @@ position = Vector2( 11.9055, -113.499 )
 texture = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 11.9055, -113.499 )
+texture = SubResource( 3 )
+
+[node name="Sprite3" type="Sprite" parent="."]
 material = SubResource( 4 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 5 )
 
-[node name="Sprite3" type="Sprite" parent="."]
+[node name="Sprite4" type="Sprite" parent="."]
 material = SubResource( 6 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 7 )
 
-[node name="Sprite4" type="Sprite" parent="."]
+[node name="Sprite5" type="Sprite" parent="."]
 material = SubResource( 8 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 9 )
 
-[node name="Sprite5" type="Sprite" parent="."]
+[node name="Sprite6" type="Sprite" parent="."]
 material = SubResource( 10 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 11 )
 
-[node name="Sprite6" type="Sprite" parent="."]
+[node name="Sprite7" type="Sprite" parent="."]
 material = SubResource( 12 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 13 )
 
-[node name="Sprite7" type="Sprite" parent="."]
+[node name="Sprite8" type="Sprite" parent="."]
 material = SubResource( 14 )
 position = Vector2( 11.9055, -113.499 )
 texture = SubResource( 15 )
 
-[node name="Sprite8" type="Sprite" parent="."]
-material = SubResource( 16 )
-position = Vector2( 11.9055, -113.499 )
-texture = SubResource( 17 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.9421, 3.53595 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 16 )
 
 [node name="Area2D" type="Area2D" parent="."]
 show_behind_parent = true
@@ -195,7 +195,7 @@ collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 17 )
 
 [node name="Tween" type="Tween" parent="."]
 

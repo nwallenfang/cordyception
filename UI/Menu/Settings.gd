@@ -20,6 +20,7 @@ func _ready() -> void:
 func _on_HSliderMusic_value_changed(value: float) -> void:
 	GameStatus.SETTINGS_MUSIC = value
 
+
 func _on_HSliderSound_value_changed(value: float) -> void:
 	GameStatus.SETTINGS_SOUND = value
 

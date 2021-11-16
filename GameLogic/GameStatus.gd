@@ -81,6 +81,18 @@ func _input(event: InputEvent) -> void:
 		if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-var SETTINGS_MUSIC : float = 0.5
-var SETTINGS_SOUND : float = 0.5
+var SETTINGS_MUSIC : float = 0.5 setget set_music_volume
+var SETTINGS_SOUND : float = 0.5 setget set_sound_volume
+const SFX_BUS_INDEX = 1
+const MUSIC_BUS_INDEX = 2
 var USE_CROSSHAIR : bool = false
+
+func set_music_volume(volume: float):
+	var index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(index, linear2db(volume))
+	SETTINGS_MUSIC = volume
+	
+func set_sound_volume(volume: float):
+	var index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(index, linear2db(volume))
+	SETTINGS_SOUND = volume

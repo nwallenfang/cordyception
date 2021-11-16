@@ -20,6 +20,7 @@ margin_bottom = 593.205
 visible = false
 
 [node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
 
 [node name="HealthUI" parent="." instance=ExtResource( 3 )]
 visible = false

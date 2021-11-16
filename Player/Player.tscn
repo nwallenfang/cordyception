@@ -1024,10 +1024,12 @@ process_material = SubResource( 50 )
 
 [node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 9 )
+bus = "SFX"
 
 [node name="PoisonCloud" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 11 )
 volume_db = -16.0
+bus = "SFX"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Hurtbox/InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

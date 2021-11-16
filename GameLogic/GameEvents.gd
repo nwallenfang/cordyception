@@ -1,6 +1,7 @@
 extends Node
 
 signal dandelion_dialog
+signal dandelion_attack
 
 var EVENT_COUNTER: Dictionary = {}  # name -> int
 

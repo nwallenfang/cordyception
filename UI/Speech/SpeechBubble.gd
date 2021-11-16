@@ -143,4 +143,7 @@ func _on_Tween_tween_all_completed() -> void:
 
 func _on_Timer_timeout() -> void:
 	emit_signal("dialog_completed")
+	text_node.percent_visible = 0
+	text_node.bbcode_text = ""
+	set_bubble_size(Vector2.ZERO)
 	visible = false

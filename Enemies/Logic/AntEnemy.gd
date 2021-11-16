@@ -25,6 +25,11 @@ func _on_FollowPath_movement_completed() -> void:
 	# if it was disabled before
 	if not was_enabled_previously:
 		$StateMachine.enabled = false
+		
+		
+func shoot_single_projectile(target_position: Vector2):
+	was_enabled_previously = $StateMachine.enabled
+	$StateMachine/Shoot.start_shooting_single_projectile(target_position)
 
 
 func follow_path(target_position: Vector2):

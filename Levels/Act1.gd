@@ -1,5 +1,10 @@
 extends Node2D
 
+onready var ant_climber = $YSort/AntEnemyClimber
+onready var ant1 = $YSort/AntEnemy1
+onready var ant2 = $YSort/AntEnemy2
+onready var player = $YSort/Player
+
 func _ready() -> void:
 	GameStatus.CURRENT_YSORT = $YSort
 	GameStatus.CURRENT_UI = $UI
@@ -8,9 +13,11 @@ func _ready() -> void:
 	GameStatus.CURRENT_CAM_REMOTE = $YSort/Player/CamRemote
 	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOUSE_CAPTURE = true
+	GameStatus.HEALTH_VISIBLE = false
 	
 #	$YSort/AntEnemy4.set_facing_direction(Vector2.LEFT)
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")
+	GameEvents.connect("dandelion_attack", self, "dandelion_attack")
 
 	
 func dandelion_dialog():
@@ -19,10 +26,8 @@ func dandelion_dialog():
 	yield($ScriptedCamera, "slide_finished")
 	$YSort/AntEnemyClimber/SpeechBubble.set_text("Man, look at that cute aphid sitting on there..", 1.0)
 	yield($YSort/AntEnemyClimber/SpeechBubble, "dialog_completed")
-	$YSort/AntEnemy2/SpeechBubble.set_text("I could really go for some of its sweet, sweet nectar", 0.8)
-	yield($YSort/AntEnemy2/SpeechBubble, "dialog_completed")
-	$YSort/AntEnemyClimber/SpeechBubble.set_text("Me too!", 0.5) 
-	yield($YSort/AntEnemy2/SpeechBubble, "dialog_completed")
+	$YSort/AntEnemy1/SpeechBubble.set_text("I could really go for some of its sweet, sweet nectar", 0.8)
+	yield($YSort/AntEnemy1/SpeechBubble, "dialog_completed")
 	$YSort/AntEnemyClimber/SpeechBubble.set_text("Now come down you stupid SHI")
 	var comedic_timer = get_tree().create_timer(1.3)
 	yield(comedic_timer, "timeout")
@@ -31,17 +36,51 @@ func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = true
 
 
+func look_towards_player():
+	var direction1 = (player.global_position - ant1.global_position).normalized()
+	var direction2 = (player.global_position - ant2.global_position).normalized()
+	var direction_climb = (player.global_position - ant_climber.global_position).normalized()
+	ant1.animation_tree.set("parameters/Idle/blend_position", direction1)
+	ant_climber.animation_tree.set("parameters/Idle/blend_position", direction_climb)
+	ant2.animation_tree.set("parameters/Idle/blend_position", direction2)
+
+func dandelion_attack():
+	print("attack")
+	# disable controls
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	# climber ant on stängel
+	pass
+	# move player to target position
+	player.follow_path($PlayerTargetPos.global_position)
+
+	# rotate enemies towards player
+
+	yield(player, "follow_completed")
+	look_towards_player()
+	# center camera (no margings)
+	$ScriptedCamera.slide_to_object($YSort/SpecialDandelion, 1.5)
+
+	# dialog
+	ant2.get_node("SpeechBubble").set_text("You will pay for this!")
+	yield(ant2.get_node("SpeechBubble"), "dialog_completed")
+	# climber ant reset
+	# activate health ui
+	# shoot single projectile towards player
+	ant2.shoot_single_projectile(player.global_position)
+	# activate controls
+	# trigger enemies
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+
 # TutorialSpray Area2D
 func _on_Area2D_body_entered(body: Node) -> void:
 	GameStatus.SPRAY_ENABLED = true
 
 
-
-func _on_ScriptedCamera_slide_finished(name: String) -> void:
-	print(name)
-	# we're at the dandelion
-
-
-
 func _on_Zone_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_dialog")
+
+
+func _on_Zone2_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("dandelion_attack")

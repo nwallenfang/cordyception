@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Enemies/Logic/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -152,6 +152,41 @@ tracks/0/keys = {
 "values": [ {
 "args": [  ],
 "method": "shoot_projectiles"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle" ],
+"method": "transition_to"
+} ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "shoot_single"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.494453 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "__shoot_single"
+}, {
+"args": [  ],
+"method": "__reset"
 } ]
 }
 tracks/1/type = "method"
@@ -1063,12 +1098,14 @@ one_shot = true
 
 [node name="ScriptedPlayer" type="AnimationPlayer" parent="StateMachine/Shoot"]
 anims/shoot = SubResource( 49 )
+anims/shoot_single = SubResource( 50 )
 
 [node name="FollowPath" type="Node2D" parent="StateMachine"]
 script = ExtResource( 22 )
 RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

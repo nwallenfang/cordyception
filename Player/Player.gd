@@ -24,8 +24,10 @@ onready var script_player := $ScriptPlayer as AnimationPlayer
 onready var heal_player := $HealPlayer as AnimationPlayer
 onready var aimer := $Aimer as Node2D
 
+signal follow_completed
+
 enum State {
-	IDLE, WALK, DASH, SHOOT, POISON
+	IDLE, WALK, DASH, SHOOT, POISON, FOLLOW
 }
 
 const STATE_FROM_STRING = {
@@ -33,7 +35,8 @@ const STATE_FROM_STRING = {
 	"walk": State.WALK,
 	"dash": State.DASH,
 	"shoot": State.SHOOT,
-	"poison": State.POISON
+	"poison": State.POISON,
+	"follow": State.FOLLOW
 }
 
 var state = State.IDLE setget set_state
@@ -64,6 +67,15 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		collective_mouse_movement_input += event.relative
 
+# will be used in state_follow()
+var target_position: Vector2
+func follow_path(target_pos: Vector2):
+	target_position = target_pos
+	state_blocked = true
+	set_state(State.FOLLOW)
+	animation_state.travel("Walk")
+	
+
 func state_idle() -> void:
 	animation_state.travel("Idle")
 	state_blocked = false
@@ -73,6 +85,22 @@ func state_walk() -> void:
 	animation_state.travel("Walk")
 	state_blocked = false
 	accelerate_and_move(last_delta, input_vec)
+
+export var STOP_DISTANCE := 25.0
+func state_follow() -> void:
+	if state_first_frame:
+		animation_state.travel("Walk")
+		state_blocked = true
+	
+	var distance_vec := (target_position - self.global_position) as Vector2
+	$AnimationTree.set("parameters/Move/blend_position", distance_vec)
+	
+	# stop condition	
+	if distance_vec.length() < STOP_DISTANCE:
+		emit_signal("follow_completed")
+		set_state(State.IDLE)
+		
+	accelerate_and_move(last_delta, distance_vec.normalized())
 
 func state_dash() -> void:
 	if not state_first_frame and Input.is_action_just_pressed("player_dash"):
@@ -138,6 +166,8 @@ func match_state():
 			state_shoot()
 		State.POISON:
 			state_poison()
+		State.FOLLOW:
+			state_follow()
 
 func set_state(new_state) -> void:
 	if new_state != state:

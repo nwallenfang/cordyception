@@ -5,7 +5,6 @@ func _ready() -> void:
 #	$EnemyProjectileSpawner.position = parent.get_node("Head").position
 	RELATIVE_TRANSITION_CHANCE = 1
 
-
 var direction: float # will be set from process
 func shoot_projectiles():
 	# wait for shoot delay
@@ -16,6 +15,20 @@ func shoot_projectiles():
 	else:
 		$EnemyProjectileSpawner.spawn_radial_projectiles(16)
 
+func __shoot_single():
+	$EnemyProjectileSpawner.create_projectile(direction)
+
+func __reset():
+	parent.animation_state.travel("Idle")
+
+
+
+func start_shooting_single_projectile(target_pos: Vector2):  # outside of state machine :)
+	$EnemyProjectileSpawner.global_position = parent.get_node("Head").global_position
+	direction = ($EnemyProjectileSpawner.global_position - target_pos).angle() - PI/2
+	parent.animation_tree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(direction))
+	parent.animation_state.travel("Shoot")
+	$ScriptedPlayer.play("shoot_single")
 
 func process(delta: float, first_time_entering: bool):
 	# for now either shoot a cone in the player direction or shoot radial

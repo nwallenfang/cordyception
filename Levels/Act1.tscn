@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -22,10 +22,13 @@ resource_local_to_scene = true
 extents = Vector2( 300, 266 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1795.72, 266 )
+extents = Vector2( 1795.72, 166.925 )
 
 [sub_resource type="CapsuleShape2D" id=4]
-height = 181.51
+height = 124.741
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 786.587
 
 [node name="Act1" type="Node2D"]
 position = Vector2( 0, 1.25989 )
@@ -48,7 +51,7 @@ tile_data = PoolIntArray( -1965983, 0, 0, -1965982, 0, 4, -1965981, 0, 4, -19659
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 5348.1, 1136.89 )
+position = Vector2( 6113.23, 213.023 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -62,13 +65,13 @@ position = Vector2( 6177.17, -646.398 )
 material = SubResource( 1 )
 
 [node name="AntEnemyClimber" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 6312.39, -611.25 )
+position = Vector2( 6327.95, -710.245 )
+
+[node name="AntEnemy1" parent="YSort" instance=ExtResource( 14 )]
+position = Vector2( 6011.68, -694.032 )
 
 [node name="AntEnemy2" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 5998.95, -604.937 )
-
-[node name="AntEnemy3" parent="YSort" instance=ExtResource( 14 )]
-position = Vector2( 6069.59, -758.154 )
+position = Vector2( 6120.5, -823.208 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -120,13 +123,15 @@ shape = SubResource( 2 )
 position = Vector2( 5934.91, 136.435 )
 
 [node name="SpriteC" parent="TutorialSpray" index="0"]
+position = Vector2( 42.7632, 351.014 )
 texture = ExtResource( 12 )
 
 [node name="SpriteK" parent="TutorialSpray" index="1"]
+position = Vector2( 42.7632, 351.014 )
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" parent="TutorialSpray/Area2D" index="0"]
-position = Vector2( 4.36328, 416.725 )
+position = Vector2( 4.36328, 511.16 )
 scale = Vector2( 0.244854, 1.488 )
 shape = SubResource( 3 )
 
@@ -142,12 +147,25 @@ rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
 shape = SubResource( 4 )
 
+[node name="Zone2" type="Area2D" parent="Detector"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
+position = Vector2( 519.357, -1838.66 )
+rotation = 1.57851
+scale = Vector2( 0.919575, 1.033 )
+shape = SubResource( 5 )
+
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 5348.1, 1136.89 )
+position = Vector2( 6113.23, 213.023 )
+
+[node name="PlayerTargetPos" type="Position2D" parent="."]
+position = Vector2( 6177.37, -460.99 )
 
 [connection signal="body_entered" from="TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
-[connection signal="slide_finished" from="ScriptedCamera" to="." method="_on_ScriptedCamera_slide_finished"]
+[connection signal="body_entered" from="Detector/Zone2" to="." method="_on_Zone2_body_entered"]
 
 [editable path="YSort/SpecialDandelion"]
 [editable path="TutorialMove"]

@@ -40,6 +40,9 @@ func _ready() -> void:
 	ant2.get_node("EnemyStats").set_max_health(lower_health)
 	climber.get_node("EnemyStats").set_max_health(lower_health)
 	
+	# rotate climber towards dandelion
+	climber.set_facing_direction(Vector2.LEFT)
+	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion)
@@ -69,8 +72,11 @@ func dandelion_attack():
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
-	# climber ant on stängel
-	pass
+	# climber ant to dandelion position and Climbing Sprite
+	climber.global_position = $Positions/ClimberPosition.global_position
+	climber.get_node("Climbing").visible = true
+	climber.get_node("Sprite").visible = false
+	
 	# center camera (no margins)
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion, 1.5)
 	yield($ScriptedCamera, "slide_finished")
@@ -86,30 +92,32 @@ func dandelion_attack():
 
 	# dialog
 	ant1_speech.set_text("Hey, looks like you could lend us a hand.")
-	yield(get_tree().create_timer(1.4), "timeout")
+	yield(get_tree().create_timer(1.8), "timeout")
 	ant1_speech.stop_and_blend()
-	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!")
+	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 1.2)
 	yield(ant2_speech, "dialog_completed")
 	# interruption?
-	climber_speech.set_text("Disgusting.")
-	
-	# climber ant reset
-	pass 
-	
+	climber_speech.set_text("Disgusting, attack!", 0.7)
+	yield(climber_speech, "dialog_completed")
+
 	# shoot single projectile towards player
 	ant1.shoot_single_projectile(player.global_position)
 	# wait until projectile has hit the player
 	yield(player.get_node("Hurtbox"), "area_entered")
 	
+	# climber ant reset
+	climber.get_node("Climbing").visible = false
+	climber.get_node("Sprite").visible = true
 	# camera flash
-	pass
-	
+	$ScriptedCamera.flash()
+	$ScriptedCamera.back_to_player(0.1)
+	yield($ScriptedCamera/FlashTween, "tween_all_completed")
 	# enable controls
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
-	$ScriptedCamera.back_to_player(0.5)
+
 	# trigger enemies
 	ant1.trigger()
 	ant2.trigger()

@@ -138,7 +138,7 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	visible = true
 	
 # for interruptions:
-func stop_and_blend(blend_time:=0.4):
+func stop_and_blend(blend_time:=0.9):
 	$SpeechSound.stop()
 	$Timer.stop()
 	$Tween.stop_all()

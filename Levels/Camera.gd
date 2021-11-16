@@ -61,6 +61,13 @@ func __slide_to(pos: Vector2, time: float = 2.0) -> void:
 func back_to_player(time: float = 2.0) -> void:
 	on_player = true
 	__slide_to(GameStatus.CURRENT_PLAYER.global_position, time)
+	
+	
+func flash(return_duration:=0.6):
+	var return_color = Color($CanvasLayer/ColorRect.color)
+	$FlashTween.remove_all()
+	$FlashTween.interpolate_property($CanvasLayer/ColorRect, "color", Color(1, 1, 1, 1), Color(1, 1, 1, 0), return_duration)
+	$FlashTween.start()
 
 func _on_Tween_tween_all_completed() -> void:
 	if on_player:

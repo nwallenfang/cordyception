@@ -2,6 +2,8 @@ extends Node
 
 signal dandelion_dialog
 signal dandelion_attack
+signal dandelion_attack_over
+signal enemy_died
 
 var EVENT_COUNTER: Dictionary = {}  # name -> int
 

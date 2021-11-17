@@ -7,6 +7,9 @@ onready var ant1_speech = $YSort/DandelionRoom/AntEnemy1/SpeechBubble
 onready var ant2 = $YSort/DandelionRoom/AntEnemy2
 onready var ant2_speech = $YSort/DandelionRoom/AntEnemy2/SpeechBubble
 onready var player = $YSort/Player
+onready var aphid = $YSort/AphidPath/PathFollow2D/Aphid
+
+signal dandelion_enemies_dead
 
 func _ready() -> void:
 	GameStatus.CURRENT_YSORT = $YSort
@@ -21,15 +24,16 @@ func _ready() -> void:
 #	$YSort/AntEnemy4.set_facing_direction(Vector2.LEFT)
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")
 	GameEvents.connect("dandelion_attack", self, "dandelion_attack")
+	GameEvents.connect("enemy_died", self, "enemy_died")
 	
 	# give the 3 ants simpler behavior and less HP
 	var simpler_behavior = {
 		"Chase": 1.0,
-		"SimpleShoot": 1.0,
+		"SimpleShoot": 3.0,
 		"Shoot": 0.0,
 		"Sprint": 0.0
 	}
-	var lower_health := 20  # default is 20
+	var lower_health := 6 # default is 20
 	
 	ant1.set_behavior(simpler_behavior)
 	ant2.set_behavior(simpler_behavior)
@@ -42,6 +46,10 @@ func _ready() -> void:
 	
 	# rotate climber towards dandelion
 	climber.set_facing_direction(Vector2.LEFT)
+	
+	# disable aphid pickup in the beginning
+	aphid.monitorable = false
+	aphid.monitoring = false
 	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
@@ -66,6 +74,11 @@ func look_towards_player():
 	ant1.animation_tree.set("parameters/Idle/blend_position", direction1)
 	climber.animation_tree.set("parameters/Idle/blend_position", direction_climb)
 	ant2.animation_tree.set("parameters/Idle/blend_position", direction2)
+
+func enemy_died():
+	# TODO check if you're in the first arena
+	if GameEvents.EVENT_COUNTER["enemy_died"] == 3:
+		emit_signal("dandelion_enemies_dead")
 
 func dandelion_attack():
 	# disable controls
@@ -122,6 +135,15 @@ func dandelion_attack():
 	ant1.trigger()
 	ant2.trigger()
 	climber.trigger()
+	
+	# wait until the 3 ants are killed, in the arena level use an array of ants instead
+	# I tried yielding individually on tree_exited but it SUCKS 
+	# so instead go for a kill counter setup
+	yield(self, "dandelion_enemies_dead")
+		
+	# let aphid climb down
+	print("done")
+	# once the player has picked it up, open the passage
 
 # TutorialSpray Area2D
 func _on_Area2D_body_entered(body: Node) -> void:

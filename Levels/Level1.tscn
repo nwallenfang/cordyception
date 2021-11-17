@@ -246,8 +246,6 @@ rotation = 1.02625
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( -1675.64, -224.096 )
-FRICTION = 0.9
-STOP_DISTANCE = 25.0
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")

@@ -101,6 +101,8 @@ func _on_EnemyStats_health_zero() -> void:
 	animation_tree.set("parameters/Idle/blend_position", last_blend)
 	animation_state.travel("Idle")
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
+	
+	GameEvents.trigger_event("enemy_died")
 
 
 func _physics_process(delta: float) -> void:

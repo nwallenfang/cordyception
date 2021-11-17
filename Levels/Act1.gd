@@ -14,6 +14,7 @@ onready var stick_obstacle = $YSort/DashTutorial/StickObstacle
 signal dandelion_enemies_dead
 
 func _ready() -> void:
+	GameStatus.CURRENT_ACT = self
 	GameStatus.CURRENT_YSORT = $YSort
 	GameStatus.CURRENT_UI = $UI
 	GameStatus.CURRENT_PLAYER = $YSort/Player
@@ -52,6 +53,11 @@ func _ready() -> void:
 	# disable aphid pickup in the beginning
 	aphid.monitorable = false
 	aphid.monitoring = false
+	
+func reset():
+	ant1.reset()
+	ant2.reset()
+	climber.reset()
 	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
@@ -164,8 +170,8 @@ func on_dash_tutorial_entered(body: Node):
 
 
 func _on_Zone_body_entered(body: Node) -> void:
-	GameEvents.trigger_unique_event("dandelion_dialog")
+	GameEvents.trigger__event("dandelion_dialog")
 
 
 func _on_Zone2_body_entered(body: Node) -> void:
-	GameEvents.trigger_unique_event("dandelion_attack")
+	GameEvents.trigger_event("dandelion_attack")

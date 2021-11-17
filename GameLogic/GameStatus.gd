@@ -14,6 +14,7 @@ export var ENEMY_KNOCKBACK := 20000.0
 
 var CURRENT_HEALTH := PLAYER_MAX_HEALTH setget set_health
 
+var CURRENT_ACT
 var CURRENT_YSORT: YSort
 var CURRENT_UI: UI
 var CURRENT_PLAYER: Player
@@ -52,6 +53,8 @@ func set_health_visible(vis: bool) -> void:
 func set_health(new_health:int):
 	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)
 	CURRENT_UI.set_hearts(new_health)
+	if CURRENT_HEALTH == 0:
+		GameEvents.trigger_event("player_died")
 
 
 signal input_device_changed

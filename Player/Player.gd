@@ -47,6 +47,9 @@ func _ready() -> void:
 	$AnimationTree.active = true
 	$HealParticles.emitting = false
 	dash_stuff.connect("add_dash_frame", self, "add_dash_frame")
+	
+func reset():
+	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 
 # input functions
 func get_input_vector() -> Vector2:

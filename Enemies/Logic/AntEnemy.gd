@@ -10,10 +10,18 @@ onready var anchor := $Anchor as Node2D
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 onready var animation_tree := $AnimationTree as AnimationTree
 
+var initial_position: Vector2
+
 func _ready():
+	initial_position = global_position
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	State = $StateMachine.State
 	$StateMachine.stop()
+	
+func reset():
+	$EnemyStats.health = $EnemyStats.MAX_HEALTH
+	global_position = initial_position
+	_ready()
 	
 func trigger():
 	$StateMachine.start()

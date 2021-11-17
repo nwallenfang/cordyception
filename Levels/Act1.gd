@@ -7,7 +7,9 @@ onready var ant1_speech = $YSort/DandelionRoom/AntEnemy1/SpeechBubble
 onready var ant2 = $YSort/DandelionRoom/AntEnemy2
 onready var ant2_speech = $YSort/DandelionRoom/AntEnemy2/SpeechBubble
 onready var player = $YSort/Player
-onready var aphid = $YSort/AphidPath/PathFollow2D/Aphid
+onready var aphid_path = $YSort/DandelionRoom/AphidPath
+onready var aphid = $YSort/DandelionRoom/AphidPath/PathFollow2D/Aphid
+onready var stick_obstacle = $YSort/DashTutorial/StickObstacle
 
 signal dandelion_enemies_dead
 
@@ -80,6 +82,14 @@ func enemy_died():
 	if GameEvents.EVENT_COUNTER["enemy_died"] == 3:
 		emit_signal("dandelion_enemies_dead")
 
+func aphid_climb_down():
+	# change the 
+	$Positions/PositionTween.reset_all()
+	$Positions/PositionTween.interpolate_property(aphid_path, "global_position", aphid_path.global_position, $Positions/AphidFloor.global_position, 1.8)
+	$Positions/PositionTween.start()
+	aphid.monitorable = true
+	aphid.monitoring = true
+
 func dandelion_attack():
 	# disable controls
 	GameStatus.MOVE_ENABLED = false
@@ -101,7 +111,6 @@ func dandelion_attack():
 	
 	# rotate enemies towards player
 	look_towards_player()
-
 
 	# dialog
 	ant1_speech.set_text("Hey, looks like you could lend us a hand.")
@@ -142,12 +151,16 @@ func dandelion_attack():
 	yield(self, "dandelion_enemies_dead")
 		
 	# let aphid climb down
-	print("done")
+	aphid_climb_down()
+	stick_obstacle.call_deferred("queue_free")
 	# once the player has picked it up, open the passage
 
 # TutorialSpray Area2D
 func _on_Area2D_body_entered(body: Node) -> void:
 	GameStatus.SPRAY_ENABLED = true
+	
+func on_dash_tutorial_entered(body: Node):
+	GameStatus.DASH_ENABLED = true
 
 
 func _on_Zone_body_entered(body: Node) -> void:

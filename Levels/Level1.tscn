@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://World/TileMaps/DirtMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Effects/Environment.tres" type="Environment" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://World/BigElements/Wood_Long.tscn" type="PackedScene" id=40]
 [ext_resource path="res://World/Sticks/Stick1.tscn" type="PackedScene" id=41]
 [ext_resource path="res://World/TileMaps/moss_test.png" type="Texture" id=42]
+[ext_resource path="res://World/Thorns/Thorn1.tscn" type="PackedScene" id=43]
 
 [sub_resource type="TileSet" id=1]
 0/name = "sand"
@@ -455,6 +456,10 @@ position = Vector2( -1329.64, -565.096 )
 
 [node name="AntTarget" type="Position2D" parent="."]
 position = Vector2( -151.453, 48.1086 )
+
+[node name="Thorn" parent="." instance=ExtResource( 43 )]
+position = Vector2( -2140, -338 )
+enrichment_level = 3
 
 [editable path="YSort/GrassBlade03"]
 [editable path="YSort/GrassBlade02"]

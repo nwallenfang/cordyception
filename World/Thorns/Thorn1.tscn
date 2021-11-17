@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Thorns/Thorn.gd" type="Script" id=1]
+[ext_resource path="res://World/Thorns/thorn_vine.png" type="Texture" id=2]
+
+[node name="Thorn" type="Node2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -45, 126, -45, 113, -46, 99, -39, 82.5, -5, 51.5, 26.5, 26, 41, -0.5, 44.5, -33.5, 30, -65, 18, -83, 7, -96, -15, -114, -28, -123, -31, -128, -5, -128, 16, -112, 32, -96, 45, -77, 62, -45, 66, -29, 65, -8, 54, 19, 43.4528, 32.8779, 15.3735, 56.8135, -13, 81, -24, 95, -32, 109, -37, 126 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

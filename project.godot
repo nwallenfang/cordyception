@@ -177,7 +177,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Cordyception"
-run/main_scene="res://UI/Menu/TitleScreen.tscn"
+run/main_scene="res://Levels/Level1.tscn"
 config/icon="res://Player/player_ant_placeholder.png"
 
 [autoload]

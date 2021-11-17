@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Curve" id=1]
+min_value = -0.5
+max_value = 0.5
+_data = [ Vector2( 0, -0.0204545 ), 0.0, 0.0, 0, 0, Vector2( 0.0815217, -0.290909 ), 0.0, 0.0, 0, 0, Vector2( 0.125, 0.436364 ), 16.7273, 0.0, 1, 0, Vector2( 0.288043, -0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.494565, -0.0181818 ), 0.0, 0.0, 0, 0, Vector2( 0.554348, 0.136364 ), 0.0, 0.0, 0, 0, Vector2( 0.608696, -0.136364 ), 0.0, 0.0, 0, 0, Vector2( 0.717391, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+trail_divisor = 100
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+orbit_velocity_curve = SubResource( 2 )
+tangential_accel = 58.83
+tangential_accel_random = 1.0
+damping = 44.11
+scale = 2.0
+
+[node name="PhoridaeProjectile" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 1000
+lifetime = 3.0
+speed_scale = 3.0
+randomness = 1.0
+process_material = SubResource( 3 )

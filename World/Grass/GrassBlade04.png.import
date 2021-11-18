@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dandelion.png-af7908741a81f2ab7089eacb7cb59cd8.stex"
+path="res://.import/GrassBlade04.png-cd75ea0384d1bda53f17235a97a3c4a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/dandelion.png"
-dest_files=[ "res://.import/dandelion.png-af7908741a81f2ab7089eacb7cb59cd8.stex" ]
+source_file="res://World/Grass/GrassBlade04.png"
+dest_files=[ "res://.import/GrassBlade04.png-cd75ea0384d1bda53f17235a97a3c4a4.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

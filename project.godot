@@ -183,13 +183,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Cordyception"
-run/main_scene="res://Levels/World.tscn"
+run/main_scene="res://Levels/Act1.tscn"
 config/icon="res://Player/player_ant_placeholder.png"
 
 [autoload]
 
 GameStatus="*res://GameLogic/GameStatus.tscn"
 GameEvents="*res://GameLogic/GameEvents.tscn"
+CheckpointManager="*res://Levels/CheckpointManager.tscn"
 
 [debug]
 

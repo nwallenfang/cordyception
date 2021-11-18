@@ -121,12 +121,7 @@ func _physics_process(delta: float) -> void:
 	# call for handling knockback
 	accelerate_and_move(delta)
 
-func _on_Hitbox_area_entered(area: Area2D) -> void:
-	# TODO disconnect this
-	pass
-
 func _on_SoftCollision_area_entered(area: Area2D) -> void:
-	# they collide with themself on the first frame I think
 	var parent = area.get_parent() as AntEnemy
 	
 	if self.get_state() != "Sprint" and parent.get_state() != "Sprint":

@@ -7,7 +7,7 @@ signal enemy_died
 signal player_died
 signal checkpoint_collected
 
-var EVENT_COUNTER: Dictionary = {}  # name -> int
+var EVENT_COUNTER: Dictionary = {}  # name -> int 
 
 
 func trigger_event(event_name: String):

@@ -14,6 +14,8 @@ var label_exists := false
 # will be true for the first frame you are in a new state
 var first_time_entering = true
 
+export var ALLOW_SAME_STATE_IN_A_ROW := true
+
 onready var idle_transition_chance: Dictionary  # (state name (str) -> probability of entering that state from Idle (float))
 
 
@@ -46,11 +48,14 @@ func transition_to(new_state_name):
 	state = State[new_state_name]  # str -> StatNode
 	
 func transition_to_random_state():
-	var new_state = get_random_next_state(idle_transition_chance)
-	transition_to(new_state)
+	if ALLOW_SAME_STATE_IN_A_ROW:
+		var new_state = _get_random_next_state(idle_transition_chance)
+		transition_to(new_state)
+	else:
+		_transition_to_random_different_state()
 
 
-func get_random_next_state(transition_chances: Dictionary):
+func _get_random_next_state(transition_chances: Dictionary):
 		# another day of being an idle enemy ant
 	# who knows what the day may bring
 	# maybe shoot some stuff
@@ -70,7 +75,7 @@ func get_random_next_state(transition_chances: Dictionary):
 	
 	print("ERROR no random state was drawn with ", transition_chances)
 	
-func transition_to_random_different_state():
+func _transition_to_random_different_state():
 	# transition to a new state different from last non-idle state
 	# copy idle transition chances
 	var state_transition_chances = self.idle_transition_chance.duplicate()
@@ -92,7 +97,7 @@ func transition_to_random_different_state():
 		if state_name != "Idle" and state_transition_chances[state_name] != 0.0:
 			state_transition_chances[state_name] += prob_to_remove / number_possible_states
 
-	transition_to(get_random_next_state(state_transition_chances))
+	transition_to(_get_random_next_state(state_transition_chances))
 	
 func build_absolute_transition_chances() -> Dictionary:
 	# for ease of use the State Nodes only contain a relative probability
@@ -129,7 +134,10 @@ func find_initial_state_and_prev():
 		print("WARNING: find_initial_state_and_prev(): Not enough possible states!!")
 	
 	state = State[first_possible_state]
-	previous_non_idle_state = State[second_possible_state]
+	if not second_possible_state.empty():
+		# if previous state can NOT be set, it is expected that reaching same state
+		# twice in a row is no problem (see ALLOW_.....)
+		previous_non_idle_state = State[second_possible_state]
 
 func _ready() -> void:
 	State = build_state_dict()

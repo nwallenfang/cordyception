@@ -5,7 +5,7 @@ var aim_direction := 0.0
 var input_vec := Vector2.ZERO
 var last_delta : float
 
-export var invinc_time := 0.4
+export var invinc_time := 0.8
 
 var facing := Vector2.RIGHT
 
@@ -293,3 +293,5 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 
 func _on_InvincibilityTimer_timeout() -> void:
 	$InvincibilityPlayer.play("stop")
+	$Hurtbox.monitoring = false
+	$Hurtbox.set_deferred("monitoring", true)

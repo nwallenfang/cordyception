@@ -1103,6 +1103,7 @@ anims/sprinting = SubResource( 8 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 13 )
+ALLOW_SAME_STATE_IN_A_ROW = false
 
 [node name="Sprint" type="Node2D" parent="StateMachine"]
 script = ExtResource( 14 )
@@ -1185,7 +1186,6 @@ script = ExtResource( 22 )
 RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784
@@ -1230,7 +1230,6 @@ anims/hit = SubResource( 52 )
 [node name="SpeechBubble" parent="." instance=ExtResource( 23 )]
 position = Vector2( -25.4026, -38.6664 )
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]
 [connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]

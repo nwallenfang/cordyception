@@ -54,6 +54,12 @@ func _ready() -> void:
 	aphid.monitorable = false
 	aphid.monitoring = false
 	
+#	$YSort/DandelionRoom/AntEnemy3.trigger()
+	# manually instance the player node
+#	var player_node = instance("Player")
+#	add_child_below_node(self, $YSort)
+#	player = $YSort/Player
+	
 func reset():
 	if is_instance_valid(ant1):
 		ant1.reset()
@@ -70,11 +76,11 @@ func dandelion_dialog():
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
 	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 0.8)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("Now come down you stupid SHI")
+	ant1.get_node("SpeechBubble").set_text("Now come down you stupid SHI-")
 	var comedic_timer = get_tree().create_timer(1.3)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
-	$ScriptedCamera.back_to_player(1.2)
+	$ScriptedCamera.back_to_player(0.9)
 	GameStatus.MOVE_ENABLED = true
 
 
@@ -161,8 +167,9 @@ func dandelion_attack():
 		
 	# let aphid climb down
 	aphid_climb_down()
-	stick_obstacle.call_deferred("queue_free")
 	# once the player has picked it up, open the passage
+	stick_obstacle.call_deferred("queue_free")
+
 
 # TutorialSpray Area2D
 func _on_Area2D_body_entered(body: Node) -> void:
@@ -173,8 +180,8 @@ func on_dash_tutorial_entered(body: Node):
 
 
 func _on_Zone_body_entered(body: Node) -> void:
-	GameEvents.trigger_event("dandelion_dialog")
+	GameEvents.trigger_unique_event("dandelion_dialog")
 
 
 func _on_Zone2_body_entered(body: Node) -> void:
-	GameEvents.trigger_event("dandelion_attack")
+	GameEvents.trigger_unique_event("dandelion_attack")

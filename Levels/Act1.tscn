@@ -24,7 +24,6 @@
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://UI/Tutorial/moveC.png" type="Texture" id=23]
 [ext_resource path="res://UI/Tutorial/moveK.png" type="Texture" id=24]
-[ext_resource path="res://Enemies/Phoridae/Phoridae.tscn" type="PackedScene" id=25]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -84,6 +83,9 @@
 3/shapes = [  ]
 3/z_index = 0
 
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+
 [sub_resource type="Curve2D" id=2]
 resource_local_to_scene = true
 _data = {
@@ -131,17 +133,18 @@ script = ExtResource( 22 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 5295.15, 1258.84 )
+position = Vector2( 8583.63, -610.079 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
-update_rotation = false
-update_scale = false
 
 [node name="DandelionRoom" type="YSort" parent="YSort"]
 
 [node name="SpecialDandelion" parent="YSort/DandelionRoom" instance=ExtResource( 8 )]
 position = Vector2( 6177.17, -646.398 )
+
+[node name="Sprite" parent="YSort/DandelionRoom/SpecialDandelion" index="0"]
+material = SubResource( 6 )
 
 [node name="AntEnemyClimber" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6364.04, -680.892 )
@@ -161,9 +164,6 @@ position = Vector2( 6120.5, -823.208 )
 position = Vector2( 6000, -500 )
 scale = Vector2( 2, 2 )
 curve = SubResource( 2 )
-
-[node name="Phoridae" parent="YSort/DandelionRoom" instance=ExtResource( 25 )]
-position = Vector2( 4754.59, 1118.64 )
 
 [node name="DashTutorial" type="YSort" parent="YSort"]
 
@@ -281,7 +281,7 @@ scale = Vector2( 0.919575, 1.033 )
 shape = SubResource( 4 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 5295.15, 1258.84 )
+position = Vector2( 8583.63, -610.079 )
 
 [node name="Positions" type="Node2D" parent="."]
 
@@ -318,7 +318,7 @@ scale = Vector2( 18.8995, -13.5814 )
 shape = SubResource( 5 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint1"]
-position = Vector2( 159.684, 158.69 )
+position = Vector2( 347.154, 466.82 )
 
 [node name="Checkpoint2" type="Node2D" parent="Checkpoints"]
 position = Vector2( 8743.18, -465.356 )
@@ -347,6 +347,7 @@ position = Vector2( 130.799, -182.831 )
 [connection signal="body_entered" from="Checkpoints/Checkpoint1/TriggerArea" to="Checkpoints/Checkpoint1" method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint2/TriggerArea" to="Checkpoints/Checkpoint2" method="_on_TriggerArea_body_entered"]
 
+[editable path="YSort/DandelionRoom/SpecialDandelion"]
 [editable path="Tutorials/TutorialMove"]
 [editable path="Tutorials/TutorialSpray"]
 [editable path="Tutorials/TutorialDash"]

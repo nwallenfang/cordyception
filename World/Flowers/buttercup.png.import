@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dandelion.png-af7908741a81f2ab7089eacb7cb59cd8.stex"
+path="res://.import/buttercup.png-18215f2a6b17d29163c444f33deec98c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/dandelion.png"
-dest_files=[ "res://.import/dandelion.png-af7908741a81f2ab7089eacb7cb59cd8.stex" ]
+source_file="res://World/Flowers/buttercup.png"
+dest_files=[ "res://.import/buttercup.png-18215f2a6b17d29163c444f33deec98c.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

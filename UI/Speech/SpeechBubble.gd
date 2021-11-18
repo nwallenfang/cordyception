@@ -23,6 +23,7 @@ export var arrow_reversed_v := false
 export var center := false
 
 signal dialog_completed
+signal writing_completed
 
 func set_nodes() -> void:
 	text_node = $Origin/RichTextLabel as RichTextLabel
@@ -150,6 +151,7 @@ func stop_and_blend(blend_time:=0.9):
 func _on_Tween_tween_all_completed() -> void:
 	$SpeechSound.stop()
 	$Timer.start()
+	emit_signal("writing_completed")
 
 func _on_Timer_timeout() -> void:
 	text_node.percent_visible = 0

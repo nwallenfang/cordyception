@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Enemies/Phoridae/projectile.png" type="Texture" id=1]
 [ext_resource path="res://Effects/pixel.png" type="Texture" id=2]
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/Phoridae/PhoridaeProjectile.gd" type="Script" id=4]
 
 [sub_resource type="Curve" id=1]
 min_value = -0.5
@@ -121,6 +122,7 @@ tracks/0/keys = {
 radius = 25.0799
 
 [node name="PhoridaeProjectile" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 modulate = Color( 1, 0.266667, 0, 1 )
@@ -151,7 +153,7 @@ texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1.5, 1.42, 0.04, 1 )
-rotation = -0.0722786
+rotation = -1.94148
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 
@@ -160,9 +162,11 @@ autoplay = "spin"
 anims/spin = SubResource( 6 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 15 )
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 
 [editable path="Hitbox"]

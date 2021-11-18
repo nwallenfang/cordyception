@@ -1,10 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/Phoridae/phoridae.png" type="Texture" id=3]
 [ext_resource path="res://Shadows/phoridae.png" type="Texture" id=4]
 [ext_resource path="res://Enemies/Phoridae/Phoridae.gd" type="Script" id=5]
+[ext_resource path="res://Enemies/Phoridae/States/PhoridaeStateMachine.gd" type="Script" id=6]
+[ext_resource path="res://Enemies/States/Idle.gd" type="Script" id=7]
+[ext_resource path="res://Enemies/Phoridae/States/Chase.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/ScentRay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Enemies/Phoridae/States/Walking.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -120,6 +127,10 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9 ]
 }
 
+[sub_resource type="DynamicFont" id=8]
+size = 24
+font_data = ExtResource( 10 )
+
 [node name="Phoridae" type="KinematicBody2D"]
 script = ExtResource( 5 )
 
@@ -132,7 +143,7 @@ script = ExtResource( 5 )
 [node name="Sprite" type="Sprite" parent="Body"]
 texture = ExtResource( 3 )
 hframes = 10
-frame = 1
+frame = 4
 
 [node name="Shadow" type="Sprite" parent="."]
 visible = false
@@ -156,3 +167,45 @@ anims/fly_idle = SubResource( 4 )
 anims/fly_move = SubResource( 5 )
 anims/stand = SubResource( 6 )
 anims/walk = SubResource( 7 )
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+position = Vector2( 0, -1 )
+script = ExtResource( 7 )
+
+[node name="Chase" type="Node2D" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Walking" type="Node2D" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="ScentRay" parent="." instance=ExtResource( 9 )]
+visible = false
+enabled = true
+
+[node name="StateLabel" type="Label" parent="."]
+anchor_bottom = 0.147
+margin_left = -122.0
+margin_top = -57.1784
+margin_right = 122.0
+margin_bottom = -41.1784
+custom_fonts/font = SubResource( 8 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Healthbar" parent="." instance=ExtResource( 11 )]
+margin_left = -32.0
+margin_top = 40.0452
+margin_right = 32.0
+margin_bottom = 52.0452
+max_value = 10.0
+value = 10.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0

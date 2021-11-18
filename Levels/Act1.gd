@@ -55,9 +55,12 @@ func _ready() -> void:
 	aphid.monitoring = false
 	
 func reset():
-	ant1.reset()
-	ant2.reset()
-	climber.reset()
+	if is_instance_valid(ant1):
+		ant1.reset()
+	if is_instance_valid(ant2):
+		ant2.reset()
+	if is_instance_valid(climber):
+		climber.reset()	
 	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
@@ -93,8 +96,8 @@ func aphid_climb_down():
 	$Positions/PositionTween.reset_all()
 	$Positions/PositionTween.interpolate_property(aphid_path, "global_position", aphid_path.global_position, $Positions/AphidFloor.global_position, 1.8)
 	$Positions/PositionTween.start()
-	aphid.monitorable = true
-	aphid.monitoring = true
+	aphid.set_deferred("monitorable", true)
+	aphid.set_deferred("monitoring", true)
 
 func dandelion_attack():
 	# disable controls
@@ -170,7 +173,7 @@ func on_dash_tutorial_entered(body: Node):
 
 
 func _on_Zone_body_entered(body: Node) -> void:
-	GameEvents.trigger__event("dandelion_dialog")
+	GameEvents.trigger_event("dandelion_dialog")
 
 
 func _on_Zone2_body_entered(body: Node) -> void:

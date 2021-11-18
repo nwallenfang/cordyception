@@ -6,7 +6,6 @@ var latest_position: Vector2
 
 func _ready():
 	GameEvents.connect("checkpoint_collected", self, "register_new_checkpoint")
-	pass
 	
 func register_new_checkpoint(args):
 	var position: Vector2 = args.position

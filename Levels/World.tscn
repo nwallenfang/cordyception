@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Levels/Act1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/World.gd" type="Script" id=2]
-[ext_resource path="res://Levels/Checkpoint.gd" type="Script" id=3]
 [ext_resource path="res://Levels/CheckpointManager.gd" type="Script" id=16]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.93064, 47.4608 )
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, 1 )
@@ -16,23 +12,3 @@ script = ExtResource( 2 )
 
 [node name="CheckpointManager" type="Node2D" parent="."]
 script = ExtResource( 16 )
-
-[node name="Checkpoint1" type="Node2D" parent="CheckpointManager"]
-position = Vector2( 6052.14, 988.227 )
-scale = Vector2( -2.18012, 0.582888 )
-script = ExtResource( 3 )
-
-[node name="TriggerArea" type="Area2D" parent="CheckpointManager/Checkpoint1"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint1/TriggerArea"]
-position = Vector2( 210.606, 235.903 )
-rotation = -2.80654
-scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 1 )
-
-[node name="Position" type="Position2D" parent="CheckpointManager/Checkpoint1"]
-position = Vector2( 159.684, 158.69 )
-
-[connection signal="body_entered" from="CheckpointManager/Checkpoint1/TriggerArea" to="CheckpointManager/Checkpoint1" method="_on_TriggerArea_body_entered"]

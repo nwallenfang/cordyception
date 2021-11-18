@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProjectileCooldown.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/DashCooldownUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/PauseScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sound/cooldown_tick.ogg" type="AudioStream" id=6]
+[ext_resource path="res://UI/Shroom/ShroomUI.tscn" type="PackedScene" id=7]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -36,5 +37,11 @@ margin_bottom = 58.0
 visible = false
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ShroomUI" parent="." instance=ExtResource( 7 )]
+margin_left = 1056.0
+margin_top = 528.0
+margin_right = 1056.0
+margin_bottom = 528.0
 
 [editable path="ProjectileCooldownUI"]

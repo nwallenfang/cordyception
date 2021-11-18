@@ -83,22 +83,22 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 80.6863, -191.334, 0, 0, 0, 0, 99.4875, -180.951, 0, 0, 0, 0, 115.483, -186.564, 0, 0, 0, 0, 122.779, -189.931 )
 }
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 height = 124.741
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 786.587
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 5.93064, 47.4608 )
 
 [node name="Act1" type="Node2D"]
@@ -144,7 +144,7 @@ remote_path = NodePath("../../../ScriptedCamera")
 position = Vector2( 6177.17, -646.398 )
 
 [node name="Sprite" parent="YSort/DandelionRoom/SpecialDandelion" index="0"]
-material = SubResource( 6 )
+material = SubResource( 2 )
 
 [node name="AntEnemyClimber" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6364.04, -680.892 )
@@ -163,7 +163,7 @@ position = Vector2( 6120.5, -823.208 )
 [node name="AphidPath" parent="YSort/DandelionRoom" instance=ExtResource( 15 )]
 position = Vector2( 6000, -500 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 2 )
+curve = SubResource( 3 )
 
 [node name="DashTutorial" type="YSort" parent="YSort"]
 
@@ -268,7 +268,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 collision_layer = 0
@@ -278,7 +278,7 @@ collision_mask = 2
 position = Vector2( 519.357, -1838.66 )
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 8583.63, -610.079 )
@@ -315,7 +315,7 @@ modulate = Color( 0.2, 0.764706, 0.121569, 1 )
 position = Vector2( 210.606, 235.903 )
 rotation = -2.80654
 scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint1"]
 position = Vector2( 347.154, 466.82 )
@@ -335,7 +335,7 @@ modulate = Color( 0.2, 0.764706, 0.121569, 1 )
 position = Vector2( 210.606, 235.903 )
 rotation = -2.80654
 scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint2"]
 position = Vector2( 130.799, -182.831 )

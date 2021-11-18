@@ -18,7 +18,6 @@ extra_spacing_space = 1
 font_data = SubResource( 1 )
 
 [node name="SpeechBubble" type="Node2D"]
-position = Vector2( 594, 259 )
 scale = Vector2( 0.7, 0.7 )
 z_index = 1
 script = ExtResource( 1 )

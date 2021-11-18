@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Shroom/Sparkle F01.png" type="Texture" id=1]
 [ext_resource path="res://UI/Shroom/Mund F02.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/Shroom/Sparkle F02.png" type="Texture" id=4]
 [ext_resource path="res://UI/Shroom/Mund F01.png" type="Texture" id=5]
 [ext_resource path="res://UI/Shroom/PilzMAIN.png" type="Texture" id=6]
+[ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -49,6 +50,9 @@ centered = false
 [node name="Sparkle" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 centered = false
+
+[node name="SpeechBubble" parent="." instance=ExtResource( 7 )]
+position = Vector2( 25, 13 )
+arrow_pos = 0.8

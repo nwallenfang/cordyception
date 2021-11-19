@@ -13,7 +13,6 @@ func start():
 	get_parent().get_node("Body/Hurtbox").set_deferred("monitorable", true)
 
 	# stop all animations etc.
-	# stop Tween movement if currently sprinting
 
 
 		
@@ -25,9 +24,6 @@ func stop():
 	get_parent().get_node("Body/Hurtbox").set_deferred("monitoring", false)
 	get_parent().get_node("Body/Hurtbox").set_deferred("monitorable", false)
 	# stop all animations etc.
-	# stop Tween movement if currently sprinting
-	# disable hitboxes and hide health bar
-	$Sprint/SprintMovementTween.stop_all()
 	transition_to("Idle")
 
 func set_enabled(enable: bool):
@@ -49,7 +45,7 @@ func process(delta: float) -> void:
 func update_transition_chances() -> void:
 	if get_parent().flying:
 		$Walking.RELATIVE_TRANSITION_CHANCE = 0
-		$Chase.RELATIVE_TRANSITION_CHANCE = 2
+		$Chase.RELATIVE_TRANSITION_CHANCE = 1.5
 		$Shoot.RELATIVE_TRANSITION_CHANCE = 1
 	else:
 		$Walking.RELATIVE_TRANSITION_CHANCE = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
@@ -15,12 +15,23 @@
 [ext_resource path="res://Enemies/Phoridae/States/Transition.gd" type="Script" id=13]
 [ext_resource path="res://Enemies/Phoridae/States/Shoot.gd" type="Script" id=14]
 [ext_resource path="res://Enemies/Phoridae/PhoridaeProjectileSpawner.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Enemies/Phoridae/PhoridaeStats.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 11.6124
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.7944
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 17 )
+shader_param/active = false
+
+[sub_resource type="CircleShape2D" id=4]
 radius = 15.0
 
-[sub_resource type="Animation" id=2]
-resource_name = "down"
+[sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Body:position:y")
@@ -33,9 +44,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5 )
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "up"
-length = 2.0
+[sub_resource type="Animation" id=6]
+length = 1.7
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Body:position:y")
 tracks/0/interp = 1
@@ -43,8 +53,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 1.32962, -0.373346, -50, -0.579101, 0.181137, 0.25, 0 ),
-"times": PoolRealArray( 0.3, 2 )
+"points": PoolRealArray( 0, -0.25, 0, 1.2, -1, -50, -0.42, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 1.7 )
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -53,7 +63,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -61,8 +71,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "fly_idle"
+[sub_resource type="Animation" id=7]
 length = 0.21
 loop = true
 step = 0.07
@@ -79,8 +88,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "fly_move"
+[sub_resource type="Animation" id=8]
 length = 0.21
 loop = true
 step = 0.07
@@ -97,8 +105,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 3 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "stand"
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/Sprite:frame")
@@ -113,8 +120,7 @@ tracks/0/keys = {
 "values": [ 9 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "walk"
+[sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -132,28 +138,52 @@ tracks/0/keys = {
 
 [sub_resource type="Curve" id=11]
 max_value = 0.2
-_data = [ Vector2( 0.172222, 0 ), 0.0, 0.0476033, 0, 1, Vector2( 0.477778, 0.0145455 ), 0.0, 0.0, 0, 0, Vector2( 0.822222, 0 ), -0.0422287, 0.0, 1, 0 ]
+_data = [ Vector2( 0, 0.0163636 ), 0.0, 0.0346524, 0, 1, Vector2( 0.472222, 0.0327273 ), 0.0, 0.0, 0, 0, Vector2( 0.822222, 0 ), -0.0935065, 0.0, 1, 0 ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=12]
 size = 24
 font_data = ExtResource( 10 )
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=13]
 radius = 234.105
 
-[sub_resource type="CircleShape2D" id=10]
-radius = 433.481
+[sub_resource type="CircleShape2D" id=14]
+radius = 602.863
+
+[sub_resource type="Animation" id=15]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
 
 [node name="Phoridae" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 5 )
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Hitbox" parent="Body" instance=ExtResource( 1 )]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Body/Hitbox" index="0"]
+shape = SubResource( 1 )
 
 [node name="Hurtbox" parent="Body" instance=ExtResource( 2 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Body/Hurtbox" index="0"]
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
+material = SubResource( 3 )
 texture = ExtResource( 3 )
 hframes = 10
 frame = 1
@@ -177,17 +207,17 @@ texture = ExtResource( 4 )
 show_behind_parent = true
 position = Vector2( 0, 12 )
 scale = Vector2( 1, 0.4 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="LevitationPlayer" type="AnimationPlayer" parent="."]
-anims/down = SubResource( 2 )
-anims/up = SubResource( 3 )
+anims/down = SubResource( 5 )
+anims/up = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fly_idle = SubResource( 4 )
-anims/fly_move = SubResource( 5 )
-anims/stand = SubResource( 6 )
-anims/walk = SubResource( 7 )
+anims/fly_idle = SubResource( 7 )
+anims/fly_move = SubResource( 8 )
+anims/stand = SubResource( 9 )
+anims/walk = SubResource( 10 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -224,7 +254,7 @@ margin_left = -122.0
 margin_top = -57.1784
 margin_right = 122.0
 margin_bottom = -41.1784
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 12 )
 align = 1
 valign = 1
 __meta__ = {
@@ -243,7 +273,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 modulate = Color( 0.0784314, 0, 1, 0.168627 )
 position = Vector2( 1, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 13 )
 
 [node name="PhoridaeProjectileSpawner" parent="." instance=ExtResource( 15 )]
 
@@ -254,7 +284,17 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
 modulate = Color( 1, 1, 1, 0.278431 )
 show_behind_parent = true
-shape = SubResource( 10 )
+shape = SubResource( 14 )
 
+[node name="PhoridaeStats" parent="." instance=ExtResource( 16 )]
+
+[node name="InvincibilityPlayer" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 15 )
+
+[connection signal="area_entered" from="Body/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_Vision_body_exited"]
+[connection signal="health_zero" from="PhoridaeStats" to="." method="_on_PhoridaeStats_health_zero"]
+
+[editable path="Body/Hitbox"]
+[editable path="Body/Hurtbox"]

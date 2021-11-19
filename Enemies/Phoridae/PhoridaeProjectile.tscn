@@ -239,7 +239,7 @@ shape = SubResource( 19 )
 anims/fade = SubResource( 20 )
 
 [node name="Lifetime" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 5.0
 
 [node name="SoftCollision" type="Area2D" parent="."]
 collision_layer = 128

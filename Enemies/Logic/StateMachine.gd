@@ -2,6 +2,8 @@ extends Node2D
 
 class_name StateMachine
 
+export var print_random_calculation := false
+
 var enabled := false setget set_enabled
 # state dictionary (was an enum earlier)
 export onready var State: Dictionary  # name -> AbstractState
@@ -54,6 +56,8 @@ func transition_to_random_state():
 	else:
 		_transition_to_random_different_state()
 
+func transition_deferred(new_state_name) -> void:
+	call_deferred("transition_to", new_state_name)
 
 func _get_random_next_state(transition_chances: Dictionary):
 		# another day of being an idle enemy ant
@@ -63,6 +67,10 @@ func _get_random_next_state(transition_chances: Dictionary):
 	# let the dice decide
 	var rand := randf()  # random seed
 	var psum: float = 0.0 # sum of probabilities that were already checked in for loop
+	
+	if print_random_calculation:
+		print(transition_chances)
+		print(rand)
 	
 	# idea: if the random number between 0 and 1 is smaller than the 
 	# states up to some point, enter the state

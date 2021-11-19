@@ -287,6 +287,14 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if thorn:
 		add_acceleration(thorn.knockback_vector())
 	
+	var phorid_projectile := area.get_parent() as PhoridaeProjectile
+	if phorid_projectile:
+		add_acceleration(phorid_projectile.knockback_vector())
+	
+	var phorid := area.get_parent().get_parent() as Phoridae
+	if phorid:
+		add_acceleration(phorid.body.global_position.direction_to(anchor.global_position) * GameStatus.ENEMY_KNOCKBACK)
+	
 	$Hurtbox/InvincibilityTimer.start(invinc_time)
 	$InvincibilityPlayer.play("start")
 

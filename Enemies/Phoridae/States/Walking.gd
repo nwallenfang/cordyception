@@ -23,4 +23,4 @@ func process(delta: float, first_time_entering: bool):
 	parent.add_acceleration(direction_vector * parent.walk_speed)
 	yield(walk_timer, "timeout")
 	if state_machine.state.name == "Walk":
-		state_machine.transition_to("Idle")
+		state_machine.transition_deferred("Idle")

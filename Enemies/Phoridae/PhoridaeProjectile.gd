@@ -1,14 +1,14 @@
 extends Node2D
 class_name PhoridaeProjectile
 
-export var knockback := 10000.0 
+export var knockback := 30000.0 
 export var speed := 200.0
 export var homing := 20.0
 export var soft_collision_speed := 10.0
 
 onready var direction: Vector2
 onready var velocity := speed * direction
-onready var player := GameStatus.CURRENT_PLAYER
+onready var player = GameStatus.CURRENT_PLAYER
 
 func set_direction_and_velocity(new_dir: Vector2):
 	direction = new_dir.normalized()

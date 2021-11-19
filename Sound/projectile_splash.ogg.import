@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/projectile_splash.ogg-19729b779683e85fa35bde01cc0f0ddc.oggstr"
+
+[deps]
+
+source_file="res://Sound/projectile_splash.ogg"
+dest_files=[ "res://.import/projectile_splash.ogg-19729b779683e85fa35bde01cc0f0ddc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

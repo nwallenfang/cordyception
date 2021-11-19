@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/drops.png" type="Texture" id=2]
 [ext_resource path="res://Player/PlayerProjectile.gd" type="Script" id=3]
+[ext_resource path="res://Sound/projectile_splash.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.0
@@ -105,6 +106,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "audio"
+tracks/4/path = NodePath("SplashAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="PlayerProjectile" type="Node2D"]
 script = ExtResource( 3 )
@@ -129,12 +144,17 @@ collision_mask = 9
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 1, 0 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "active"
 anims/active = SubResource( 2 )
 anims/fly = SubResource( 3 )
 anims/obstacle_collision = SubResource( 4 )
+
+[node name="SplashAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

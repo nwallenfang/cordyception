@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var scout = $YSort/AntScout
-onready var shooter = $YSort/AntShooter
+onready var scout = $YSort/AntScout as AntEnemy
+onready var shooter := $YSort/AntShooter as AntEnemy
 onready var movable_rock = $YSort/Rocks/MovableRock
 
 func _ready():
@@ -71,3 +71,7 @@ func scout_dialog():
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+
+
+func _on_ShooterTrigger_body_entered(body):
+	shooter.state_machine.enabled = true

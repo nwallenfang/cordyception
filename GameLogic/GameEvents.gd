@@ -1,8 +1,13 @@
 extends Node
 
+# act 1
 signal dandelion_dialog
 signal dandelion_attack
 signal dandelion_attack_over
+
+# act 2
+signal scout_dialog
+
 signal enemy_died
 signal player_died
 signal checkpoint_collected

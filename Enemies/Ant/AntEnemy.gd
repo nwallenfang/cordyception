@@ -12,6 +12,8 @@ onready var animation_tree := $AnimationTree as AnimationTree
 
 var initial_position: Vector2
 
+signal follow_completed
+
 func _ready():
 	initial_position = global_position
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
@@ -50,6 +52,8 @@ func _on_FollowPath_movement_completed() -> void:
 	# if it was disabled before
 	if not was_enabled_previously:
 		$StateMachine.enabled = false
+		
+	emit_signal("follow_completed")
 		
 		
 func shoot_single_projectile(target_position: Vector2):

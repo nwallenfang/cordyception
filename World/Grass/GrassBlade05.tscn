@@ -18,8 +18,8 @@ shader_param/heightOffset = null
 shader_param/offset = 0.0
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 7.44827
-height = 6.85752
+radius = 2.82061
+height = 7.07199
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 52.9811
@@ -39,7 +39,7 @@ position = Vector2( 11, -103.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.33861, 8.46354 )
+position = Vector2( 2.18994, 7.42299 )
 rotation = 1.5708
 shape = SubResource( 2 )
 

@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://World/Grass/GrassBlade04.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Grass/GrassBlade01.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Grass/GrassBlade05.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/Grass/GrassBlade03.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 102.182, 109.02 )
+
+[node name="GrassTuft" type="YSort"]
+
+[node name="GrassBlade" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8315.38, -676.573 )
+
+[node name="GrassBlade2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8132.62, -662.869 )
+
+[node name="GrassBlade8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8382.89, -521.854 )
+
+[node name="GrassBlade3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8327.61, -590.048 )
+
+[node name="GrassBlade9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8227.17, -673.856 )
+
+[node name="GrassBlade7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8170.01, -522.322 )
+
+[node name="GrassBlade4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8296.63, -513.73 )
+
+[node name="GrassBlade6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8233.64, -601.755 )
+
+[node name="GrassBlade5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8144.35, -599.073 )
+
+[node name="GrassBlade10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8361.44, -818.556 )
+
+[node name="GrassBlade11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8178.67, -804.852 )
+
+[node name="GrassBlade12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8428.95, -663.837 )
+
+[node name="GrassBlade13" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8373.67, -732.031 )
+
+[node name="GrassBlade14" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8273.22, -815.839 )
+
+[node name="GrassBlade15" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8216.07, -664.305 )
+
+[node name="GrassBlade16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8342.69, -655.712 )
+
+[node name="GrassBlade17" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8279.69, -743.737 )
+
+[node name="GrassBlade18" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8190.41, -741.056 )
+
+[node name="GrassBlade19" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8591.39, -687.972 )
+
+[node name="GrassBlade20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8408.62, -674.267 )
+
+[node name="GrassBlade21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8658.9, -533.253 )
+
+[node name="GrassBlade22" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8603.62, -601.446 )
+
+[node name="GrassBlade23" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8503.17, -685.254 )
+
+[node name="GrassBlade24" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8446.02, -533.72 )
+
+[node name="GrassBlade25" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8572.64, -525.128 )
+
+[node name="GrassBlade26" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8509.65, -613.153 )
+
+[node name="GrassBlade27" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8420.36, -610.471 )
+
+[node name="GrassBlade28" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8637.45, -829.954 )
+
+[node name="GrassBlade29" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8454.68, -816.25 )
+
+[node name="GrassBlade30" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8704.95, -675.236 )
+
+[node name="GrassBlade31" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8649.67, -743.429 )
+
+[node name="GrassBlade32" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8549.22, -827.237 )
+
+[node name="GrassBlade33" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8492.07, -675.703 )
+
+[node name="GrassBlade34" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8618.69, -667.111 )
+
+[node name="GrassBlade35" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8555.7, -755.136 )
+
+[node name="GrassBlade36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8466.41, -752.454 )
+
+[node name="TransitionArea" type="Area2D" parent="."]
+position = Vector2( 7612.26, -897.99 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionArea"]
+modulate = Color( 0.952941, 0, 0, 1 )
+position = Vector2( 787.096, 227.019 )
+shape = SubResource( 1 )

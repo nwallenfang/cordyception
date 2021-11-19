@@ -9,7 +9,7 @@ onready var ant2_speech = $YSort/DandelionRoom/AntEnemy2/SpeechBubble
 onready var player = $YSort/Player
 onready var aphid_path = $YSort/DandelionRoom/AphidPath
 onready var aphid = $YSort/DandelionRoom/AphidPath/PathFollow2D/Aphid
-onready var stick_obstacle = $YSort/DashTutorial/StickObstacle
+onready var stick_obstacle = $YSort/DandelionRoom/StickObstacle
 
 signal dandelion_enemies_dead
 
@@ -175,8 +175,7 @@ func dandelion_attack():
 func _on_Area2D_body_entered(body: Node) -> void:
 	GameStatus.SPRAY_ENABLED = true
 	
-func on_dash_tutorial_entered(body: Node):
-	GameStatus.DASH_ENABLED = true
+
 
 
 func _on_Zone_body_entered(body: Node) -> void:
@@ -186,6 +185,7 @@ func _on_Zone_body_entered(body: Node) -> void:
 func _on_Zone2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_attack")
 
-
 func _on_TransitionArea_body_entered(body: Node) -> void:
+	get_tree().change_scene("res://Levels/Act2.tscn")
 	print("player entered transition area!")
+	

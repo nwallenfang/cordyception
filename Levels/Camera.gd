@@ -2,7 +2,7 @@ extends Camera2D
 class_name ScriptedCamera
 
 export var default_zoom := 1.0
-export var default_drag := 0.3
+export var default_drag := 0.17
 export var drag_activation_time := 1.0
 
 var on_player := true

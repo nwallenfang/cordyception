@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "AbstractState",
 "language": "GDScript",
-"path": "res://Enemies/States/AbstractState.gd"
+"path": "res://Enemies/Logic/AbstractState.gd"
 }, {
 "base": "PhysicsMover",
 "class": "AntEnemy",
 "language": "GDScript",
-"path": "res://Enemies/Logic/AntEnemy.gd"
+"path": "res://Enemies/Ant/AntEnemy.gd"
 }, {
 "base": "StateMachine",
 "class": "AntEnemyStateMachine",
 "language": "GDScript",
-"path": "res://Enemies/States/AntEnemyStateMachine.gd"
+"path": "res://Enemies/Ant/States/AntEnemyStateMachine.gd"
 }, {
 "base": "Area2D",
 "class": "Aphid",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "EnemyDash",
 "language": "GDScript",
-"path": "res://Enemies/Logic/EnemyDash.gd"
+"path": "res://Enemies/Ant/States/EnemyDash.gd"
 }, {
 "base": "StaticBody2D",
 "class": "GrassBlade",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerProjectileSpawner",
 "language": "GDScript",
-"path": "res://Projectiles/PlayerProjectileSpawner.gd"
+"path": "res://Player/PlayerProjectileSpawner.gd"
 }, {
 "base": "Node2D",
 "class": "PoisonFragment",
@@ -102,7 +102,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
-"path": "res://Projectiles/Projectile.gd"
+"path": "res://Player/Projectile.gd"
 }, {
 "base": "Node2D",
 "class": "Scent",
@@ -142,7 +142,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Enemies/States/StateMachine.gd"
+"path": "res://Enemies/Logic/StateMachine.gd"
 }, {
 "base": "Node2D",
 "class": "Thorn",

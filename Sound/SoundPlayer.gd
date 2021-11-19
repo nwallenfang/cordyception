@@ -9,10 +9,11 @@ onready var grass_players := [$GrassPlayers/Grass1, $GrassPlayers/Grass2, $Grass
 func grass_rustle():
 	for player in grass_players:
 		var audio = player as AudioStreamPlayer
-		if audio.playing:
-			continue
-		else:
-			audio.play()
+#		if audio.playing:
+#			continue
+#		else:
+#			audio.play()
+		pass
 			
 	# all audio players busy at the moment
 		

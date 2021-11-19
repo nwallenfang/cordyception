@@ -27,6 +27,7 @@ height = 37.563
 
 [node name="GrassBlade" type="StaticBody2D"]
 scale = Vector2( 2, 2 )
+collision_mask = 0
 script = ExtResource( 3 )
 TILT_SCALE = 500.0
 

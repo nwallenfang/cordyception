@@ -13,7 +13,7 @@
 [ext_resource path="res://UI/Tutorial/dashC.png" type="Texture" id=11]
 [ext_resource path="res://UI/Tutorial/dashK.png" type="Texture" id=12]
 [ext_resource path="res://UI/Tutorial/sprayC.png" type="Texture" id=13]
-[ext_resource path="res://Enemies/Logic/AntEnemy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Enemies/Ant/AntEnemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=15]
 [ext_resource path="res://UI/Tutorial/sprayK.png" type="Texture" id=16]
 [ext_resource path="res://Enemies/climb.png" type="Texture" id=17]
@@ -111,16 +111,16 @@ shader_param/distortion = null
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 102.182, 109.02 )
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=6]
 height = 124.741
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=7]
 radius = 786.587
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 5.93064, 47.4608 )
 
 [node name="Act1" type="Node2D"]
@@ -322,7 +322,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/DandelionRoom/ThickGrass/TransitionArea"]
 modulate = Color( 0.952941, 0, 0, 1 )
 position = Vector2( 787.096, 227.019 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="DashTutorial" type="YSort" parent="YSort"]
 
@@ -427,7 +427,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 collision_layer = 0
@@ -437,7 +437,7 @@ collision_mask = 2
 position = Vector2( 519.357, -1838.66 )
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4703.32, 1253.7 )
@@ -475,7 +475,7 @@ modulate = Color( 0.2, 0.764706, 0.121569, 1 )
 position = Vector2( 210.606, 235.903 )
 rotation = -2.80654
 scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint1"]
 position = Vector2( 347.154, 466.82 )
@@ -495,7 +495,7 @@ modulate = Color( 0.2, 0.764706, 0.121569, 1 )
 position = Vector2( 210.606, 235.903 )
 rotation = -2.80654
 scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint2"]
 position = Vector2( 130.799, -182.831 )

@@ -56,6 +56,7 @@ __meta__ = {
 }
 
 [node name="Body" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 centered = false
@@ -77,6 +78,7 @@ centered = false
 visible = false
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 centered = false
 

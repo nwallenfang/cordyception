@@ -10,6 +10,7 @@ signal movement_completed
 
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
+		parent.animation_state.travel("Walk")
 		done = false
 	if not done:
 		var distance_vec := (target_position - parent.global_position) as Vector2
@@ -18,5 +19,5 @@ func process(delta: float, first_time_entering: bool):
 			emit_signal("movement_completed")
 			done = true
 		
-		parent.animation_tree.set("parameters/Move/blend_position", distance_vec)
+		parent.animation_tree.set("parameters/Walk/blend_position", distance_vec)
 		parent.add_acceleration(FOLLOW_ACCELERATION * distance_vec.normalized())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Levels/Act1.gd" type="Script" id=7]
 [ext_resource path="res://World/Flowers/Dandelion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Levels/Checkpoint.gd" type="Script" id=10]
+[ext_resource path="res://Levels/Checkpoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Grass/GrassTuft.tscn" type="PackedScene" id=11]
 [ext_resource path="res://UI/Tutorial/sprayC.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Ant/AntEnemy.tscn" type="PackedScene" id=14]
@@ -96,9 +96,6 @@ height = 124.741
 [sub_resource type="CircleShape2D" id=5]
 radius = 786.587
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 5.93064, 47.4608 )
-
 [node name="Act1" type="Node2D"]
 position = Vector2( 0, 1.25989 )
 script = ExtResource( 7 )
@@ -132,7 +129,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 8867.95, -587.279 )
+position = Vector2( 5049.45, 1294.99 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -251,7 +248,7 @@ scale = Vector2( 0.919575, 1.033 )
 shape = SubResource( 5 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8867.73, -590.594 )
+position = Vector2( 5049.93, 1293.1 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -272,30 +269,12 @@ position = Vector2( 6204.12, -665.979 )
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
-[node name="Checkpoint1" type="Node2D" parent="Checkpoints"]
-position = Vector2( 6052.14, 988.227 )
-scale = Vector2( -2.18012, 0.582888 )
-script = ExtResource( 10 )
-
-[node name="TriggerArea" type="Area2D" parent="Checkpoints/Checkpoint1"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint1/TriggerArea"]
-modulate = Color( 0.2, 0.764706, 0.121569, 1 )
-position = Vector2( 210.606, 235.903 )
-rotation = -2.80654
-scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 6 )
-
-[node name="Position" type="Position2D" parent="Checkpoints/Checkpoint1"]
-position = Vector2( 347.154, 466.82 )
+[node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 10 )]
 
 [connection signal="body_entered" from="YSort/DandelionRoom/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
 [connection signal="body_entered" from="Detector/Zone2" to="." method="_on_Zone2_body_entered"]
-[connection signal="body_entered" from="Checkpoints/Checkpoint1/TriggerArea" to="Checkpoints/Checkpoint1" method="_on_TriggerArea_body_entered"]
 
 [editable path="YSort/DandelionRoom/SpecialDandelion"]
 [editable path="YSort/DandelionRoom/GrassTuft"]

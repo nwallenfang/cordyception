@@ -33,6 +33,12 @@ __meta__ = {
 
 [node name="FlashTween" type="Tween" parent="."]
 
+[node name="FadeOutTween" type="Tween" parent="."]
+
+[node name="FadeInTween" type="Tween" parent="."]
+
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="tween_all_completed" from="ZoomTween" to="." method="_on_ZoomTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="FlashTween" to="." method="_on_FlashTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="FadeOutTween" to="." method="_on_FadeOutTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="FadeInTween" to="." method="_on_FadeInTween_tween_all_completed"]

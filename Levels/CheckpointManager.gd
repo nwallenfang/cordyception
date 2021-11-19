@@ -3,7 +3,7 @@ extends Node2D
 
 var latest_checkpoint: String
 var latest_position: Vector2
-var latest_event_dict: Dictionary
+var latest_event_dict: Dictionary = {}
 
 # for stuff that can or should happen across or outside of Acts
 func _ready():
@@ -11,9 +11,17 @@ func _ready():
 	GameEvents.connect("checkpoint_collected", self, "register_new_checkpoint")
 
 func player_died():
-	get_tree().reload_current_scene()
-#	yield(get_tree().get_root(), "tree_exited")
+
+	# Start camera fadeout
+	GameStatus.CURRENT_CAMERA.fade_out()
+	yield(GameStatus.CURRENT_CAMERA, "fade_out_finished")
 	call_deferred("reset")
+	# after fadeout, transition
+	get_tree().reload_current_scene()
+	# fadein
+	GameStatus.CURRENT_CAMERA.fade_in()
+	yield(GameStatus.CURRENT_CAMERA, "fade_in_finished")
+
 
 func reset():
 	var player = GameStatus.CURRENT_PLAYER as Player
@@ -24,7 +32,7 @@ func reset():
 	# reset current act
 	GameStatus.CURRENT_ACT.reset()
 	# reset Game Events
-	GameEvents.EVENT_COUNTER = checkpoint.events
+	GameEvents.EVENT_COUNTER = checkpoint.events.duplicate(true)
 	player.global_position = checkpoint.position
 
 func _process(delta):
@@ -42,7 +50,8 @@ func register_new_checkpoint(args):
 	if name > latest_checkpoint:
 		latest_checkpoint = name
 		latest_position = position
-		latest_event_dict = event_dictionary
+		latest_event_dict = event_dictionary.duplicate(true)
+
 		print("new checkpoint ", name, " registered as latest")
 	else:
 		print("new checkpoint ", name, " older than latest ", latest_checkpoint)

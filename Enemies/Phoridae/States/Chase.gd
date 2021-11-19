@@ -6,7 +6,7 @@ const CHASE_BASE_DISTANCE := 150.0
 
 func _ready():
 #	(self.STOP_CHASE_DENSITY as Curve).max_value = CHASE_BASE_DISTANCE
-	RELATIVE_TRANSITION_CHANCE = 1
+	RELATIVE_TRANSITION_CHANCE = 0
 
 # randomly decide (depending on distance to player) whether it is time to
 # stop chasing
@@ -25,7 +25,7 @@ var full_length: float
 var progress: float
 
 	
-func process(delta: float, first_time_entering: bool):	
+func process(delta: float, first_time_entering: bool):
 	var line2d = parent.get_node("Line2D")
 	var distance_vector := (line2d.points[1] - line2d.points[0]) as Vector2
 	var direction_vector = distance_vector.normalized()
@@ -38,4 +38,4 @@ func process(delta: float, first_time_entering: bool):
 		parent.get_node("AnimationPlayer").play("fly_move")
 	
 	parent.set_facing_direction(direction_vector)
-	parent.add_acceleration(CHASE_ACCELERATION * direction_vector)	
+	parent.add_acceleration(CHASE_ACCELERATION * direction_vector)

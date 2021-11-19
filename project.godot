@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Speech/OldSpeechBubble.gd"
 }, {
+"base": "PhysicsMover",
+"class": "Phoridae",
+"language": "GDScript",
+"path": "res://Enemies/Phoridae/Phoridae.gd"
+}, {
 "base": "StateMachine",
 "class": "PhoridaeStateMachine",
 "language": "GDScript",
@@ -165,6 +170,7 @@ _global_script_class_icons={
 "EnemyDash": "",
 "GrassBlade": "",
 "OldSpeechBubble": "",
+"Phoridae": "",
 "PhoridaeStateMachine": "",
 "PhysicsMover": "",
 "Player": "",

@@ -51,5 +51,6 @@ animations = [ {
 } ]
 
 [node name="FlyDust" type="AnimatedSprite"]
-modulate = Color( 0.839216, 0.819608, 0.517647, 0.329412 )
+modulate = Color( 0.839216, 0.819608, 0.517647, 0.556863 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 11 )

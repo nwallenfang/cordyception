@@ -64,6 +64,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Phoridae/Phoridae.gd"
 }, {
+"base": "Node2D",
+"class": "PhoridaeProjectile",
+"language": "GDScript",
+"path": "res://Enemies/Phoridae/PhoridaeProjectile.gd"
+}, {
+"base": "Node2D",
+"class": "PhoridaeProjectileSpawner",
+"language": "GDScript",
+"path": "res://Enemies/Phoridae/PhoridaeProjectileSpawner.gd"
+}, {
 "base": "StateMachine",
 "class": "PhoridaeStateMachine",
 "language": "GDScript",
@@ -171,6 +181,8 @@ _global_script_class_icons={
 "GrassBlade": "",
 "OldSpeechBubble": "",
 "Phoridae": "",
+"PhoridaeProjectile": "",
+"PhoridaeProjectileSpawner": "",
 "PhoridaeStateMachine": "",
 "PhysicsMover": "",
 "Player": "",
@@ -369,6 +381,7 @@ kill_player={
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="SoftCollisions"
 2d_physics/layer_7="Projectile"
+2d_physics/layer_8="PhoridProjectileSoftCollision"
 
 [physics]
 

@@ -49,8 +49,10 @@ func process(delta: float) -> void:
 func update_transition_chances() -> void:
 	if get_parent().flying:
 		$Walking.RELATIVE_TRANSITION_CHANCE = 0
-		$Chase.RELATIVE_TRANSITION_CHANCE = 1
+		$Chase.RELATIVE_TRANSITION_CHANCE = 2
+		$Shoot.RELATIVE_TRANSITION_CHANCE = 1
 	else:
 		$Walking.RELATIVE_TRANSITION_CHANCE = 1
 		$Chase.RELATIVE_TRANSITION_CHANCE = 0
+		$Shoot.RELATIVE_TRANSITION_CHANCE = 0
 	idle_transition_chance = build_absolute_transition_chances()

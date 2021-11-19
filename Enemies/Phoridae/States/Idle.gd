@@ -1,6 +1,6 @@
 extends AbstractState
 
-export var IDLE_TIME := 0.7
+export var IDLE_TIME := 0.5
 
 func _ready() -> void:
 	# you will only transition to Idle explicitly
@@ -18,7 +18,8 @@ func process(delta, first_time_entering):
 			parent.animation_player.play("fly_idle")
 		else:
 			parent.animation_player.play("stand")
-		idle_timer = get_tree().create_timer(IDLE_TIME * (1 + randi() % 5))
+		idle_timer = get_tree().create_timer(IDLE_TIME * (1 + randi() % 3))
 		
 	yield(idle_timer, "timeout")
-	state_machine.call_deferred("transition_to_random_state")
+	if state_machine.state.name == "Idle":
+		state_machine.call_deferred("transition_to_random_state")

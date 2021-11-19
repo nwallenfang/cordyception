@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Enemies/Phoridae/States/Walking.gd" type="Script" id=12]
 [ext_resource path="res://Enemies/Phoridae/States/Transition.gd" type="Script" id=13]
 [ext_resource path="res://Enemies/Phoridae/States/Shoot.gd" type="Script" id=14]
+[ext_resource path="res://Enemies/Phoridae/PhoridaeProjectileSpawner.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -129,12 +130,19 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9 ]
 }
 
+[sub_resource type="Curve" id=11]
+max_value = 0.2
+_data = [ Vector2( 0.172222, 0 ), 0.0, 0.0476033, 0, 1, Vector2( 0.477778, 0.0145455 ), 0.0, 0.0, 0, 0, Vector2( 0.822222, 0 ), -0.0422287, 0.0, 1, 0 ]
+
 [sub_resource type="DynamicFont" id=8]
 size = 24
 font_data = ExtResource( 10 )
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 234.105
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 433.481
 
 [node name="Phoridae" type="KinematicBody2D"]
 script = ExtResource( 5 )
@@ -152,10 +160,10 @@ frame = 1
 
 [node name="Healthbar" parent="Body" instance=ExtResource( 11 )]
 visible = false
-margin_left = -32.0
-margin_top = 20.0
-margin_right = 32.0
-margin_bottom = 32.0
+margin_left = -30.7387
+margin_top = -33.3969
+margin_right = 33.2613
+margin_bottom = -21.3969
 max_value = 10.0
 value = 10.0
 
@@ -187,19 +195,23 @@ script = ExtResource( 6 )
 [node name="Idle" type="Node2D" parent="StateMachine"]
 position = Vector2( 0, -1 )
 script = ExtResource( 7 )
+RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="Chase" type="Node2D" parent="StateMachine"]
 script = ExtResource( 8 )
+RELATIVE_TRANSITION_CHANCE = 0.0
+STOP_CHASE_DENSITY = SubResource( 11 )
 
 [node name="Walking" type="Node2D" parent="StateMachine"]
 script = ExtResource( 12 )
 
 [node name="Transition" type="Node2D" parent="StateMachine"]
 script = ExtResource( 13 )
+RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="Shoot" type="Node2D" parent="StateMachine"]
 script = ExtResource( 14 )
-RELATIVE_TRANSITION_CHANCE = null
+RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ScentRay" parent="." instance=ExtResource( 9 )]
 visible = false
@@ -233,4 +245,16 @@ modulate = Color( 0.0784314, 0, 1, 0.168627 )
 position = Vector2( 1, 0 )
 shape = SubResource( 9 )
 
+[node name="PhoridaeProjectileSpawner" parent="." instance=ExtResource( 15 )]
+
+[node name="Vision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+modulate = Color( 1, 1, 1, 0.278431 )
+show_behind_parent = true
+shape = SubResource( 10 )
+
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_Vision_body_exited"]

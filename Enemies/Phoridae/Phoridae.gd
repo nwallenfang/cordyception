@@ -7,6 +7,7 @@ export var walk_speed := 400.0
 onready var levitation_player := $LevitationPlayer as AnimationPlayer
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var healthbar := $Body/Healthbar
+onready var projectile_spawner := $PhoridaeProjectileSpawner as PhoridaeProjectileSpawner
 
 var aggressive := false
 var flying := false
@@ -34,3 +35,6 @@ func _process(delta: float) -> void:
 
 func _on_Detection_body_entered(body: Node) -> void:
 	aggressive = true
+
+func _on_Vision_body_exited(body):
+	aggressive = false

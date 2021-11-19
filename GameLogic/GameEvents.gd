@@ -6,6 +6,7 @@ signal dandelion_attack_over
 signal enemy_died
 signal player_died
 signal checkpoint_collected
+signal grass_rustle
 
 var EVENT_COUNTER: Dictionary = {}  # name -> int 
 

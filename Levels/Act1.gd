@@ -185,3 +185,7 @@ func _on_Zone_body_entered(body: Node) -> void:
 
 func _on_Zone2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_attack")
+
+
+func _on_TransitionArea_body_entered(body: Node) -> void:
+	print("player entered transition area!")

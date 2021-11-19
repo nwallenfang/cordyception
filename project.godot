@@ -203,6 +203,7 @@ config/icon="res://Player/player_ant_placeholder.png"
 GameStatus="*res://GameLogic/GameStatus.tscn"
 GameEvents="*res://GameLogic/GameEvents.tscn"
 CheckpointManager="*res://Levels/CheckpointManager.tscn"
+SoundPlayer="*res://Sound/SoundPlayer.tscn"
 
 [debug]
 
@@ -212,6 +213,7 @@ gdscript/warnings/unused_argument=false
 gdscript/warnings/narrowing_conversion=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
 
 [display]
 

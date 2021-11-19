@@ -37,6 +37,8 @@ func get_target_distx() -> float:
 	return target.global_position.x - area.global_position.x
 
 func _on_Area2D_body_entered(body: Node) -> void:
+	print("test")
+	SoundPlayer.emit_signal("grass_rustle")
 	almost_target = body as Node2D
 	tween.interpolate_property(mat, "shader_param/minStrength", 0.05, 0.0, 0.2)
 	tween.start()

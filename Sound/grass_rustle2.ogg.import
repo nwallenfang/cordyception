@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/grass_rustle2.ogg-8e816084ae658afaa09056399bdcf8e8.oggstr"
+
+[deps]
+
+source_file="res://Sound/grass_rustle2.ogg"
+dest_files=[ "res://.import/grass_rustle2.ogg-8e816084ae658afaa09056399bdcf8e8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

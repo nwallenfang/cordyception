@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemies/Phoridae/States/Walking.gd" type="Script" id=12]
 [ext_resource path="res://Enemies/Phoridae/States/Transition.gd" type="Script" id=13]
+[ext_resource path="res://Enemies/Phoridae/States/Shoot.gd" type="Script" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -159,7 +160,6 @@ max_value = 10.0
 value = 10.0
 
 [node name="Shadow" type="Sprite" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.235294 )
 show_behind_parent = true
 position = Vector2( 0, 12 )
@@ -196,6 +196,10 @@ script = ExtResource( 12 )
 
 [node name="Transition" type="Node2D" parent="StateMachine"]
 script = ExtResource( 13 )
+
+[node name="Shoot" type="Node2D" parent="StateMachine"]
+script = ExtResource( 14 )
+RELATIVE_TRANSITION_CHANCE = null
 
 [node name="ScentRay" parent="." instance=ExtResource( 9 )]
 visible = false

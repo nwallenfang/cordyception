@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Levels/Checkpoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Grass/GrassTuft.tscn" type="PackedScene" id=11]
+[ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/Tutorial/sprayC.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Ant/AntEnemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=15]
@@ -18,6 +19,8 @@
 [ext_resource path="res://Enemies/climb.png" type="Texture" id=17]
 [ext_resource path="res://World/TileMaps/moss_test.png" type="Texture" id=18]
 [ext_resource path="res://World/Sticks/Stick1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://World/Acorn.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=21]
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://UI/Tutorial/moveC.png" type="Texture" id=23]
 [ext_resource path="res://UI/Tutorial/moveK.png" type="Texture" id=24]
@@ -89,11 +92,31 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 80.6863, -191.334, 0, 0, 0, 0, 99.4875, -180.951, 0, 0, 0, 0, 115.483, -186.564, 0, 0, 0, 0, 122.779, -189.931 )
 }
 
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 21 )
+shader_param/active = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 21 )
+shader_param/active = false
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+
 [sub_resource type="CapsuleShape2D" id=4]
-height = 124.741
+height = 207.425
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 786.587
+radius = 579.527
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 596, 206 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 299.002
 
 [node name="Act1" type="Node2D"]
 position = Vector2( 0, 1.25989 )
@@ -128,7 +151,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 5049.45, 1294.99 )
+position = Vector2( 4888.54, 1244.57 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -160,13 +183,76 @@ position = Vector2( 6000, -500 )
 scale = Vector2( 2, 2 )
 curve = SubResource( 3 )
 
-[node name="GrassTuft" parent="YSort/DandelionRoom" instance=ExtResource( 11 )]
-
 [node name="StickObstacle" parent="YSort/DandelionRoom" instance=ExtResource( 19 )]
 position = Vector2( 8009.43, -710.873 )
 rotation = -0.915284
 
-[node name="FirstArena" type="YSort" parent="YSort"]
+[node name="ExitPath" type="YSort" parent="YSort"]
+
+[node name="GrassTuft" parent="YSort/ExitPath" instance=ExtResource( 11 )]
+position = Vector2( 2709.45, 1459.75 )
+
+[node name="GrassBlade33" parent="YSort/ExitPath/GrassTuft" index="32"]
+visible = false
+
+[node name="Stick" parent="YSort/ExitPath" instance=ExtResource( 19 )]
+position = Vector2( 10150.3, -682.466 )
+
+[node name="Antertainer" parent="YSort/ExitPath" instance=ExtResource( 14 )]
+position = Vector2( 10029.2, -531.511 )
+
+[node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
+material = SubResource( 8 )
+
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
+position = Vector2( 0.499512, -2 )
+
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
+position = Vector2( 0.499512, -2 )
+
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
+position = Vector2( 0.499512, -2 )
+
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
+position = Vector2( 0.499512, -2 )
+
+[node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
+parameters/playback = SubResource( 9 )
+
+[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
+position = Vector2( -22.7488, -27.5947 )
+DEFAULT_WAIT = 1.5
+arrow_pos = 0.3
+
+[node name="Antertainer2" parent="YSort/ExitPath" instance=ExtResource( 14 )]
+position = Vector2( 10213.2, -526.442 )
+
+[node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
+material = SubResource( 10 )
+
+[node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
+parameters/playback = SubResource( 11 )
+
+[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
+position = Vector2( 26.9094, -31.0244 )
+DEFAULT_WAIT = 1.5
+arrow_pos = 0.6
+arrow_reversed_h = false
+
+[node name="Wood" parent="YSort/ExitPath" instance=ExtResource( 12 )]
+position = Vector2( 9086.08, -204.863 )
+rotation = 0.508098
+
+[node name="Wood2" parent="YSort/ExitPath" instance=ExtResource( 12 )]
+position = Vector2( 9191.58, -1559.82 )
+rotation = 0.726952
+
+[node name="Wood3" parent="YSort/ExitPath" instance=ExtResource( 12 )]
+position = Vector2( 11240.3, -830.058 )
+rotation = 1.79571
+
+[node name="Acorn" parent="YSort/ExitPath" instance=ExtResource( 20 )]
+position = Vector2( 10179.4, -1174.45 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -242,8 +328,26 @@ rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
 shape = SubResource( 5 )
 
+[node name="Zone3" type="Area2D" parent="Detector"]
+position = Vector2( 4681.12, -1941.74 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
+position = Vector2( -70, -48 )
+shape = SubResource( 6 )
+
+[node name="Zone4" type="Area2D" parent="Detector"]
+position = Vector2( 4809.12, -1598.74 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
+position = Vector2( -229, -54 )
+shape = SubResource( 7 )
+
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 5049.93, 1293.1 )
+position = Vector2( 4889, 1242.74 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -265,13 +369,29 @@ position = Vector2( 6204.12, -665.979 )
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 10 )]
+position = Vector2( 5630, 1194.74 )
 
-[connection signal="body_entered" from="YSort/DandelionRoom/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
+position = Vector2( 8959, -925.26 )
+
+[connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
 [connection signal="body_entered" from="Detector/Zone2" to="." method="_on_Zone2_body_entered"]
+[connection signal="body_entered" from="Detector/Zone3" to="." method="_on_Zone3_body_entered"]
+[connection signal="body_entered" from="Detector/Zone4" to="." method="_on_Zone4_body_entered"]
 
 [editable path="YSort/DandelionRoom/SpecialDandelion"]
-[editable path="YSort/DandelionRoom/GrassTuft"]
+[editable path="YSort/ExitPath/GrassTuft"]
+[editable path="YSort/ExitPath/Antertainer"]
+[editable path="YSort/ExitPath/Antertainer/Hurtbox"]
+[editable path="YSort/ExitPath/Antertainer/StateMachine/Sprint/DashStuff"]
+[editable path="YSort/ExitPath/Antertainer/StateMachine/Shoot/EnemyProjectileSpawner"]
+[editable path="YSort/ExitPath/Antertainer/SpeechBubble"]
+[editable path="YSort/ExitPath/Antertainer2"]
+[editable path="YSort/ExitPath/Antertainer2/Hurtbox"]
+[editable path="YSort/ExitPath/Antertainer2/StateMachine/Sprint/DashStuff"]
+[editable path="YSort/ExitPath/Antertainer2/StateMachine/Shoot/EnemyProjectileSpawner"]
+[editable path="YSort/ExitPath/Antertainer2/SpeechBubble"]
 [editable path="Tutorials/TutorialMove"]
 [editable path="Tutorials/TutorialSpray"]

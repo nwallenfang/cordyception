@@ -4,6 +4,8 @@ extends Node
 signal dandelion_dialog
 signal dandelion_attack
 signal dandelion_attack_over
+signal joke_dialog
+signal joke_attack
 
 # act 2
 signal scout_dialog

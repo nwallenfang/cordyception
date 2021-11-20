@@ -135,7 +135,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 8967.06, -705.981 )
+position = Vector2( 11404.6, 199.753 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -441,7 +441,7 @@ position = Vector2( 10.6787, 78.7555 )
 texture = ExtResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8966.79, -709.333 )
+position = Vector2( 11404.7, 195.49 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

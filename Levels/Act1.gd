@@ -10,6 +10,10 @@ onready var player = $YSort/Player
 onready var aphid_path = $YSort/DandelionRoom/AphidPath
 onready var aphid = $YSort/DandelionRoom/AphidPath/PathFollow2D/Aphid
 onready var stick_obstacle = $YSort/DandelionRoom/StickObstacle
+onready var antertainer1 = $YSort/ExitPath/Antertainer
+onready var antertainer1_speech = $YSort/ExitPath/Antertainer/SpeechBubble
+onready var antertainer2 = $YSort/ExitPath/Antertainer2
+onready var antertainer2_speech = $YSort/ExitPath/Antertainer2/SpeechBubble
 
 signal dandelion_enemies_dead
 
@@ -28,15 +32,17 @@ func _ready() -> void:
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")
 	GameEvents.connect("dandelion_attack", self, "dandelion_attack")
 	GameEvents.connect("enemy_died", self, "enemy_died")
+	GameEvents.connect("joke_dialog", self, "joke_dialog")
+	GameEvents.connect("joke_attack", self, "joke_attack")
 	
 	# give the 3 ants simpler behavior and less HP
 	var simpler_behavior = {
 		"Chase": 1.0,
 		"SimpleShoot": 3.0,
 		"Shoot": 0.0,
-		"Sprint": 0.0
+		"Sprint": 0.3
 	}
-	var lower_health := 6 # default is 20
+	var lower_health := 8 # default is 20
 	
 	ant1.set_behavior(simpler_behavior)
 	ant2.set_behavior(simpler_behavior)
@@ -60,6 +66,28 @@ func _ready() -> void:
 #	add_child_below_node(self, $YSort)
 #	player = $YSort/Player
 	
+	# JOKE ANTS
+	
+	var shooter_behavior := {
+		"Chase": 0.7,
+		"SimpleShoot": 3.0,
+		"Shoot": 1.0,
+		"Sprint": 0.0
+	}
+	
+	var close_combat_behavior := {
+		"Chase": 1.5,
+		"SimpleShoot": 0.0,
+		"Shoot": 0.0,
+		"Sprint": 2.0
+	}
+	
+	antertainer1.set_behavior(shooter_behavior)
+	antertainer2.set_behavior(close_combat_behavior)
+	
+	antertainer1.set_facing_direction(Vector2.RIGHT)
+	antertainer2.set_facing_direction(Vector2.LEFT)
+
 func reset():
 	if is_instance_valid(ant1):
 		ant1.reset()
@@ -188,4 +216,44 @@ func _on_Zone2_body_entered(body: Node) -> void:
 func _on_TransitionArea_body_entered(body: Node) -> void:
 	get_tree().change_scene("res://Levels/Act2.tscn")
 	print("player entered transition area!")
-	
+
+func _on_Zone3_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("joke_dialog")
+
+func _on_Zone4_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("joke_attack")
+
+
+var attack_started := false
+func joke_dialog():
+	antertainer2_speech.set_text("So, what's your brother Antony doing lately?")
+	yield(antertainer2_speech, "dialog_completed")
+	if attack_started:
+		return
+	antertainer1_speech.set_text("He startet working as ANTrepreneur")
+	yield(antertainer1_speech, "dialog_completed")
+	if attack_started:
+		return
+	antertainer2_speech.set_text("Where that? Near the ANTarctica?")
+	yield(antertainer2_speech, "dialog_completed")
+	if attack_started:
+		return
+	antertainer1_speech.set_text("XD I did not ANTicipate that one")
+	yield(antertainer1_speech, "dialog_completed")
+	if attack_started:
+		return
+	antertainer2_speech.set_text("We're so funny. We should be ANTertainers")
+
+func joke_attack():
+	attack_started = true
+	antertainer2.set_facing_direction(Vector2.RIGHT)
+	antertainer2_speech.set_text("Hey, wanna ANTer our funny conversation?")
+	yield(antertainer2_speech, "dialog_completed")
+	antertainer1_speech.set_text("Shit, her body is ANTirely infested")
+	yield(antertainer1_speech, "dialog_completed")
+	antertainer2_speech.set_text("That darn fungus is our natural ANTagonist")
+	yield(antertainer2_speech, "dialog_completed")
+	antertainer2.state_machine.start()
+	antertainer1_speech.set_text("Let's ANT her suffering then!")
+	yield(antertainer1_speech, "dialog_completed")
+	antertainer1.state_machine.start()

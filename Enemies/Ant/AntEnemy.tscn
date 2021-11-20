@@ -1103,7 +1103,6 @@ anims/sprinting = SubResource( 8 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 13 )
-ALLOW_SAME_STATE_IN_A_ROW = false
 
 [node name="Sprint" type="Node2D" parent="StateMachine"]
 script = ExtResource( 14 )

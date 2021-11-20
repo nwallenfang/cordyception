@@ -3,11 +3,9 @@
 [ext_resource path="res://Levels/Checkpoint.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.93064, 47.4608 )
+extents = Vector2( 491, 421 )
 
-[node name="Checkpoint1" type="Node2D"]
-position = Vector2( 6052.14, 988.227 )
-scale = Vector2( -2.18012, 0.582888 )
+[node name="Checkpoint" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="TriggerArea" type="Area2D" parent="."]
@@ -16,12 +14,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
 modulate = Color( 0.2, 0.764706, 0.121569, 1 )
-position = Vector2( 210.606, 235.903 )
-rotation = -2.80654
-scale = Vector2( 18.8995, -13.5814 )
 shape = SubResource( 1 )
 
 [node name="Position" type="Position2D" parent="."]
-position = Vector2( 347.154, 466.82 )
 
 [connection signal="body_entered" from="TriggerArea" to="." method="_on_TriggerArea_body_entered"]

@@ -39,8 +39,7 @@ func make_state_list_available():
 	for child_state in get_children():
 		if child_state is AbstractState:
 			child_state.set("State", State)
-			
-			
+
 func transition_to(new_state_name):
 	if label_exists:
 		get_parent().get_node("StateLabel").text = new_state_name
@@ -86,7 +85,7 @@ func _get_random_next_state(transition_chances: Dictionary):
 func _transition_to_random_different_state():
 	# transition to a new state different from last non-idle state
 	# copy idle transition chances
-	var state_transition_chances = self.idle_transition_chance.duplicate()
+	var state_transition_chances = self.idle_transition_chance.duplicate(true)
 	var prob_to_remove: float = state_transition_chances[previous_non_idle_state.name]
 	# possibles state are those which not the last state, and not impossible (0) to begin with
 	# note that idle is already accounted for since it's probability 0
@@ -96,8 +95,8 @@ func _transition_to_random_different_state():
 		if state_transition_chances[state_name] != 0.0:
 			number_possible_states += 1
 	
-	if number_possible_states < 0:
-		print("ERROR, number of possible states to transition to < 0")
+	if number_possible_states <= 0:
+		print("ERROR, number of possible states to transition to <= 0 (Better allow same state in a row)")
 		
 	state_transition_chances[self.previous_non_idle_state.name] = 0.0
 	

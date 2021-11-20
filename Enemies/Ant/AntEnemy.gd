@@ -10,6 +10,8 @@ onready var anchor := $Anchor as Node2D
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 onready var animation_tree := $AnimationTree as AnimationTree
 
+onready var state_machine := $StateMachine as AntEnemyStateMachine
+
 var initial_position: Vector2
 
 signal follow_completed

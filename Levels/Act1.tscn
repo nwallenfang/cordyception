@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://UI/Tutorial/moveC.png" type="Texture" id=23]
 [ext_resource path="res://UI/Tutorial/moveK.png" type="Texture" id=24]
+[ext_resource path="res://World/Shrooms/Shroom3.tscn" type="PackedScene" id=25]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -151,7 +152,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 4888.54, 1244.57 )
+position = Vector2( 4233.58, 1118.32 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -187,6 +188,9 @@ curve = SubResource( 3 )
 position = Vector2( 8009.43, -710.873 )
 rotation = -0.915284
 
+[node name="Shroom" parent="YSort/DandelionRoom" instance=ExtResource( 25 )]
+position = Vector2( 4814.63, 995.54 )
+
 [node name="ExitPath" type="YSort" parent="YSort"]
 
 [node name="GrassTuft" parent="YSort/ExitPath" instance=ExtResource( 11 )]
@@ -203,6 +207,7 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 8 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -229,6 +234,7 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 10 )
+frame = 18
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 11 )
@@ -310,6 +316,7 @@ texture = ExtResource( 16 )
 position = Vector2( 5659.88, 1196.48 )
 
 [node name="Zone" type="Area2D" parent="Detector"]
+position = Vector2( -132.88, 30.2601 )
 collision_layer = 0
 collision_mask = 2
 
@@ -319,11 +326,11 @@ scale = Vector2( 5.25468, -4.73701 )
 shape = SubResource( 4 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
+position = Vector2( 513.12, -1849.74 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
-position = Vector2( 519.357, -1838.66 )
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
 shape = SubResource( 5 )
@@ -347,19 +354,19 @@ position = Vector2( -229, -54 )
 shape = SubResource( 7 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 4889, 1242.74 )
+position = Vector2( 4234, 1116.74 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
 
 [node name="PlayerTargetPos" type="Position2D" parent="Positions"]
-position = Vector2( 6177.37, -460.99 )
+position = Vector2( 6169, -328.26 )
 
 [node name="AphidFloor" type="Position2D" parent="Positions"]
 position = Vector2( 5860.22, -65.6767 )
 
 [node name="PlayerStart" type="Position2D" parent="Positions"]
-position = Vector2( 6176.79, 63.1586 )
+position = Vector2( 6172, 177.74 )
 
 [node name="ClimberPosition" type="Position2D" parent="Positions"]
 position = Vector2( 6204.12, -665.979 )
@@ -369,10 +376,12 @@ position = Vector2( 6204.12, -665.979 )
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 10 )]
-position = Vector2( 5630, 1194.74 )
+position = Vector2( 5725, 1019.74 )
+rotation = 0.765485
+scale = Vector2( 1.42919, -0.149641 )
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
-position = Vector2( 8959, -925.26 )
+position = Vector2( 8954, -923.26 )
 
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]

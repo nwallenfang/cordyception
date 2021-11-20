@@ -122,28 +122,25 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	# Animation
 	$Tween.remove_all()
 	$Tween.interpolate_property(text_node, "percent_visible", 0, 1, duration)
-	$Tween.interpolate_property(self, "bubble_size", Vector2(2*MARGIN_OFFSET, 0), text_size + Vector2(2*MARGIN_OFFSET, 0), duration)
+	$Tween.interpolate_property(self, "bubble_size", Vector2(2*MARGIN_OFFSET + 4, 0), text_size + Vector2(2*MARGIN_OFFSET, 0), duration)
 	$Tween.start()
-#	$Tween.interpolate_property(text_bg, "margin_right", 3*BUBBLE_BORDER, text_size.x + 2 * MARGIN_OFFSET, duration)
-#	for element in [$Origin/CornerB, $Origin/CornerD, $Origin/SideD]:
-#		$Tween.interpolate_property(element, "rect_position", element.rect_position, element.rect_position + Vector2(text_size.x - 2*BUBBLE_BORDER, 0), duration)
-#	for element in [$Origin/SideB, $Origin/SideC]:
-#		$Tween.interpolate_property(element, "rect_size", element.rect_size, element.rect_size + Vector2(text_size.x - 2*BUBBLE_BORDER, 0), duration)
-#	$Tween.interpolate_property($Origin, "position", Vector2.ZERO, Vector2(-text_size.x/2, 0), duration)
-
 	
 	# idea was to start sound from random position to make it less repetitive
 	# sound is approx 11 secs 
 	$SpeechSound.play(rand_range($SpeechSound.stream.loop_begin, $SpeechSound.stream.loop_end))
 
-	visible = true
+	yield(get_tree().create_timer(.1), "timeout")
+	set_deferred("visible", true)
 	
 # for interruptions:
-func stop_and_blend(blend_time:=0.9):
+func stop_and_blend(blend_time:=0.0):
 	$SpeechSound.stop()
 	$Timer.stop()
 	$Tween.stop_all()
 	$Tween.remove_all()
+	if blend_time == 0:
+		visible = false
+		return
 	var target_color = Color(modulate.r, modulate.b, modulate.g, 0)
 	$BlendTween.interpolate_property(self, "modulate", self.modulate, target_color, blend_time)
 	$BlendTween.start()

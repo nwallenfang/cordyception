@@ -29,7 +29,6 @@ shader = ExtResource( 17 )
 shader_param/active = false
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 15.0
 
 [sub_resource type="Animation" id=5]
 length = 1.5
@@ -170,6 +169,11 @@ script = ExtResource( 5 )
 
 [node name="Body" type="Node2D" parent="."]
 
+[node name="Line2D" type="Line2D" parent="Body"]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0
+
 [node name="Hitbox" parent="Body" instance=ExtResource( 1 )]
 collision_mask = 4
 
@@ -260,11 +264,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
-
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
-points = PoolVector2Array( 0, 0, 0, 0 )
-width = 2.0
 
 [node name="Detection" type="Area2D" parent="."]
 collision_layer = 0

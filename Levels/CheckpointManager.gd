@@ -15,24 +15,26 @@ func player_died():
 	# Start camera fadeout
 	GameStatus.CURRENT_CAMERA.fade_out()
 	yield(GameStatus.CURRENT_CAMERA, "fade_out_finished")
-	call_deferred("reset")
+	# call_deferred("reset") -> old reset call
 	# after fadeout, transition
 	get_tree().reload_current_scene()
+	call_deferred("reset")
 	# fadein
 	GameStatus.CURRENT_CAMERA.fade_in()
 	yield(GameStatus.CURRENT_CAMERA, "fade_in_finished")
 
 
 func reset():
-	var player = GameStatus.CURRENT_PLAYER as Player
 	var checkpoint: Dictionary = get_latest_checkpoint()
-
 	# reset player (HP etc.)
-	player.reset()
+	# player.reset()
 	# reset current act
-	GameStatus.CURRENT_ACT.reset()
+	# GameStatus.CURRENT_ACT.reset()
 	# reset Game Events
+	# all resets are useless because the scene is reloaded anyways
 	GameEvents.EVENT_COUNTER = checkpoint.events.duplicate(true)
+	
+	var player = GameStatus.CURRENT_PLAYER as Player
 	player.global_position = checkpoint.position
 
 func _process(delta):

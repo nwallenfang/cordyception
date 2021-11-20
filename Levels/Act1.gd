@@ -18,6 +18,7 @@ onready var antertainer2_speech = $YSort/ExitPath/Antertainer2/SpeechBubble
 signal dandelion_enemies_dead
 
 func _ready() -> void:
+	randomize()
 	GameStatus.CURRENT_ACT = self
 	GameStatus.CURRENT_YSORT = $YSort
 	GameStatus.CURRENT_UI = $UI
@@ -71,7 +72,7 @@ func _ready() -> void:
 	var shooter_behavior := {
 		"Chase": 0.7,
 		"SimpleShoot": 3.0,
-		"Shoot": 1.0,
+		"Shoot": 0.5,
 		"Sprint": 0.0
 	}
 	
@@ -79,7 +80,7 @@ func _ready() -> void:
 		"Chase": 1.5,
 		"SimpleShoot": 0.0,
 		"Shoot": 0.0,
-		"Sprint": 2.0
+		"Sprint": 1.0
 	}
 	
 	antertainer1.set_behavior(shooter_behavior)
@@ -94,7 +95,7 @@ func reset():
 	if is_instance_valid(ant2):
 		ant2.reset()
 	if is_instance_valid(climber):
-		climber.reset()	
+		climber.reset()
 	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
@@ -104,11 +105,11 @@ func dandelion_dialog():
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
 	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 0.8)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("Now come down you stupid SHI-")
-	var comedic_timer = get_tree().create_timer(1.3)
+	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
+	var comedic_timer = get_tree().create_timer(1.1)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
-	$ScriptedCamera.back_to_player(0.9)
+	$ScriptedCamera.back_to_player(1.5)
 	GameStatus.MOVE_ENABLED = true
 
 
@@ -198,17 +199,12 @@ func dandelion_attack():
 	# once the player has picked it up, open the passage
 	stick_obstacle.call_deferred("queue_free")
 
-
 # TutorialSpray Area2D
 func _on_Area2D_body_entered(body: Node) -> void:
 	GameStatus.SPRAY_ENABLED = true
-	
-
-
 
 func _on_Zone_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_dialog")
-
 
 func _on_Zone2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_attack")
@@ -247,6 +243,9 @@ func joke_dialog():
 func joke_attack():
 	attack_started = true
 	antertainer2.set_facing_direction(Vector2.RIGHT)
+	antertainer1_speech.stop_and_blend()
+	antertainer2_speech.stop_and_blend()
+	yield(get_tree().create_timer(0.7),"timeout")
 	antertainer2_speech.set_text("Hey, wanna ANTer our funny conversation?")
 	yield(antertainer2_speech, "dialog_completed")
 	antertainer1_speech.set_text("Shit, her body is ANTirely infested")

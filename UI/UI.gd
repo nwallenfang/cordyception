@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name UI
 
+var show_spray := false setget set_show_spray
 var show_health := false setget set_show_health
 var show_shoot := false setget set_show_shoot
 var show_dash := false setget set_show_dash
@@ -12,9 +13,11 @@ func _ready() -> void:
 	$HealthUI.modulate = Color.transparent
 	$ProjectileCooldownUI.modulate = Color.transparent
 	$DashCooldownUI.modulate = Color.transparent
+	$SprayCooldownUI.modulate = Color.transparent
 	$HealthUI.visible = true
 	$ProjectileCooldownUI.visible = true
 	$DashCooldownUI.visible = true
+	$SprayCooldownUI.visible = true
 
 func set_show_health(show: bool) -> void:
 	if show_health != show:
@@ -34,7 +37,12 @@ func set_show_dash(show: bool) -> void:
 		$Tween.interpolate_property($DashCooldownUI, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
 		$Tween.start()
 
-	
+func set_show_spray(show: bool) -> void:
+	if show_spray != show:
+		show_spray = show
+		$Tween.interpolate_property($SprayCooldownUI, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
+		$Tween.start()
+
 func cooldown_not_ready():
 	$CooldownNotReadySound.play(0.18)
 	# play sound

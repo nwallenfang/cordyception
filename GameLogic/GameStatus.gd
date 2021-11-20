@@ -37,6 +37,7 @@ func set_move_enabled(enabled: bool) -> void:
 
 func set_spray_enabled(enabled: bool) -> void:
 	SPRAY_ENABLED = enabled
+	CURRENT_UI.show_spray = enabled
 
 func set_shoot_enabled(enabled: bool) -> void:
 	SHOOT_ENABLED = enabled

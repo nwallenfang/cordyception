@@ -37,10 +37,10 @@ func _process(delta: float) -> void:
 	accelerate_and_move(delta)
 
 
-func _on_Detection_body_entered(body: Node) -> void:
+func _on_Detection_body_entered(_body: Node) -> void:
 	aggressive = true
 
-func _on_Vision_body_exited(body):
+func _on_Vision_body_exited(_body):
 	aggressive = false
 
 

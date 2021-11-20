@@ -154,6 +154,7 @@ anims/obstacle_collision = SubResource( 4 )
 
 [node name="SplashAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -4.306
 bus = "SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash_symbol.png-0eabeae13ff08732e269f79c9aadcff2.stex"
+path="res://.import/shoot_c.png-09f048dc2ffac798d1ef4e92009f004f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/dash_symbol.png"
-dest_files=[ "res://.import/dash_symbol.png-0eabeae13ff08732e269f79c9aadcff2.stex" ]
+source_file="res://UI/CooldownStuff/Controls/shoot_c.png"
+dest_files=[ "res://.import/shoot_c.png-09f048dc2ffac798d1ef4e92009f004f.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

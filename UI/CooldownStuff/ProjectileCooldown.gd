@@ -21,3 +21,9 @@ func blend_one():
 
 func _ready() -> void:
 	blend_one()
+	GameStatus.connect("input_device_changed", self, "input_device_changed")
+
+
+func input_device_changed():
+	$Controller.visible = not $Controller.visible
+	$Keyboard.visible = not $Keyboard.visible

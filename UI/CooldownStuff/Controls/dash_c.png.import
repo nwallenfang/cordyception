@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cooldown_background.png-0ad74ad0ce2ceb0f68f0de157ac5d2e5.stex"
+path="res://.import/dash_c.png-53c8c946ba4262ab242dd875ed062768.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/cooldown_background.png"
-dest_files=[ "res://.import/cooldown_background.png-0ad74ad0ce2ceb0f68f0de157ac5d2e5.stex" ]
+source_file="res://UI/CooldownStuff/Controls/dash_c.png"
+dest_files=[ "res://.import/dash_c.png-53c8c946ba4262ab242dd875ed062768.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

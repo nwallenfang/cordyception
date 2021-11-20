@@ -28,6 +28,10 @@ var DASH_ENABLED := false setget set_dash_enabled
 var AIMER_VISIBLE := true setget set_aimer_visible
 var HEALTH_VISIBLE := false setget set_health_visible
 
+signal start_spray
+signal stop_spray
+
+
 func set_move_enabled(enabled: bool) -> void:
 	MOVE_ENABLED = enabled
 
@@ -58,7 +62,7 @@ func set_health(new_health:int):
 
 
 signal input_device_changed
-var CONTROLLER_USED := false
+var CONTROLLER_USED := false 
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("any_controller_input"):
@@ -75,6 +79,14 @@ var MOUSE_CAPTURE : bool = false setget set_mouse_capture
 func set_mouse_capture(capture: bool) -> void:
 	MOUSE_CAPTURE = capture
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if MOUSE_CAPTURE else Input.MOUSE_MODE_VISIBLE)
+
+# signal with boolean argument
+#signal change_controller_used(use_controller)
+#func set_controller_used(use_controller: bool):
+#	var previously = GameStatus.CONTROLLER_USED
+#	if previously != use_controller:
+#		emit_signal("change_controller_used", use_controller)
+#	GameStatus.CONTROLLER_USED
 
 func _input(event: InputEvent) -> void:
 	# browsers only allow mouse capture after the user has interacted with the 

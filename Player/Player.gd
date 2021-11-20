@@ -149,6 +149,7 @@ func state_poison() -> void:
 		poison.active = false
 		set_state(State.IDLE)
 		$Sounds/PoisonCloud.stop()
+		GameStatus.emit_signal("stop_spray")
 		return
 	if state_first_frame:
 		$Sounds/PoisonCloud.play()
@@ -196,6 +197,7 @@ func evaluate_action_input() -> void:
 		else:
 			GameStatus.CURRENT_UI.cooldown_not_ready()
 	if Input.is_action_just_pressed("player_poison") and GameStatus.SPRAY_ENABLED:
+		GameStatus.emit_signal("start_spray")
 		set_state(State.POISON)
 		return
 	if input_vec != Vector2.ZERO and GameStatus.MOVE_ENABLED:

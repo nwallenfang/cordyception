@@ -44,7 +44,7 @@ func stop_spray():
 	if not spraying:
 		return
 	$DownTween.stop_all()
-	var duration = blend / UP_SPEED
+	var duration = (1 - blend) / UP_SPEED  # !!!
 	print("activate up")
 	$UpTween.interpolate_property(self, "blend", blend, 1, duration)
 	$UpTween.start()	

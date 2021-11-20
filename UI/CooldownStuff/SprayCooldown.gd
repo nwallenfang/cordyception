@@ -8,8 +8,6 @@ const UP_SPEED = 3
 var spraying = false
 
 func set_blend(_blend: float) -> void:
-	if _blend == 1.0 or _blend == 0.0:
-		print("blend ", _blend)
 	blend = _blend
 	if blend == 0.0:
 		blend_zero()
@@ -35,7 +33,6 @@ func start_spray():
 		return
 	spraying = true
 	var duration = blend / DOWN_SPEED
-	print("activate down")
 	$UpTween.stop_all()
 	$DownTween.interpolate_property(self, "blend", blend, 0, duration)
 	$DownTween.start()
@@ -45,7 +42,6 @@ func stop_spray():
 		return
 	$DownTween.stop_all()
 	var duration = (1 - blend) / UP_SPEED  # !!!
-	print("activate up")
 	$UpTween.interpolate_property(self, "blend", blend, 1, duration)
 	$UpTween.start()	
 	spraying = false

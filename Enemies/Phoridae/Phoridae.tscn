@@ -290,6 +290,11 @@ shape = SubResource( 14 )
 [node name="InvincibilityPlayer" type="AnimationPlayer" parent="."]
 anims/hit = SubResource( 15 )
 
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0
+
 [connection signal="area_entered" from="Body/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_Vision_body_exited"]

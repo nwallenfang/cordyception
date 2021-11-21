@@ -10,6 +10,10 @@ signal joke_attack
 # act 2
 signal scout_dialog
 
+# arena
+signal arena_wave1
+signal arena_wave2
+
 signal enemy_died
 signal player_died
 signal checkpoint_collected

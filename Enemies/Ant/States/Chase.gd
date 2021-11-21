@@ -30,7 +30,7 @@ func process(delta: float, first_time_entering: bool):
 	var distance_to_player_scent = distance_vector.length()
 	
 	if should_stop_chasing(distance_to_player_scent):
-		state_machine.transition_to("Idle")
+		state_machine.transition_deferred("Idle")
 		
 	if first_time_entering:
 		if parent.animation_state != null:

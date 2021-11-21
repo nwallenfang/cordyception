@@ -13,7 +13,7 @@ func shoot_projectiles():
 	if random_flip:
 		$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 30, 5, 0.2, 3)
 	else:
-		$EnemyProjectileSpawner.spawn_radial_projectiles(16)
+		$EnemyProjectileSpawner.spawn_radial_projectiles(8)
 
 
 func process(delta: float, first_time_entering: bool):

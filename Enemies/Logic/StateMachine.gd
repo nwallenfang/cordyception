@@ -136,14 +136,14 @@ func find_initial_state_and_prev():
 				second_possible_state = name
 			else:
 				break
-	if first_possible_state.empty() or second_possible_state.empty():
+	if first_possible_state.empty():
 		print("WARNING: find_initial_state_and_prev(): Not enough possible states!!")
 	
-	state = State[first_possible_state]
-	if not second_possible_state.empty():
+	state = State["Idle"] # first state should be Idle
+	if not first_possible_state.empty():
 		# if previous state can NOT be set, it is expected that reaching same state
 		# twice in a row is no problem (see ALLOW_.....)
-		previous_non_idle_state = State[second_possible_state]
+		previous_non_idle_state = State[first_possible_state]
 
 func _ready() -> void:
 	State = build_state_dict()

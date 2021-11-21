@@ -1,4 +1,4 @@
-extends Node2D
+extends SlideMover
 class_name RedAphid
 
 onready var line2D := $Line2D as Line2D
@@ -24,3 +24,8 @@ func play_walk_animation(direction: Vector2):
 	else:
 		facing_right = direction.x >= 0
 		$AnimationPlayer.play("walk_right" if facing_right else "walk_left")
+
+func _process(delta: float) -> void:
+	line2D.points[1] = $ScentRay.get_player_scent_position() - position
+	$StateMachine.process(delta)
+	accelerate_and_move(delta)

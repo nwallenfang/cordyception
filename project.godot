@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Aphid/AphidPath.gd"
 }, {
+"base": "StateMachine",
+"class": "AphidStateMachine",
+"language": "GDScript",
+"path": "res://Enemies/Aphid/StateMachine.gd"
+}, {
 "base": "Control",
 "class": "Cordy",
 "language": "GDScript",
@@ -114,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Projectile.gd"
 }, {
-"base": "Node2D",
+"base": "SlideMover",
 "class": "RedAphid",
 "language": "GDScript",
 "path": "res://Enemies/RedAphid/RedAphid.gd"
@@ -185,6 +190,7 @@ _global_script_class_icons={
 "AntEnemyStateMachine": "",
 "Aphid": "",
 "AphidPath": "",
+"AphidStateMachine": "",
 "Cordy": "",
 "DashStuff": "",
 "EnemyDash": "",

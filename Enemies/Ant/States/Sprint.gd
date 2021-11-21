@@ -27,7 +27,7 @@ func begin_sprinting(delta: float):
 	
 	# 1. if this enemy is too far from the player, don't sprint
 	if distance_to_player > MAX_SPRINT_DISTANCE:
-		state_machine.transition_to("Idle")
+		state_machine.transition_deferred("Idle")
 		return
 	
 	# 2. see if there is line of sight towards the player
@@ -96,11 +96,11 @@ func process(delta: float, first_time_entering: bool):
 			yield($SprintMovementTween, "tween_all_completed")
 			$DashStuff.stop_dash_effects()
 			# then go back to being idle
-			state_machine.transition_to("Idle")
+			state_machine.transition_deferred("Idle")
 		else:
 			# if not sprinting and having been here before, go back to being idle
 			# this branch should actually not be entered, it's just to make sure
-			state_machine.transition_to("Idle")
+			state_machine.transition_deferred("Idle")
 
 const DASH_FRAME := preload("res://Enemies/EnemyDashFrame.tscn")
 func _on_DashStuff_add_dash_frame() -> void:

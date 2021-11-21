@@ -25,6 +25,5 @@ one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="body_entered" from="PathFollow2D/Aphid" to="." method="_on_Aphid_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

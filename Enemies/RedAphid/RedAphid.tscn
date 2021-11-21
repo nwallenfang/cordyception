@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Enemies/RedAphid/red_aphid.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.gd" type="Script" id=2]
@@ -322,7 +322,9 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="RedAphid" type="Node2D"]
+[sub_resource type="CircleShape2D" id=15]
+
+[node name="RedAphid" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -396,3 +398,6 @@ __meta__ = {
 [node name="ScentRay" parent="." instance=ExtResource( 12 )]
 
 [node name="Line2D" type="Line2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 15 )

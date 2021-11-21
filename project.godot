@@ -119,6 +119,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/RedAphid/RedAphid.gd"
 }, {
+"base": "StateMachine",
+"class": "RedAphidStateMachine",
+"language": "GDScript",
+"path": "res://Enemies/RedAphid/States/RedAphidStateMachine.gd"
+}, {
 "base": "Node2D",
 "class": "Scent",
 "language": "GDScript",
@@ -197,6 +202,7 @@ _global_script_class_icons={
 "PoisonFragment": "",
 "Projectile": "",
 "RedAphid": "",
+"RedAphidStateMachine": "",
 "Scent": "",
 "ScentRay": "",
 "ScriptedCamera": "",

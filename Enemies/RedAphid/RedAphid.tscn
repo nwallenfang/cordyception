@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Enemies/RedAphid/red_aphid.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Enemies/RedAphid/States/Chase.gd" type="Script" id=9]
 [ext_resource path="res://Enemies/RedAphid/States/Distracted.gd" type="Script" id=10]
 [ext_resource path="res://Enemies/RedAphid/States/Roll.gd" type="Script" id=11]
+[ext_resource path="res://Enemies/ScentRay.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "death_left"
@@ -391,3 +392,7 @@ margin_bottom = -15.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ScentRay" parent="." instance=ExtResource( 12 )]
+
+[node name="Line2D" type="Line2D" parent="."]

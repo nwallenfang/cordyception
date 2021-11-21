@@ -58,8 +58,7 @@ func _ready() -> void:
 	climber.set_facing_direction(Vector2.LEFT)
 	
 	# disable aphid pickup in the beginning
-	aphid.monitorable = false
-	aphid.monitoring = false
+	aphid.monitor = false
 	
 #	$YSort/DandelionRoom/AntEnemy3.trigger()
 	# manually instance the player node

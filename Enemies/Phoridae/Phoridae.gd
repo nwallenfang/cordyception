@@ -33,7 +33,7 @@ func set_facing_direction(direction: Vector2) -> void:
 
 
 func _process(delta: float) -> void:
-	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
+	line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	$StateMachine.process(delta)
 	accelerate_and_move(delta)
 

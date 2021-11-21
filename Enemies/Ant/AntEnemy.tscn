@@ -1114,8 +1114,8 @@ one_shot = true
 
 [node name="SprintWarning" type="Sprite" parent="StateMachine/Sprint"]
 visible = false
-position = Vector2( 0, -55.372 )
-scale = Vector2( 0.915057, 1.5017 )
+position = Vector2( 1.19209e-07, -53.1034 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 script = ExtResource( 7 )
 

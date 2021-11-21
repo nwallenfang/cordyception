@@ -20,6 +20,9 @@ func set_enabled(enable: bool):
 	else:
 		stop()
 
+func _ready() -> void:
+	start()
+
 func process(delta: float) -> void:
 	if not enabled:
 		return

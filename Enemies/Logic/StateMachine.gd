@@ -2,7 +2,7 @@ extends Node2D
 
 class_name StateMachine
 
-export var print_random_calculation := true
+export var print_random_calculation := false
 
 var enabled := false setget set_enabled
 # state dictionary (was an enum earlier)

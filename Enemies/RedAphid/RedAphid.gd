@@ -1,4 +1,4 @@
-extends SlideMover
+extends PhysicsMover
 class_name RedAphid
 
 onready var line2D := $Line2D as Line2D

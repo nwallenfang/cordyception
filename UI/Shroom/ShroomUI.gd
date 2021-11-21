@@ -86,7 +86,7 @@ const MOOD_ANGRY = preload("res://UI/Shroom/Mood HAPPY.png")
 const MOOD_BORED = preload("res://UI/Shroom/Mood BORED.png")
 const MOOD_IDLE = preload("res://UI/Shroom/Mood IDLE.png")
 const MOOD_HAPPY = preload("res://UI/Shroom/Mood HAPPY.png")
-func set_eys(mood_string: String):
+func set_eyes(mood_string: String):
 	var mood
 	match(mood_string):
 		"angry":

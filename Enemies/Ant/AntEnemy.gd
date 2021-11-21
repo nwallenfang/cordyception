@@ -48,26 +48,37 @@ func get_state() -> String:
 	# return current state name
 	return $StateMachine.state.name
 
-var was_enabled_previously = false
-func _on_FollowPath_movement_completed() -> void:
-	# disable state machine when done with moving
-	# if it was disabled before
-	if not was_enabled_previously:
-		$StateMachine.enabled = false
-		
-	emit_signal("follow_completed")
-		
+
+#func _on_FollowPath_movement_completed() -> void:
+#	# disable state machine when done with moving
+#	# if it was disabled before
 		
 func shoot_single_projectile(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/SimpleShoot.start_shooting_single_projectile(target_position)
 
 
+var was_enabled_previously = false
 func follow_path(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/FollowPath.target_position = target_position
 	$StateMachine.transition_to("FollowPath")
 	$StateMachine.enabled = true
+	yield($StateMachine/FollowPath, "movement_completed")
+	print("complete")
+	if not was_enabled_previously:
+		$StateMachine.enabled = false
+		
+	emit_signal("follow_completed")
+	
+func follow_path_array(positions: Array):
+	was_enabled_previously = $StateMachine.enabled
+	for position in positions:
+		$StateMachine.transition_to("FollowPath")
+		$StateMachine/FollowPath.target_position = position
+		$StateMachine.enabled = true
+	yield(self, "follow_completed")
+		
 	
 
 func set_facing_direction(direction: Vector2):

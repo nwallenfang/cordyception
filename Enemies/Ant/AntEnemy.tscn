@@ -1235,7 +1235,6 @@ position = Vector2( -25.4026, -38.6664 )
 [connection signal="health_zero" from="EnemyStats" to="." method="_on_EnemyStats_health_zero"]
 [connection signal="add_dash_frame" from="StateMachine/Sprint/DashStuff" to="StateMachine/Sprint" method="_on_DashStuff_add_dash_frame"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_IdleTimer_timeout"]
-[connection signal="movement_completed" from="StateMachine/FollowPath" to="." method="_on_FollowPath_movement_completed"]
 
 [editable path="Hurtbox"]
 [editable path="StateMachine/Sprint/DashStuff"]

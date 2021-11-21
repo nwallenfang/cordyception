@@ -7,12 +7,4 @@ func process(delta, first_time_entering):
 	parent = parent as RedAphid
 
 	if first_time_entering:
-		#
-		# CODE
-		#
-		state_machine.transition_deferred("Idle")
-
-	#
-	# CODE
-	#
-
+		parent.play_ignite()

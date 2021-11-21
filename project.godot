@@ -115,6 +115,11 @@ _global_script_classes=[ {
 "path": "res://Player/Projectile.gd"
 }, {
 "base": "Node2D",
+"class": "RedAphid",
+"language": "GDScript",
+"path": "res://Enemies/RedAphid/RedAphid.gd"
+}, {
+"base": "Node2D",
 "class": "Scent",
 "language": "GDScript",
 "path": "res://Player/Scent.gd"
@@ -191,6 +196,7 @@ _global_script_class_icons={
 "PlayerProjectileSpawner": "",
 "PoisonFragment": "",
 "Projectile": "",
+"RedAphid": "",
 "Scent": "",
 "ScentRay": "",
 "ScriptedCamera": "",

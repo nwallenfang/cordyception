@@ -2,8 +2,8 @@ extends Area2D
 class_name Aphid
 
 func _ready() -> void:
-	monitorable = true
-	monitoring = true
+	$Area.monitorable = true
+	$Area.monitoring = true
 
 signal health_boost
 func death() -> void:

@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Enemies/Aphid/aphid.png" type="Texture" id=1]
-[ext_resource path="res://Enemies/Aphid/Aphid.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/RedAphid/red_aphid.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/RedAphid/RedAphid.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "death_left"
@@ -161,6 +161,70 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "roll_in_left"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "roll_in_right"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "roll_out_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 18, 17, 16, 15 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "roll_out_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 6, 5, 4 ]
+}
+
 [sub_resource type="Animation" id=5]
 length = 0.4
 loop = true
@@ -194,15 +258,67 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=7]
+radius = 28.0179
 
-[node name="Aphid" type="Node2D"]
+[sub_resource type="Animation" id=12]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "spin_left"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "spin_right"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="RedAphid" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -0.881467 )
 texture = ExtResource( 1 )
 hframes = 22
-frame = 4
+frame = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle_right"
@@ -210,6 +326,10 @@ anims/death_left = SubResource( 1 )
 anims/death_right = SubResource( 2 )
 anims/idle_left = SubResource( 3 )
 anims/idle_right = SubResource( 4 )
+anims/roll_in_left = SubResource( 8 )
+anims/roll_in_right = SubResource( 9 )
+anims/roll_out_left = SubResource( 10 )
+anims/roll_out_right = SubResource( 11 )
 anims/walk_left = SubResource( 5 )
 anims/walk_right = SubResource( 6 )
 
@@ -221,3 +341,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 shape = SubResource( 7 )
+
+[node name="SpinPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 12 )
+anims/spin_left = SubResource( 13 )
+anims/spin_right = SubResource( 14 )

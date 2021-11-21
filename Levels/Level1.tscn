@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://World/TileMaps/DirtMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Effects/Environment.tres" type="Environment" id=2]
@@ -158,19 +158,10 @@ shader_param/offset = 0.7
 [sub_resource type="StreamTexture" id=6]
 load_path = "res://.import/GrassBlade02.png-591754e9cbaa20a230cb5075a495a5df.stex"
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=11]
+resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -68.8205, 60.952, 0, 0, 0, 0, -8.3205, 71.952, 0, 0, 0, 0, 26.6795, 77.452, 0, 0, 0, 0, 70.1795, 69.952, 0, 0, 0, 0, 105.18, 56.952, 0, 0, 0, 0, 145.18, 44.452, 0, 0, 0, 0, 187.68, 42.452, 0, 0, 0, 0, 241.18, 47.452, 0, 0, 0, 0, 278.68, 65.952, 0, 0, 0, 0, 312.18, 80.452, 0, 0, 0, 0, 342.18, 90.952, 0, 0, 0, 0, 384.68, 105.452, 0, 0, 0, 0, 411.18, 115.452, 0, 0, 0, 0, 431.18, 130.452, 0, 0, 0, 0, 453.68, 139.452, 0, 0, 0, 0, 473.68, 153.452, 0, 0, 0, 0, 509.68, 159.952 )
-}
-
-[sub_resource type="Curve2D" id=8]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -88.8205, 10.952, 0, 0, 0, 0, -77.8205, 20.952, 0, 0, 0, 0, -58.3205, 27.952, 0, 0, 0, 0, -33.3205, 30.452, 0, 0, 0, 0, -6.8205, 26.452, 0, 0, 0, 0, 11.6795, 18.452, 0, 0, 0, 0, 28.6795, 12.452, 0, 0, 0, 0, 57.1795, 9.452, 0, 0, 0, 0, 96.6795, 9.452, 0, 0, 0, 0, 127.68, 15.452, 0, 0, 0, 0, 145.68, 25.952, 0, 0, 0, 0, 156.18, 40.952, 0, 0, 0, 0, 166.68, 54.952, 0, 0, 0, 0, 188.18, 67.952, 0, 0, 0, 0, 213.68, 76.952, 0, 0, 0, 0, 250.68, 82.452, 0, 0, 0, 0, 282.18, 81.452, 0, 0, 0, 0, 320.68, 78.952, 0, 0, 0, 0, 358.68, 71.452, 0, 0, 0, 0, 387.68, 63.452, 0, 0, 0, 0, 412.68, 53.452, 0, 0, 0, 0, 432.18, 39.952, 0, 0, 0, 0, 451.18, 26.452, 0, 0, 0, 0, 478.68, 21.952, 0, 0, 0, 0, 508.18, 20.952, 0, 0, 0, 0, 528.18, 22.952, 0, 0, 0, 0, 560.18, 33.952, 0, 0, 0, 0, 579.18, 50.952 )
-}
-
-[sub_resource type="Curve2D" id=9]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1501.64, 52.904, 0, 0, 0, 0, -1439.64, 48.904, 0, 0, 0, 0, -1360.64, 39.904, 0, 0, 0, 0, -1296.64, 28.904, 0, 0, 0, 0, -1221.64, 4.90399, 0, 0, 0, 0, -1166.64, -24.096, 0, 0, 0, 0, -1099.64, -45.096 )
+"points": PoolVector2Array( 0, 0, 0, 0, -37, 29, 0, 0, 0, 0, 53, -25.5, 0, 0, 0, 0, 151, -28, 0, 0, 0, 0, 202.5, 3, 0, 0, 0, 0, 207, 38.5, 0, 0, 0, 0, 185, 80.5, 0, 0, 0, 0, 126, 95, 0, 0, 0, 0, 56.5, 99, 0, 0, 0, 0, 13.5, 89.5, 0, 0, 0, 0, 7.5, 68, 0, 0, 0, 0, 24.5, 37.5, 0, 0, 0, 0, 41.5, 27, 0, 0, 0, 0, 78.5, 12, 0, 0, 0, 0, 133, 4, 0, 0, 0, 0, 174, 3, 0, 0, 0, 0, 233, -11.5, 0, 0, 0, 0, 268.5, -49.5, 0, 0, 0, 0, 312, -56, 0, 0, 0, 0, 348, -33.5 )
 }
 
 [sub_resource type="Animation" id=10]
@@ -374,20 +365,15 @@ position = Vector2( -392.641, 365.904 )
 [node name="Shroom4" parent="YSort" instance=ExtResource( 26 )]
 position = Vector2( 776.359, -168.096 )
 
-[node name="AphidPath2" parent="YSort" instance=ExtResource( 30 )]
-position = Vector2( -600, -500 )
-scale = Vector2( 2, 2 )
-curve = SubResource( 7 )
-
 [node name="AphidPath" parent="YSort" instance=ExtResource( 30 )]
 position = Vector2( -600, 250 )
 scale = Vector2( 2, 2 )
-curve = SubResource( 8 )
 
-[node name="AphidPath3" parent="YSort" instance=ExtResource( 30 )]
-position = Vector2( 1148.36, 127.904 )
-scale = Vector2( 2, 2 )
-curve = SubResource( 9 )
+[node name="AphidPath" parent="YSort/AphidPath" index="0"]
+curve = SubResource( 11 )
+
+[node name="PathFollow2D" parent="YSort/AphidPath/AphidPath" index="0"]
+position = Vector2( -37, 29 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 39 )]
 position = Vector2( -1675.64, -224.096 )
@@ -467,6 +453,7 @@ position = Vector2( -2081, 43 )
 
 [editable path="YSort/GrassBlade03"]
 [editable path="YSort/GrassBlade02"]
+[editable path="YSort/AphidPath"]
 [editable path="TutorialMove"]
 [editable path="TutorialSpray"]
 [editable path="TutorialDash"]

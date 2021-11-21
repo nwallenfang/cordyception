@@ -8,7 +8,7 @@ onready var ant2 = $YSort/DandelionRoom/AntEnemy2
 onready var ant2_speech = $YSort/DandelionRoom/AntEnemy2/SpeechBubble
 onready var player = $YSort/Player
 onready var aphid_path = $YSort/DandelionRoom/AphidPath
-onready var aphid = $YSort/DandelionRoom/AphidPath/PathFollow2D/Aphid
+onready var aphid = $YSort/DandelionRoom/AphidPath/Aphid
 onready var stick_obstacle = $YSort/DandelionRoom/StickObstacle
 onready var antertainer1 = $YSort/ExitPath/Antertainer
 onready var antertainer1_speech = $YSort/ExitPath/Antertainer/SpeechBubble
@@ -41,7 +41,7 @@ func _ready() -> void:
 		"Chase": 1.0,
 		"SimpleShoot": 3.0,
 		"Shoot": 0.0,
-		"Sprint": 0.3
+		"Sprint": 0.2
 	}
 	var lower_health := 8 # default is 20
 	

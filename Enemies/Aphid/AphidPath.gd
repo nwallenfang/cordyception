@@ -1,8 +1,6 @@
 extends Path2D
 class_name AphidPath
 
-onready var aphid := $PathFollow2D/Aphid as Aphid
-onready var aphid_player := $PathFollow2D/Aphid/AnimationPlayer as AnimationPlayer
 onready var follow := $PathFollow2D as PathFollow2D
 
 export(bool) var reversed := false
@@ -15,7 +13,6 @@ export var speed := 50.0
 var animation_to_right := true
 
 func _ready() -> void:
-	aphid.connect("tree_exiting", self, "queue_free")
 	$Timer.start(rand_range(min_wait, max_wait))
 
 func _on_Timer_timeout() -> void:
@@ -30,16 +27,7 @@ func _on_Timer_timeout() -> void:
 	var actual_distance : float = abs((target_position - old_position) * curve.get_baked_length())
 	$Tween.interpolate_property(follow, "unit_offset", old_position, target_position, actual_distance / speed, Tween.TRANS_LINEAR)
 	$Tween.start()
-	animation_to_right = direction == -1 if reversed else direction == 1
-	aphid_player.play("walk_right" if animation_to_right else "walk_left")
 
 func _on_Tween_tween_all_completed() -> void:
 	$Timer.stop()
 	$Timer.start(rand_range(min_wait, max_wait))
-	aphid_player.play("idle_right" if animation_to_right else "idle_left")
-
-func _on_Aphid_body_entered(body: Node) -> void:
-	aphid.connect("health_boost", body as Player, "health_boost")
-	$Timer.stop()
-	$Tween.stop_all()
-	aphid_player.play("death_right" if animation_to_right else "death_left")

@@ -6,8 +6,9 @@ export(NodePath) var mother_path : NodePath setget set_mother_path
 export var mother_radius := 10.0
 var mother: Node2D = null
 func set_mother_path(path: NodePath):
-	mother_path = path
-	mother = get_node(mother_path)
+	if path != "":
+		mother_path = path
+		mother = get_node(mother_path)
 
 func _ready() -> void:
 	set_monitor(true)

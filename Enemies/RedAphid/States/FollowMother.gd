@@ -1,7 +1,7 @@
 extends AbstractState
 
 func _ready() -> void:
-	RELATIVE_TRANSITION_CHANCE = 1
+	RELATIVE_TRANSITION_CHANCE = 0
 
 func process(delta, first_time_entering):
 	parent = parent as RedAphid # Set To Parent Class

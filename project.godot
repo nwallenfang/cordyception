@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Ant/States/EnemyDash.gd"
 }, {
+"base": "Node2D",
+"class": "Explosion",
+"language": "GDScript",
+"path": "res://Enemies/RedAphid/Explosion.gd"
+}, {
 "base": "StaticBody2D",
 "class": "GrassBlade",
 "language": "GDScript",
@@ -194,6 +199,7 @@ _global_script_class_icons={
 "Cordy": "",
 "DashStuff": "",
 "EnemyDash": "",
+"Explosion": "",
 "GrassBlade": "",
 "OldSpeechBubble": "",
 "Phoridae": "",
@@ -400,6 +406,7 @@ kill_player={
 2d_physics/layer_6="SoftCollisions"
 2d_physics/layer_7="Projectile"
 2d_physics/layer_8="PhoridProjectileSoftCollision"
+2d_physics/layer_9="RedAphidSoftCollision"
 
 [physics]
 

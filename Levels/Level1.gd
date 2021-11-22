@@ -15,4 +15,6 @@ func _ready() -> void:
 	
 	# one will fight you and one will move to some location
 	$YSort/AntEnemy/StateMachine.enabled = false
+	$YSort/RedAphid/StateMachine.enabled = true
+	$YSort/RedAphid2/StateMachine.enabled = true
 	$YSort/AntEnemy3.follow_path($AntTarget.global_position)

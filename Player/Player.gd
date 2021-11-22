@@ -275,8 +275,7 @@ func health_boost():
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if not $Hurtbox/InvincibilityTimer.is_stopped():
 		return
-	$Sounds/TakeHit.play()
-	GameStatus.CURRENT_HEALTH -= 1
+
 	var projectile := area.get_parent() as Projectile
 	if projectile:
 		add_acceleration(projectile.knockback_vector())
@@ -297,6 +296,14 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if phorid:
 		add_acceleration(phorid.body.global_position.direction_to(anchor.global_position) * GameStatus.ENEMY_KNOCKBACK)
 	
+	var explosion := area.get_parent() as Explosion
+	if explosion:
+		add_acceleration(explosion.knockback_vector())
+		if area.name == "Knockback":
+			return
+	
+	$Sounds/TakeHit.play()
+	GameStatus.CURRENT_HEALTH -= 1
 	$Hurtbox/InvincibilityTimer.start(invinc_time)
 	$InvincibilityPlayer.play("start")
 

@@ -14,6 +14,7 @@ onready var antertainer1 = $YSort/ExitPath/Antertainer
 onready var antertainer1_speech = $YSort/ExitPath/Antertainer/SpeechBubble
 onready var antertainer2 = $YSort/ExitPath/Antertainer2
 onready var antertainer2_speech = $YSort/ExitPath/Antertainer2/SpeechBubble
+onready var aphid_tutorial_area = $Tutorials/TutorialAphid/Area2D
 
 signal dandelion_enemies_dead
 
@@ -132,8 +133,14 @@ func aphid_climb_down():
 	$Positions/PositionTween.start()
 	aphid.set_deferred("monitorable", true)
 	aphid.set_deferred("monitoring", true)
+	aphid_tutorial_area.set_deferred("monitorable", true)
+	aphid_tutorial_area.set_deferred("monitoring", true)
 
 func dandelion_attack():
+	# make it impossible for the aphid tutorial to show for now
+	aphid_tutorial_area.set_deferred("monitorable", false)
+	aphid_tutorial_area.set_deferred("monitoring", false)
+	
 	# disable controls
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false

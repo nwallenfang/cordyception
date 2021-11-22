@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://UI/Tutorial/moveC.png" type="Texture" id=23]
 [ext_resource path="res://UI/Tutorial/moveK.png" type="Texture" id=24]
 [ext_resource path="res://World/Shrooms/Shroom3.tscn" type="PackedScene" id=25]
+[ext_resource path="res://UI/Tutorial/aphid_bright.png" type="Texture" id=26]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_3x3.png 0"
@@ -74,6 +75,9 @@ shader_param/active = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 300, 266 )
+
 [sub_resource type="CapsuleShape2D" id=7]
 height = 207.425
 
@@ -119,7 +123,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 9100.56, -887.242 )
+position = Vector2( 6235.67, -9.9884 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -188,6 +192,7 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 3 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -218,6 +223,7 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 5 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
 position = Vector2( 0.5, -2 )
@@ -311,6 +317,19 @@ texture = ExtResource( 13 )
 [node name="SpriteK" parent="Tutorials/TutorialSpray" index="1"]
 texture = ExtResource( 16 )
 
+[node name="TutorialAphid" parent="Tutorials" instance=ExtResource( 9 )]
+position = Vector2( 6203.22, -637.142 )
+
+[node name="SpriteC" parent="Tutorials/TutorialAphid" index="0"]
+texture = ExtResource( 26 )
+
+[node name="SpriteK" parent="Tutorials/TutorialAphid" index="1"]
+texture = ExtResource( 26 )
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialAphid/Area2D" index="0"]
+position = Vector2( -36, 299 )
+shape = SubResource( 12 )
+
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
 
@@ -353,7 +372,7 @@ position = Vector2( -229, -54 )
 shape = SubResource( 10 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 9100.23, -890.644 )
+position = Vector2( 6235.66, -12.3193 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -382,6 +401,9 @@ scale = Vector2( 1.42919, -0.149641 )
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
 position = Vector2( 8954, -923.26 )
 
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/TriggerArea" index="0"]
+position = Vector2( 2.66895, 0 )
+
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
@@ -406,4 +428,5 @@ position = Vector2( 8954, -923.26 )
 [editable path="YSort/ExitPath/Antertainer2/SpeechBubble"]
 [editable path="Tutorials/TutorialMove"]
 [editable path="Tutorials/TutorialSpray"]
+[editable path="Tutorials/TutorialAphid"]
 [editable path="Checkpoints/Checkpoint2"]

@@ -5,8 +5,7 @@ const FRIENDLY_COLOR := Color(38, 229, 10)
 const ENEMY_COLOR := Color.brown
 
 const IS_PIERCING := false  # whether or not to be destroyed when hitting something
-export var SIZE := 16  # TODO
-export var SPEED := 450
+export var SPEED := 450 setget set_speed
  
 onready var direction: Vector2 setget set_direction
 onready var damage: int setget set_damage
@@ -24,6 +23,10 @@ func set_direction(new_dir: Vector2):
 	
 func set_damage(new_damage: int):
 	damage = new_damage
+
+func set_speed(new_speed):
+	SPEED = new_speed
+	velocity = SPEED * direction
 
 func set_knockback(new_knockback: float):
 	knockback = new_knockback

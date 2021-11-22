@@ -63,7 +63,10 @@ var was_enabled_previously = false
 func follow_path(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/FollowPath.target_position = target_position
-	$StateMachine.transition_deferred("FollowPath")
+	# DON'T transition_deferred here because the sm isn't enabled yet
+	# else the deferred transition just gets overwritten and the sm runs normally
+	
+	$StateMachine.transition_to("FollowPath")
 	$StateMachine.enabled = true
 	
 	yield($StateMachine/FollowPath, "movement_completed")

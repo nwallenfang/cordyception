@@ -16,8 +16,12 @@ func process(delta: float, first_time_entering: bool):
 		var distance_vec := (target_position - parent.global_position) as Vector2
 		
 		if distance_vec.length() < STOP_DISTANCE:
+			state_machine.enabled = false
+			parent.animation_state.travel("Idle")
+			parent.animation_tree.set("parameters/Idle/blend_position", distance_vec)
 			emit_signal("movement_completed")
 			done = true
+			return
 		
 		parent.animation_tree.set("parameters/Walk/blend_position", distance_vec)
 		parent.add_acceleration(FOLLOW_ACCELERATION * distance_vec.normalized())

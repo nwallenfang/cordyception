@@ -132,6 +132,10 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	yield(get_tree().create_timer(.1), "timeout")
 	set_deferred("visible", true)
 	
+func say(lines, wait_time = DEFAULT_WAIT):
+	set_text(lines, wait_time)
+	yield(self, "dialog_completed")
+	
 # for interruptions:
 func stop_and_blend(blend_time:=0.0):
 	$SpeechSound.stop()

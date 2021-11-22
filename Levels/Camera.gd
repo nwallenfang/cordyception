@@ -41,7 +41,7 @@ func zoom(target_zoom: float, time: float = 2.0) -> void:
 func follow(obj: Node2D, time: float = 2.0) -> void:
 	slide_to_object(obj, time)
 	follow_target = obj
-
+	
 func stop_following() -> void:
 	following = false
 	follow_target = null
@@ -54,6 +54,10 @@ func slide_away_to(pos: Vector2, time: float = 2.0) -> void:
 	GameStatus.CURRENT_CAM_REMOTE.update_position = false
 	deactivate_drag()
 	__slide_to(pos, time)
+	
+func slide_away_to_then_return(pos: Vector2, time: float = 2.0) -> void:
+	slide_away_to(pos, time)
+	yield(self, "slide_finished")
 
 func __slide_to(pos: Vector2, time: float = 2.0) -> void:
 	$Tween.remove_all()

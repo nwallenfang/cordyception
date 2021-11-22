@@ -5,6 +5,8 @@ signal done_shooting
 # probs gonna stay at 1 since enemy will always deal same dmg to player
 export var PROJECTILE_DAMAGE := 1
 export var PROJECTILE_KNOCKBACK := 500.0
+export var PROJECITLE_SPEED := 650.0
+
 const EnemyProjectile := preload("res://Enemies/EnemyProjectile.tscn")
 
 export var SPAWN_TIME_MIN := 3
@@ -28,6 +30,7 @@ func create_projectile(direction: float) -> void:
 	projectile.damage = PROJECTILE_DAMAGE
 	projectile.knockback = PROJECTILE_KNOCKBACK
 	projectile.rotation = direction
+	projectile.SPEED = PROJECITLE_SPEED
 
 
 func _on_SpawnTimer_timeout() -> void:

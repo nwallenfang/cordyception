@@ -376,6 +376,9 @@ curve = SubResource( 7 )
 [node name="PathFollow2D" parent="YSort/AphidPath/AphidPath" index="0"]
 position = Vector2( -37, 29 )
 
+[node name="Aphid" parent="YSort/AphidPath" index="1"]
+mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
+
 [node name="RedAphid" parent="YSort" instance=ExtResource( 45 )]
 position = Vector2( -710, 24 )
 
@@ -433,16 +436,16 @@ texture = ExtResource( 35 )
 [node name="CollisionShape2D" parent="TutorialShoot/Area2D" index="0"]
 position = Vector2( -36, 299 )
 
-[node name="TutorialShoot2" parent="." instance=ExtResource( 27 )]
+[node name="TutorialAphid" parent="." instance=ExtResource( 27 )]
 position = Vector2( -450, -605 )
 
-[node name="SpriteC" parent="TutorialShoot2" index="0"]
+[node name="SpriteC" parent="TutorialAphid" index="0"]
 texture = ExtResource( 37 )
 
-[node name="SpriteK" parent="TutorialShoot2" index="1"]
+[node name="SpriteK" parent="TutorialAphid" index="1"]
 texture = ExtResource( 37 )
 
-[node name="CollisionShape2D" parent="TutorialShoot2/Area2D" index="0"]
+[node name="CollisionShape2D" parent="TutorialAphid/Area2D" index="0"]
 position = Vector2( -36, 299 )
 
 [node name="Dandelion" parent="." instance=ExtResource( 21 )]
@@ -461,8 +464,9 @@ position = Vector2( -2081, 43 )
 [editable path="YSort/GrassBlade03"]
 [editable path="YSort/GrassBlade02"]
 [editable path="YSort/AphidPath"]
+[editable path="YSort/AphidPath/Aphid"]
 [editable path="TutorialMove"]
 [editable path="TutorialSpray"]
 [editable path="TutorialDash"]
 [editable path="TutorialShoot"]
-[editable path="TutorialShoot2"]
+[editable path="TutorialAphid"]

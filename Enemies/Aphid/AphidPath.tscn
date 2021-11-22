@@ -30,7 +30,8 @@ one_shot = true
 [node name="Tween" type="Tween" parent="AphidPath"]
 
 [node name="Aphid" parent="." instance=ExtResource( 1 )]
-mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
 
 [connection signal="timeout" from="AphidPath/Timer" to="AphidPath" method="_on_Timer_timeout"]
 [connection signal="tween_all_completed" from="AphidPath/Tween" to="AphidPath" method="_on_Tween_tween_all_completed"]
+
+[editable path="Aphid"]

@@ -28,6 +28,7 @@ func reset():
 	_ready()
 	
 func trigger():
+	self.state_machine.transition_deferred("Idle")
 	$StateMachine.start()
 
 func set_behavior(probabilities: Dictionary):
@@ -48,27 +49,43 @@ func get_state() -> String:
 	# return current state name
 	return $StateMachine.state.name
 
-var was_enabled_previously = false
-func _on_FollowPath_movement_completed() -> void:
-	# disable state machine when done with moving
-	# if it was disabled before
-	if not was_enabled_previously:
-		$StateMachine.enabled = false
-		
-	emit_signal("follow_completed")
-		
+
+#func _on_FollowPath_movement_completed() -> void:
+#	# disable state machine when done with moving
+#	# if it was disabled before
 		
 func shoot_single_projectile(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/SimpleShoot.start_shooting_single_projectile(target_position)
 
 
+var was_enabled_previously = false
 func follow_path(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/FollowPath.target_position = target_position
+	# DON'T transition_deferred here because the sm isn't enabled yet
+	# else the deferred transition just gets overwritten and the sm runs normally
+	
 	$StateMachine.transition_to("FollowPath")
 	$StateMachine.enabled = true
 	
+	yield($StateMachine/FollowPath, "movement_completed")
+	if not was_enabled_previously:
+		$StateMachine.enabled = false
+		
+	emit_signal("follow_completed")
+	
+func follow_path_array(positions: Array):
+	was_enabled_previously = $StateMachine.enabled
+	for position in positions:
+		$StateMachine.transition_to("FollowPath")
+		$StateMachine/FollowPath.target_position = position
+		$StateMachine.enabled = true
+		yield($StateMachine/FollowPath, "movement_completed")
+	emit_signal("follow_completed")
+		
+func follow_path_object(path_node):
+	was_enabled_previously = $StateMachine.enabled
 
 func set_facing_direction(direction: Vector2):
 	# im animation tree setzen.

@@ -255,3 +255,13 @@ func joke_attack():
 	antertainer1_speech.set_text("Let's ANT her suffering then!")
 	yield(antertainer1_speech, "dialog_completed")
 	antertainer1.state_machine.start()
+
+
+# checkpoint2
+func _on_TriggerArea_body_entered(body: Node) -> void:
+	# assert that the player is ready for combat when respawning
+	# needed because that stuff is still disabled at the beginning of this act
+	GameStatus.HEALTH_VISIBLE = true
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true

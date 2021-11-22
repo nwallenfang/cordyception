@@ -54,30 +54,30 @@
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=7]
 height = 207.425
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=8]
 radius = 579.527
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 596, 206 )
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=10]
 radius = 299.002
 
 [node name="Act1" type="Node2D"]
@@ -166,7 +166,8 @@ position = Vector2( 10150.3, -682.466 )
 position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
-material = SubResource( 4 )
+material = SubResource( 3 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -185,7 +186,7 @@ position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 4 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
 position = Vector2( -22.7488, -27.5947 )
@@ -196,7 +197,8 @@ arrow_pos = 0.3
 position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
-material = SubResource( 6 )
+material = SubResource( 5 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
 position = Vector2( 0.5, -2 )
@@ -215,7 +217,7 @@ position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 6 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
 position = Vector2( 26.9094, -31.0244 )
@@ -301,7 +303,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 position = Vector2( 513.12, -1849.74 )
@@ -311,7 +313,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -320,7 +322,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
 position = Vector2( -70, -48 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="Zone4" type="Area2D" parent="Detector"]
 position = Vector2( 4809.12, -1598.74 )
@@ -329,7 +331,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -229, -54 )
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4234, 1116.74 )

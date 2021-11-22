@@ -23,7 +23,7 @@ func get_player_scent_position() -> Vector2:
 func get_player_scent_position_global() -> Vector2:
 	var player := GameStatus.CURRENT_PLAYER
 
-	cast_to = player.position - get_parent().position
+	cast_to = player.global_position - get_parent().global_position
 	force_raycast_update()
 	
 	if !is_colliding():

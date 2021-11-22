@@ -77,9 +77,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "splash_sound"
+}, {
 "args": [  ],
 "method": "queue_free"
 } ]
@@ -106,20 +109,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/4/type = "audio"
-tracks/4/path = NodePath("SplashAudio")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
-} ],
-"times": PoolRealArray( 0 )
-}
 
 [node name="PlayerProjectile" type="Node2D"]
 script = ExtResource( 3 )
@@ -140,7 +129,6 @@ frame = 7
 [node name="Hitbox" parent="." instance=ExtResource( 1 )]
 collision_layer = 64
 collision_mask = 9
-script = null
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 1, 0 )

@@ -62,10 +62,10 @@ var was_enabled_previously = false
 func follow_path(target_position: Vector2):
 	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/FollowPath.target_position = target_position
-	$StateMachine.transition_to("FollowPath")
+	$StateMachine.transition_deferred("FollowPath")
 	$StateMachine.enabled = true
-	yield($StateMachine/FollowPath, "movement_completed")
-	print("complete")
+
+	yield($StateMachine/FollowPath, "movement_complete")
 	if not was_enabled_previously:
 		$StateMachine.enabled = false
 		
@@ -77,9 +77,11 @@ func follow_path_array(positions: Array):
 		$StateMachine.transition_to("FollowPath")
 		$StateMachine/FollowPath.target_position = position
 		$StateMachine.enabled = true
+		yield($StateMachine/FollowPath, "movement_completed")
 	yield(self, "follow_completed")
 		
-	
+func follow_path_object(path_node):
+	was_enabled_previously = $StateMachine.enabled
 
 func set_facing_direction(direction: Vector2):
 	# im animation tree setzen.

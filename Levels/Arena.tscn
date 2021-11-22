@@ -91,10 +91,10 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="LineShape2D" id=3]
+[sub_resource type="LineShape2D" id=2]
 normal = Vector2( 0.819269, -0.573409 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 558.998
 
 [node name="Arena" type="Node2D"]
@@ -389,16 +389,16 @@ scale = Vector2( 1.6, 1.6 )
 [node name="Wave1Enemies" type="YSort" parent="YSort"]
 
 [node name="AntEnemy1" parent="YSort/Wave1Enemies" instance=ExtResource( 25 )]
-position = Vector2( 3468.37, -6334.01 )
+position = Vector2( 3414.3, -6247.15 )
 
 [node name="AntEnemy2" parent="YSort/Wave1Enemies" instance=ExtResource( 25 )]
-position = Vector2( 3594.38, -6345.96 )
+position = Vector2( 3473.59, -6319.52 )
 
 [node name="AntEnemy3" parent="YSort/Wave1Enemies" instance=ExtResource( 25 )]
-position = Vector2( 3508.42, -6456.99 )
+position = Vector2( 3566.72, -6531.13 )
 
 [node name="AntEnemy4" parent="YSort/Wave1Enemies" instance=ExtResource( 25 )]
-position = Vector2( 3404.41, -6444.03 )
+position = Vector2( 3520.94, -6411.14 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -415,7 +415,7 @@ collision_mask = 2
 position = Vector2( 3.77979, 0 )
 rotation = -0.244757
 scale = Vector2( 1, 2.43996 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Positions" type="Node2D" parent="."]
 
@@ -459,7 +459,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( 10.6907, -35.636 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 800.88, -1520.25 )

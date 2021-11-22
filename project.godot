@@ -24,7 +24,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Ant/States/AntEnemyStateMachine.gd"
 }, {
-"base": "PhysicsMover",
+"base": "Path2D",
+"class": "AntPath",
+"language": "GDScript",
+"path": "res://Enemies/Ant/AntPath.gd"
+}, {
+"base": "Node2D",
 "class": "Aphid",
 "language": "GDScript",
 "path": "res://Enemies/Aphid/Aphid.gd"
@@ -188,6 +193,7 @@ _global_script_class_icons={
 "AbstractState": "",
 "AntEnemy": "",
 "AntEnemyStateMachine": "",
+"AntPath": "",
 "Aphid": "",
 "AphidPath": "",
 "AphidStateMachine": "",

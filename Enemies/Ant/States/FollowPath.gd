@@ -16,6 +16,7 @@ func process(delta: float, first_time_entering: bool):
 		var distance_vec := (target_position - parent.global_position) as Vector2
 		
 		if distance_vec.length() < STOP_DISTANCE:
+			print("stop")
 			emit_signal("movement_completed")
 			done = true
 		

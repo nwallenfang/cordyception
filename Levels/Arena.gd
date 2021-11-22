@@ -2,7 +2,7 @@ extends Node2D
 
 onready var cordy
 onready var shot_caller = $YSort/ShotcallerAnt as AntEnemy
-onready var shot_speech = $YSort/ShotcallerAnt/SpeechBubble as SpeechBubble
+onready var shot_caller_speech = $YSort/ShotcallerAnt/SpeechBubble as SpeechBubble
 onready var w1_ant1 = $YSort/Wave1Enemies/AntEnemy1
 onready var w1_ant2 = $YSort/Wave1Enemies/AntEnemy2
 onready var w1_ant3 = $YSort/Wave1Enemies/AntEnemy3
@@ -30,37 +30,38 @@ func _ready():
 	cordy = GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
 	cordy._on_Growth_animation_finished()
 	
-	GameEvents.connect("arena_wave1", self, "arena_wave1")
+	GameEvents.connect("arena_wave1", self, "wave1")
 	GameEvents.connect("arena_wave2", self, "wave2")
 
 
-
 func last_enemy_ready():
-	print("trigger")
 	w1_ant1.trigger()
 	w1_ant2.trigger()
 	w1_ant3.trigger()
 	w1_ant4.trigger()
 
-func arena_wave1():
+func wave1():
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+	
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
-	shot_speech.set_text("Welcome to the arena!", 1.5)
-	yield(shot_speech, "dialog_completed")
-	shot_speech.set_text("We've been expecting you, scoundrel.", 1.5)
-	yield(shot_speech, "dialog_completed")
-	shot_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
-	yield(shot_speech, "dialog_completed")
+	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
+	yield(shot_caller_speech, "dialog_completed")
 	cordy.set_eyes("bored")
 	cordy.say("Pfft..")
-	shot_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
-	yield(shot_speech, "dialog_completed")	
-	shot_speech.set_text("Enter the Arena, fellow ants!", 0.6)
+	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
+	yield(shot_caller_speech, "dialog_completed")
+
+	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
+	yield(shot_caller_speech, "dialog_completed")
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
@@ -72,8 +73,7 @@ func arena_wave1():
 	w1_ant3.follow_path_array([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
 	w1_ant4.follow_path_array([gate, $Positions/Wave14.global_position])
 	
-	yield(get_tree().create_timer(4.0), "timeout")
-	
+	yield(get_tree().create_timer(3.8), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
 	
 	GameStatus.MOVE_ENABLED = true

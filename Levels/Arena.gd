@@ -35,10 +35,12 @@ func _ready():
 
 
 func last_enemy_ready():
+	print("trigger")
 	w1_ant1.trigger()
 	w1_ant2.trigger()
 	w1_ant3.trigger()
 	w1_ant4.trigger()
+
 
 func wave1():
 	GameStatus.MOVE_ENABLED = false

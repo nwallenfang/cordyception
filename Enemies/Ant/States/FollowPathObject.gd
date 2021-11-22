@@ -8,6 +8,10 @@ var target_position: Vector2
 var done = false
 signal movement_completed
 
+func _ready():
+	RELATIVE_TRANSITION_CHANCE = 0
+	
+
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
 		parent.animation_state.travel("Walk")

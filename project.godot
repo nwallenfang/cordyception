@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Ant/AntPath.gd"
 }, {
-"base": "Node2D",
+"base": "PhysicsMover",
 "class": "Aphid",
 "language": "GDScript",
 "path": "res://Enemies/Aphid/Aphid.gd"

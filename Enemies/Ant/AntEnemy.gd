@@ -28,6 +28,7 @@ func reset():
 	_ready()
 	
 func trigger():
+	self.state_machine.transition_deferred("Idle")
 	$StateMachine.start()
 
 func set_behavior(probabilities: Dictionary):
@@ -64,8 +65,8 @@ func follow_path(target_position: Vector2):
 	$StateMachine/FollowPath.target_position = target_position
 	$StateMachine.transition_deferred("FollowPath")
 	$StateMachine.enabled = true
-
-	yield($StateMachine/FollowPath, "movement_complete")
+	
+	yield($StateMachine/FollowPath, "movement_completed")
 	if not was_enabled_previously:
 		$StateMachine.enabled = false
 		
@@ -78,7 +79,7 @@ func follow_path_array(positions: Array):
 		$StateMachine/FollowPath.target_position = position
 		$StateMachine.enabled = true
 		yield($StateMachine/FollowPath, "movement_completed")
-	yield(self, "follow_completed")
+	emit_signal("follow_completed")
 		
 func follow_path_object(path_node):
 	was_enabled_previously = $StateMachine.enabled

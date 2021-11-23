@@ -192,6 +192,7 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 4 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -222,6 +223,7 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 6 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
 position = Vector2( 0.5, -2 )

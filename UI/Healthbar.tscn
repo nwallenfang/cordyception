@@ -22,3 +22,10 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="FadeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FadeTween" type="Tween" parent="."]
+
+[connection signal="timeout" from="FadeTimer" to="." method="_on_FadeTimer_timeout"]

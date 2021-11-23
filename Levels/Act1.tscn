@@ -55,39 +55,39 @@
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -20.4097, 10.4838, 0, 0, 0, 0, -5.91187, 16.4893, 0, 0, 0, 0, 5.0874, 18.4934, 0, 0, 0, 0, 16.0896, 12.9975, 0, 0, 0, 0, 22.5925, 4.99991 )
 }
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 300, 266 )
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=9]
 height = 207.425
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=10]
 radius = 579.527
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 557, 182 )
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=12]
 radius = 299.002
 
 [node name="Act1" type="Node2D"]
@@ -116,7 +116,7 @@ cell_quadrant_size = 32
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 1114188, 0, 196611, 1310804, 0, 196611 )
+tile_data = PoolIntArray( -851809, 0, 4, -851808, 0, 196609, -851807, 0, 196610, -786277, 0, 0, -786276, 0, 5, -786275, 0, 196609, -786274, 0, 196609, -786273, 0, 196615, -720743, 0, 0, -720742, 0, 5, -720741, 0, 196614, -720740, 0, 131074, -655219, 0, 0, -655218, 0, 1, -655217, 0, 1, -655216, 0, 1, -655215, 0, 1, -655214, 0, 1, -655213, 0, 1, -655212, 0, 1, -655211, 0, 1, -655210, 0, 5, -655209, 0, 196609, -655208, 0, 196609, -655207, 0, 196614, -655206, 0, 131074, -589686, 0, 196608, -589685, 0, 196609, -589684, 0, 196609, -589683, 0, 196614, -589682, 0, 131073, -589681, 0, 131073, -589680, 0, 131073, -589679, 0, 131073, -589678, 0, 131073, -589677, 0, 131073, -589676, 0, 131073, -589675, 0, 131073, -589674, 0, 131074, 1114188, 0, 196611, 1310804, 0, 196611 )
 script = ExtResource( 22 )
 
 [node name="YSort" type="YSort" parent="."]
@@ -157,7 +157,7 @@ scale = Vector2( 2, 2 )
 [node name="AphidPath" parent="YSort/DandelionRoom/AphidPath" index="0"]
 position = Vector2( -2.5, -1.00095 )
 z_index = 1
-curve = SubResource( 11 )
+curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="YSort/DandelionRoom/AphidPath/AphidPath" index="0"]
 position = Vector2( -20.4097, 10.4838 )
@@ -191,7 +191,7 @@ position = Vector2( 10150.3, -682.466 )
 position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
@@ -211,7 +211,7 @@ position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 5 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
 position = Vector2( -22.7488, -27.5947 )
@@ -222,7 +222,7 @@ arrow_pos = 0.3
 position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
@@ -242,7 +242,7 @@ position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 7 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
 position = Vector2( 26.9094, -31.0244 )
@@ -328,7 +328,7 @@ texture = ExtResource( 26 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialAphid/Area2D" index="0"]
 position = Vector2( -36, 299 )
-shape = SubResource( 12 )
+shape = SubResource( 8 )
 
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
@@ -342,7 +342,7 @@ collision_mask = 2
 position = Vector2( -45, 4 )
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 position = Vector2( 513.12, -1849.74 )
@@ -352,7 +352,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -361,7 +361,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
 position = Vector2( -14, -53.9999 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="Zone4" type="Area2D" parent="Detector"]
 position = Vector2( 4809.12, -1598.74 )
@@ -370,10 +370,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -201, -28.9999 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6235.66, -12.3193 )
+position = Vector2( 6235.67, -12.3193 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

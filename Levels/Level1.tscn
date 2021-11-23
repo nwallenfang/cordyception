@@ -262,7 +262,7 @@ position = Vector2( 93, -106 )
 texture = SubResource( 6 )
 
 [node name="AntEnemy" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 349.743, 168.189 )
+position = Vector2( -242, 83 )
 
 [node name="AntEnemy3" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 539.29, -41.3808 )
@@ -381,9 +381,15 @@ mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
 
 [node name="RedAphid" parent="YSort" instance=ExtResource( 45 )]
 position = Vector2( -710, 24 )
+mother_path = NodePath("../AntEnemy")
 
 [node name="RedAphid2" parent="YSort" instance=ExtResource( 45 )]
 position = Vector2( -774, -156 )
+mother_path = NodePath("../AntEnemy")
+
+[node name="RedAphid3" parent="YSort" instance=ExtResource( 45 )]
+position = Vector2( -68, 48 )
+mother_path = NodePath("../AntEnemy")
 
 [node name="Camera2D" parent="." instance=ExtResource( 39 )]
 position = Vector2( -1675.64, -224.096 )

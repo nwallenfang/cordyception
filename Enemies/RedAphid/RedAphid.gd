@@ -5,8 +5,12 @@ onready var scentray := $ScentRay as ScentRay
 
 export var move_speed := 50000.0
 export(NodePath) var mother_path : NodePath setget set_mother_path
-export var mother_radius := 10.0
+export var mother_radius := 100.0
 var mother: Node2D = null
+
+var ready_to_throw := true
+var throw_origin : Node2D = null
+signal ready_to_launch
 
 func set_mother_path(path: NodePath):
 	if path != "":
@@ -34,6 +38,15 @@ func create_speed_dust(direction: Vector2):
 	dust.get_node("AnimatedSprite").connect("animation_finished", dust, "queue_free")
 	dust.scale.x *= -1 if direction.x > 0 else 1
 	dust.rotation = -direction.angle_to(Vector2.RIGHT) if direction.x > 0 else -direction.angle_to(Vector2.LEFT)
+	dust.get_node("AnimatedSprite").frame = 0
+	dust.get_node("AnimatedSprite").playing = true
+
+const IMPACT_DUST = preload("res://Enemies/RedAphid/ImpactDust.tscn")
+func create_impact_dust():
+	var dust = IMPACT_DUST.instance()
+	GameStatus.CURRENT_YSORT.add_child(dust)
+	dust.global_position = global_position
+	dust.get_node("AnimatedSprite").connect("animation_finished", dust, "queue_free")
 	dust.get_node("AnimatedSprite").frame = 0
 	dust.get_node("AnimatedSprite").playing = true
 
@@ -65,6 +78,7 @@ func play_ignite():
 func _process(delta: float) -> void:
 	#line2D.points[1] = $ScentRay.get_player_scent_position() - global_position
 	$StateMachine.process(delta)
+	do_soft_collision(delta)
 	accelerate_and_move(delta)
 
 func play_start_roll():
@@ -90,6 +104,8 @@ var ignite_ready := false
 func _on_IgniteArea_body_entered(body: Node) -> void:
 	ignite_ready = true
 
-export var soft_collision_speed := 600.0
-func _on_SoftCollision_area_entered(area: Area2D) -> void:
-	add_acceleration(soft_collision_speed * area.get_parent().global_position.direction_to(global_position))
+export var soft_collision_speed := 10000.0
+func do_soft_collision(delta):
+	for area in $SoftCollision.get_overlapping_areas():
+		if area.get_parent() is get_script():
+			add_acceleration(delta * soft_collision_speed * area.get_parent().global_position.direction_to(global_position))

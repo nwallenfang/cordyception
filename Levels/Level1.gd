@@ -14,7 +14,19 @@ func _ready() -> void:
 	GameStatus.HEALTH_VISIBLE = true
 	
 	# one will fight you and one will move to some location
-	$YSort/AntEnemy/StateMachine.enabled = false
+	
+	
+	var thrower_behavior = {
+		"Chase": 1.0,
+		"SimpleShoot": 1.0,
+		"ThrowAphid": 0.3,
+		"Sprint": 0.0,
+		"Shoot": 0.0
+	}
+	$YSort/AntEnemy/StateMachine.enabled = true
+	$YSort/AntEnemy.set_behavior(thrower_behavior)
+	
 	$YSort/RedAphid/StateMachine.enabled = true
 	$YSort/RedAphid2/StateMachine.enabled = true
+	$YSort/RedAphid3/StateMachine.enabled = true
 	$YSort/AntEnemy3.follow_path($AntTarget.global_position)

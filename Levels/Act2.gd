@@ -63,6 +63,12 @@ func scout_dialog():
 	$Positions/PositionTween.start()
 	scout.get_node("SpeechBubble").set_text("Hehehe", 0.6)
 	yield($Positions/PositionTween, "tween_all_completed")
+	$YSort/StoneDust.visible = true
+	$YSort/StoneDust/AnimatedSprite.frame = 0
+	$YSort/StoneDust/AnimatedSprite.connect("animation_finished", $YSort/StoneDust, "queue_free")
+	$YSort/StoneDust2.visible = true
+	$YSort/StoneDust2/AnimatedSprite.frame = 0
+	$YSort/StoneDust2/AnimatedSprite.connect("animation_finished", $YSort/StoneDust2, "queue_free")
 	$ScriptedCamera.stop_following()
 	scout.follow_path($Positions/ScoutRunAway.global_position)
 	yield(scout, "follow_completed")

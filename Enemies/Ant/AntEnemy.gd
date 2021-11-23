@@ -6,6 +6,7 @@ export var SELF_SOFT_COLLISION_STRENGTH := 7000.0
 onready var State: Dictionary
 
 onready var anchor := $Anchor as Node2D
+onready var throw_origin := $ThrowOrigin as Node2D
 
 onready var animation_state := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 onready var animation_tree := $AnimationTree as AnimationTree

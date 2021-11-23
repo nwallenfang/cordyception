@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Enemies/RedAphid/red_aphid.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.gd" type="Script" id=2]
@@ -6,18 +6,19 @@
 [ext_resource path="res://Enemies/RedAphid/States/Idle.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/RedAphid/States/Wander.gd" type="Script" id=5]
 [ext_resource path="res://Enemies/RedAphid/States/FollowMother.gd" type="Script" id=6]
-[ext_resource path="res://Enemies/RedAphid/States/GetShot.gd" type="Script" id=7]
+[ext_resource path="res://Enemies/RedAphid/States/GetThrown.gd" type="Script" id=7]
 [ext_resource path="res://Enemies/RedAphid/States/Ignite.gd" type="Script" id=8]
 [ext_resource path="res://Enemies/RedAphid/States/Chase.gd" type="Script" id=9]
 [ext_resource path="res://Enemies/RedAphid/States/Distracted.gd" type="Script" id=10]
 [ext_resource path="res://Enemies/RedAphid/States/Roll.gd" type="Script" id=11]
 [ext_resource path="res://Enemies/ScentRay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=13]
+[ext_resource path="res://Shadows/aphid.png" type="Texture" id=14]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 13 )
-shader_param/active = true
+shader_param/active = false
 
 [sub_resource type="Animation" id=2]
 length = 0.8
@@ -403,6 +404,10 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
+[sub_resource type="Curve" id=23]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 294.232, 0, 0, Vector2( 0.449393, 79.0909 ), 0.0, 0.0, 0, 0, Vector2( 0.910931, 0 ), -331.472, 0.0, 0, 0 ]
+
 [sub_resource type="CircleShape2D" id=18]
 
 [sub_resource type="Animation" id=19]
@@ -474,10 +479,10 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=21]
-radius = 9.0
+radius = 16.5076
 
 [sub_resource type="CircleShape2D" id=22]
-radius = 13.5093
+radius = 15.0
 
 [node name="RedAphid" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
@@ -485,13 +490,17 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.235294 )
+position = Vector2( 0, 6.5 )
+texture = ExtResource( 14 )
+
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.947346, 0.359375, 1 )
 material = SubResource( 1 )
 position = Vector2( 0, -0.881467 )
 texture = ExtResource( 1 )
 hframes = 22
-frame = 15
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle_right"
@@ -507,6 +516,7 @@ anims/walk_left = SubResource( 10 )
 anims/walk_right = SubResource( 11 )
 
 [node name="IgniteArea" type="Area2D" parent="."]
+visible = false
 monitoring = false
 monitorable = false
 collision_layer = 0
@@ -536,8 +546,11 @@ script = ExtResource( 5 )
 [node name="FollowMother" type="Node2D" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="GetShot" type="Node2D" parent="StateMachine"]
+[node name="GetThrown" type="Node2D" parent="StateMachine"]
 script = ExtResource( 7 )
+fly_curve = SubResource( 23 )
+
+[node name="Tween" type="Tween" parent="StateMachine/GetThrown"]
 
 [node name="Distracted" type="Node2D" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -592,4 +605,3 @@ shape = SubResource( 22 )
 
 [connection signal="body_entered" from="IgniteArea" to="." method="_on_IgniteArea_body_entered"]
 [connection signal="body_entered" from="RollCollision" to="." method="_on_RollCollision_body_entered"]
-[connection signal="area_entered" from="SoftCollision" to="." method="_on_SoftCollision_area_entered"]

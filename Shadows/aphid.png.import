@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ant_enemy.png-2cde547ea3106c257cd7209f39b9f5c8.stex"
+path="res://.import/aphid.png-55f561467c11d37caca53326fc956204.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/ant_enemy.png"
-dest_files=[ "res://.import/ant_enemy.png-2cde547ea3106c257cd7209f39b9f5c8.stex" ]
+source_file="res://Shadows/aphid.png"
+dest_files=[ "res://.import/aphid.png-55f561467c11d37caca53326fc956204.stex" ]
 
 [params]
 

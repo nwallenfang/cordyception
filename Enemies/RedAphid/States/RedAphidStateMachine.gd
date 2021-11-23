@@ -6,12 +6,10 @@ onready var label_was_visible = get_parent().get_node("StateLabel").visible
 func start():
 	enabled = true
 	get_parent().get_node("StateLabel").visible = label_was_visible
-#	get_parent().get_node("Body/Hitbox").set_deferred("monitoring", true)
-#	get_parent().get_node("Body/Hitbox").set_deferred("monitorable", true)
-#	get_parent().get_node("Body/Hurtbox").set_deferred("monitoring", true)
-#	get_parent().get_node("Body/Hurtbox").set_deferred("monitorable", true)
-
-	# stop all animations etc.
+	if get_parent().mother != null:
+		set_mother_behaviour()
+	else:
+		set_attack_behaviour()
 
 
 		
@@ -31,6 +29,18 @@ func set_enabled(enable: bool):
 	else:
 		stop()
 
+
+func set_mother_behaviour():
+	$FollowMother.RELATIVE_TRANSITION_CHANCE = 1
+	$Roll.RELATIVE_TRANSITION_CHANCE = 0
+	$Chase.RELATIVE_TRANSITION_CHANCE = 0
+	idle_transition_chance = build_absolute_transition_chances()
+
+func set_attack_behaviour():
+	$FollowMother.RELATIVE_TRANSITION_CHANCE = 0.2
+	$Roll.RELATIVE_TRANSITION_CHANCE = 0.5
+	$Chase.RELATIVE_TRANSITION_CHANCE = 1
+	idle_transition_chance = build_absolute_transition_chances()
 
 func process(delta: float) -> void:
 	if not enabled:

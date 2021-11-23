@@ -17,7 +17,7 @@ func should_stop_chasing(distance: float) -> bool:
 	var random_decider = randf()
 	return random_decider < stop_chase_probability
 
-export var CHASE_ACCELERATION := 2200.0
+export var CHASE_ACCELERATION := 110000.0
 var starting_point: Vector2
 var full_length: float
 var progress: float
@@ -41,4 +41,4 @@ func process(delta: float, first_time_entering: bool):
 		parent.animation_tree.set("parameters/Walk/blend_position", direction_vector)
 
 	
-	parent.add_acceleration(CHASE_ACCELERATION * direction_vector)	
+	parent.add_acceleration(delta * CHASE_ACCELERATION * direction_vector)

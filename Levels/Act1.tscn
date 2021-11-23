@@ -260,7 +260,7 @@ polygon = PoolVector2Array( -434.421, -173.577, -434.421, 85.6704, -251.284, 287
 [node name="boundary2" type="StaticBody2D" parent="Boundaries"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries/boundary2"]
-polygon = PoolVector2Array( 5517.35, 741.116, 4572.28, 281.931, 4235.9, -892.728, 4491.47, -1319.03, 5184.37, -1567.94, 6650.89, -1857.21, 7158.8, -1591.48, 8171.25, -1793.71, 8013.17, -927.221, 8304.5, -951.461, 8245.76, -1816.44, 7754.54, -2248.93, 6574.54, -2339.69, 5517.35, -2414.45, 4951.38, -2291.64, 4283.96, -2200.87, 4086.4, -1319.88, 4081.06, -300.059, 4545.59, 490.167, 5378.53, 842.564 )
+polygon = PoolVector2Array( 5517.35, 741.116, 4572.28, 281.931, 4359, -922.26, 4588, -1690.26, 5944, -1847.26, 7739, -1748.26, 8013.17, -927.221, 8304.5, -951.461, 8245.76, -1816.44, 7754.54, -2248.93, 4283.96, -2200.87, 4081.06, -300.059, 4545.59, 490.167, 5378.53, 842.564 )
 
 [node name="boundary3" type="StaticBody2D" parent="Boundaries"]
 
@@ -319,6 +319,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
+position = Vector2( -45, 4 )
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
 shape = SubResource( 9 )
@@ -374,7 +375,7 @@ position = Vector2( 6204.12, -665.979 )
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 10 )]
-position = Vector2( 5725, 1019.74 )
+position = Vector2( 5683, 1163.74 )
 rotation = 0.765485
 scale = Vector2( 1.42919, -0.149641 )
 

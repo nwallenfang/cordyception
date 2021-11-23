@@ -10,8 +10,14 @@ func process(delta, first_time_entering):
 		#
 		# CODE
 		#
-		state_machine.transition_deferred("Idle")
+		pass
 
 	#
 	# CODE
 	#
+
+	if first_time_entering:
+		#
+		# CODE
+		#
+		state_machine.transition_deferred("Idle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Enemies/Ant/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -24,7 +24,7 @@
 [ext_resource path="res://Enemies/Ant/States/FollowPath.gd" type="Script" id=22]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Enemies/Ant/States/SimpleShoot.gd" type="Script" id=24]
-[ext_resource path="res://Enemies/Ant/States/FollowPathObject.gd" type="Script" id=25]
+[ext_resource path="res://Enemies/Ant/States/ThrowAphid.gd" type="Script" id=25]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -1191,14 +1191,8 @@ anims/shoot_single = SubResource( 15 )
 script = ExtResource( 22 )
 RELATIVE_TRANSITION_CHANCE = 0.0
 
-[node name="FollowPathObject" type="Node2D" parent="StateMachine"]
+[node name="ThrowAphid" type="Node2D" parent="StateMachine"]
 script = ExtResource( 25 )
-RELATIVE_TRANSITION_CHANCE = 0.0
-
-[node name="Path" type="Path2D" parent="StateMachine/FollowPathObject"]
-curve = SubResource( 16 )
-
-[node name="PathFollow2D" type="PathFollow2D" parent="StateMachine/FollowPathObject/Path"]
 
 [node name="StateLabel" type="Label" parent="."]
 anchor_bottom = 0.147

@@ -49,22 +49,22 @@ func wave1():
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
 	
-	$ScriptedCamera.follow(shot_caller, 1.8)
-	yield($ScriptedCamera, "follow_target_reached")
-	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
-	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
-	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
-	yield(shot_caller_speech, "dialog_completed")
-	cordy.set_eyes("bored")
-	cordy.say("Pfft..")
-	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
-	yield(shot_caller_speech, "dialog_completed")
-
-	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
-	yield(shot_caller_speech, "dialog_completed")
-	$ScriptedCamera.stop_following()
+#	$ScriptedCamera.follow(shot_caller, 1.8)
+#	yield($ScriptedCamera, "follow_target_reached")
+#	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
+#	yield(shot_caller_speech, "dialog_completed")
+#	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
+#	yield(shot_caller_speech, "dialog_completed")
+#	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
+#	yield(shot_caller_speech, "dialog_completed")
+#	cordy.set_eyes("bored")
+#	cordy.say("Pfft..")
+#	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
+#	yield(shot_caller_speech, "dialog_completed")
+#
+#	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
+#	yield(shot_caller_speech, "dialog_completed")
+#	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
 	cordy.set_eyes("happy")	
@@ -86,8 +86,9 @@ func wave1():
 	GameEvents.trigger_unique_event("arena_wave2")
 	
 func wave2():
-	print("wave2")
-	pass
+	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+
 
 
 func reset():
@@ -97,3 +98,12 @@ func reset():
 
 func _on_Wave1TriggerZone_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("arena_wave1")
+
+func _process(delta):
+	if Input.is_action_just_pressed("kill_all_enemies"):
+		print("kill all")
+		for child in $YSort/Wave1Enemies.get_children():
+			if child is AntEnemy:
+				var ant_enemy = child as AntEnemy
+				if ant_enemy.state_machine.enabled:
+					ant_enemy.call_deferred("queue_free")

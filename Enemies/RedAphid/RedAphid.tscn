@@ -404,13 +404,13 @@ tracks/0/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Curve" id=23]
+[sub_resource type="Curve" id=18]
 max_value = 100.0
 _data = [ Vector2( 0, 0 ), 0.0, 294.232, 0, 0, Vector2( 0.449393, 79.0909 ), 0.0, 0.0, 0, 0, Vector2( 0.910931, 0 ), -331.472, 0.0, 0, 0 ]
 
-[sub_resource type="CircleShape2D" id=18]
+[sub_resource type="CircleShape2D" id=19]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=20]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:material:shader_param/active")
@@ -451,7 +451,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 0.947346, 0.359375, 1 ), Color( 1.1, 1.2, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -478,10 +478,10 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=22]
 radius = 16.5076
 
-[sub_resource type="CircleShape2D" id=22]
+[sub_resource type="CircleShape2D" id=23]
 radius = 15.0
 
 [node name="RedAphid" type="KinematicBody2D"]
@@ -548,7 +548,7 @@ script = ExtResource( 6 )
 
 [node name="GetThrown" type="Node2D" parent="StateMachine"]
 script = ExtResource( 7 )
-fly_curve = SubResource( 23 )
+fly_curve = SubResource( 18 )
 
 [node name="Tween" type="Tween" parent="StateMachine/GetThrown"]
 
@@ -582,26 +582,26 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 18 )
+shape = SubResource( 19 )
 
 [node name="ExplosionPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rest"
-anims/ignite = SubResource( 19 )
-anims/rest = SubResource( 20 )
+anims/ignite = SubResource( 20 )
+anims/rest = SubResource( 21 )
 
 [node name="RollCollision" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RollCollision"]
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="SoftCollision" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [connection signal="body_entered" from="IgniteArea" to="." method="_on_IgniteArea_body_entered"]
 [connection signal="body_entered" from="RollCollision" to="." method="_on_RollCollision_body_entered"]

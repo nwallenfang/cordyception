@@ -38,7 +38,7 @@
 [ext_resource path="res://World/Grass/GrassBlade03.tscn" type="PackedScene" id=36]
 [ext_resource path="res://Levels/Checkpoint.tscn" type="PackedScene" id=37]
 
-[sub_resource type="TileSet" id=7]
+[sub_resource type="TileSet" id=1]
 0/name = "moss_3x3.png 0"
 0/texture = ExtResource( 18 )
 0/tex_offset = Vector2( 0, 0 )
@@ -98,7 +98,7 @@ tile_data = PoolIntArray( -1965983, 0, 0, -1965982, 0, 4, -1965981, 0, 4, -19659
 
 [node name="MossMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 7 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -139,7 +139,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 2
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -149,7 +149,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 2
 
 [node name="WoodLong" parent="YSort" instance=ExtResource( 21 )]
 position = Vector2( -131.061, -836.922 )

@@ -8,6 +8,9 @@ onready var w1_ant2 = $YSort/Wave1Enemies/AntEnemy2
 onready var w1_ant3 = $YSort/Wave1Enemies/AntEnemy3
 onready var w1_ant4 = $YSort/Wave1Enemies/AntEnemy4
 
+
+var enemies_killed_baseline: int
+
 func _ready():
 	GameStatus.CURRENT_ACT = self
 	GameStatus.CURRENT_YSORT = $YSort
@@ -30,6 +33,8 @@ func _ready():
 	cordy = GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
 	cordy._on_Growth_animation_finished()
 	
+	enemies_killed_baseline = GameEvents.count('enemy_died')
+	
 	GameEvents.connect("arena_wave1", self, "wave1")
 	GameEvents.connect("arena_wave2", self, "wave2")
 
@@ -40,6 +45,7 @@ func last_enemy_ready():
 	w1_ant2.trigger()
 	w1_ant3.trigger()
 	w1_ant4.trigger()
+
 
 
 func wave1():
@@ -83,9 +89,13 @@ func wave1():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
-	GameEvents.trigger_unique_event("arena_wave2")
+	GameEvents.connect_to_event_count('enemy_died', enemies_killed_baseline + 4, self, "wave2")
+	# fight fight fight
+	
+
 	
 func wave2():
+	GameEvents.trigger_unique_event("arena_wave2")
 	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
 	yield(shot_caller_speech, "dialog_completed")
 

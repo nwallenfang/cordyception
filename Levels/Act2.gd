@@ -73,6 +73,9 @@ func scout_dialog():
 	yield(scout, "follow_completed")
 	scout.queue_free()
 	$ScriptedCamera.back_to_player(1.0)
+	
+	# TODO calculate beginning enemy_dead into this
+	
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true

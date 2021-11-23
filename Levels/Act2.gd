@@ -36,7 +36,6 @@ func _ready():
 func on_dash_tutorial_entered(body: Node):
 	GameStatus.DASH_ENABLED = true
 
-
 func reset():
 	pass
 

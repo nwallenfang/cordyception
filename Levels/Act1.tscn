@@ -55,39 +55,39 @@
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -20.4097, 10.4838, 0, 0, 0, 0, -5.91187, 16.4893, 0, 0, 0, 0, 5.0874, 18.4934, 0, 0, 0, 0, 16.0896, 12.9975, 0, 0, 0, 0, 22.5925, 4.99991 )
 }
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 300, 266 )
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=9]
 height = 207.425
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=10]
 radius = 579.527
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 596, 206 )
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=12]
 radius = 299.002
 
 [node name="Act1" type="Node2D"]
@@ -157,7 +157,7 @@ scale = Vector2( 2, 2 )
 [node name="AphidPath" parent="YSort/DandelionRoom/AphidPath" index="0"]
 position = Vector2( -2.5, -1.00095 )
 z_index = 1
-curve = SubResource( 11 )
+curve = SubResource( 3 )
 
 [node name="PathFollow2D" parent="YSort/DandelionRoom/AphidPath/AphidPath" index="0"]
 position = Vector2( -20.4097, 10.4838 )
@@ -191,27 +191,23 @@ position = Vector2( 10150.3, -682.466 )
 position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 5 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
 position = Vector2( -22.7488, -27.5947 )
@@ -222,27 +218,11 @@ arrow_pos = 0.3
 position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 frame = 18
 
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
-parameters/playback = SubResource( 6 )
+parameters/playback = SubResource( 7 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
 position = Vector2( 26.9094, -31.0244 )
@@ -328,7 +308,7 @@ texture = ExtResource( 26 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialAphid/Area2D" index="0"]
 position = Vector2( -36, 299 )
-shape = SubResource( 12 )
+shape = SubResource( 8 )
 
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
@@ -341,7 +321,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 position = Vector2( 513.12, -1849.74 )
@@ -351,7 +331,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -360,7 +340,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
 position = Vector2( -70, -48 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="Zone4" type="Area2D" parent="Detector"]
 position = Vector2( 4809.12, -1598.74 )
@@ -369,10 +349,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -229, -54 )
-shape = SubResource( 10 )
+shape = SubResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6235.66, -12.3193 )
+position = Vector2( 6235.67, -12.3193 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

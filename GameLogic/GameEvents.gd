@@ -21,6 +21,8 @@ signal grass_rustle
 
 var EVENT_COUNTER: Dictionary = {}  # name -> int 
 
+# for events that don't reset upon death
+var PERSISTENT_EVENT_COUNTER: Dictionary = {}
 
 func trigger_event(event_name: String):
 	if EVENT_COUNTER.has(event_name):
@@ -29,7 +31,14 @@ func trigger_event(event_name: String):
 		EVENT_COUNTER[event_name] = 1
 		
 	emit_signal(event_name)
-	
+
+func trigger_persistent_event(event_name: String):
+	if EVENT_COUNTER.has(event_name):
+		EVENT_COUNTER[event_name] += 1
+	else:
+		EVENT_COUNTER[event_name] = 1
+		
+	emit_signal(event_name)
 	
 func trigger_event_with_arg(event_name: String, arg):
 	if EVENT_COUNTER.has(event_name):

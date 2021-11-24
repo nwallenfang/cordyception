@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -159,6 +159,12 @@ _data = {
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 63.9373, -221.726, 0, 0, 0, 0, 484.151, -46.5986, 0, 0, 0, 0, 882.662, 58.4321, 0, 0, 0, 0, 945.174, 271.328, 0, 0, 0, 0, 852.347, 454.431, 0, 0, 0, 0, 707.16, 732.651 )
+}
+
+[sub_resource type="Curve2D" id=11]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -3009.38, 702.751, 0, 0, 0, 0, -2964.6, 1005.83, 0, 0, 0, 0, -2706.55, 1311.24, 0, 0, 0, 0, -2443.97, 1524.6, 0, 0, 0, 0, -2329.59, 1816.49 )
 }
 
 [sub_resource type="Curve2D" id=10]
@@ -727,14 +733,20 @@ position = Vector2( 2090.27, -5233.05 )
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid2" index="0"]
 curve = SubResource( 9 )
 
+[node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid2/AphidPath" index="0"]
+position = Vector2( 63.9373, -221.726 )
+
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid2" index="1"]
 scale = Vector2( 2, 2 )
 
 [node name="AphidPathWithAphid3" parent="YSort/Aphids" instance=ExtResource( 38 )]
 position = Vector2( 2090.27, -5233.05 )
 
+[node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid3" index="0"]
+curve = SubResource( 11 )
+
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid3/AphidPath" index="0"]
-position = Vector2( 63.9373, -221.726 )
+position = Vector2( -3009.38, 702.751 )
 
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid3" index="1"]
 scale = Vector2( 2, 2 )
@@ -746,7 +758,7 @@ position = Vector2( 2090.27, -5233.05 )
 curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid4/AphidPath" index="0"]
-position = Vector2( -3009.38, 702.751 )
+position = Vector2( -736.333, 2335.82 )
 
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid4" index="1"]
 scale = Vector2( 2, 2 )

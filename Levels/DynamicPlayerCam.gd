@@ -12,5 +12,6 @@ func update_global_position():
 	global_position = (1.0 - proportion) * GameStatus.CURRENT_PLAYER.global_position + proportion * target.global_position
 
 func _physics_process(delta: float) -> void:
-	if target != null:
-		update_global_position()
+	if is_instance_valid(target):
+		if target != null:
+			update_global_position()

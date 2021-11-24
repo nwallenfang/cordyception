@@ -140,7 +140,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 8456.95, -712.349 )
+position = Vector2( 15915.1, 926.021 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -170,7 +170,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 2
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -181,7 +181,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 2
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -191,7 +191,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
+frame = 3
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -201,7 +201,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
+frame = 3
 
 [node name="WoodLong" parent="YSort" instance=ExtResource( 21 )]
 position = Vector2( -131.061, -836.922 )
@@ -701,7 +701,6 @@ position = Vector2( -71.0439, -24.4661 )
 
 [node name="Aphid" parent="YSort/AphidPathWithAphid" index="1"]
 visible = false
-mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
 
 [node name="RedAphid" parent="YSort/AphidPathWithAphid" instance=ExtResource( 41 )]
 mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
@@ -747,7 +746,7 @@ position = Vector2( 10.6787, 78.7555 )
 texture = ExtResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8456.68, -715.51 )
+position = Vector2( 15915.5, 920.072 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -854,7 +853,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ZoneScout"]
-position = Vector2( 363.481, 136.219 )
+position = Vector2( 309.542, 160.192 )
 shape = SubResource( 4 )
 
 [node name="ShooterTrigger" type="Area2D" parent="Detector"]
@@ -899,6 +898,8 @@ scale = Vector2( -1.73909, 0.406724 )
 shape = SubResource( 7 )
 
 [node name="SmallChase2" type="Area2D" parent="Detector"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/SmallChase2"]
 position = Vector2( 6139, 1004 )

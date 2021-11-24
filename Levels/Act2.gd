@@ -23,6 +23,8 @@ func _ready():
 	
 	GameEvents.connect("scout_dialog", self, "scout_dialog")
 	GameEvents.connect("small_chase", self, "small_chase")
+	GameEvents.connect("room_checkpoint", self, "room_checkpoint")
+	GameEvents.connect("room_cutscene", self, "room_cutscene")
 	
 	scout.set_facing_direction(Vector2.LEFT)
 	scout.get_node("StateMachine").enabled = false
@@ -174,43 +176,7 @@ func _on_SmallChase2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("small_chase")
 
 func _on_ZoneRoomCutscene_body_entered(body: Node) -> void:
-	scout.global_position = $Positions/ScoutAwayFromStick.global_position
-	GameStatus.MOVE_ENABLED = false
-	GameStatus.SPRAY_ENABLED = false
-	GameStatus.DASH_ENABLED = false
-	$ScriptedCamera.follow(scout)
-	var runpath := []
-	for i in range(3):
-		runpath.append(get_node("Positions/ScoutRoom" + str(i+1)).global_position)
-	scout.follow_path_array(runpath)
-	for i in range(4):
-		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
-	yield(scout, "follow_completed")
-	thrower.set_facing_direction(Vector2.DOWN)
-	scout.follow_path($Positions/ScoutRoom4.global_position)
-	yield(scout, "follow_completed")
-	scout.set_facing_direction(Vector2.UP)
-	scout.get_node("SpeechBubble").set_text("We have an emergency!", 1.0)
-	yield(scout.get_node("SpeechBubble"), "dialog_completed")
-	scout.get_node("SpeechBubble").set_text("A [shake]raging cordyceps[/shake] is headed our way", 1.0)
-	yield(scout.get_node("SpeechBubble"), "dialog_completed")
-	thrower.get_node("SpeechBubble").set_text("Oh nyo", 1.0)
-	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
-	scout.get_node("SpeechBubble").set_text("It already [color=#ff0000][shake]killed[/shake][/color] some of us", 1.0)
-	yield(scout.get_node("SpeechBubble"), "dialog_completed")
-	thrower.get_node("SpeechBubble").set_text("Ok, notify the others", 1.0)
-	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
-	thrower.get_node("SpeechBubble").set_text("We'll keep guarding this place", 1.0)
-	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
-	var runpath2 := []
-	for i in range(5):
-		runpath2.append(get_node("Positions/ScoutRoomExit" + str(i+1)).global_position)
-	scout.follow_path_array(runpath2)
-	$ScriptedCamera.back_to_player()
-	yield($ScriptedCamera, "back_at_player")
-	GameStatus.MOVE_ENABLED = true
-	GameStatus.SPRAY_ENABLED = true
-	GameStatus.DASH_ENABLED = true
+	GameEvents.trigger_unique_event("room_cutscene")
 
 var room_agitated := false
 func agitate_everyone():
@@ -264,13 +230,56 @@ func _on_RightAgitator_body_entered(body: Node) -> void:
 		agitate_everyone()
 
 
-func _on_TriggerArea_body_entered(body: Node) -> void:
+func room_cutscene():
+	scout.global_position = $Positions/ScoutAwayFromStick.global_position
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	GameStatus.DASH_ENABLED = false
+	$ScriptedCamera.follow(scout)
+	var runpath := []
+	for i in range(3):
+		runpath.append(get_node("Positions/ScoutRoom" + str(i+1)).global_position)
+	scout.follow_path_array(runpath)
+	for i in range(4):
+		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
+	yield(scout, "follow_completed")
+	thrower.set_facing_direction(Vector2.DOWN)
+	scout.follow_path($Positions/ScoutRoom4.global_position)
+	yield(scout, "follow_completed")
+	scout.set_facing_direction(Vector2.UP)
+	scout.get_node("SpeechBubble").set_text("We have an emergency!", 1.0)
+	yield(scout.get_node("SpeechBubble"), "dialog_completed")
+	scout.get_node("SpeechBubble").set_text("A [shake]raging cordyceps[/shake] is headed our way", 1.0)
+	yield(scout.get_node("SpeechBubble"), "dialog_completed")
+	thrower.get_node("SpeechBubble").set_text("Oh nyo", 1.0)
+	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
+	scout.get_node("SpeechBubble").set_text("It already [color=#ff0000][shake]killed[/shake][/color] some of us", 1.0)
+	yield(scout.get_node("SpeechBubble"), "dialog_completed")
+	thrower.get_node("SpeechBubble").set_text("Ok, notify the others", 1.0)
+	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
+	thrower.get_node("SpeechBubble").set_text("We'll keep guarding this place", 1.0)
+	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
+	var runpath2 := []
+	for i in range(5):
+		runpath2.append(get_node("Positions/ScoutRoomExit" + str(i+1)).global_position)
+	scout.follow_path_array(runpath2)
+	$ScriptedCamera.back_to_player()
+	yield($ScriptedCamera, "back_at_player")
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.DASH_ENABLED = true
+
+func room_checkpoint():
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	scout.queue_free()
 	thrower.global_position = $Positions/ThrowerNewPosition.global_position
 	thrower.set_facing_direction(Vector2.RIGHT)
+
+func _on_TriggerArea_body_entered(body: Node) -> void:
+	yield(get_tree().create_timer(0.1), "timeout")
+	GameEvents.trigger_unique_event("room_checkpoint")
 
 
 func _on_ShooterTrigger2_body_entered(body: Node) -> void:

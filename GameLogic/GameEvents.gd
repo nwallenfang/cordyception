@@ -11,6 +11,8 @@ signal joke_attack
 signal scout_dialog
 signal small_chase
 signal stick_close
+signal room_checkpoint
+signal room_cutscene
 
 # arena
 signal arena_wave1

@@ -10,7 +10,7 @@ signal movement_completed
 
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
-		parent.animation_state.travel("Walk")
+		parent.animation_player.play("fly_move")
 		done = false
 	if not done:
 		var distance_vec := (target_position - parent.global_position) as Vector2

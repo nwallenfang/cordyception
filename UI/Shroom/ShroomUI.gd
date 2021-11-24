@@ -1,6 +1,9 @@
 extends Control
 class_name Cordy
 
+
+signal speech_done
+
 func grow() -> void:
 	$Growth.visible = true
 	$Growth.playing = true
@@ -34,12 +37,15 @@ func is_bottom_talking() -> bool:
 	return talking_bubbles / 4 == 1
 
 func _on_SpeechBubbleLeft_writing_completed() -> void:
+	emit_signal("speech_done")
 	talking_bubbles -= 1
 
 func _on_SpeechBubbleRight_writing_completed() -> void:
+	emit_signal("speech_done")
 	talking_bubbles -= 2
 
 func _on_SpeechBubbleBottom_writing_completed() -> void:
+	emit_signal("speech_done")
 	talking_bubbles -= 4
 
 func say_left(text: String, duration: float = -1) -> bool:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Collision/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Enemies/Phoridae/PhoridaeProjectileSpawner.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Enemies/Phoridae/PhoridaeStats.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=17]
+[ext_resource path="res://Enemies/Ant/States/FollowPath.gd" type="Script" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 11.6124
@@ -245,6 +246,10 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="Shoot" type="Node2D" parent="StateMachine"]
 script = ExtResource( 14 )
+RELATIVE_TRANSITION_CHANCE = 0.0
+
+[node name="FollowPath" type="Node2D" parent="StateMachine"]
+script = ExtResource( 18 )
 RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ScentRay" parent="." instance=ExtResource( 9 )]

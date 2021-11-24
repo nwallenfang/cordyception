@@ -20,6 +20,31 @@ func _ready():
 	stats.set_max_health(stats.MAX_HEALTH)
 	
 
+var was_enabled_previously = false
+func follow_path(target_position: Vector2):
+	was_enabled_previously = $StateMachine.enabled
+	$StateMachine/FollowPath.target_position = target_position
+	# DON'T transition_deferred here because the sm isn't enabled yet
+	# else the deferred transition just gets overwritten and the sm runs normally
+	
+	$StateMachine.transition_to("FollowPath")
+	$StateMachine.enabled = true
+	
+	yield($StateMachine/FollowPath, "movement_completed")
+	if not was_enabled_previously:
+		$StateMachine.enabled = false
+		
+	emit_signal("follow_completed")
+
+func follow_path_array(positions: Array):
+	was_enabled_previously = $StateMachine.enabled
+	for position in positions:
+		$StateMachine.transition_to("FollowPath")
+		$StateMachine/FollowPath.target_position = position
+		$StateMachine.enabled = true
+		yield($StateMachine/FollowPath, "movement_completed")
+	emit_signal("follow_completed")
+
 const FLY_DUST = preload("res://Enemies/Phoridae/FlyDust.tscn")
 func create_fly_dust() -> void:
 	var dust = FLY_DUST.instance()

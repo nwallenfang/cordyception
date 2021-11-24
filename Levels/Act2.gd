@@ -77,6 +77,9 @@ func scout_dialog():
 	yield(get_tree().create_timer(1.0), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "back_at_player")
+	
+	# TODO calculate beginning enemy_dead into this
+	
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true

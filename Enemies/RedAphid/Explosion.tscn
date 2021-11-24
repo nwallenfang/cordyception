@@ -6,10 +6,10 @@
 [ext_resource path="res://Enemies/RedAphid/Explosion.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 62.5005
+radius = 55.509
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 125.25
+radius = 124.504
 
 [sub_resource type="Animation" id=3]
 resource_name = "explosion"

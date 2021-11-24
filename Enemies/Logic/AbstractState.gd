@@ -10,7 +10,7 @@ onready var State: Dictionary  # {"Idle" -> IdleStateNode, ...}
 onready var parent = get_parent().get_parent()
 
 func back_to_idle() -> void:
-	if state_machine.state.name == self.name:
+	if state_machine.state.name == self.name and state_machine.enabled:
 		state_machine.transition_deferred("Idle")
 
 func _ready() -> void:

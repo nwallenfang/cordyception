@@ -1,6 +1,6 @@
 extends AbstractState
 
-export var FOLLOW_ACCELERATION := 2200.0
+export var FOLLOW_ACCELERATION := 140000.0
 export var STOP_DISTANCE := 30.0
 
 # should be a global position to make sure
@@ -22,6 +22,6 @@ func process(delta: float, first_time_entering: bool):
 			emit_signal("movement_completed")
 			done = true
 			return
-		
+		parent.animation_state.travel("Walk")
 		parent.animation_tree.set("parameters/Walk/blend_position", distance_vec)
-		parent.add_acceleration(FOLLOW_ACCELERATION * distance_vec.normalized())
+		parent.add_acceleration(delta * FOLLOW_ACCELERATION * distance_vec.normalized())

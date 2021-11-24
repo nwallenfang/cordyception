@@ -56,7 +56,6 @@ func get_state() -> String:
 #	# if it was disabled before
 		
 func shoot_single_projectile(target_position: Vector2):
-	was_enabled_previously = $StateMachine.enabled
 	$StateMachine/SimpleShoot.start_shooting_single_projectile(target_position)
 
 
@@ -75,7 +74,7 @@ func follow_path(target_position: Vector2):
 		$StateMachine.enabled = false
 		
 	emit_signal("follow_completed")
-	
+
 func follow_path_array(positions: Array):
 	was_enabled_previously = $StateMachine.enabled
 	for position in positions:

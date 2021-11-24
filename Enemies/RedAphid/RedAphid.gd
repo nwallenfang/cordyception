@@ -12,6 +12,8 @@ var ready_to_throw := true
 var throw_origin : Node2D = null
 signal ready_to_launch
 
+export var is_full_attacker := false
+
 func set_mother_path(path: NodePath):
 	if path != "":
 		mother_path = path

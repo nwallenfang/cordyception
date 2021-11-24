@@ -19,9 +19,12 @@ func _ready():
 	GameStatus.MOUSE_CAPTURE = true
 	
 	GameEvents.connect("scout_dialog", self, "scout_dialog")
+	GameEvents.connect("small_chase", self, "small_chase")
 	
 	scout.set_facing_direction(Vector2.LEFT)
 	scout.get_node("StateMachine").enabled = false
+	
+	$YSort/AphidPathWithAphid/RedAphid.get_node("StateMachine").start()
 	
 	var shooter_behavior = {
 		"Chase": 0.0,
@@ -32,6 +35,7 @@ func _ready():
 	var lower_health := 8 # default is 20
 	
 	shooter.set_behavior(shooter_behavior)
+	shooter.get_node("EnemyStats").set_max_health(lower_health)
 
 func on_dash_tutorial_entered(body: Node):
 	GameStatus.DASH_ENABLED = true
@@ -70,13 +74,77 @@ func scout_dialog():
 	$YSort/StoneDust2/AnimatedSprite.connect("animation_finished", $YSort/StoneDust2, "queue_free")
 	$ScriptedCamera.stop_following()
 	scout.follow_path($Positions/ScoutRunAway.global_position)
-	yield(scout, "follow_completed")
-	scout.queue_free()
+	yield(get_tree().create_timer(1.0), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
+	yield($ScriptedCamera, "back_at_player")
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 
-
 func _on_ShooterTrigger_body_entered(body):
 	shooter.state_machine.enabled = true
+
+func _on_SmallChase_body_entered(body: Node) -> void:
+	scout.global_position = $Positions/ScoutRunAway.global_position
+	GameEvents.trigger_unique_event("small_chase")
+
+func _on_StickClose_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("stick_close")
+
+const DYNAMIC_CAM = preload("res://Levels/DynamicPlayerCam.tscn")
+func small_chase():
+	var dyn_cam = DYNAMIC_CAM.instance()
+	GameStatus.CURRENT_YSORT.add_child(dyn_cam)
+	dyn_cam.target = scout
+	$ScriptedCamera.follow(dyn_cam)
+	scout.state_machine.get_node("FollowPath").FOLLOW_ACCELERATION += 50000
+	var runpath := []
+	for i in range(5):
+		runpath.append(get_node("Positions/ScoutStick" + str(i+1)).global_position)
+	scout.follow_path_array(runpath)
+	yield(get_tree().create_timer(1.8), "timeout")
+	scout.state_machine.execute_state_once("SimpleShoot")
+	yield(get_tree().create_timer(1.5), "timeout")
+	scout.get_node("SpeechBubble").set_text("REEEEE", 0.6)
+	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
+	
+	yield(scout.get_node("SpeechBubble"), "dialog_completed")
+	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
+	scout.state_machine.execute_state_once("Shoot")
+	scout.get_node("SpeechBubble").set_text("Get away from me!", 1.0)
+	yield(scout, "follow_completed")
+	scout.get_node("StateMachine").stop()
+	$ScriptedCamera.back_to_player()
+	$Detector/StickClose.monitorable = true
+	$Detector/StickClose.monitoring = true
+	yield(GameEvents, "stick_close")
+	stick_close()
+	
+
+func stick_close():
+	$YSort/MoveStick/Tween.interpolate_property($YSort/MoveStick, "rotation", 0, deg2rad(25.0), 0.5)
+	$YSort/MoveStick/Tween.start()
+	scout.follow_path($Positions/ScoutStickPush.global_position)
+	yield(get_tree().create_timer(0.2), "timeout")
+	$YSort/StickDust.visible = true
+	$YSort/StickDust/AnimatedSprite.frame = 0
+	$YSort/StickDust/AnimatedSprite.connect("animation_finished", $YSort/StickDust, "queue_free")
+	$YSort/StickDust2.visible = true
+	$YSort/StickDust2/AnimatedSprite.frame = 0
+	$YSort/StickDust2/AnimatedSprite.connect("animation_finished", $YSort/StickDust2, "queue_free")
+	yield(get_tree().create_timer(.5), "timeout")
+	scout.get_node("SpeechBubble").set_text("Spread your spores somewhere else!", 1.6)
+	yield(get_tree().create_timer(1.3), "timeout")
+	scout.state_machine.execute_state_once("ThrowAphid")
+	yield(scout.state_machine, "state_once_executed")
+	yield(get_tree().create_timer(.2), "timeout")
+	scout.follow_path($Positions/ScoutAwayFromStick.global_position)
+
+
+func _on_TriggerAreaCP22_body_entered(body: Node) -> void:
+	scout.global_position = $Positions/ScoutRunAway.global_position
+
+
+func _on_SmallChase2_body_entered(body: Node) -> void:
+	scout.global_position = $Positions/ScoutRunAway.global_position + Vector2(700.0, 0)
+	GameEvents.trigger_unique_event("small_chase")

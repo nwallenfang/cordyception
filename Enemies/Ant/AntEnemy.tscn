@@ -157,7 +157,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("..")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -166,8 +166,8 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Idle" ],
-"method": "transition_to"
+"args": [  ],
+"method": "back_to_idle"
 } ]
 }
 
@@ -181,7 +181,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3, 0.494453 ),
+"times": PoolRealArray( 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -192,7 +192,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath("..")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -201,8 +201,8 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "Idle" ],
-"method": "transition_to"
+"args": [  ],
+"method": "back_to_idle"
 } ]
 }
 
@@ -216,25 +216,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "shoot_projectiles"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Idle" ],
-"method": "transition_to"
+}, {
+"args": [  ],
+"method": "back_to_idle"
 } ]
 }
 
@@ -248,33 +237,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3, 0.494453 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.3, 0.494453, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "__shoot_single"
 }, {
 "args": [  ],
 "method": "__reset"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Idle" ],
-"method": "transition_to"
+}, {
+"args": [  ],
+"method": "back_to_idle"
 } ]
 }
 
 [sub_resource type="CircleShape2D" id=16]
-radius = 83.491
+radius = 106.216
 
 [sub_resource type="DynamicFont" id=17]
 size = 24
@@ -1547,7 +1525,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 texture = ExtResource( 10 )
 hframes = 54
-frame = 18
+frame = 19
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )
@@ -1720,11 +1698,11 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 script = ExtResource( 25 )
 
 [node name="AphidDetector" type="Area2D" parent="StateMachine/ThrowAphid"]
+visible = false
 collision_layer = 0
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/ThrowAphid/AphidDetector"]
-visible = false
 shape = SubResource( 16 )
 
 [node name="StateLabel" type="Label" parent="."]

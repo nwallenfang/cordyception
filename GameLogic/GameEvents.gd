@@ -9,6 +9,8 @@ signal joke_attack
 
 # act 2
 signal scout_dialog
+signal small_chase
+signal stick_close
 
 # arena
 signal arena_wave1

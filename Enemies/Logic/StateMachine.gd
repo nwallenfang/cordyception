@@ -55,8 +55,25 @@ func transition_to_random_state():
 	else:
 		_transition_to_random_different_state()
 
-func transition_deferred(new_state_name) -> void:
+signal transition_to_idle
+func transition_deferred(new_state_name: String) -> void:
 	call_deferred("transition_to", new_state_name)
+	if new_state_name == "Idle":
+		emit_signal("transition_to_idle")
+
+signal state_once_executed
+func execute_state_once(state_name: String) -> void:
+	var currently_enabled := enabled
+	var prev_state_name = state.name
+	if !currently_enabled:
+		set_enabled(true)
+	first_time_entering = true
+	transition_deferred(state_name)
+	yield(self, "transition_to_idle")
+	if !currently_enabled:
+		set_enabled(false)
+	transition_deferred(prev_state_name)
+	emit_signal("state_once_executed")
 
 func _get_random_next_state(transition_chances: Dictionary):
 		# another day of being an idle enemy ant

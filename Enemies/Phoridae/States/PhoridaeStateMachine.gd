@@ -4,6 +4,10 @@ class_name PhoridaeStateMachine
 
 onready var label_was_visible = get_parent().get_node("StateLabel").visible
 
+
+func _ready() -> void:
+	enabled = false
+
 func start():
 	enabled = true
 	get_parent().get_node("StateLabel").visible = label_was_visible

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -35,6 +35,9 @@
 [ext_resource path="res://World/Acorn.tscn" type="PackedScene" id=33]
 [ext_resource path="res://World/Grass/GrassBlade05.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Effects/Shaders/Wind.shader" type="Shader" id=35]
+[ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Enemies/Phoridae/Phoridae.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=38]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -94,6 +97,19 @@
 3/shapes = [  ]
 3/z_index = 0
 
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/speed = 1.0
+shader_param/minStrength = 0.05
+shader_param/maxStrength = 0.01
+shader_param/strengthScale = 200.0
+shader_param/interval = 3.5
+shader_param/detail = 1.0
+shader_param/distortion = null
+shader_param/heightOffset = null
+shader_param/offset = 0.0
+
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 35 )
@@ -133,21 +149,28 @@ shader_param/distortion = null
 shader_param/heightOffset = null
 shader_param/offset = 0.0
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="Curve2D" id=8]
 resource_local_to_scene = true
-shader = ExtResource( 35 )
-shader_param/speed = 1.0
-shader_param/minStrength = 0.05
-shader_param/maxStrength = 0.01
-shader_param/strengthScale = 200.0
-shader_param/interval = 3.5
-shader_param/detail = 1.0
-shader_param/distortion = null
-shader_param/heightOffset = null
-shader_param/offset = 0.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 155.315, -128.039, 0, 0, 0, 0, 192.866, -480.687, 0, 0, 0, 0, 68.574, -904.998, 0, 0, 0, 0, 80.0167, -1250.06, 0, 0, 0, 0, 549.59, -1394.14, 0, 0, 0, 0, 897.485, -1391.18, 0, 0, 0, 0, 1236.84, -1252.46, 0, 0, 0, 0, 1335.76, -1031.8, 0, 0, 0, 0, 155.315, -128.039 )
+}
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="Curve2D" id=9]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 63.9373, -221.726, 0, 0, 0, 0, 484.151, -46.5986, 0, 0, 0, 0, 882.662, 58.4321, 0, 0, 0, 0, 945.174, 271.328, 0, 0, 0, 0, 852.347, 454.431, 0, 0, 0, 0, 707.16, 732.651 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -736.333, 2335.82, 0, 0, 0, 0, -188.014, 2191.39, 0, 0, 0, 0, 293.003, 2124.3, 0, 0, 0, 0, 794.281, 1848.67, 0, 0, 0, 0, 982.813, 1391.3 )
+}
+
+[sub_resource type="CircleShape2D" id=6]
 radius = 558.998
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 309.958
 
 [node name="Arena" type="Node2D"]
 position = Vector2( -5.18408, -0.020752 )
@@ -185,7 +208,7 @@ rotation = -0.000373805
 position = Vector2( -7656.13, -205.573 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 801.448, -1519.95 )
+position = Vector2( 1369.61, -4499.68 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -232,7 +255,7 @@ rotation = 0.000373805
 [node name="Shroom13" parent="YSort/ShroomsNFlowers" instance=ExtResource( 11 )]
 position = Vector2( 2842.21, -4952.84 )
 rotation = 0.000373805
-color = 2
+color = 1
 
 [node name="Shroom6" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
 position = Vector2( 538.134, -5382.64 )
@@ -252,6 +275,10 @@ position = Vector2( 2873.47, -4087.82 )
 [node name="Shroom10" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
 position = Vector2( 2020.09, -5832.17 )
 color = 0
+
+[node name="Shroom20" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
+position = Vector2( 2536.45, -4946.42 )
+color = 1
 
 [node name="Shroom11" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
 position = Vector2( 131.271, -3282.76 )
@@ -366,7 +393,7 @@ position = Vector2( 1465.96, -4163.75 )
 position = Vector2( 1491.29, -2696.88 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade16" index="2"]
-material = SubResource( 3 )
+material = SubResource( 2 )
 position = Vector2( 6.62301, -45.5393 )
 flip_h = true
 
@@ -380,21 +407,21 @@ position = Vector2( 98.3091, 65.4205 )
 position = Vector2( 1538.96, -2675.65 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade17" index="2"]
-material = SubResource( 4 )
+material = SubResource( 3 )
 flip_h = true
 
 [node name="GrassBlade18" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
 position = Vector2( 1611.92, -2619.52 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade18" index="2"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 flip_h = true
 
 [node name="GrassBlade19" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
 position = Vector2( 1641.47, -2709.32 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade19" index="2"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( 4.46298, -99.674 )
 flip_h = true
 
@@ -411,7 +438,7 @@ position = Vector2( 11.4995, 1.50427 )
 position = Vector2( 1698.99, -5559.34 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade20" index="2"]
-material = SubResource( 3 )
+material = SubResource( 2 )
 position = Vector2( 6.62301, -45.5393 )
 flip_h = true
 
@@ -425,21 +452,21 @@ position = Vector2( 98.3091, 65.4205 )
 position = Vector2( 1746.66, -5538.11 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade21" index="2"]
-material = SubResource( 4 )
+material = SubResource( 3 )
 flip_h = true
 
 [node name="GrassBlade22" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
 position = Vector2( 1819.62, -5481.99 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade22" index="2"]
-material = SubResource( 5 )
+material = SubResource( 4 )
 flip_h = true
 
 [node name="GrassBlade23" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
 position = Vector2( 1849.17, -5571.79 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade23" index="2"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 position = Vector2( 4.46298, -99.674 )
 flip_h = true
 
@@ -451,6 +478,66 @@ position = Vector2( 0.436635, 9.16523 )
 
 [node name="CollisionShape2D" parent="YSort/GrassNThorns/GrassBlade23/Area2D" index="0"]
 position = Vector2( 11.4995, 1.50427 )
+
+[node name="GrassBlade24" parent="YSort/GrassNThorns" instance=ExtResource( 13 )]
+position = Vector2( 9.65796, -4477.98 )
+
+[node name="GrassBlade25" parent="YSort/GrassNThorns" instance=ExtResource( 27 )]
+position = Vector2( 154.2, -4714.45 )
+
+[node name="GrassBlade31" parent="YSort/GrassNThorns" instance=ExtResource( 27 )]
+position = Vector2( 81.2042, -4781.15 )
+
+[node name="GrassBlade26" parent="YSort/GrassNThorns" instance=ExtResource( 15 )]
+position = Vector2( 120.909, -4835.11 )
+
+[node name="GrassBlade27" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
+position = Vector2( -52.1416, -4770.09 )
+
+[node name="GrassBlade28" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( -4.50062, -4820.87 )
+
+[node name="GrassBlade33" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( -26.7268, -4881.27 )
+
+[node name="GrassBlade29" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 225.652, -4766.81 )
+
+[node name="GrassBlade32" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 60.6232, -4928.79 )
+
+[node name="GrassBlade30" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 186.014, -4892.23 )
+
+[node name="GrassBlade34" parent="YSort/GrassNThorns" instance=ExtResource( 13 )]
+position = Vector2( 54.1431, -4541.26 )
+
+[node name="GrassBlade35" parent="YSort/GrassNThorns" instance=ExtResource( 27 )]
+position = Vector2( 166.847, -4536.46 )
+
+[node name="GrassBlade36" parent="YSort/GrassNThorns" instance=ExtResource( 27 )]
+position = Vector2( 93.8512, -4603.16 )
+
+[node name="GrassBlade37" parent="YSort/GrassNThorns" instance=ExtResource( 15 )]
+position = Vector2( 133.556, -4657.11 )
+
+[node name="GrassBlade38" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
+position = Vector2( -39.4946, -4592.09 )
+
+[node name="GrassBlade39" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 8.14642, -4642.88 )
+
+[node name="GrassBlade40" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( -14.0797, -4703.27 )
+
+[node name="GrassBlade41" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 238.299, -4588.82 )
+
+[node name="GrassBlade42" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 73.2702, -4750.79 )
+
+[node name="GrassBlade43" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
+position = Vector2( 198.661, -4714.24 )
 
 [node name="BigElements" type="YSort" parent="YSort"]
 
@@ -602,6 +689,68 @@ position = Vector2( 3671.91, -6707.49 )
 [node name="AntEnemy4" parent="YSort/Wave1Enemies" instance=ExtResource( 25 )]
 position = Vector2( 3532.56, -6504.68 )
 
+[node name="Wave2Enemies" type="YSort" parent="YSort"]
+
+[node name="AntEnemy1" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
+position = Vector2( 3901.86, -6875.94 )
+
+[node name="AntEnemy2" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
+position = Vector2( 4044.93, -7043.6 )
+
+[node name="Phoridae1" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
+position = Vector2( 2880.99, -5972.49 )
+
+[node name="Phoridae2" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
+position = Vector2( 2948.75, -5910.04 )
+
+[node name="Phoridae3" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
+position = Vector2( 2939.87, -5997.44 )
+
+[node name="Aphids" type="YSort" parent="YSort"]
+
+[node name="AphidPathWithAphid" parent="YSort/Aphids" instance=ExtResource( 38 )]
+position = Vector2( 245.141, -4327.22 )
+
+[node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid" index="0"]
+position = Vector2( -0.0116425, 31.1128 )
+curve = SubResource( 8 )
+
+[node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid/AphidPath" index="0"]
+position = Vector2( 155.315, -128.039 )
+
+[node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="AphidPathWithAphid2" parent="YSort/Aphids" instance=ExtResource( 38 )]
+position = Vector2( 2090.27, -5233.05 )
+
+[node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid2" index="0"]
+curve = SubResource( 9 )
+
+[node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid2" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="AphidPathWithAphid3" parent="YSort/Aphids" instance=ExtResource( 38 )]
+position = Vector2( 2090.27, -5233.05 )
+
+[node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid3/AphidPath" index="0"]
+position = Vector2( 63.9373, -221.726 )
+
+[node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid3" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="AphidPathWithAphid4" parent="YSort/Aphids" instance=ExtResource( 38 )]
+position = Vector2( 2090.27, -5233.05 )
+
+[node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid4" index="0"]
+curve = SubResource( 10 )
+
+[node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid4/AphidPath" index="0"]
+position = Vector2( -3009.38, 702.751 )
+
+[node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid4" index="1"]
+scale = Vector2( 2, 2 )
+
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -634,6 +783,12 @@ position = Vector2( 1696.51, -4927.7 )
 [node name="GatePass6" type="Position2D" parent="Positions"]
 position = Vector2( 1702.86, -4867.38 )
 
+[node name="ShroomTalkPos1" type="Position2D" parent="Positions"]
+position = Vector2( 27.5141, -3445.91 )
+
+[node name="ShroomTalkPos2" type="Position2D" parent="Positions"]
+position = Vector2( 1693.49, -3404.93 )
+
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource( 32 )]
@@ -651,13 +806,35 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( 10.6907, -35.636 )
-shape = SubResource( 2 )
+shape = SubResource( 6 )
+
+[node name="ShroomDialogZone" type="Area2D" parent="Detector"]
+position = Vector2( -105.606, -3529.87 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
+position = Vector2( 223.248, 247.221 )
+shape = SubResource( 7 )
+
+[node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
+position = Vector2( 1568.11, -3481.72 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
+position = Vector2( 223.248, 247.221 )
+shape = SubResource( 7 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 800.88, -1520.25 )
+position = Vector2( 1367.93, -4500.19 )
 rotation = -0.000373805
 
+[node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]
+
 [connection signal="body_entered" from="Detector/Wave1TriggerZone" to="." method="_on_Wave1TriggerZone_body_entered"]
+[connection signal="body_entered" from="Detector/ShroomDialogZone" to="." method="_on_ShroomDialogZone_body_entered"]
+[connection signal="body_entered" from="Detector/ShroomDialogZone2" to="." method="_on_ShroomDialogZone2_body_entered"]
 
 [editable path="YSort/GrassNThorns/GrassBlade16"]
 [editable path="YSort/GrassNThorns/GrassBlade17"]
@@ -667,4 +844,12 @@ rotation = -0.000373805
 [editable path="YSort/GrassNThorns/GrassBlade21"]
 [editable path="YSort/GrassNThorns/GrassBlade22"]
 [editable path="YSort/GrassNThorns/GrassBlade23"]
+[editable path="YSort/Aphids/AphidPathWithAphid"]
+[editable path="YSort/Aphids/AphidPathWithAphid/Aphid"]
+[editable path="YSort/Aphids/AphidPathWithAphid2"]
+[editable path="YSort/Aphids/AphidPathWithAphid2/Aphid"]
+[editable path="YSort/Aphids/AphidPathWithAphid3"]
+[editable path="YSort/Aphids/AphidPathWithAphid3/Aphid"]
+[editable path="YSort/Aphids/AphidPathWithAphid4"]
+[editable path="YSort/Aphids/AphidPathWithAphid4/Aphid"]
 [editable path="Checkpoints/Checkpoint4"]

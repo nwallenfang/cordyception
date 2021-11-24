@@ -9,7 +9,6 @@ onready var health := MAX_HEALTH setget set_health
 var faded_out =  Color("00ffffff")
 var faded_in = Color("ffffffff")
 func _ready() -> void:
-	print(faded_out)
 	self.modulate = faded_out
 
 func set_max(new_max) -> void:
@@ -28,7 +27,6 @@ func set_health(new_health) -> void:
 		if $FadeTimer.is_stopped():
 			# reset timer
 			$FadeTimer.start()
-		print("fade cooldown")
 		$FadeTimer.start()
 	
 	health = new_health
@@ -44,10 +42,3 @@ func _on_FadeTimer_timeout() -> void:
 	$FadeTween.reset_all()
 	$FadeTween.interpolate_property(self, "modulate", faded_in, faded_out, 1)
 	$FadeTween.start()
-	print("timeout")
-	
-	
-func _physics_process(delta: float) -> void:
-	print(modulate)
-	
-	

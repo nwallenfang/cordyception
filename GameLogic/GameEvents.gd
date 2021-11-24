@@ -15,6 +15,7 @@ signal stick_close
 # arena
 signal arena_wave1
 signal arena_wave2
+signal shroom_to_shroom_talk
 
 signal enemy_died
 signal player_died
@@ -69,16 +70,16 @@ func trigger_event(event_name: String):
 func trigger_event_with_arg(event_name: String, arg):
 	increase_counter(event_name)
 	emit_signal(event_name, arg)
-
-func trigger_persistent_event(event_name: String):
-	increase_counter(event_name)
-	emit_signal(event_name)
-	# TODO
 	
 func trigger_unique_event(event_name: String):
 	if EVENT_COUNTER.has(event_name):
 		return
 	trigger_event(event_name)
+	
+func trigger_unique_event_with_arg(event_name: String, arg):
+	if EVENT_COUNTER.has(event_name):
+		return
+	trigger_event_with_arg(event_name, arg)
 
 
 func connect_to_event_count(event_name: String, event_count: int, object: Node, method_name: String):

@@ -3,7 +3,7 @@ class_name PhoridaeProjectile
 
 export var knockback := 50000.0 
 export var speed := 400.0
-export var homing := 40.0
+export var homing := 20.0
 export var soft_collision_speed := 50.0
 
 onready var direction: Vector2

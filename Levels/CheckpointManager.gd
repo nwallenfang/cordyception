@@ -5,10 +5,15 @@ var latest_checkpoint: String
 var latest_position: Vector2
 var latest_event_dict: Dictionary = {}
 
+signal player_respawned
+
 # for stuff that can or should happen across or outside of Acts
 func _ready():
 	GameEvents.connect("player_died", self, "player_died")
 	GameEvents.connect("checkpoint_collected", self, "register_new_checkpoint")
+
+func emit_player_respawned():
+	emit_signal("player_respawned")
 
 func player_died():
 
@@ -18,10 +23,15 @@ func player_died():
 	# call_deferred("reset") -> old reset call
 	# after fadeout, transition
 	get_tree().reload_current_scene()
+	GameEvents.OBSERVER_DICT = {}
 	call_deferred("reset")
-	# fadein
+	call_deferred("emit_player_respawned")
+	
+	# fade in
 	GameStatus.CURRENT_CAMERA.fade_in()
 	yield(GameStatus.CURRENT_CAMERA, "fade_in_finished")
+
+	
 
 
 func reset():

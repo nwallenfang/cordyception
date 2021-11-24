@@ -376,9 +376,6 @@ curve = SubResource( 7 )
 [node name="PathFollow2D" parent="YSort/AphidPath/AphidPath" index="0"]
 position = Vector2( -37, 29 )
 
-[node name="Aphid" parent="YSort/AphidPath" index="1"]
-mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
-
 [node name="RedAphid" parent="YSort" instance=ExtResource( 45 )]
 position = Vector2( -710, 24 )
 mother_path = NodePath("../AntEnemy")

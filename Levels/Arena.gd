@@ -143,23 +143,19 @@ func wave2():
 	yield(shot_caller_speech, "dialog_completed")
 	cordy.set_eyes("idle")
 	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
-
-	$ScriptedCamera.back_to_player(1.0)
-	yield($ScriptedCamera, "slide_finished")
 	
 	# camera again to gate
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
 
 	# have the wave2 enemies walk in
-	for enemy in $YSort/Wave2Enemies.get_children():
-		if enemy is Phoridae:
-			enemy.follow_path_array_then_fight([$Positions/Wave11.global_position])
-		else:
-			enemy.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
+	w2_pho1.follow_path_array_then_fight([$Positions/Wave11.global_position])
+	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
+	w2_pho3.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	
-	yield(get_tree().create_timer(5.0), "timeout")
-	last_enemy_ready_wave2()
+	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
+	
+
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "slide_finished")
 

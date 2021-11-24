@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 	accelerate_and_move(delta)
 
 func _on_Area_body_entered(body: Node) -> void:
-	$StateMachine.stop()
-	connect("health_boost", body as Player, "health_boost")
-	$AnimationPlayer.play("death_right" if facing_right else "death_left")
+	if GameStatus.CURRENT_HEALTH < GameStatus.PLAYER_MAX_HEALTH:
+		$StateMachine.stop()
+		connect("health_boost", body as Player, "health_boost")
+		$AnimationPlayer.play("death_right" if facing_right else "death_left")

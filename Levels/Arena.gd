@@ -83,33 +83,33 @@ func wave1():
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
 	
-#	$ScriptedCamera.follow(shot_caller, 1.8)
-#	yield($ScriptedCamera, "follow_target_reached")
-#	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
-#	yield(shot_caller_speech, "dialog_completed")
-#	cordy.set_eyes("bored")
-#	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
-#	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
-#	yield(shot_caller_speech, "dialog_completed")
-#
-#	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
-#	yield(shot_caller_speech, "dialog_completed")
-#	$ScriptedCamera.stop_following()
-#	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
-#	yield($ScriptedCamera, "slide_finished")
+	$ScriptedCamera.follow(shot_caller, 1.8)
+	yield($ScriptedCamera, "follow_target_reached")
+	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
+	yield(shot_caller_speech, "dialog_completed")
+	cordy.set_eyes("bored")
+	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
+	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
+	yield(shot_caller_speech, "dialog_completed")
+
+	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
+	yield(shot_caller_speech, "dialog_completed")
+	$ScriptedCamera.stop_following()
+	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
+	yield($ScriptedCamera, "slide_finished")
 	cordy.set_eyes("happy")	
 
-#	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
-#	w1_ant1.follow_path_array([gate, $Positions/Wave11.global_position])
-#	w1_ant2.follow_path_array([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
-#	w1_ant3.follow_path_array([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
-#	w1_ant4.follow_path_array([gate, $Positions/Wave14.global_position])
-	last_enemy_ready_wave1()  # DELETE THIS
-#	yield(get_tree().create_timer(3.8), "timeout")
+	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
+	w1_ant1.follow_path_array([gate, $Positions/Wave11.global_position])
+	w1_ant2.follow_path_array([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
+	w1_ant3.follow_path_array([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
+	w1_ant4.follow_path_array([gate, $Positions/Wave14.global_position])
+#	last_enemy_ready_wave1()  # DELETE THIS
+	yield(get_tree().create_timer(3.8), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
 	
 	GameStatus.MOVE_ENABLED = true
@@ -147,14 +147,14 @@ func wave2():
 	# camera again to gate
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
-
+	
 	# have the wave2 enemies walk in
 	w2_pho1.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	
 	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
-	
+	yield(get_tree().create_timer(3.4), "timeout")
 
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "slide_finished")

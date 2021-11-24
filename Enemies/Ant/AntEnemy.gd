@@ -151,3 +151,6 @@ func _on_SoftCollision_area_entered(area: Area2D) -> void:
 		var push_dir = (parent.global_position - self.global_position).normalized()
 		self.add_acceleration(-SELF_SOFT_COLLISION_STRENGTH * push_dir)
 		parent.add_acceleration(SELF_SOFT_COLLISION_STRENGTH * push_dir)
+
+func look_at(pos: Vector2) -> void:
+	set_facing_direction(global_position.direction_to(pos))

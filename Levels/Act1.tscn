@@ -359,7 +359,7 @@ position = Vector2( -233, -41.9999 )
 shape = SubResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 13.0001, -108.26 )
+position = Vector2( 13, -108.26 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

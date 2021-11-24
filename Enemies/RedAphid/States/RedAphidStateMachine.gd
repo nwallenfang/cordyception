@@ -37,7 +37,7 @@ func set_mother_behaviour():
 	idle_transition_chance = build_absolute_transition_chances()
 
 func set_attack_behaviour():
-	$FollowMother.RELATIVE_TRANSITION_CHANCE = 0 if get_parent().is_full_attacker else 0.2
+	$FollowMother.RELATIVE_TRANSITION_CHANCE = 0.0 if get_parent().is_full_attacker else 0.2
 	$Roll.RELATIVE_TRANSITION_CHANCE = 0.5
 	$Chase.RELATIVE_TRANSITION_CHANCE = 1
 	idle_transition_chance = build_absolute_transition_chances()

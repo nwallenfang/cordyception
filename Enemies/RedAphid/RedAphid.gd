@@ -106,7 +106,7 @@ var ignite_ready := false
 func _on_IgniteArea_body_entered(body: Node) -> void:
 	ignite_ready = true
 
-export var soft_collision_speed := 10000.0
+export var soft_collision_speed := 7000.0
 func do_soft_collision(delta):
 	for area in $SoftCollision.get_overlapping_areas():
 		if area.get_parent() is get_script():

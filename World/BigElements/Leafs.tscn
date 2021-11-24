@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://World/BigElements/leafs.png" type="Texture" id=1]
+
+[node name="Leafs" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0.231373 )
+polygon = PoolVector2Array( -64, 212.5, -7, 180.5, 134, 192.5, 183, 165.5, 170, 99.5, 201, -49.5, 261, -47.5, 286, -83.5, 168, -218.5, 50, -243.5, -9, -226.5, -83, -152.5, -101, -199.5, -127, -198.5, -150, -154.5, -238, -50.5, -204, -9.5, -258, 119.5, -222, 133.5, -141, 96.5 )

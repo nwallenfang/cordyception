@@ -8,6 +8,12 @@ func _ready() -> void:
 func process(delta, first_time_entering):
 	parent = parent as RedAphid # Set To Parent Class
 
+	if !is_instance_valid(parent.mother):
+		parent.is_full_attacker = true
+		state_machine.set_attack_behaviour()
+		back_to_idle()
+		return
+
 	if first_time_entering:
 		state_machine.set_mother_behaviour()
 

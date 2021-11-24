@@ -32,6 +32,16 @@ func trigger():
 	self.state_machine.transition_deferred("Idle")
 	$StateMachine.start()
 
+func follow_path_array_then_fight(positions: Array):
+	was_enabled_previously = $StateMachine.enabled
+	for position in positions:
+		$StateMachine.transition_to("FollowPath")
+		$StateMachine/FollowPath.target_position = position
+		$StateMachine.enabled = true
+		yield($StateMachine/FollowPath, "movement_completed")
+	emit_signal("follow_completed")
+	$StateMachine.enabled = true
+	
 func set_behavior(probabilities: Dictionary):
 	# first set probability property in child state
 	var state: AbstractState

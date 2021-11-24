@@ -13,12 +13,17 @@ onready var stats := $PhoridaeStats
 onready var line2D := $Body/Line2D as Line2D
 
 var aggressive := false
+export var very_aggressive := false
 var flying := false
 
 func _ready():
-	$StateMachine.start()
 	stats.set_max_health(stats.MAX_HEALTH)
-	
+
+func trigger():
+	if very_aggressive:
+		aggressive = true
+	$StateMachine.transition_deferred("Idle")
+	$StateMachine.start()
 
 var was_enabled_previously = false
 func follow_path(target_position: Vector2):
@@ -44,6 +49,16 @@ func follow_path_array(positions: Array):
 		$StateMachine.enabled = true
 		yield($StateMachine/FollowPath, "movement_completed")
 	emit_signal("follow_completed")
+	
+func follow_path_array_then_fight(positions: Array):
+	was_enabled_previously = $StateMachine.enabled
+	for position in positions:
+		$StateMachine.transition_to("FollowPath")
+		$StateMachine/FollowPath.target_position = position
+		$StateMachine.enabled = true
+		yield($StateMachine/FollowPath, "movement_completed")
+	emit_signal("follow_completed")
+	trigger()
 
 const FLY_DUST = preload("res://Enemies/Phoridae/FlyDust.tscn")
 func create_fly_dust() -> void:
@@ -67,6 +82,8 @@ func _on_Detection_body_entered(_body: Node) -> void:
 	aggressive = true
 
 func _on_Vision_body_exited(_body):
+	if very_aggressive:
+		return
 	aggressive = false
 
 

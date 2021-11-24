@@ -190,7 +190,7 @@ rotation = -0.000373805
 position = Vector2( -7656.13, -205.573 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 801.448, -1519.95 )
+position = Vector2( 1369.61, -4499.68 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -620,19 +620,13 @@ position = Vector2( 3901.86, -6875.94 )
 position = Vector2( 4044.93, -7043.6 )
 
 [node name="Phoridae1" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 3920.25, -7011.53 )
+position = Vector2( 2880.99, -5972.49 )
 
 [node name="Phoridae2" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 3988.01, -6949.07 )
+position = Vector2( 2948.75, -5910.04 )
 
 [node name="Phoridae3" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 3979.12, -7036.48 )
-
-[node name="Phoridae4" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 4033.18, -6905.65 )
-
-[node name="Phoridae5" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 4116.48, -7056.05 )
+position = Vector2( 2939.87, -5997.44 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -710,7 +704,7 @@ position = Vector2( 223.248, 247.221 )
 shape = SubResource( 7 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 800.88, -1520.25 )
+position = Vector2( 1367.93, -4500.19 )
 rotation = -0.000373805
 
 [node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]

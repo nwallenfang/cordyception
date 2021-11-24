@@ -10,10 +10,12 @@ onready var w1_ant4 = $YSort/Wave1Enemies/AntEnemy4
 
 onready var gate = $Positions/GatePass.global_position
 
+# ants should come later once 2 phos have been killed
 onready var w2_ant1 = $YSort/Wave2Enemies/AntEnemy1
 onready var w2_ant2 = $YSort/Wave2Enemies/AntEnemy2
 onready var w2_pho1 = $YSort/Wave2Enemies/Phoridae1
 onready var w2_pho2 = $YSort/Wave2Enemies/Phoridae2
+onready var w2_pho3 = $YSort/Wave2Enemies/Phoridae3
 
 
 var enemies_killed_baseline: int
@@ -35,6 +37,14 @@ func _ready():
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
+	
+	# phos invisible till wave 2
+	w2_pho1.visible = false
+	w2_pho2.visible = false
+	w2_pho3.visible = false
+	w2_pho1.very_aggressive = true
+	w2_pho2.very_aggressive = true
+	w2_pho3.very_aggressive = true
 	
 	var player_died_baseline = GameEvents.count("player_died")
 
@@ -112,6 +122,9 @@ func wave1():
 	
 	
 func wave2():
+	w2_pho1.visible = true
+	w2_pho2.visible = true
+	w2_pho3.visible = true
 	yield(get_tree().create_timer(0.6), "timeout")
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
@@ -130,11 +143,6 @@ func wave2():
 	yield(shot_caller_speech, "dialog_completed")
 	cordy.set_eyes("idle")
 	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
-#	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
-#	w1_ant1.follow_path_array([gate, $Positions/Wave11.global_position])
-#	w1_ant2.follow_path_array([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
-#	w1_ant3.follow_path_array([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
-#	w1_ant4.follow_path_array([gate, $Positions/Wave14.global_position])
 
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "slide_finished")
@@ -145,8 +153,16 @@ func wave2():
 
 	# have the wave2 enemies walk in
 	for enemy in $YSort/Wave2Enemies.get_children():
-		enemy.follow_path_array([gate, $Positions/Wave11.global_position])
+		if enemy is Phoridae:
+			enemy.follow_path_array_then_fight([$Positions/Wave11.global_position])
+		else:
+			enemy.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
 	
+	yield(get_tree().create_timer(5.0), "timeout")
+	last_enemy_ready_wave2()
+	$ScriptedCamera.back_to_player(1.0)
+	yield($ScriptedCamera, "slide_finished")
+
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.SHOOT_ENABLED = true
@@ -158,7 +174,7 @@ func wave2():
 
 
 func after_wave2():
-	pass
+	print("after wave 2")
 	
 
 func reset():
@@ -187,13 +203,12 @@ func shroom_to_shroom_talk(speech_position: Vector2):
 	cordy.set_eyes("idle")
 	cordy.say_right("The world of fungi can be so small. And weird.")
 
-	
-	
 
 func died_in_arena():
 	# wait for player to have actually respawned
-	cordy.say("Weak, you must do better than this.")
 	cordy.set_eyes("angry")
+	cordy.say("Weak, you must do better than this.")
+
 	
 
 func _on_Wave1TriggerZone_body_entered(body: Node) -> void:
@@ -207,6 +222,9 @@ func _process(delta):
 				var ant_enemy = child as AntEnemy
 				if ant_enemy.state_machine.enabled:
 					ant_enemy.get_node("EnemyStats").health = 0
+			if child is Phoridae:
+				var pho = child as Phoridae
+				pho.get_node("PhoridaeStats").health = 0
 
 
 func _on_ShroomDialogZone_body_entered(body: Node) -> void:

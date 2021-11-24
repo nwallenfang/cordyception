@@ -17,7 +17,7 @@
 [ext_resource path="res://Enemies/Phoridae/PhoridaeProjectileSpawner.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Enemies/Phoridae/PhoridaeStats.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=17]
-[ext_resource path="res://Enemies/Ant/States/FollowPath.gd" type="Script" id=18]
+[ext_resource path="res://Enemies/Phoridae/States/FollowPathPhoridae.gd" type="Script" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 11.6124
@@ -257,7 +257,6 @@ visible = false
 enabled = true
 
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

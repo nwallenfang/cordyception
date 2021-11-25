@@ -31,6 +31,8 @@ var HEALTH_VISIBLE := false setget set_health_visible
 signal start_spray
 signal stop_spray
 
+func _ready():
+	randomize()
 
 func set_move_enabled(enabled: bool) -> void:
 	MOVE_ENABLED = enabled

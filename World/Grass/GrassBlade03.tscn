@@ -15,6 +15,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
 [sub_resource type="CapsuleShape2D" id=2]

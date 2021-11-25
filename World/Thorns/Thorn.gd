@@ -31,11 +31,11 @@ func get_nearest_point(pos: Vector2) -> Vector2:
 		v += global_position
 		
 		# debug scent for seeing the used points
-		var scent = load("res://Player/Scent.tscn").instance()
-		scent.visible = true
-		GameStatus.CURRENT_YSORT.add_child(scent)
-		scent.global_position = v
-		scent.modulate = Color.red
+#		var scent = load("res://Player/Scent.tscn").instance()
+#		scent.visible = true
+#		GameStatus.CURRENT_YSORT.add_child(scent)
+#		scent.global_position = v
+#		scent.modulate = Color.red
 		
 		if pos.distance_to(v) < shortest_distance:
 			best = v

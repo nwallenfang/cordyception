@@ -197,18 +197,23 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 4 )
+frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 5 )
@@ -223,6 +228,23 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 6 )
+frame = 19
+
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 7 )
@@ -403,12 +425,12 @@ position = Vector2( 2.66895, 0 )
 [editable path="YSort/ExitPath/Antertainer"]
 [editable path="YSort/ExitPath/Antertainer/Hurtbox"]
 [editable path="YSort/ExitPath/Antertainer/StateMachine/Sprint/DashStuff"]
-[editable path="YSort/ExitPath/Antertainer/StateMachine/Shoot/EnemyProjectileSpawner"]
+[editable path="YSort/ExitPath/Antertainer/StateMachine/ShootRadial/EnemyProjectileSpawner"]
 [editable path="YSort/ExitPath/Antertainer/SpeechBubble"]
 [editable path="YSort/ExitPath/Antertainer2"]
 [editable path="YSort/ExitPath/Antertainer2/Hurtbox"]
 [editable path="YSort/ExitPath/Antertainer2/StateMachine/Sprint/DashStuff"]
-[editable path="YSort/ExitPath/Antertainer2/StateMachine/Shoot/EnemyProjectileSpawner"]
+[editable path="YSort/ExitPath/Antertainer2/StateMachine/ShootRadial/EnemyProjectileSpawner"]
 [editable path="YSort/ExitPath/Antertainer2/SpeechBubble"]
 [editable path="Tutorials/TutorialMove"]
 [editable path="Tutorials/TutorialSpray"]

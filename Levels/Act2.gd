@@ -53,8 +53,8 @@ func _ready():
 	}
 	thrower.set_behavior(thrower_behavior)
 	
-	$YSort/Room/Enemies/Guard1.set_facing_direction(Vector2.UP)
-	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.UP)
+	$YSort/Room/Enemies/Guard1.set_facing_direction(Vector2.RIGHT)
+	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.LEFT)
 	$YSort/Room/Enemies/Talker1.set_facing_direction(Vector2.RIGHT)
 	$YSort/Room/Enemies/Talker2.set_facing_direction(Vector2.LEFT)
 	$YSort/Room/Enemies/Thrower.set_facing_direction(Vector2.LEFT)
@@ -229,23 +229,43 @@ func _on_RightAgitator_body_entered(body: Node) -> void:
 	else:
 		agitate_everyone()
 
+func ant_kicks_stone():
+	var kicker := $YSort/Room/Enemies/Guard2 as AntEnemy
+	var stone := $YSort/Room/KickStone as Node2D
+	var tween := $YSort/Room/KickStone/Tween as Tween
+	tween.interpolate_property(kicker, "global_position", kicker.global_position, stone.global_position + Vector2(20, -35), 3)
+	tween.start()
+	kicker.set_facing_direction(Vector2.DOWN)
+	kicker.animation_state.travel("Walk")
+	yield(tween, "tween_all_completed")
+	kicker.animation_state.travel("Idle")
+	yield(get_tree().create_timer(.5), "timeout")
+	kicker.animation_state.travel("Throw")
+	tween.interpolate_property(stone, "global_position", stone.global_position, stone.global_position + Vector2(0, 150), 1.5, Tween.TRANS_QUINT, Tween.EASE_OUT)
+	tween.start()
 
 func room_cutscene():
+	scout.state_machine.get_node("FollowPath").FOLLOW_ACCELERATION -= 20000
 	scout.global_position = $Positions/ScoutAwayFromStick.global_position
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.DASH_ENABLED = false
-	$ScriptedCamera.follow(scout)
-	var runpath := []
-	for i in range(3):
-		runpath.append(get_node("Positions/ScoutRoom" + str(i+1)).global_position)
-	scout.follow_path_array(runpath)
 	for i in range(4):
 		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
-	yield(scout, "follow_completed")
+	$ScriptedCamera.follow(scout)
+	var runpath := []
+	for i in range(2):
+		runpath.append(get_node("Positions/ScoutRoom" + str(i+1)).global_position)
+	scout.follow_path_array(runpath)
+	ant_kicks_stone()
+	yield(scout, "follow_completed") # POINT 2 REACHED
+	$YSort/Room/Enemies/Guard1.set_facing_direction(Vector2.DOWN)
+	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.DOWN)
+	scout.follow_path($Positions/ScoutRoom3.global_position)
+	yield(scout, "follow_completed") # POINT 3 REACHED
 	thrower.set_facing_direction(Vector2.DOWN)
 	scout.follow_path($Positions/ScoutRoom4.global_position)
-	yield(scout, "follow_completed")
+	yield(scout, "follow_completed") # POINT 4 REACHED
 	scout.set_facing_direction(Vector2.UP)
 	scout.get_node("SpeechBubble").set_text("We have an emergency!", 1.0)
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
@@ -258,7 +278,7 @@ func room_cutscene():
 	thrower.get_node("SpeechBubble").set_text("Ok, notify the others", 1.0)
 	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
 	thrower.get_node("SpeechBubble").set_text("We'll keep guarding this place", 1.0)
-	yield(thrower.get_node("SpeechBubble"), "dialog_completed")
+	yield(thrower.get_node("SpeechBubble"), "dialog_completed") # DIALOG OVER
 	var runpath2 := []
 	for i in range(5):
 		runpath2.append(get_node("Positions/ScoutRoomExit" + str(i+1)).global_position)
@@ -276,6 +296,8 @@ func room_checkpoint():
 	scout.queue_free()
 	thrower.global_position = $Positions/ThrowerNewPosition.global_position
 	thrower.set_facing_direction(Vector2.RIGHT)
+	$YSort/Room/Enemies/Guard1.set_facing_direction(Vector2.UP)
+	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.UP)
 
 func _on_TriggerArea_body_entered(body: Node) -> void:
 	yield(get_tree().create_timer(0.1), "timeout")

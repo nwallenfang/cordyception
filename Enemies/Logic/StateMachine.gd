@@ -174,7 +174,22 @@ func _ready() -> void:
 	find_initial_state_and_prev()
 	label_exists = get_parent().has_node("StateLabel")
 		
-		
+
+func set_behavior_to(probabilities: Dictionary):
+	# first set probability property in child state
+	for state in get_children():
+		state.RELATIVE_TRANSITION_CHANCE = 0.0
+	for state_name in probabilities.keys():
+		var state = get_node(state_name)
+		if state != null:
+			state.RELATIVE_TRANSITION_CHANCE = probabilities[state_name]
+		else:
+			print("behavior WARN: state ", state_name, " doesn't exist!")
+
+	# second force transition chance recalculation
+	idle_transition_chance = build_absolute_transition_chances()
+	#$StateMachine.find_initial_state_and_prev()
+
 func stop() -> void:
 	# overwrite this
 	pass

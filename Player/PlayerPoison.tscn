@@ -4,59 +4,25 @@
 [ext_resource path="res://Player/PlayerPoison.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.447368, 0.769737 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.723077, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.612403 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.294118 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.780392 )
-
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
-
-[sub_resource type="Curve" id=5]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.511364 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
-
-[sub_resource type="ParticlesMaterial" id=7]
-trail_divisor = 4
-trail_size_modifier = SubResource( 6 )
-trail_color_modifier = SubResource( 4 )
-emission_shape = 2
-emission_box_extents = Vector3( 4, 4, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 20.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 200.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 3.0
-color_ramp = SubResource( 2 )
-
-[sub_resource type="Gradient" id=8]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.294118 )
-
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
-
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.825 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=5]
 lifetime_randomness = 0.36
 emission_shape = 1
 emission_sphere_radius = 10.0
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
-spread = 20.0
+spread = 30.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 120.0
 initial_velocity_random = 0.38
@@ -69,32 +35,73 @@ angle = 535.8
 angle_random = 1.0
 scale = 2.0
 scale_random = 0.8
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 9 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.333333, 0.769737 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.723077, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.780392 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.511364 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+trail_divisor = 4
+trail_size_modifier = SubResource( 11 )
+trail_color_modifier = SubResource( 9 )
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+color_ramp = SubResource( 7 )
 
 [node name="PlayerPoison" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="PoisonSpray" type="Particles2D" parent="."]
-modulate = Color( 0.46, 1.3, 0.01, 1 )
-self_modulate = Color( 1, 1, 1, 0.478431 )
-show_behind_parent = true
-position = Vector2( 0, -10 )
-scale = Vector2( 2, 2 )
-emitting = false
-amount = 220
-process_material = SubResource( 7 )
-
-[node name="PoisonFog" type="Particles2D" parent="."]
-modulate = Color( 0.46, 1.2, 0.01, 1 )
-self_modulate = Color( 1, 1, 1, 0.443137 )
+[node name="PoisonFog2" type="Particles2D" parent="."]
+self_modulate = Color( 0.952941, 0.952941, 0.952941, 0.341176 )
 show_behind_parent = true
 position = Vector2( 0, -35 )
 scale = Vector2( 2, 2 )
-emitting = false
 amount = 130
 lifetime = 2.0
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+
+[node name="PoisonSpray" type="Particles2D" parent="."]
+modulate = Color( 0.835294, 1, 0.745098, 1 )
+show_behind_parent = true
+position = Vector2( 0, -10 )
+scale = Vector2( 2, 2 )
+amount = 220
 process_material = SubResource( 12 )
+
+[node name="PoisonFog" type="Particles2D" parent="."]
+self_modulate = Color( 0.784314, 0.784314, 0.784314, 0.141176 )
+show_behind_parent = true
+position = Vector2( 0, -35 )
+scale = Vector2( 2, 2 )
+amount = 130
+lifetime = 2.0
+process_material = SubResource( 5 )
 texture = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]

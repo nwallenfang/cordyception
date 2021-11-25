@@ -6,6 +6,7 @@ onready var shooter2 := $YSort/AntShooter2 as AntEnemy
 onready var shooter3 := $YSort/AntShooter3 as AntEnemy
 onready var movable_rock = $YSort/Rocks/MovableRock
 onready var thrower := $YSort/Room/Enemies/Thrower as AntEnemy
+onready var cordy := $UI/ShroomUI as Cordy
 
 func _ready():
 	GameStatus.CURRENT_ACT = self
@@ -26,6 +27,7 @@ func _ready():
 	GameEvents.connect("room_checkpoint", self, "room_checkpoint")
 	GameEvents.connect("room_cutscene", self, "room_cutscene")
 	GameEvents.connect("shroom_fist_dialog", self, "shroom_fist_dialog")
+	GameEvents.connect("shroom_dash_learned", self, "shroom_dash_learned")
 	
 	scout.set_facing_direction(Vector2.LEFT)
 	scout.get_node("StateMachine").enabled = false
@@ -60,6 +62,14 @@ func _ready():
 
 func on_dash_tutorial_entered(body: Node):
 	GameStatus.DASH_ENABLED = true
+	GameEvents.trigger_unique_event("shroom_dash_learned")
+
+func shroom_dash_learned():
+	cordy.set_eyes("happy")
+	cordy.say_bottom("Don't worry.")
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
+	cordy.say("I've got another trick up your sleeve")
 
 func reset():
 	pass
@@ -70,7 +80,7 @@ func _on_ZoneScout_body_entered(body: Node) -> void:
 	# later have it visible change the path towards thorns
 	GameEvents.trigger_unique_event("scout_dialog")
 
-func scout_dialog():
+func scout_dialog():	
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
@@ -96,6 +106,8 @@ func scout_dialog():
 	$ScriptedCamera.stop_following()
 	scout.follow_path($Positions/ScoutRunAway.global_position)
 	yield(get_tree().create_timer(1.0), "timeout")
+	cordy.say("What a jerk.", 1.0)
+	cordy.set_eyes("bored")
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "back_at_player")
 	
@@ -126,7 +138,11 @@ func small_chase():
 	for i in range(5):
 		runpath.append(get_node("Positions/ScoutStick" + str(i+1)).global_position)
 	scout.follow_path_array(runpath)
-	yield(get_tree().create_timer(1.8), "timeout")
+	yield(get_tree().create_timer(.4), "timeout")
+	cordy.say("There he is!")
+	cordy.set_eyes("angry")
+	yield(get_tree().create_timer(1.4), "timeout")
+	cordy.say("Get him!", .6)
 	scout.state_machine.execute_state_once("SimpleShoot")
 	yield(get_tree().create_timer(1.5), "timeout")
 	scout.get_node("SpeechBubble").set_text("REEEEE", 0.6)
@@ -141,6 +157,7 @@ func small_chase():
 	$ScriptedCamera.back_to_player()
 	$Detector/StickClose.monitorable = true
 	$Detector/StickClose.monitoring = true
+	cordy.set_eyes("idle")
 	yield(GameEvents, "stick_close")
 	stick_close()
 	
@@ -313,7 +330,6 @@ func _on_ShroomTrigger_body_entered(body):
 
 func shroom_fist_dialog():
 	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 2600.0
-	var cordy := GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
 	cordy.grow_first()
 	yield(get_tree().create_timer(3), "timeout")
 	cordy.grow_second()

@@ -9,6 +9,7 @@ signal joke_attack
 
 # act 2
 signal shroom_fist_dialog
+signal shroom_dash_learned
 signal scout_dialog
 signal small_chase
 signal stick_close

@@ -23,6 +23,7 @@ func _ready() -> void:
 	set_mother_path(mother_path)
 	set_ignite_area(false)
 	set_roll_area(false)
+	$BarScaler/Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 
 func set_ignite_area(b: bool):
 	$IgniteArea.monitorable = b
@@ -111,3 +112,36 @@ func do_soft_collision(delta):
 	for area in $SoftCollision.get_overlapping_areas():
 		if area.get_parent() is get_script():
 			add_acceleration(delta * soft_collision_speed * area.get_parent().global_position.direction_to(global_position))
+
+func handle_damage(attack, should_play_hit):
+	$EnemyStats.health -= attack.damage
+	add_acceleration(attack.knockback_vector())
+#	if should_play_hit:
+#		$InvincibilityPlayer.play("hit")
+		
+func _on_Hurtbox_area_entered(area: Area2D) -> void:
+	var parent = area.get_parent()
+	var should_play_hit = false
+#	var should_play_hit = not ($InvincibilityPlayer.is_playing() 
+#						  and $InvincibilityPlayer.current_animation == "hit")
+
+	
+	# parent should either be a projectile, poison mist or another weapon
+	if parent is Projectile:
+		handle_damage(parent as Projectile, should_play_hit)
+	if parent is PlayerCloseCombat:
+		handle_damage(parent as PlayerCloseCombat, should_play_hit)
+	if parent is PoisonFragment:
+		handle_damage(parent as PoisonFragment, should_play_hit)
+
+
+func set_hurtbox_enabled(e: bool):
+	$Hurtbox.monitorable = e
+	$Hurtbox.monitoring = e
+
+func _on_EnemyStats_health_changed():
+	$BarScaler/Healthbar.health = $EnemyStats.health
+
+
+func _on_EnemyStats_health_zero():
+	$StateMachine.transition_deferred("Ignite")

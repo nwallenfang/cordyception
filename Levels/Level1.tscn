@@ -137,6 +137,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.6
 
 [sub_resource type="StreamTexture" id=4]
@@ -152,6 +153,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.7
 
 [sub_resource type="StreamTexture" id=6]

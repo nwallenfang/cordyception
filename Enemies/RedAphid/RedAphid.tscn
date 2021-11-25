@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Enemies/RedAphid/red_aphid.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://Enemies/ScentRay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=13]
 [ext_resource path="res://Shadows/aphid.png" type="Texture" id=14]
+[ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Enemies/RedAphid/RedAphidStats.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -484,6 +487,9 @@ radius = 16.5076
 [sub_resource type="CircleShape2D" id=23]
 radius = 15.0
 
+[sub_resource type="CircleShape2D" id=24]
+radius = 8.13378
+
 [node name="RedAphid" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
 collision_layer = 0
@@ -603,5 +609,28 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
 shape = SubResource( 23 )
 
+[node name="BarScaler" type="Node2D" parent="."]
+position = Vector2( -15.3059, 12.3473 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Healthbar" parent="BarScaler" instance=ExtResource( 15 )]
+margin_left = 0.0
+margin_right = 64.0
+margin_bottom = 12.0
+
+[node name="EnemyStats" parent="." instance=ExtResource( 16 )]
+
+[node name="Hurtbox" parent="." instance=ExtResource( 17 )]
+visible = false
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 24 )
+
 [connection signal="body_entered" from="IgniteArea" to="." method="_on_IgniteArea_body_entered"]
 [connection signal="body_entered" from="RollCollision" to="." method="_on_RollCollision_body_entered"]
+[connection signal="health_changed" from="EnemyStats" to="." method="_on_EnemyStats_health_changed"]
+[connection signal="health_zero" from="EnemyStats" to="." method="_on_EnemyStats_health_zero"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]

@@ -1,6 +1,9 @@
 extends AbstractState
 
-export var follow_acc := 100000.0
+export var follow_acc_base := 100000.0
+export var follow_acc_slow := 30000.0
+var follow_acc: float = follow_acc_base
+export var chance_to_get_distracted := 0.0015
 
 func _ready() -> void:
 	RELATIVE_TRANSITION_CHANCE = 0
@@ -13,6 +16,13 @@ func process(delta, first_time_entering):
 		state_machine.set_attack_behaviour()
 		back_to_idle()
 		return
+
+	if randf() < chance_to_get_distracted:
+		state_machine.transition_deferred("Distracted")
+		return
+
+	if parent.mother is AntEnemy:
+		follow_acc = follow_acc_base if parent.mother.state_machine.enabled else follow_acc_slow
 
 	if first_time_entering:
 		state_machine.set_mother_behaviour()

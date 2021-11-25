@@ -140,7 +140,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 15915.1, 926.021 )
+position = Vector2( 15830.3, 899.408 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -170,7 +170,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 2
+frame = 0
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -181,7 +181,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 2
+frame = 0
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -191,7 +191,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 3
+frame = 1
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -201,7 +201,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 3
+frame = 1
 
 [node name="WoodLong" parent="YSort" instance=ExtResource( 21 )]
 position = Vector2( -131.061, -836.922 )
@@ -644,7 +644,7 @@ position = Vector2( 17776.6, 307.135 )
 position = Vector2( 16691.9, -533.271 )
 
 [node name="Guard2" parent="YSort/Room/Enemies" instance=ExtResource( 14 )]
-position = Vector2( 17355.9, -567.022 )
+position = Vector2( 17251.9, -708.061 )
 
 [node name="Talker1" parent="YSort/Room/Enemies" instance=ExtResource( 14 )]
 position = Vector2( 16600.6, 190.695 )
@@ -670,6 +670,14 @@ mother_path = NodePath("../Thrower")
 
 [node name="Stone" parent="YSort/Room" instance=ExtResource( 43 )]
 position = Vector2( 18276.5, 606.322 )
+
+[node name="KickStone" type="Node2D" parent="YSort/Room"]
+position = Vector2( 17369.8, -384.017 )
+
+[node name="Stone3" parent="YSort/Room/KickStone" instance=ExtResource( 17 )]
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Tween" type="Tween" parent="YSort/Room/KickStone"]
 
 [node name="Stone2" parent="YSort/Room" instance=ExtResource( 44 )]
 position = Vector2( 18205.4, 651.295 )
@@ -745,7 +753,7 @@ position = Vector2( 10.6787, 78.7555 )
 texture = ExtResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 15915.4, 920.072 )
+position = Vector2( 15830.7, 893.49 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -768,7 +776,7 @@ position = Vector2( 13222.7, -706.51 )
 position = Vector2( 16917.7, -764.51 )
 
 [node name="ScoutRoom2" type="Position2D" parent="Positions"]
-position = Vector2( 17058.7, -68.51 )
+position = Vector2( 17077.7, -164.51 )
 
 [node name="ScoutRoom3" type="Position2D" parent="Positions"]
 position = Vector2( 17646.7, 500.49 )

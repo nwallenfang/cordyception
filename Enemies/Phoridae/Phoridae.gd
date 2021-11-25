@@ -21,6 +21,7 @@ var flying := false
 
 func _ready():
 	stats.set_max_health(stats.MAX_HEALTH)
+	$Body/Healthbar.visible = true
 
 func set_hurtbox_enabled(e: bool):
 	$Hurtbox.set_deferred("monitorable", e)

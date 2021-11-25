@@ -25,12 +25,14 @@ func process(delta, first_time_entering):
 			parent.set_facing_direction(new_direction)
 		yield(get_tree().create_timer(stand_time), "timeout")
 		if not null_check():
+			back_to_idle()
 			return
 		if parent.global_position.distance_to(parent.mother.global_position) > max_dist_to_mother:
 			walk_time = 0
 		walk_direction = new_direction
 		yield(get_tree().create_timer(walk_time), "timeout")
 		if not null_check():
+			back_to_idle()
 			return
 		if walk_time != 0:
 			var second_stand_time = rand_range(.3, 1.5)

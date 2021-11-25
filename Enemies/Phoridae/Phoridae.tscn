@@ -300,6 +300,7 @@ visible = false
 enabled = true
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

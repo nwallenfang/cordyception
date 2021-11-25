@@ -59,6 +59,7 @@ func create_explosion_and_die():
 	var explosion = EXPLOSION.instance()
 	GameStatus.CURRENT_YSORT.add_child(explosion)
 	explosion.global_position = global_position
+	GameEvents.trigger_event("enemy_died")
 	queue_free()
 
 var facing_right := true
@@ -148,4 +149,4 @@ func _on_EnemyStats_health_zero():
 	set_hurtbox_enabled(false)
 	print("aphid zero")
 	$StateMachine.transition_deferred("Ignite")
-	GameEvents.trigger_event("enemy_died")
+

@@ -2,7 +2,8 @@ extends AbstractState
 
 func _ready() -> void:
 #	$EnemyProjectileSpawner.position = parent.get_node("Head").position
-	RELATIVE_TRANSITION_CHANCE = 1
+#	RELATIVE_TRANSITION_CHANCE = 1
+	pass
 
 var direction: float # will be set from process
 func shoot_projectiles():

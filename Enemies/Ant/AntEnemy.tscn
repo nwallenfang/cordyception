@@ -1727,6 +1727,7 @@ one_shot = true
 
 [node name="ShootRadial" type="Node2D" parent="StateMachine"]
 script = ExtResource( 26 )
+RELATIVE_TRANSITION_CHANCE = 0.5
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/ShootRadial"]
 wait_time = 0.3
@@ -1740,7 +1741,7 @@ anims/shoot_single = SubResource( 13 )
 
 [node name="ShootVolley" type="Node2D" parent="StateMachine"]
 script = ExtResource( 17 )
-RELATIVE_TRANSITION_CHANCE = 1.18
+RELATIVE_TRANSITION_CHANCE = 0.5
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/ShootVolley"]
 wait_time = 0.3
@@ -1782,6 +1783,7 @@ collision_mask = 256
 shape = SubResource( 18 )
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

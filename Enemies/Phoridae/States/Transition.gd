@@ -18,5 +18,5 @@ func process(delta: float, first_time_entering: bool):
 			parent.flying = false
 		state_machine.update_transition_chances()
 		yield(parent.levitation_player, "animation_finished")
-		parent.healthbar.visible = parent.flying
+#		parent.healthbar.visible = parent.flying
 		state_machine.transition_deferred("Idle")

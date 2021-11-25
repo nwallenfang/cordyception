@@ -150,7 +150,7 @@ func small_chase():
 	
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
-	scout.state_machine.execute_state_once("Shoot")
+	scout.state_machine.execute_state_once("ShootVolley")
 	scout.get_node("SpeechBubble").set_text("Get away from me!", 1.0)
 	yield(scout, "follow_completed")
 	scout.get_node("StateMachine").stop()
@@ -182,7 +182,7 @@ func stick_close():
 	scout.follow_path($Positions/ScoutAwayFromStick.global_position)
 
 func _on_TriggerAreaCP22_body_entered(body: Node) -> void:
-	pass
+	cordy.show()
 
 func _on_SmallChase_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("small_chase")

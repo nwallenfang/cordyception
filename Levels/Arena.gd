@@ -112,102 +112,101 @@ func last_enemy_ready_wave2():
 	w2_pho2.trigger()
 
 func wave1():
-#	GameStatus.MOVE_ENABLED = false
-#	GameStatus.SHOOT_ENABLED = false
-#	GameStatus.DASH_ENABLED = false
-#	GameStatus.SPRAY_ENABLED = false
-#	GameStatus.AIMER_VISIBLE = false
-#
-#	$ScriptedCamera.follow(shot_caller, 1.8)
-#	yield($ScriptedCamera, "follow_target_reached")
-#	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
-#	yield(shot_caller_speech, "dialog_completed")
-#	cordy.set_eyes("bored")
-#	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
-#	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
-#	yield(shot_caller_speech, "dialog_completed")
-#
-#	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
-#	yield(shot_caller_speech, "dialog_completed")
-#	$ScriptedCamera.stop_following()
-#	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
-#	yield($ScriptedCamera, "slide_finished")
-#	cordy.set_eyes("happy")	
-#
-#	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
-#	w1_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
-#	w1_ant2.follow_path_array_then_fight([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
-#	w1_ant3.follow_path_array_then_fight([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
-#	w1_ant4.follow_path_array_then_fight([gate, $Positions/Wave14.global_position])
-#
-#	yield(get_tree().create_timer(3.8), "timeout")
-#	$ScriptedCamera.back_to_player(1.0)
-#
-#	GameStatus.MOVE_ENABLED = true
-#	GameStatus.SPRAY_ENABLED = true
-#	GameStatus.SHOOT_ENABLED = true
-#	GameStatus.DASH_ENABLED = true
-#	GameStatus.AIMER_VISIBLE = true
-#
-##	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
-#	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SHOOT_ENABLED = false
+	GameStatus.DASH_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
 
-	# delete this
-	wave2()
+	$ScriptedCamera.follow(shot_caller, 1.8)
+	yield($ScriptedCamera, "follow_target_reached")
+	shot_caller_speech.set_text("Welcome to the arena!", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
+	yield(shot_caller_speech, "dialog_completed")
+	cordy.set_eyes("bored")
+	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
+	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
+	yield(shot_caller_speech, "dialog_completed")
+
+	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
+	yield(shot_caller_speech, "dialog_completed")
+	$ScriptedCamera.stop_following()
+	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
+	yield($ScriptedCamera, "slide_finished")
+	cordy.set_eyes("happy")	
+
+	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
+	w1_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
+	w1_ant2.follow_path_array_then_fight([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
+	w1_ant3.follow_path_array_then_fight([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
+	w1_ant4.follow_path_array_then_fight([gate, $Positions/Wave14.global_position])
+
+	yield(get_tree().create_timer(3.8), "timeout")
+	$ScriptedCamera.back_to_player(1.0)
+
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.SHOOT_ENABLED = true
+	GameStatus.DASH_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
+
+#	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
+
+
 	# fight fight fight
 
 	
 func wave2():
-#	w2_pho1.visible = true
-#	w2_pho2.visible = true
-#
-#	yield(get_tree().create_timer(0.6), "timeout")
-#	GameStatus.MOVE_ENABLED = false
-#	GameStatus.SPRAY_ENABLED = false
-#	GameStatus.SHOOT_ENABLED = false
-#	GameStatus.DASH_ENABLED = false
-#	GameStatus.AIMER_VISIBLE = false
-#	$ScriptedCamera.slide_to_object(shot_caller, 1.8)
-#	yield($ScriptedCamera, "slide_finished")
-#	shot_caller_speech.set_text("Well.. let's consider that warm-up done..", 1.0)
-#	yield(shot_caller_speech, "dialog_completed")
-#	cordy.say("Pfft")
-#	cordy.set_eyes("bored")
-#	shot_caller_speech.set_text("Time to bring on the real deal, the mighty fine Phoridae!", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	shot_caller_speech.set_text("No mere worker could dodge their magic shots.", 1.5)
-#	yield(shot_caller_speech, "dialog_completed")
-#	cordy.set_eyes("idle")
-#	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
-#
-#	# camera again to gate
-#	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
-#	yield($ScriptedCamera, "slide_finished")
-#
-#	# have the wave2 enemies walk in
-#	w2_pho1.follow_path_array_then_fight([$Positions/Wave21.global_position])
-#	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position])
-#
-##	yield(get_tree().create_timer(3.4), "timeout")
-#
-#	$ScriptedCamera.back_to_player(1.0)
-#	yield($ScriptedCamera, "slide_finished")
-#
-#	GameStatus.MOVE_ENABLED = true
-#	GameStatus.SPRAY_ENABLED = true
-#	GameStatus.SHOOT_ENABLED = true
-#	GameStatus.DASH_ENABLED = true
-#	GameStatus.AIMER_VISIBLE = true
-#
-#	# wait for wave 2 to have died
-#
-##	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
-#	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
-	wave2_backup()
+	w2_pho1.visible = true
+	w2_pho2.visible = true
+
+	yield(get_tree().create_timer(0.6), "timeout")
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	GameStatus.SHOOT_ENABLED = false
+	GameStatus.DASH_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
+	$ScriptedCamera.slide_to_object(shot_caller, 1.8)
+	yield($ScriptedCamera, "slide_finished")
+	shot_caller_speech.set_text("Well.. let's consider that warm-up done..", 1.0)
+	yield(shot_caller_speech, "dialog_completed")
+	cordy.say("Pfft")
+	cordy.set_eyes("bored")
+	shot_caller_speech.set_text("Time to bring on the real deal, the mighty fine Phoridae!", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("No mere worker could dodge their magic shots.", 1.5)
+	yield(shot_caller_speech, "dialog_completed")
+	cordy.set_eyes("idle")
+	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
+
+	# camera again to gate
+	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
+	yield($ScriptedCamera, "slide_finished")
+
+	# have the wave2 enemies walk in
+	w2_pho1.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position])
+
+	yield(get_tree().create_timer(3.4), "timeout")
+
+	$ScriptedCamera.back_to_player(1.0)
+	yield($ScriptedCamera, "slide_finished")
+
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.SHOOT_ENABLED = true
+	GameStatus.DASH_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
+
+	# wait for wave 2 to have died
+
+	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
+
 
 
 func wave2_backup():
@@ -221,11 +220,11 @@ func wave2_backup():
 	w2_pho3.visible = true
 	w2_pho4.visible = true
 	cordy.set_eyes("idle")
-	cordy.say("Careful, there are more enemies incoming.")
+	cordy.say("Careful, there are more enemies coming.")
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position])
-#	print("DONE once ", GameEvents.count("enemy_died") + 6, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	print("DONE once ", GameEvents.count("enemy_died") + 6, "have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 6, self, "after_wave2")
 
 func after_wave2():

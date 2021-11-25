@@ -12,6 +12,7 @@ onready var body := $Body as Node2D
 onready var stats := $PhoridaeStats
 onready var line2D := $Body/Line2D as Line2D
 
+
 signal follow_completed
 
 var aggressive := false

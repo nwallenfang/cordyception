@@ -49,7 +49,7 @@ func _ready():
 	w2_pho3.very_aggressive = true
 	w2_pho4.very_aggressive = true
 	
-	var player_died_baseline = GameEvents.count("player_died")
+
 
 
 	CheckpointManager.connect("player_respawned", self, "died_in_arena")
@@ -142,6 +142,7 @@ func wave1():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+	var player_died_baseline = GameEvents.count("player_died")
 	GameEvents.connect_to_event_count('enemy_died', enemies_killed_baseline + 4, self, "wave2")
 	# fight fight fight
 
@@ -280,16 +281,18 @@ func _on_ShroomSkillTrigger2_body_entered(body: Node) -> void:
 
 
 func _on_DynamicCameraTrigger_body_entered(body: Node) -> void:
+	print("in")
 	GameEvents.trigger_unique_event("thorn_camera")
 
 
 func trigger_phoridae():
-	print("trigger pho")
 	yield(get_tree().create_timer(0.5), "timeout")
 	cordy.set_eyes("angry")
 	cordy.say("Looks like they've hired new defendants.")
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
+	
+	pre_arena_pho.trigger()
 
 func thorn_camera():
 	print("yup thorn cam")
@@ -306,3 +309,7 @@ func thorn_camera():
 
 func _on_DynamicCameraTrigger_body_exited(body: Node) -> void:
 	$ScriptedCamera.back_to_player()
+
+
+func _on_PrePhoTrigger_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("trigger_phoridae")

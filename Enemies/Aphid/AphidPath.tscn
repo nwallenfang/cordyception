@@ -18,7 +18,7 @@ curve = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="AphidPath"]
-position = Vector2( -126.32, -0.0480042 )
+position = Vector2( -3009.38, 702.751 )
 rotate = false
 loop = false
 

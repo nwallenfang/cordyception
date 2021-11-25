@@ -20,8 +20,7 @@ func _ready() -> void:
 		"Chase": 1.0,
 		"SimpleShoot": 1.0,
 		"ThrowAphid": 0.3,
-		"Sprint": 0.0,
-		"Shoot": 0.0
+		"PseudoChase": 1.0
 	}
 	$YSort/AntEnemy/StateMachine.enabled = true
 	$YSort/AntEnemy.set_behavior(thrower_behavior)

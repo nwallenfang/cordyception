@@ -9,5 +9,5 @@ func _ready() -> void:
 	
 func process(delta, first_time_entering):
 	if first_time_entering:
-		yield(get_tree().create_timer(IDLE_TIME), "timeout")
+		yield(get_tree().create_timer(IDLE_TIME * (randi() % 3)), "timeout")
 		state_machine.call_deferred("transition_to_random_state")

@@ -93,7 +93,7 @@ __meta__ = {
 }
 
 [node name="Particles2D" type="Particles2D" parent="."]
-modulate = Color( 0.635294, 0.996078, 0.309804, 0.658824 )
+modulate = Color( 1, 1, 1, 0.658824 )
 material = SubResource( 1 )
 position = Vector2( 12.25, 13.5 )
 scale = Vector2( 0.2, 0.2 )
@@ -137,7 +137,6 @@ __meta__ = {
 }
 
 [node name="Full" type="TextureRect" parent="FullControl"]
-modulate = Color( 0.054902, 1, 0, 1 )
 material = SubResource( 5 )
 margin_left = 27.0
 margin_top = 27.0

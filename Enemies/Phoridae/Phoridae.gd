@@ -98,8 +98,7 @@ func _on_PhoridaeStats_health_zero():
 	$Body/Hurtbox.set_deferred("monitoring", false)
 	$Body/Hurtbox.set_deferred("monitorable", false)
 	# animation here
-	queue_free()
-	
+	$DeathPlayer.play("dying")
 	GameEvents.trigger_event("enemy_died")
 
 

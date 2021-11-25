@@ -153,7 +153,7 @@ func wave2():
 	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave11.global_position])
 	
-	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
+#	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
 	yield(get_tree().create_timer(3.4), "timeout")
 
 	$ScriptedCamera.back_to_player(1.0)
@@ -166,8 +166,17 @@ func wave2():
 	GameStatus.AIMER_VISIBLE = true
 	
 	# wait for wave 2 to have died
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "after_wave2")
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 5, self, "after_wave2")
 
+func wave2_backup():
+	print("wave2 backup")
+	cordy.set_eyes("idle")
+	cordy.say("There are more enemies incoming.")
+	w2_pho1.follow_path_array_then_fight([$Positions/Wave11.global_position])
+	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
+
+	pass
 
 func after_wave2():
 	print("after wave 2")
@@ -179,7 +188,7 @@ func reset():
 
 func shroom_to_shroom_talk(speech_position: Vector2):
 	$OtherShroomSpeech.global_position = speech_position
-	cordy.say("Yo Fred, haven't seen you up here in so long!")
+	cordy.say("Yo Fred, haven't seen you up here in so long!", 1.5)
 	yield(cordy, "speech_done")
 	$OtherShroomSpeech.set_text("Uh-huh..", 0.6)
 	yield($OtherShroomSpeech, "dialog_completed")

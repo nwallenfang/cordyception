@@ -78,6 +78,7 @@ centered = false
 visible = false
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 centered = false
 
@@ -90,7 +91,7 @@ position = Vector2( 25, 13 )
 arrow_pos = 0.8
 
 [node name="SpeechBubbleRight" parent="." instance=ExtResource( 7 )]
-position = Vector2( 158, -26 )
+position = Vector2( 121.473, -28.6727 )
 arrow_pos = 0.85
 arrow_reversed_h = false
 
@@ -100,6 +101,9 @@ arrow_pos = 0.8
 arrow_reversed_v = true
 
 [connection signal="animation_finished" from="Growth" to="." method="_on_Growth_animation_finished"]
+[connection signal="dialog_completed" from="SpeechBubbleLeft" to="." method="_on_SpeechBubbleLeft_dialog_completed"]
 [connection signal="writing_completed" from="SpeechBubbleLeft" to="." method="_on_SpeechBubbleLeft_writing_completed"]
+[connection signal="dialog_completed" from="SpeechBubbleRight" to="." method="_on_SpeechBubbleRight_dialog_completed"]
 [connection signal="writing_completed" from="SpeechBubbleRight" to="." method="_on_SpeechBubbleRight_writing_completed"]
+[connection signal="dialog_completed" from="SpeechBubbleBottom" to="." method="_on_SpeechBubbleBottom_dialog_completed"]
 [connection signal="writing_completed" from="SpeechBubbleBottom" to="." method="_on_SpeechBubbleBottom_writing_completed"]

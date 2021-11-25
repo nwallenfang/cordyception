@@ -37,15 +37,12 @@ func is_bottom_talking() -> bool:
 	return talking_bubbles / 4 == 1
 
 func _on_SpeechBubbleLeft_writing_completed() -> void:
-	emit_signal("speech_done")
 	talking_bubbles -= 1
 
 func _on_SpeechBubbleRight_writing_completed() -> void:
-	emit_signal("speech_done")
 	talking_bubbles -= 2
 
 func _on_SpeechBubbleBottom_writing_completed() -> void:
-	emit_signal("speech_done")
 	talking_bubbles -= 4
 
 func say_left(text: String, duration: float = -1) -> bool:
@@ -104,3 +101,15 @@ func set_eyes(mood_string: String):
 		"happy":
 			mood = MOOD_HAPPY
 	$Eyes.texture = mood
+
+
+func _on_SpeechBubbleLeft_dialog_completed() -> void:
+	emit_signal("speech_done")
+
+
+func _on_SpeechBubbleRight_dialog_completed() -> void:
+	emit_signal("speech_done")
+
+
+func _on_SpeechBubbleBottom_dialog_completed() -> void:
+	emit_signal("speech_done")

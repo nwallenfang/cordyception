@@ -365,3 +365,11 @@ func shroom_fist_dialog():
 	cordy.set_eyes("idle")
 	yield(cordy, "speech_done")
 	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 3000.0
+
+
+func _on_TransitionZone_body_entered(body: Node) -> void:
+	$ScriptedCamera.fade_out()
+	yield($ScriptedCamera, "fade_out_finished")
+	get_tree().change_scene("res://Levels/Arena.tscn")
+	# todo set camera completely faded out instantly
+	$ScriptedCamera.fade_in()

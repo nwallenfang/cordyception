@@ -20,6 +20,7 @@ func set_mother_path(path: NodePath):
 		mother = get_node(mother_path)
 
 func _ready() -> void:
+	$StateMachine.enabled = false
 	set_mother_path(mother_path)
 	set_ignite_area(false)
 	set_roll_area(false)
@@ -111,7 +112,7 @@ export var soft_collision_speed := 7000.0
 func do_soft_collision(delta):
 	for area in $SoftCollision.get_overlapping_areas():
 		if area.get_parent() is get_script():
-			add_acceleration(delta * soft_collision_speed * area.get_parent().global_position.direction_to(global_position))
+			add_acceleration(GameStatus.const_delta * soft_collision_speed * area.get_parent().global_position.direction_to(global_position))
 
 func handle_damage(attack, should_play_hit):
 	$EnemyStats.health -= attack.damage
@@ -136,12 +137,15 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 
 
 func set_hurtbox_enabled(e: bool):
-	$Hurtbox.monitorable = e
-	$Hurtbox.monitoring = e
+	$Hurtbox.set_deferred("monitorable", e)
+	$Hurtbox.set_deferred("monitoring", e)
 
 func _on_EnemyStats_health_changed():
 	$BarScaler/Healthbar.health = $EnemyStats.health
 
 
 func _on_EnemyStats_health_zero():
+	set_hurtbox_enabled(false)
+	print("aphid zero")
 	$StateMachine.transition_deferred("Ignite")
+	GameEvents.trigger_event("enemy_died")

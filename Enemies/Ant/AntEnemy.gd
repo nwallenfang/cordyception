@@ -43,7 +43,7 @@ func follow_path_array_then_fight(positions: Array, stop_when_player_near=true):
 		$StateMachine.enabled = true
 		yield($StateMachine/FollowPath, "movement_completed")
 	emit_signal("follow_completed")
-	$StateMachine.enabled = true
+	trigger()
 	
 func set_behavior(probabilities: Dictionary):
 	# first set probability property in child state

@@ -33,5 +33,5 @@ func process(delta, first_time_entering):
 	else:
 		var direction = parent.global_position.direction_to(parent.mother.global_position)
 		parent.play_walk_animation(direction)
-		var acc = direction * follow_acc * delta
+		var acc = direction * follow_acc * GameStatus.const_delta
 		parent.add_acceleration(acc)

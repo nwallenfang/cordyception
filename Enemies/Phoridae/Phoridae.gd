@@ -22,9 +22,15 @@ var flying := false
 func _ready():
 	stats.set_max_health(stats.MAX_HEALTH)
 
+func set_hurtbox_enabled(e: bool):
+	$Hurtbox.set_deferred("monitorable", e)
+	$Hurtbox.set_deferred("monitoring", e)
+
+
 func trigger():
 	if very_aggressive:
 		aggressive = true
+	$StateMachine.update_transition_chances()
 	$StateMachine.transition_deferred("Idle")
 	$StateMachine.start()
 
@@ -55,12 +61,15 @@ func follow_path_array(positions: Array):
 	
 func follow_path_array_then_fight(positions: Array):
 	was_enabled_previously = $StateMachine.enabled
+	flying = true
 	for position in positions:
 		$StateMachine.transition_to("FollowPath")
 		$StateMachine/FollowPath.target_position = position
+		$StateMachine/FollowPath.stop_when_player_near = true
 		$StateMachine.enabled = true
 		yield($StateMachine/FollowPath, "movement_completed")
 	emit_signal("follow_completed")
+	
 	trigger()
 
 const FLY_DUST = preload("res://Enemies/Phoridae/FlyDust.tscn")

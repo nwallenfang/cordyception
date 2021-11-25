@@ -7,6 +7,9 @@ func _ready() -> void:
 
 var walk_direction := Vector2.ZERO
 
+func null_check():
+	return is_instance_valid(parent.mother)
+
 func process(delta, first_time_entering):
 	parent = parent as RedAphid
 
@@ -21,16 +24,20 @@ func process(delta, first_time_entering):
 		if turn:
 			parent.set_facing_direction(new_direction)
 		yield(get_tree().create_timer(stand_time), "timeout")
+		if not null_check():
+			return
 		if parent.global_position.distance_to(parent.mother.global_position) > max_dist_to_mother:
 			walk_time = 0
 		walk_direction = new_direction
 		yield(get_tree().create_timer(walk_time), "timeout")
+		if not null_check():
+			return
 		if walk_time != 0:
 			var second_stand_time = rand_range(.3, 1.5)
 			walk_direction = Vector2.ZERO
 			yield(get_tree().create_timer(second_stand_time), "timeout")
 		back_to_idle()
 
-	parent.add_acceleration(walk_direction * delta * distracted_walk_speed)
+	parent.add_acceleration(walk_direction * GameStatus.const_delta * distracted_walk_speed)
 	parent.play_walk_animation(walk_direction)
 

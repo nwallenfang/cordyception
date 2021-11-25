@@ -56,55 +56,55 @@
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 17 )
 region = Rect2( 2520, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 17 )
 region = Rect2( 2590, 0, 70, 70 )
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 4.0
 } ]
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=6]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 15.9626, -9.61169, 0, 0, 0, 0, 9.40869, -12.4235, 0, 0, 0, 0, 1.16821, -12.6139, 0, 0, 0, 0, -8.57153, -10.5573, 0, 0, 0, 0, -15.1287, -5.31567, 0, 0, 0, 0, -18.3149, 0.676361, 0, 0, 0, 0, -17.9424, 6.10785, 0, 0, 0, 0, -14.1987, 11.7279, 0, 0, 0, 0, -5.95874, 13.9784, 0, 0, 0, 0, 9.39893, 13.9842, 0, 0, 0, 0, 15.9556, 9.30444, 0, 0, 0, 0, 19.8906, 4.4364, 0, 0, 0, 0, 22.7019, -0.993927 )
 }
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 300, 266 )
-
-[sub_resource type="CapsuleShape2D" id=9]
-height = 207.425
-
-[sub_resource type="CircleShape2D" id=10]
-radius = 579.527
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 300, 266 )
+
+[sub_resource type="CapsuleShape2D" id=12]
+height = 207.425
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 579.527
+
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 596, 206 )
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=15]
 radius = 268.002
 
 [node name="Act1" type="Node2D"]
@@ -164,8 +164,7 @@ position = Vector2( 6364.04, -680.892 )
 [node name="Climbing" type="AnimatedSprite" parent="YSort/DandelionRoom/AntEnemyClimber"]
 visible = false
 position = Vector2( 0.614258, -0.61441 )
-frames = SubResource( 15 )
-frame = 1
+frames = SubResource( 5 )
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
@@ -181,7 +180,7 @@ scale = Vector2( 2, 2 )
 [node name="AphidPath" parent="YSort/DandelionRoom/AphidPath" index="0"]
 position = Vector2( -2.5, -1.00095 )
 z_index = 1
-curve = SubResource( 3 )
+curve = SubResource( 6 )
 
 [node name="PathFollow2D" parent="YSort/DandelionRoom/AphidPath/AphidPath" index="0"]
 position = Vector2( 15.9626, -9.61169 )
@@ -214,8 +213,7 @@ position = Vector2( 10150.3, -682.466 )
 position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
-material = SubResource( 4 )
-frame = 19
+material = SubResource( 7 )
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -234,7 +232,7 @@ position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 8 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
 position = Vector2( -22.7488, -27.5947 )
@@ -245,8 +243,7 @@ arrow_pos = 0.3
 position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
-material = SubResource( 6 )
-frame = 19
+material = SubResource( 9 )
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
 position = Vector2( 0.5, -2 )
@@ -265,7 +262,7 @@ position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
-parameters/playback = SubResource( 7 )
+parameters/playback = SubResource( 10 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
 position = Vector2( 26.9094, -31.0244 )
@@ -351,7 +348,7 @@ texture = ExtResource( 26 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialAphid/Area2D" index="0"]
 position = Vector2( -36, 299 )
-shape = SubResource( 8 )
+shape = SubResource( 11 )
 
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
@@ -365,7 +362,7 @@ collision_mask = 2
 position = Vector2( -45, 4 )
 rotation = 2.42404
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 9 )
+shape = SubResource( 12 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 position = Vector2( 513.12, -1849.74 )
@@ -375,7 +372,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -384,7 +381,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
 position = Vector2( -70, -48 )
-shape = SubResource( 11 )
+shape = SubResource( 14 )
 
 [node name="Zone4" type="Area2D" parent="Detector"]
 position = Vector2( 4809.12, -1598.74 )
@@ -393,7 +390,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -201, -43.9999 )
-shape = SubResource( 12 )
+shape = SubResource( 15 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 5204.37, 1302.94 )

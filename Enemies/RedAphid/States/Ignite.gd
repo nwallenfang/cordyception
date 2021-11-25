@@ -14,4 +14,4 @@ func process(delta, first_time_entering):
 	var direction_vector = distance_vector.normalized()
 	
 	parent.play_walk_animation(direction_vector)
-	parent.add_acceleration(delta * CHASE_ACCELERATION * direction_vector)
+	parent.add_acceleration(GameStatus.const_delta * CHASE_ACCELERATION * direction_vector)

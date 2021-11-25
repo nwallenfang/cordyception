@@ -41,4 +41,4 @@ func process(delta: float, first_time_entering: bool):
 		parent.animation_tree.set("parameters/Walk/blend_position", direction_vector)
 
 	
-	parent.add_acceleration(delta * CHASE_ACCELERATION * direction_vector)
+	parent.add_acceleration(GameStatus.const_delta * CHASE_ACCELERATION * direction_vector)

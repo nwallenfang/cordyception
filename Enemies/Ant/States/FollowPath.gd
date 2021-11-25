@@ -40,4 +40,5 @@ func process(delta: float, first_time_entering: bool):
 	
 		parent.animation_state.travel("Walk")
 		parent.animation_tree.set("parameters/Walk/blend_position", distance_vec)
-		parent.add_acceleration(delta * FOLLOW_ACCELERATION * distance_vec.normalized())
+
+		parent.add_acceleration(GameStatus.const_delta * FOLLOW_ACCELERATION * distance_vec.normalized())

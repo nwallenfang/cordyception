@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://World/BigElements/Bush2.tscn" type="PackedScene" id=41]
 [ext_resource path="res://World/BigElements/Bush.tscn" type="PackedScene" id=42]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
+[ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=44]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -102,7 +103,7 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="TileSet" id=17]
+[sub_resource type="TileSet" id=2]
 0/name = "moss_3x3.png 0"
 0/texture = ExtResource( 43 )
 0/tex_offset = Vector2( 0, 0 )
@@ -126,20 +127,6 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-
-[sub_resource type="ShaderMaterial" id=2]
-resource_local_to_scene = true
-shader = ExtResource( 35 )
-shader_param/speed = 1.0
-shader_param/minStrength = 0.05
-shader_param/maxStrength = 0.01
-shader_param/strengthScale = 200.0
-shader_param/interval = 3.5
-shader_param/detail = 1.0
-shader_param/distortion = null
-shader_param/heightOffset = null
-shader_param/stupid_multiply = 1.0
-shader_param/offset = 0.0
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -183,54 +170,68 @@ shader_param/heightOffset = null
 shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 35 )
+shader_param/speed = 1.0
+shader_param/minStrength = 0.05
+shader_param/maxStrength = 0.01
+shader_param/strengthScale = 200.0
+shader_param/interval = 3.5
+shader_param/detail = 1.0
+shader_param/distortion = null
+shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
+shader_param/offset = 0.0
+
+[sub_resource type="Curve2D" id=7]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 155.315, -128.039, 0, 0, 0, 0, 192.866, -480.687, 0, 0, 0, 0, 68.574, -904.998, 0, 0, 0, 0, 80.0167, -1250.06, 0, 0, 0, 0, 549.59, -1394.14, 0, 0, 0, 0, 897.485, -1391.18, 0, 0, 0, 0, 1236.84, -1252.46, 0, 0, 0, 0, 1335.76, -1031.8, 0, 0, 0, 0, 155.315, -128.039 )
 }
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=8]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 63.9373, -221.726, 0, 0, 0, 0, 484.151, -46.5986, 0, 0, 0, 0, 882.662, 58.4321, 0, 0, 0, 0, 945.174, 271.328, 0, 0, 0, 0, 852.347, 454.431, 0, 0, 0, 0, 707.16, 732.651 )
 }
 
-[sub_resource type="Curve2D" id=8]
+[sub_resource type="Curve2D" id=9]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -3009.38, 702.751, 0, 0, 0, 0, -2964.6, 1005.83, 0, 0, 0, 0, -2706.55, 1311.24, 0, 0, 0, 0, -2443.97, 1524.6, 0, 0, 0, 0, -2329.59, 1816.49 )
 }
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=10]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -736.333, 2335.82, 0, 0, 0, 0, -188.014, 2191.39, 0, 0, 0, 0, 293.003, 2124.3, 0, 0, 0, 0, 794.281, 1848.67, 0, 0, 0, 0, 982.813, 1391.3 )
 }
 
-[sub_resource type="Curve2D" id=10]
+[sub_resource type="Curve2D" id=11]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -25.5283, 1465.2, 0, 0, 0, 0, -50.9027, 1247.4, 0, 0, 0, 0, 41.0664, 1126.52, 0, 0, 0, 0, 15.6565, 1002.76, 0, 0, 0, 0, 136.755, 840.138, 0, 0, 0, 0, 93.438, 666.593 )
 }
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=12]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2576.54, 807.365, 0, 0, 0, 0, -2444.98, 701.348, 0, 0, 0, 0, -2272.41, 615.146, 0, 0, 0, 0, -2251.15, 486.46, 0, 0, 0, 0, -2285.03, 333.712, 0, 0, 0, 0, -2210.06, 272.929 )
 }
 
-[sub_resource type="Curve2D" id=12]
+[sub_resource type="Curve2D" id=13]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.48157, -32.2117, 0, 0, 0, 0, -152.952, -277.265, 0, 0, 0, 0, 20.8488, -478.543, 0, 0, 0, 0, 59.2173, -638.89, 0, 0, 0, 0, -208.902, -748.571, 0, 0, 0, 0, -522.492, -766.506, 0, 0, 0, 0, -414.577, -1077.39 )
 }
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=14]
 radius = 558.998
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=15]
 radius = 309.958
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 257.378, 171.494 )
 
-[sub_resource type="CircleShape2D" id=16]
+[sub_resource type="CircleShape2D" id=17]
 radius = 859.412
 
 [node name="Arena" type="Node2D"]
@@ -264,7 +265,7 @@ script = ExtResource( 22 )
 
 [node name="DynamicMossMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-tile_set = SubResource( 17 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 collision_layer = 0
@@ -280,7 +281,7 @@ rotation = -0.000373805
 position = Vector2( -8513.79, 1746.65 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 316.341, 962.843 )
+position = Vector2( 294.664, 955.198 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -480,7 +481,7 @@ position = Vector2( 1465.96, -4163.75 )
 position = Vector2( 1491.29, -2696.88 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade16" index="2"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 position = Vector2( 6.62301, -45.5393 )
 flip_h = true
 
@@ -494,21 +495,21 @@ position = Vector2( 98.3091, 65.4205 )
 position = Vector2( 1538.96, -2675.65 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade17" index="2"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 flip_h = true
 
 [node name="GrassBlade18" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
 position = Vector2( 1611.92, -2619.52 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade18" index="2"]
-material = SubResource( 4 )
+material = SubResource( 5 )
 flip_h = true
 
 [node name="GrassBlade19" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
 position = Vector2( 1641.47, -2709.32 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade19" index="2"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 position = Vector2( 4.46298, -99.674 )
 flip_h = true
 
@@ -525,7 +526,7 @@ position = Vector2( 11.4995, 1.50427 )
 position = Vector2( 1698.99, -5559.34 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade20" index="2"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 position = Vector2( 6.62301, -45.5393 )
 flip_h = true
 
@@ -539,21 +540,21 @@ position = Vector2( 98.3091, 65.4205 )
 position = Vector2( 1746.66, -5538.11 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade21" index="2"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 flip_h = true
 
 [node name="GrassBlade22" parent="YSort/GrassNThorns" instance=ExtResource( 9 )]
 position = Vector2( 1819.62, -5481.99 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade22" index="2"]
-material = SubResource( 4 )
+material = SubResource( 5 )
 flip_h = true
 
 [node name="GrassBlade23" parent="YSort/GrassNThorns" instance=ExtResource( 34 )]
 position = Vector2( 1849.17, -5571.79 )
 
 [node name="Sprite" parent="YSort/GrassNThorns/GrassBlade23" index="2"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 position = Vector2( 4.46298, -99.674 )
 flip_h = true
 
@@ -837,8 +838,8 @@ position = Vector2( 3532.56, -6504.68 )
 
 [node name="Wave2Enemies" type="YSort" parent="YSort"]
 
-[node name="AntEnemy1" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
-position = Vector2( 3901.86, -6875.94 )
+[node name="AntThrower" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
+position = Vector2( 3095.58, -6389.75 )
 
 [node name="AntEnemy2" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
 position = Vector2( 4044.93, -7043.6 )
@@ -855,6 +856,18 @@ position = Vector2( 2882.74, -5873.48 )
 [node name="Phoridae4" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
 position = Vector2( 2923.51, -5835.32 )
 
+[node name="RedAphid1" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
+position = Vector2( 3094.34, -6450.65 )
+mother_path = NodePath("../AntThrower")
+
+[node name="RedAphid2" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
+position = Vector2( 3155.35, -6409.2 )
+mother_path = NodePath("../AntThrower")
+
+[node name="RedAphid3" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
+position = Vector2( 3149.58, -6460.87 )
+mother_path = NodePath("../AntThrower")
+
 [node name="Aphids" type="YSort" parent="YSort"]
 
 [node name="AphidPathWithAphid" parent="YSort/Aphids" instance=ExtResource( 38 )]
@@ -862,7 +875,7 @@ position = Vector2( 245.141, -4327.22 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid" index="0"]
 position = Vector2( -0.0116425, 31.1128 )
-curve = SubResource( 6 )
+curve = SubResource( 7 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid/AphidPath" index="0"]
 position = Vector2( 155.315, -128.039 )
@@ -874,7 +887,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid2" index="0"]
-curve = SubResource( 7 )
+curve = SubResource( 8 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid2/AphidPath" index="0"]
 position = Vector2( 63.9373, -221.726 )
@@ -886,10 +899,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid3" index="0"]
-curve = SubResource( 8 )
-
-[node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid3/AphidPath" index="0"]
-position = Vector2( -3009.38, 702.751 )
+curve = SubResource( 9 )
 
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid3" index="1"]
 scale = Vector2( 2, 2 )
@@ -898,7 +908,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid4" index="0"]
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid4/AphidPath" index="0"]
 position = Vector2( -736.333, 2335.82 )
@@ -910,7 +920,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid5" index="0"]
-curve = SubResource( 10 )
+curve = SubResource( 11 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid5/AphidPath" index="0"]
 position = Vector2( -25.5283, 1465.2 )
@@ -923,7 +933,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid6" index="0"]
-curve = SubResource( 11 )
+curve = SubResource( 12 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid6/AphidPath" index="0"]
 position = Vector2( -2576.54, 807.365 )
@@ -946,7 +956,7 @@ position = Vector2( 1215.03, -736.841 )
 
 [node name="AphidPath" parent="YSort/PreArena/AphidPathWithAphid7" index="0"]
 position = Vector2( -0.0116425, 31.1128 )
-curve = SubResource( 12 )
+curve = SubResource( 13 )
 
 [node name="PathFollow2D" parent="YSort/PreArena/AphidPathWithAphid7/AphidPath" index="0"]
 position = Vector2( -2.48157, -32.2117 )
@@ -1101,7 +1111,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( 10.6907, -35.636 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -1110,7 +1120,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -1119,7 +1129,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="ShroomSkillTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -1129,7 +1139,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger"]
 position = Vector2( 203.367, -47.3571 )
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="ShroomSkillTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 1422.8, 70.5942 )
@@ -1140,7 +1150,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger2"]
 position = Vector2( 195.383, 33.0241 )
 rotation = 0.397483
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="PrePhoTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 903.661, -605.343 )
@@ -1151,7 +1161,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PrePhoTrigger"]
 position = Vector2( 254.204, -202.538 )
 rotation = -0.0188068
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="DynamicCameraTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
@@ -1161,12 +1171,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraTrigger"]
 position = Vector2( 0.315796, -1.78979 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 316.701, 962.725 )
+position = Vector2( 295.021, 955.088 )
 rotation = -0.000373805
 
 [node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]

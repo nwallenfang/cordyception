@@ -19,6 +19,10 @@ onready var w2_pho1 = $YSort/Wave2Enemies/Phoridae1
 onready var w2_pho2 = $YSort/Wave2Enemies/Phoridae2
 onready var w2_pho3 = $YSort/Wave2Enemies/Phoridae3
 onready var w2_pho4 = $YSort/Wave2Enemies/Phoridae4
+onready var w2_thrower = $YSort/Wave2Enemies/AntThrower
+onready var w2_raphid1 = $YSort/Wave2Enemies/RedAphid1
+onready var w2_raphid2 = $YSort/Wave2Enemies/RedAphid2
+onready var w2_raphid3 = $YSort/Wave2Enemies/RedAphid3
 
 
 var enemies_killed_baseline: int
@@ -49,9 +53,6 @@ func _ready():
 	w2_pho3.very_aggressive = true
 	w2_pho4.very_aggressive = true
 	
-
-
-
 	CheckpointManager.connect("player_respawned", self, "died_in_arena")
 	
 	# what should definitely be activated in the Arena?	
@@ -59,7 +60,19 @@ func _ready():
 	cordy._on_Growth_animation_finished()
 	cordy.set_eyes("idle")
 	
-	enemies_killed_baseline = GameEvents.count('enemy_died')
+	
+	w2_raphid1.visible = true
+	w2_raphid2.visible = true
+	w2_raphid3.visible = true
+	w2_thrower.visible = true
+	
+	var thrower_behavior = {
+		"Chase": 1.0,
+		"SimpleShoot": 1.0,
+		"ThrowAphid": 0.6,
+		"Sprint": 0.0,
+	}
+	w2_thrower.set_behavior(thrower_behavior)
 	
 	GameEvents.connect("arena_wave1", self, "wave1")
 	GameEvents.connect("arena_wave2", self, "wave2")
@@ -96,8 +109,6 @@ func last_enemy_ready_wave1():
 	w1_ant4.trigger()
 	
 func last_enemy_ready_wave2():
-#	w2_ant1.trigger()
-#	w2_ant2.trigger()
 	w2_pho1.trigger()
 	w2_pho2.trigger()
 
@@ -133,7 +144,7 @@ func wave1():
 	w1_ant2.follow_path_array_then_fight([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
 	w1_ant3.follow_path_array_then_fight([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
 	w1_ant4.follow_path_array_then_fight([gate, $Positions/Wave14.global_position])
-#	last_enemy_ready_wave1()  # DELETE THIS
+
 	yield(get_tree().create_timer(3.8), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
 	
@@ -142,8 +153,9 @@ func wave1():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
-	var player_died_baseline = GameEvents.count("player_died")
-	GameEvents.connect_to_event_count('enemy_died', enemies_killed_baseline + 4, self, "wave2")
+
+#	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
 	# fight fight fight
 
 	
@@ -169,7 +181,7 @@ func wave2():
 	yield(shot_caller_speech, "dialog_completed")
 	cordy.set_eyes("idle")
 	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
-	
+
 	# camera again to gate
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
@@ -178,8 +190,7 @@ func wave2():
 	w2_pho1.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	
-#	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
-	yield(get_tree().create_timer(3.4), "timeout")
+#	yield(get_tree().create_timer(3.4), "timeout")
 
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "slide_finished")
@@ -191,21 +202,41 @@ func wave2():
 	GameStatus.AIMER_VISIBLE = true
 	
 	# wait for wave 2 to have died
+	
+#	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 5, self, "after_wave2")
+
 
 func wave2_backup():
+	w2_raphid1.visible = true
+	w2_raphid2.visible = true
+	w2_raphid3.visible = true
+	w2_raphid1.get_node("StateMachine").start()
+	w2_raphid2.get_node("StateMachine").start()
+	w2_raphid3.get_node("StateMachine").start()
+	w2_thrower.visible = true
 	w2_pho3.visible = true
 	w2_pho4.visible = true
-	print("wave2 backup")
 	cordy.set_eyes("idle")
-	cordy.say("There are more enemies incoming.")
+	cordy.say("Careful, there are more enemies incoming.")
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position])
-	w2_ant1.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position])
+#	print("DONE once ", GameEvents.count("enemy_died") + 6, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 6, self, "after_wave2")
 
 func after_wave2():
-	print("after wave 2")
+	$ScriptedCamera.follow(shot_caller, 1.8)
+	yield($ScriptedCamera, "follow_target_reached")
+	shot_caller_speech.set_text("That's it for now! Thanks for playing!", 1.0)
+	cordy.set_eyes("bored")
+	cordy.say("Nooo, I want more destruction!")
+	yield(shot_caller_speech, "dialog_completed")
+	shot_caller_speech.set_text("Be sure to give us some feedback!", 1.0)
+	yield(shot_caller_speech, "dialog_completed")
+	$ScriptedCamera.stop_following()
+	$ScriptedCamera.back_to_player()
+	yield($ScriptedCamera, "slide_finished")
 	
 
 func reset():
@@ -255,7 +286,17 @@ func _process(delta):
 					ant_enemy.get_node("EnemyStats").health = 0
 			if child is Phoridae:
 				var pho = child as Phoridae
-				pho.get_node("PhoridaeStats").health = 0
+				if pho.get_node("StateMachine").enabled:
+					pho.get_node("PhoridaeStats").health = 0
+		for child in $YSort/Wave2Enemies.get_children():
+			if child is AntEnemy:
+				var ant_enemy = child as AntEnemy
+				if ant_enemy.state_machine.enabled:
+					ant_enemy.get_node("EnemyStats").health = 0
+			if child is Phoridae:
+				var pho = child as Phoridae
+				if pho.get_node("StateMachine").enabled:
+					pho.get_node("PhoridaeStats").health = 0
 
 
 func _on_ShroomDialogZone_body_entered(body: Node) -> void:
@@ -281,8 +322,8 @@ func _on_ShroomSkillTrigger2_body_entered(body: Node) -> void:
 
 
 func _on_DynamicCameraTrigger_body_entered(body: Node) -> void:
-	print("in")
-	GameEvents.trigger_unique_event("thorn_camera")
+	if is_instance_valid(thorn_shooter):
+		GameEvents.trigger_event("thorn_camera")
 
 
 func trigger_phoridae():
@@ -291,11 +332,10 @@ func trigger_phoridae():
 	cordy.say("Looks like they've hired new defendants.")
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
-	
-	pre_arena_pho.trigger()
+	if is_instance_valid(pre_arena_pho):
+		pre_arena_pho.trigger()
 
 func thorn_camera():
-	print("yup thorn cam")
 	cordy.set_eyes("happy")
 	cordy.say_bottom("Now you can stop these thorny shenanigans.")
 	$Detector/DynamicCameraTrigger/DynamicPlayerCam.target = thorn_shooter

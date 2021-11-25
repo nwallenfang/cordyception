@@ -35,7 +35,7 @@ func process(delta, first_time_entering):
 
 	var homing_acc = parent.global_position.direction_to(player_global) * homing_speed
 	acc = direction * speed + homing_acc
-	parent.add_acceleration(delta * acc)
+	parent.add_acceleration(GameStatus.const_delta * acc)
 
 	if first_time_entering:
 		yield(get_tree().create_timer(slow_time), "timeout")

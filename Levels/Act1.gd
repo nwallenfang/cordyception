@@ -221,8 +221,11 @@ func _on_Zone2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("dandelion_attack")
 
 func _on_TransitionArea_body_entered(body: Node) -> void:
+	$ScriptedCamera.fade_out()
+	yield($ScriptedCamera, "fade_out_finished")
 	get_tree().change_scene("res://Levels/Act2.tscn")
-	print("player entered transition area!")
+	# todo set camera completely faded out instantly
+	$ScriptedCamera.fade_in()
 
 func _on_Zone3_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("joke_dialog")

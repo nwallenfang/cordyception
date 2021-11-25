@@ -329,7 +329,7 @@ func _on_DynamicCameraTrigger_body_entered(body: Node) -> void:
 func trigger_phoridae():
 	yield(get_tree().create_timer(0.5), "timeout")
 	cordy.set_eyes("angry")
-	cordy.say("Looks like they've hired new defendants.")
+	cordy.say("Looks like they've hired new flying defendants.")
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
 	if is_instance_valid(pre_arena_pho):

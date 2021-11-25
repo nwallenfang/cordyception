@@ -44,17 +44,7 @@ func follow_path_array_then_fight(positions: Array):
 	
 func set_behavior(probabilities: Dictionary):
 	# first set probability property in child state
-	var state: AbstractState
-	for state_name in probabilities.keys():
-		state = $StateMachine.get_node(state_name)
-		if state != null:
-			state.RELATIVE_TRANSITION_CHANCE = probabilities[state_name]
-		else:
-			print("behavior WARN: state ", state_name, " doesn't exist!")
-
-	# second force transition chance recalculation
-	$StateMachine.idle_transition_chance = $StateMachine.build_absolute_transition_chances()
-	$StateMachine.find_initial_state_and_prev()
+	$StateMachine.set_behavior_to(probabilities)
 
 func get_state() -> String:
 	# return current state name

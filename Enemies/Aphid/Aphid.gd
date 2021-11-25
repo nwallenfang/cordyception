@@ -8,7 +8,8 @@ var mother: Node2D = null
 func set_mother_path(path: NodePath):
 	if path != "":
 		mother_path = path
-		mother = get_node(mother_path)
+		if has_node(mother_path):
+			mother = get_node(mother_path)
 
 func _ready() -> void:
 	set_monitor(true)

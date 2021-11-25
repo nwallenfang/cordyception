@@ -27,13 +27,15 @@ func get_nearest_point(pos: Vector2) -> Vector2:
 	for v in poly:
 		v.x *= scale.x
 		v.y *= scale.y
+		v = v.rotated(rotation)
 		v += global_position
 		
 		# debug scent for seeing the used points
-#		var scent = load("res://Player/Scent.tscn").instance()
-#		GameStatus.CURRENT_YSORT.add_child(scent)
-#		scent.global_position = v
-#		scent.modulate = Color.red
+		var scent = load("res://Player/Scent.tscn").instance()
+		scent.visible = true
+		GameStatus.CURRENT_YSORT.add_child(scent)
+		scent.global_position = v
+		scent.modulate = Color.red
 		
 		if pos.distance_to(v) < shortest_distance:
 			best = v
@@ -43,5 +45,6 @@ func get_nearest_point(pos: Vector2) -> Vector2:
 func knockback_vector() -> Vector2:
 	var player = GameStatus.CURRENT_PLAYER
 	var nearest := get_nearest_point(player.get_node("Anchor").global_position)
+	var rotation = null
 	return knock_back * nearest.direction_to(player.get_node("Anchor").global_position)
 	

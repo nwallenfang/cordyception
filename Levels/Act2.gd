@@ -34,7 +34,6 @@ func _ready():
 	var shooter_behavior = {
 		"Chase": 0.0,
 		"SimpleShoot": 1.0,
-		"Shoot": 0.0,
 		"Sprint": 0.0
 	}
 	var lower_health := 8 # default is 20
@@ -49,7 +48,6 @@ func _ready():
 		"SimpleShoot": 1.0,
 		"ThrowAphid": 0.6,
 		"Sprint": 0.0,
-		"Shoot": 0.0
 	}
 	thrower.set_behavior(thrower_behavior)
 	

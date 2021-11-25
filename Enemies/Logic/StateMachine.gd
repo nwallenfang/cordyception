@@ -177,8 +177,8 @@ func _ready() -> void:
 
 func set_behavior_to(probabilities: Dictionary):
 	# first set probability property in child state
-	for state in get_children():
-		state.RELATIVE_TRANSITION_CHANCE = 0.0
+	for child_state in get_children():
+		child_state.RELATIVE_TRANSITION_CHANCE = 0.0
 	for state_name in probabilities.keys():
 		var state = get_node(state_name)
 		if state != null:

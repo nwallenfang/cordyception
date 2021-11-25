@@ -18,6 +18,12 @@ func knockback_vector() -> Vector2:
 	return knockback * direction.normalized()
 
 func _on_Hitbox_area_entered(area: Area2D) -> void:
+	if area.name == "Hurtbox":
+		# Projectile hit a player
+		# don't destroy projectile if player is dashing
+		var player_object = area.get_parent()
+		if player_object.state == player_object.State.DASH:
+			return
 	queue_free()
 
 func _physics_process(delta):

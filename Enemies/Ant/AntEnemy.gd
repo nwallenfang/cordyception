@@ -18,6 +18,7 @@ var knockbackable = true
 var initial_position: Vector2
 
 signal follow_completed
+signal died
 
 func _ready():
 	initial_position = global_position
@@ -138,6 +139,7 @@ func _on_EnemyStats_health_zero() -> void:
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 	
 	GameEvents.trigger_event("enemy_died")
+	emit_signal("died")
 
 
 func _physics_process(delta: float) -> void:

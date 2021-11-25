@@ -9,6 +9,8 @@ func __shoot_single():
 
 func __reset():
 	parent.animation_state.travel("Idle")
+	yield(get_tree().create_timer(0.2), "timeout")
+	back_to_idle()
 
 
 func start_shooting_single_projectile(target_pos: Vector2):  # outside of state machine :)

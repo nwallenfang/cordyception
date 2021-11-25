@@ -318,20 +318,6 @@ tracks/0/keys = {
 "method": "__reset"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "back_to_idle"
-} ]
-}
 
 [sub_resource type="CircleShape2D" id=18]
 radius = 106.216
@@ -1599,7 +1585,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 texture = ExtResource( 10 )
 hframes = 54
-frame = 19
+frame = 18
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )

@@ -722,6 +722,9 @@ position = Vector2( 2883.3, -5801.94 )
 [node name="Phoridae3" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
 position = Vector2( 2882.74, -5873.48 )
 
+[node name="Phoridae4" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
+position = Vector2( 2923.51, -5835.32 )
+
 [node name="Aphids" type="YSort" parent="YSort"]
 
 [node name="AphidPathWithAphid" parent="YSort/Aphids" instance=ExtResource( 38 )]
@@ -827,6 +830,9 @@ position = Vector2( 1303.27, -4845.63 )
 
 [node name="Wave14" type="Position2D" parent="Positions"]
 position = Vector2( 1696.51, -4927.7 )
+
+[node name="Wave21" type="Position2D" parent="Positions"]
+position = Vector2( 1364.1, -4635.23 )
 
 [node name="GatePass6" type="Position2D" parent="Positions"]
 position = Vector2( 1702.86, -4867.38 )

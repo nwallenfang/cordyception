@@ -16,6 +16,7 @@ onready var w2_ant2 = $YSort/Wave2Enemies/AntEnemy2
 onready var w2_pho1 = $YSort/Wave2Enemies/Phoridae1
 onready var w2_pho2 = $YSort/Wave2Enemies/Phoridae2
 onready var w2_pho3 = $YSort/Wave2Enemies/Phoridae3
+onready var w2_pho4 = $YSort/Wave2Enemies/Phoridae4
 
 
 var enemies_killed_baseline: int
@@ -42,9 +43,11 @@ func _ready():
 	w2_pho1.visible = false
 	w2_pho2.visible = false
 	w2_pho3.visible = false
+	w2_pho4.visible = false
 	w2_pho1.very_aggressive = true
 	w2_pho2.very_aggressive = true
 	w2_pho3.very_aggressive = true
+	w2_pho4.very_aggressive = true
 	
 	var player_died_baseline = GameEvents.count("player_died")
 
@@ -70,9 +73,8 @@ func last_enemy_ready_wave1():
 	w1_ant4.trigger()
 	
 func last_enemy_ready_wave2():
-	# TODO more enemies
-	w2_ant1.trigger()
-	w2_ant2.trigger()
+#	w2_ant1.trigger()
+#	w2_ant2.trigger()
 	w2_pho1.trigger()
 	w2_pho2.trigger()
 
@@ -124,7 +126,7 @@ func wave1():
 func wave2():
 	w2_pho1.visible = true
 	w2_pho2.visible = true
-	w2_pho3.visible = true
+
 	yield(get_tree().create_timer(0.6), "timeout")
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
@@ -149,9 +151,8 @@ func wave2():
 	yield($ScriptedCamera, "slide_finished")
 	
 	# have the wave2 enemies walk in
-	w2_pho1.follow_path_array_then_fight([$Positions/Wave11.global_position])
-	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
-	w2_pho3.follow_path_array_then_fight([$Positions/Wave11.global_position])
+	w2_pho1.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	
 #	w2_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
 	yield(get_tree().create_timer(3.4), "timeout")
@@ -170,13 +171,14 @@ func wave2():
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 5, self, "after_wave2")
 
 func wave2_backup():
+	w2_pho3.visible = true
+	w2_pho4.visible = true
 	print("wave2 backup")
 	cordy.set_eyes("idle")
 	cordy.say("There are more enemies incoming.")
-	w2_pho1.follow_path_array_then_fight([$Positions/Wave11.global_position])
-	w2_pho2.follow_path_array_then_fight([$Positions/Wave11.global_position])
-
-	pass
+	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_ant1.follow_path_array_then_fight([$Positions/Wave21.global_position])
 
 func after_wave2():
 	print("after wave 2")

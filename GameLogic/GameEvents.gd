@@ -8,6 +8,7 @@ signal joke_dialog
 signal joke_attack
 
 # act 2
+signal shroom_fist_dialog
 signal scout_dialog
 signal small_chase
 signal stick_close

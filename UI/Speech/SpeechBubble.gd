@@ -158,5 +158,6 @@ func _on_Timer_timeout() -> void:
 	text_node.percent_visible = 0
 	text_node.bbcode_text = ""
 	set_bubble_size(Vector2.ZERO)
-	visible = false
-	emit_signal("dialog_completed")
+	if visible:
+		visible = false
+		emit_signal("dialog_completed")

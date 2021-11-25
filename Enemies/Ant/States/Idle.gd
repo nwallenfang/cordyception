@@ -9,5 +9,6 @@ func _ready() -> void:
 	
 func process(delta, first_time_entering):
 	if first_time_entering:
+		print("current idle blend ", parent.animation_tree.get("parameters/Idle/blend_position"))
 		yield(get_tree().create_timer(IDLE_TIME), "timeout")
 		state_machine.call_deferred("transition_to_random_state")

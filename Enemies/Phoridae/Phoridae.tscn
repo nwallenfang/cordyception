@@ -207,8 +207,8 @@ tracks/2/keys = {
 
 [node name="Phoridae" type="KinematicBody2D"]
 collision_layer = 0
+collision_mask = 0
 script = ExtResource( 5 )
-FRICTION = 0.9
 
 [node name="Body" type="Node2D" parent="."]
 

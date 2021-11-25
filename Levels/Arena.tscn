@@ -177,15 +177,15 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -25.5283, 1465.2, 0, 0, 0, 0, -50.9027, 1247.4, 0, 0, 0, 0, 41.0664, 1126.52, 0, 0, 0, 0, 15.6565, 1002.76, 0, 0, 0, 0, 136.755, 840.138, 0, 0, 0, 0, 93.438, 666.593 )
 }
 
-[sub_resource type="Curve2D" id=13]
+[sub_resource type="Curve2D" id=11]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2576.54, 807.365, 0, 0, 0, 0, -2444.98, 701.348, 0, 0, 0, 0, -2272.41, 615.146, 0, 0, 0, 0, -2251.15, 486.46, 0, 0, 0, 0, -2285.03, 333.712, 0, 0, 0, 0, -2210.06, 272.929 )
 }
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=12]
 radius = 558.998
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=13]
 radius = 309.958
 
 [node name="Arena" type="Node2D"]
@@ -790,7 +790,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid6" index="0"]
-curve = SubResource( 13 )
+curve = SubResource( 11 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid6/AphidPath" index="0"]
 position = Vector2( -2576.54, 807.365 )
@@ -854,7 +854,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( 10.6907, -35.636 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -863,7 +863,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -872,7 +872,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1367.93, -4500.19 )

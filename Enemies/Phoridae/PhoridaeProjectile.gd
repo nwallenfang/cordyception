@@ -2,7 +2,7 @@ extends Node2D
 class_name PhoridaeProjectile
 
 export var knockback := 50000.0 
-export var speed := 400.0
+export var speed := 320.0
 export var homing := 20.0
 export var soft_collision_speed := 50.0
 

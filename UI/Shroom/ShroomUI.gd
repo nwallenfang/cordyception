@@ -18,14 +18,17 @@ func grow_second():
 	$Growth.frame = 0
 	$Growth.play("SecondPhase")
 
+func show():
+	$Body.visible = true
+	$Eyes.visible = true
+	$Mouth.visible = true
+	$Sparkle.visible = true
+	$Growth.visible = false
+
 func _on_Growth_animation_finished() -> void:
 	if growth_phase == 2:
-		$Body.visible = true
-		$Eyes.visible = true
-		$Mouth.visible = true
-		$Sparkle.visible = true
-		$Growth.visible = false
-
+		show()
+		
 # int for currently talking bubbles
 # 1 = left
 # 2 = right

@@ -25,6 +25,7 @@ func _ready():
 	GameEvents.connect("small_chase", self, "small_chase")
 	GameEvents.connect("room_checkpoint", self, "room_checkpoint")
 	GameEvents.connect("room_cutscene", self, "room_cutscene")
+	GameEvents.connect("shroom_fist_dialog", self, "shroom_fist_dialog")
 	
 	scout.set_facing_direction(Vector2.LEFT)
 	scout.get_node("StateMachine").enabled = false
@@ -305,3 +306,46 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 func _on_ShooterTrigger2_body_entered(body: Node) -> void:
 	shooter2.state_machine.enabled = true
 	shooter3.state_machine.enabled = true
+
+
+func _on_ShroomTrigger_body_entered(body):
+	GameEvents.trigger_unique_event("shroom_fist_dialog")
+
+func shroom_fist_dialog():
+	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 2600.0
+	var cordy := GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
+	cordy.grow_first()
+	yield(get_tree().create_timer(3), "timeout")
+	cordy.grow_second()
+	yield(get_tree().create_timer(2), "timeout")
+	cordy.say_right("Hello, my new host", 1)
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_left("I see you've put your newly learned abilities to good use.", 1.5)
+	cordy.set_eyes("idle")
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_bottom("You're welcome.", 1)
+	cordy.set_eyes("happy")
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_left("Don't have bad feelings for them.", 1)
+	cordy.set_eyes("idle")
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_left("They mean nothing to you anymore.", 1)
+	cordy.set_eyes("bored")
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.set_eyes("idle")
+	cordy.say_left("Now you're far superior to those pathetic weaklings.", 1.2)
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_left("Now do as I say and your future will be full of satisfaction.", 1.3)
+	cordy.set_eyes("happy")
+	yield(cordy, "speech_done")
+	yield(get_tree().create_timer(.1), "timeout")
+	cordy.say_bottom("Bring me to your queen!", 1)
+	cordy.set_eyes("idle")
+	yield(cordy, "speech_done")
+	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 3000.0

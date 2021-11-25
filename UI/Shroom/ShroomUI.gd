@@ -1,21 +1,30 @@
 extends Control
 class_name Cordy
 
-
 signal speech_done
 
-func grow() -> void:
+var growth_phase := 0
+func grow_first():
+	growth_phase = 1
 	$Growth.visible = true
 	$Growth.playing = true
 	$Growth.frame = 0
-	$Growth.play()
+	$Growth.play("FirstPhase")
+	
+func grow_second():
+	growth_phase = 2
+	$Growth.visible = true
+	$Growth.playing = true
+	$Growth.frame = 0
+	$Growth.play("SecondPhase")
 
 func _on_Growth_animation_finished() -> void:
-	$Body.visible = true
-	$Eyes.visible = true
-	$Mouth.visible = true
-	$Sparkle.visible = true
-	$Growth.visible = false
+	if growth_phase == 2:
+		$Body.visible = true
+		$Eyes.visible = true
+		$Mouth.visible = true
+		$Sparkle.visible = true
+		$Growth.visible = false
 
 # int for currently talking bubbles
 # 1 = left
@@ -37,13 +46,13 @@ func is_bottom_talking() -> bool:
 	return talking_bubbles / 4 == 1
 
 func _on_SpeechBubbleLeft_writing_completed() -> void:
-	talking_bubbles -= 1
+	self.talking_bubbles = talking_bubbles - 1
 
 func _on_SpeechBubbleRight_writing_completed() -> void:
-	talking_bubbles -= 2
+	self.talking_bubbles = talking_bubbles - 2
 
 func _on_SpeechBubbleBottom_writing_completed() -> void:
-	talking_bubbles -= 4
+	self.talking_bubbles = talking_bubbles - 4
 
 func say_left(text: String, duration: float = -1) -> bool:
 	if $SpeechBubbleLeft.visible:
@@ -53,7 +62,7 @@ func say_left(text: String, duration: float = -1) -> bool:
 			$SpeechBubbleLeft.set_text(text)
 		else:
 			$SpeechBubbleLeft.set_text(text, duration)
-		talking_bubbles += 1
+		self.talking_bubbles = talking_bubbles + 1
 		return true
 
 func say_right(text: String, duration: float = -1) -> bool:
@@ -64,7 +73,7 @@ func say_right(text: String, duration: float = -1) -> bool:
 			$SpeechBubbleRight.set_text(text)
 		else:
 			$SpeechBubbleRight.set_text(text, duration)
-		talking_bubbles += 2
+		self.talking_bubbles = talking_bubbles + 2
 		return true
 
 func say_bottom(text: String, duration: float = -1) -> bool:
@@ -75,7 +84,7 @@ func say_bottom(text: String, duration: float = -1) -> bool:
 			$SpeechBubbleBottom.set_text(text)
 		else:
 			$SpeechBubbleBottom.set_text(text, duration)
-		talking_bubbles += 4
+		self.talking_bubbles = talking_bubbles + 4
 		return true
 
 func say(text: String, duration: float = -1) -> void:

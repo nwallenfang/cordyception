@@ -217,19 +217,15 @@ material = SubResource( 7 )
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 8 )
@@ -244,22 +240,6 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 9 )
-
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 10 )

@@ -8,7 +8,7 @@ onready var ant2 = $YSort/DandelionRoom/AntEnemy2
 onready var ant2_speech = $YSort/DandelionRoom/AntEnemy2/SpeechBubble
 onready var player = $YSort/Player
 onready var aphid_path = $YSort/DandelionRoom/AphidPath
-onready var aphid = $YSort/DandelionRoom/AphidPath/Aphid
+onready var aphid = $YSort/DandelionRoom/AphidPath/Aphid as Aphid
 onready var stick_obstacle = $YSort/DandelionRoom/StickObstacle
 onready var antertainer1 = $YSort/ExitPath/Antertainer
 onready var antertainer1_speech = $YSort/ExitPath/Antertainer/SpeechBubble
@@ -40,8 +40,8 @@ func _ready() -> void:
 	# give the 3 ants simpler behavior and less HP
 	var simpler_behavior = {
 		"Chase": 1.0,
+		"PseudoChase": 0.6,
 		"SimpleShoot": 3.0,
-		"Shoot": 0.0,
 		"Sprint": 0.2
 	}
 	var lower_health := 8 # default is 20
@@ -71,15 +71,15 @@ func _ready() -> void:
 	
 	var shooter_behavior := {
 		"Chase": 0.7,
-		"SimpleShoot": 3.0,
-		"Shoot": 0.5,
-		"Sprint": 0.0
+		"SimpleShoot": 2.0,
+		"ShootVolley": 0.8,
+		"ShootRadial": 0.4,
+		"PseudoChase": 0.6
 	}
 	
 	var close_combat_behavior := {
 		"Chase": 1.5,
-		"SimpleShoot": 0.0,
-		"Shoot": 0.0,
+		"PseudoChase": 0.5,
 		"Sprint": 1.0
 	}
 	
@@ -128,11 +128,16 @@ func enemy_died():
 
 func aphid_climb_down():
 	# change the 
+	aphid.get_node("StateMachine").enabled = false
+	aphid.facing_right = false
+	aphid.play_walk_animation(Vector2.ZERO)
 	$Positions/PositionTween.reset_all()
 	$Positions/PositionTween.interpolate_property(aphid_path, "global_position", aphid_path.global_position, $Positions/AphidFloor.global_position, 1.8)
+	aphid.get_node("Shadow").global_position = $Positions/AphidShadowFloor.global_position
+	$Positions/PositionTween.interpolate_property(aphid.get_node("Shadow"), "position", aphid.get_node("Shadow").position, Vector2(0, 5.5), 1.8)
 	$Positions/PositionTween.start()
-	aphid.set_deferred("monitorable", true)
-	aphid.set_deferred("monitoring", true)
+	aphid.get_node("Area").set_deferred("monitorable", true)
+	aphid.get_node("Area").set_deferred("monitoring", true)
 	aphid_tutorial_area.set_deferred("monitorable", true)
 	aphid_tutorial_area.set_deferred("monitoring", true)
 
@@ -228,7 +233,7 @@ func _on_Zone4_body_entered(body: Node) -> void:
 
 var attack_started := false
 func joke_dialog():
-	antertainer2_speech.set_text("So, what's your brother Antony doing lately?")
+	antertainer2_speech.set_text("So, what's your brother ANThony doing lately?")
 	yield(antertainer2_speech, "dialog_completed")
 	if attack_started:
 		return
@@ -240,7 +245,7 @@ func joke_dialog():
 	yield(antertainer2_speech, "dialog_completed")
 	if attack_started:
 		return
-	antertainer1_speech.set_text("XD I did not ANTicipate that one")
+	antertainer1_speech.set_text("XD ... I did not ANTicipate that one")
 	yield(antertainer1_speech, "dialog_completed")
 	if attack_started:
 		return

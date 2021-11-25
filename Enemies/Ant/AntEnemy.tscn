@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://Enemies/Ant/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Enemies/Ant/States/SimpleShoot.gd" type="Script" id=24]
 [ext_resource path="res://Enemies/Ant/States/ThrowAphid.gd" type="Script" id=25]
 [ext_resource path="res://Enemies/Ant/States/ShootRadial.gd" type="Script" id=26]
+[ext_resource path="res://Enemies/Ant/PseudoChase.gd" type="Script" id=27]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -45,7 +46,8 @@ radius = 25.356
 height = 17.288
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 15.0
+radius = 9.89269
+height = 16.4062
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -1580,7 +1582,6 @@ tracks/0/keys = {
 [node name="AntEnemy" type="KinematicBody2D"]
 scale = Vector2( 1.45, 1.45 )
 collision_layer = 0
-collision_mask = 0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -1717,6 +1718,9 @@ script = ExtResource( 15 )
 RELATIVE_TRANSITION_CHANCE = 1.4
 STOP_CHASE_DENSITY = ExtResource( 18 )
 
+[node name="PseudoChase" type="Node2D" parent="StateMachine"]
+script = ExtResource( 27 )
+
 [node name="Idle" type="Node2D" parent="StateMachine"]
 script = ExtResource( 16 )
 
@@ -1781,7 +1785,6 @@ collision_mask = 256
 shape = SubResource( 18 )
 
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 anchor_bottom = 0.147
 margin_left = -122.0
 margin_top = -57.1784

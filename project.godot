@@ -261,8 +261,13 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+full=false
 
 [importer_defaults]
 

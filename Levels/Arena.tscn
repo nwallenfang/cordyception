@@ -112,6 +112,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -125,6 +126,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
 [sub_resource type="ShaderMaterial" id=4]
@@ -138,6 +140,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
 [sub_resource type="ShaderMaterial" id=5]
@@ -151,6 +154,7 @@ shader_param/interval = 3.5
 shader_param/detail = 1.0
 shader_param/distortion = null
 shader_param/heightOffset = null
+shader_param/stupid_multiply = 1.0
 shader_param/offset = 0.0
 
 [sub_resource type="Curve2D" id=6]
@@ -186,21 +190,21 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2576.54, 807.365, 0, 0, 0, 0, -2444.98, 701.348, 0, 0, 0, 0, -2272.41, 615.146, 0, 0, 0, 0, -2251.15, 486.46, 0, 0, 0, 0, -2285.03, 333.712, 0, 0, 0, 0, -2210.06, 272.929 )
 }
 
-[sub_resource type="Curve2D" id=16]
+[sub_resource type="Curve2D" id=12]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.48157, -32.2117, 0, 0, 0, 0, -152.952, -277.265, 0, 0, 0, 0, 20.8488, -478.543, 0, 0, 0, 0, 59.2173, -638.89, 0, 0, 0, 0, -208.902, -748.571, 0, 0, 0, 0, -522.492, -766.506, 0, 0, 0, 0, -414.577, -1077.39 )
 }
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=13]
 radius = 558.998
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=14]
 radius = 309.958
 
-[sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 573.01, 242.1 )
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 257.378, 171.494 )
 
-[sub_resource type="CircleShape2D" id=15]
+[sub_resource type="CircleShape2D" id=16]
 radius = 859.412
 
 [node name="Arena" type="Node2D"]
@@ -905,7 +909,7 @@ position = Vector2( 1215.03, -736.841 )
 
 [node name="AphidPath" parent="YSort/PreArena/AphidPathWithAphid7" index="0"]
 position = Vector2( -0.0116425, 31.1128 )
-curve = SubResource( 16 )
+curve = SubResource( 12 )
 
 [node name="PathFollow2D" parent="YSort/PreArena/AphidPathWithAphid7/AphidPath" index="0"]
 position = Vector2( -2.48157, -32.2117 )
@@ -918,17 +922,14 @@ scale = Vector2( 2, 2 )
 [node name="Stick2" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 476.98, 1234.5 )
 rotation = 0.134023
-scale = Vector2( 2, 2 )
 
 [node name="Stick3" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 989.6, 1125.24 )
 rotation = 0.134023
-scale = Vector2( 2, 2 )
 
 [node name="Stick4" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 1510.23, 1002.63 )
 rotation = 0.134023
-scale = Vector2( 2, 2 )
 
 [node name="Stick5" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 1974.84, 781.216 )
@@ -937,12 +938,10 @@ rotation = -0.368002
 [node name="Stick6" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 2316.71, 388.901 )
 rotation = -0.674087
-scale = Vector2( 2, 2 )
 
 [node name="Stick7" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 2557.15, -62.1854 )
 rotation = -0.81249
-scale = Vector2( 2, 2 )
 
 [node name="Stick8" parent="YSort/PreArena/Decoration" instance=ExtResource( 29 )]
 position = Vector2( 2813.61, -518.605 )
@@ -1065,7 +1064,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( 10.6907, -35.636 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -1074,7 +1073,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -1083,7 +1082,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="ShroomSkillTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -1093,7 +1092,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger"]
 position = Vector2( 203.367, -47.3571 )
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="ShroomSkillTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 1422.8, 70.5942 )
@@ -1104,7 +1103,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger2"]
 position = Vector2( 195.383, 33.0241 )
 rotation = 0.397483
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="PrePhoTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 903.661, -605.343 )
@@ -1113,9 +1112,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PrePhoTrigger"]
-position = Vector2( 195.383, 33.0241 )
-rotation = 0.397483
-shape = SubResource( 14 )
+position = Vector2( 254.204, -202.538 )
+rotation = -0.0188068
+shape = SubResource( 15 )
 
 [node name="DynamicCameraTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
@@ -1124,13 +1123,13 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraTrigger"]
-position = Vector2( -0.94397, -0.529785 )
-shape = SubResource( 15 )
+position = Vector2( 0.315796, -1.78979 )
+shape = SubResource( 16 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 316.701, 962.724 )
+position = Vector2( 316.701, 962.725 )
 rotation = -0.000373805
 
 [node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]

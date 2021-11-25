@@ -13,6 +13,8 @@ onready var animation_tree := $AnimationTree as AnimationTree
 
 onready var state_machine := $StateMachine as AntEnemyStateMachine
 
+var knockbackable = true
+
 var initial_position: Vector2
 
 signal follow_completed
@@ -32,9 +34,10 @@ func trigger():
 	self.state_machine.transition_deferred("Idle")
 	$StateMachine.start()
 
-func follow_path_array_then_fight(positions: Array):
+func follow_path_array_then_fight(positions: Array, stop_when_player_near=true):
 	was_enabled_previously = $StateMachine.enabled
 	for position in positions:
+		$StateMachine/FollowPath.stop_when_player_near = stop_when_player_near
 		$StateMachine.transition_to("FollowPath")
 		$StateMachine/FollowPath.target_position = position
 		$StateMachine.enabled = true
@@ -75,9 +78,10 @@ func follow_path(target_position: Vector2):
 		
 	emit_signal("follow_completed")
 
-func follow_path_array(positions: Array):
+func follow_path_array(positions: Array, stop_when_player_near=false):
 	was_enabled_previously = $StateMachine.enabled
 	for position in positions:
+		$StateMachine/FollowPath.stop_when_player_near = stop_when_player_near
 		$StateMachine.transition_to("FollowPath")
 		$StateMachine/FollowPath.target_position = position
 		$StateMachine.enabled = true
@@ -93,7 +97,7 @@ func set_facing_direction(direction: Vector2):
 
 func handle_damage(attack, should_play_hit):
 	$EnemyStats.health -= attack.damage
-	if get_state() != "Sprint":
+	if get_state() != "Sprint" and knockbackable:
 		add_acceleration(attack.knockback_vector())
 	if should_play_hit:
 		$InvincibilityPlayer.play("hit")

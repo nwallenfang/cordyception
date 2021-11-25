@@ -15,9 +15,13 @@ signal room_checkpoint
 signal room_cutscene
 
 # arena
+signal learn_shoot
 signal arena_wave1
 signal arena_wave2
 signal shroom_to_shroom_talk
+signal trigger_phoridae
+signal trigger_thorn_shooter
+signal thorn_camera
 
 signal enemy_died
 signal player_died

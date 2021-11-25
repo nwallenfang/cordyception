@@ -1,6 +1,8 @@
 extends Node2D
 
 onready var cordy
+onready var thorn_shooter = $YSort/PreArena/ThornShooter
+onready var pre_arena_pho = $YSort/PreArena/Phoridae
 onready var shot_caller = $YSort/ShotcallerAnt as AntEnemy
 onready var shot_caller_speech = $YSort/ShotcallerAnt/SpeechBubble as SpeechBubble
 onready var w1_ant1 = $YSort/Wave1Enemies/AntEnemy1
@@ -31,13 +33,11 @@ func _ready():
 	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
-	GameStatus.SHOOT_ENABLED = true
+	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
-	GameStatus.SHOOT_ENABLED = true
-	GameStatus.DASH_ENABLED = true
 	
 	# phos invisible till wave 2
 	w2_pho1.visible = false
@@ -64,6 +64,29 @@ func _ready():
 	GameEvents.connect("arena_wave1", self, "wave1")
 	GameEvents.connect("arena_wave2", self, "wave2")
 	GameEvents.connect("shroom_to_shroom_talk", self, "shroom_to_shroom_talk")
+	GameEvents.connect("learn_shoot", self, "learn_shoot")
+	GameEvents.connect("trigger_thorn_shooter", self, "trigger_thorn_shooter")
+	GameEvents.connect("thorn_camera", self, "thorn_camera")
+	GameEvents.connect("trigger_phoridae", self, "trigger_phoridae")
+
+
+func learn_shoot():
+	cordy.say_bottom("I have prepared a new skill for you to use.")
+	GameStatus.SHOOT_ENABLED = true
+	yield(cordy, "speech_done")
+	cordy.say("Learn to master it and nothing can get in our way.")
+	
+func trigger_thorn_shooter():
+	var shooter_behavior = {
+		"Chase": 0.0,
+		"SimpleShoot": 1.0,
+		"Sprint": 0.0
+	}
+	var lower_health := 14 # default is 20
+	thorn_shooter.knockbackable = false
+	thorn_shooter.set_behavior(shooter_behavior)
+	thorn_shooter.get_node("EnemyStats").set_max_health(lower_health)
+	thorn_shooter.trigger()
 
 
 func last_enemy_ready_wave1():
@@ -106,10 +129,10 @@ func wave1():
 	cordy.set_eyes("happy")	
 
 	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
-	w1_ant1.follow_path_array([gate, $Positions/Wave11.global_position])
-	w1_ant2.follow_path_array([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
-	w1_ant3.follow_path_array([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
-	w1_ant4.follow_path_array([gate, $Positions/Wave14.global_position])
+	w1_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
+	w1_ant2.follow_path_array_then_fight([gate, $Positions/Wave11.global_position, $Positions/Wave12.global_position])
+	w1_ant3.follow_path_array_then_fight([gate, $Positions/Wave14.global_position, $Positions/Wave13.global_position])
+	w1_ant4.follow_path_array_then_fight([gate, $Positions/Wave14.global_position])
 #	last_enemy_ready_wave1()  # DELETE THIS
 	yield(get_tree().create_timer(3.8), "timeout")
 	$ScriptedCamera.back_to_player(1.0)
@@ -121,7 +144,7 @@ func wave1():
 	GameStatus.AIMER_VISIBLE = true
 	GameEvents.connect_to_event_count('enemy_died', enemies_killed_baseline + 4, self, "wave2")
 	# fight fight fight
-	
+
 	
 func wave2():
 	w2_pho1.visible = true
@@ -241,3 +264,44 @@ func _on_ShroomDialogZone_body_entered(body: Node) -> void:
 func _on_ShroomDialogZone2_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event_with_arg("shroom_to_shroom_talk", 
 	$Positions/ShroomTalkPos2.global_position)
+
+
+func _on_ShroomSkillTrigger_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("learn_shoot")
+
+
+func _on_TriggerArea_body_entered(body: Node) -> void:
+	# hard coding mess
+	GameStatus.SHOOT_ENABLED = true
+
+
+func _on_ShroomSkillTrigger2_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("trigger_thorn_shooter")
+
+
+func _on_DynamicCameraTrigger_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("thorn_camera")
+
+
+func trigger_phoridae():
+	yield(get_tree().create_timer(0.5), "timeout")
+	cordy.set_eyes("angry")
+	cordy.say("Looks like they've hired new defendants.")
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
+
+func thorn_camera():
+	print("yup thorn cam")
+	cordy.set_eyes("happy")
+	cordy.say_bottom("Now you can stop these thorny shenanigans.")
+	$Detector/DynamicCameraTrigger/DynamicPlayerCam.target = thorn_shooter
+	$ScriptedCamera.follow($Detector/DynamicCameraTrigger/DynamicPlayerCam)
+	
+	yield(thorn_shooter, "tree_exiting")
+	cordy.set_eyes("happy")
+	cordy.say_bottom("Nice, that's all there's to it.")
+
+	$ScriptedCamera.back_to_player()
+
+func _on_DynamicCameraTrigger_body_exited(body: Node) -> void:
+	$ScriptedCamera.back_to_player()

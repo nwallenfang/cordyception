@@ -96,7 +96,7 @@ arrow_pos = 0.85
 arrow_reversed_h = false
 
 [node name="SpeechBubbleBottom" parent="." instance=ExtResource( 7 )]
-position = Vector2( 0, 190 )
+position = Vector2( 121.299, 94.9302 )
 arrow_pos = 0.8
 arrow_reversed_v = true
 
@@ -107,3 +107,5 @@ arrow_reversed_v = true
 [connection signal="writing_completed" from="SpeechBubbleRight" to="." method="_on_SpeechBubbleRight_writing_completed"]
 [connection signal="dialog_completed" from="SpeechBubbleBottom" to="." method="_on_SpeechBubbleBottom_dialog_completed"]
 [connection signal="writing_completed" from="SpeechBubbleBottom" to="." method="_on_SpeechBubbleBottom_writing_completed"]
+
+[editable path="SpeechBubbleBottom"]

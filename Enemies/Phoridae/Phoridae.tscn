@@ -231,6 +231,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
 material = SubResource( 3 )
+scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 3 )
 hframes = 10
 frame = 1

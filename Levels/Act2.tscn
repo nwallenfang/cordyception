@@ -751,7 +751,7 @@ position = Vector2( 10.6787, 78.7555 )
 texture = ExtResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 15830.6, 893.49 )
+position = Vector2( 14606, 583.55 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

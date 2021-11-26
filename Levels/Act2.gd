@@ -300,6 +300,8 @@ func room_cutscene():
 	for i in range(5):
 		runpath2.append(get_node("Positions/ScoutRoomExit" + str(i+1)).global_position)
 	scout.follow_path_array(runpath2)
+	$ScriptedCamera.stop_following()
+	yield(get_tree().create_timer(.7), "timeout")
 	$ScriptedCamera.back_to_player()
 	yield($ScriptedCamera, "back_at_player")
 	GameStatus.MOVE_ENABLED = true

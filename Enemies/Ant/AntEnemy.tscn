@@ -93,7 +93,7 @@ tracks/1/keys = {
 "values": [ 0.9, 0.5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/Sprite:modulate")
+tracks/2/path = NodePath("Sprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1580,6 +1580,7 @@ tracks/0/keys = {
 scale = Vector2( 1.45, 1.45 )
 collision_layer = 0
 script = ExtResource( 1 )
+FRICTION = 0.9
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

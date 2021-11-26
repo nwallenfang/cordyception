@@ -5,16 +5,16 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Environment.tres" type="Environment" id=4]
 [ext_resource path="res://World/TileMaps/SandMap.tres" type="TileSet" id=5]
+[ext_resource path="res://UI/Tutorial/spraysporesC.png" type="Texture" id=6]
 [ext_resource path="res://Levels/Act1.gd" type="Script" id=7]
 [ext_resource path="res://World/Flowers/Dandelion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Levels/Checkpoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Grass/GrassTuft.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=12]
-[ext_resource path="res://UI/Tutorial/sprayC.png" type="Texture" id=13]
+[ext_resource path="res://UI/Tutorial/spraysporesK.png" type="Texture" id=13]
 [ext_resource path="res://Enemies/Ant/AntEnemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Enemies/Aphid/AphidPath.tscn" type="PackedScene" id=15]
-[ext_resource path="res://UI/Tutorial/sprayK.png" type="Texture" id=16]
 [ext_resource path="res://Enemies/ant_enemy.png" type="Texture" id=17]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=18]
 [ext_resource path="res://World/Sticks/Stick1.tscn" type="PackedScene" id=19]
@@ -132,9 +132,10 @@ position = Vector2( 0, 1.25989 )
 script = ExtResource( 7 )
 
 [node name="DirtTexture" type="TextureRect" parent="."]
-margin_top = -3151.0
-margin_right = 12512.0
-margin_bottom = 2425.0
+margin_left = 2.0
+margin_top = -3151.26
+margin_right = 12514.0
+margin_bottom = 2424.74
 texture = ExtResource( 43 )
 stretch_mode = 2
 __meta__ = {
@@ -188,7 +189,6 @@ position = Vector2( 6364.04, -680.892 )
 visible = false
 position = Vector2( 0.614258, -0.61441 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
@@ -423,18 +423,23 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 7 )
+frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 8 )
@@ -449,6 +454,23 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 9 )
+frame = 19
+
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 10 )
@@ -547,13 +569,13 @@ texture = ExtResource( 23 )
 texture = ExtResource( 24 )
 
 [node name="TutorialSpray" parent="Tutorials" instance=ExtResource( 9 )]
-position = Vector2( 5606.55, 151.064 )
+position = Vector2( 5363, 242.74 )
 
 [node name="SpriteC" parent="Tutorials/TutorialSpray" index="0"]
-texture = ExtResource( 13 )
+texture = ExtResource( 6 )
 
 [node name="SpriteK" parent="Tutorials/TutorialSpray" index="1"]
-texture = ExtResource( 16 )
+texture = ExtResource( 13 )
 
 [node name="TutorialAphid" parent="Tutorials" instance=ExtResource( 9 )]
 position = Vector2( 6203.22, -637.142 )
@@ -572,19 +594,14 @@ shape = SubResource( 12 )
 position = Vector2( 5659.88, 1196.48 )
 
 [node name="Zone" type="Area2D" parent="Detector"]
-position = Vector2( -132.88, 30.2601 )
+position = Vector2( -445.88, 151.26 )
+rotation = 0.202787
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone"]
-position = Vector2( -414.999, -439.621 )
-rotation = 2.42404
-scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 13 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Detector/Zone"]
-position = Vector2( -414.999, -439.621 )
-rotation = 2.42404
+position = Vector2( -521.636, -511.476 )
+rotation = 2.55099
 scale = Vector2( 5.25468, -4.73701 )
 shape = SubResource( 13 )
 
@@ -642,7 +659,7 @@ position = Vector2( 6204.12, -665.979 )
 [node name="Checkpoints" type="Node2D" parent="."]
 
 [node name="Checkpoint1" parent="Checkpoints" instance=ExtResource( 10 )]
-position = Vector2( 5328, 699.74 )
+position = Vector2( 5367, 499.74 )
 rotation = 0.765485
 scale = Vector2( 1.96817, -0.149641 )
 

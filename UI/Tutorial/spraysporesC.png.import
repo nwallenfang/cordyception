@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ant.png-30cdc01c2f37ee63c76ac52729f47637.stex"
+path="res://.import/spraysporesC.png-3b745bab930e993bf7d0a11a15318666.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/ant.png"
-dest_files=[ "res://.import/ant.png-30cdc01c2f37ee63c76ac52729f47637.stex" ]
+source_file="res://UI/Tutorial/spraysporesC.png"
+dest_files=[ "res://.import/spraysporesC.png-3b745bab930e993bf7d0a11a15318666.stex" ]
 
 [params]
 

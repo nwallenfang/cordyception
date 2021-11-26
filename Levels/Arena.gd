@@ -43,6 +43,8 @@ func _ready():
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
 	
+	pre_arena_pho.get_node("StateMachine").stop()
+	
 	# phos invisible till wave 2
 	w2_pho1.visible = false
 	w2_pho2.visible = false
@@ -247,6 +249,8 @@ func reset():
 
 func shroom_to_shroom_talk(speech_position: Vector2):
 	$OtherShroomSpeech.global_position = speech_position
+	$OtherShroomSpeech.set_text("Yo Cordy!", 1.0)
+	yield($OtherShroomSpeech, "dialog_completed")
 	cordy.say("Yo Fred, haven't seen you up here in so long!", 1.5)
 	yield(cordy, "speech_done")
 	$OtherShroomSpeech.set_text("Uh-huh..", 0.6)
@@ -317,9 +321,8 @@ func _on_ShroomSkillTrigger_body_entered(body: Node) -> void:
 func _on_TriggerArea_body_entered(body: Node) -> void:
 	# hard coding mess
 	GameStatus.SHOOT_ENABLED = true
-	# set monitoring deferred
-	print("disabled")
-	$ArenaBlock/CollisionPolygon2D.disabled = false
+	# set gate
+	$ArenaBlock.collision_layer = GameStatus.CURRENT_PLAYER.collision_mask
 
 
 func _on_ShroomSkillTrigger2_body_entered(body: Node) -> void:
@@ -338,6 +341,7 @@ func trigger_phoridae():
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
 	if is_instance_valid(pre_arena_pho):
+		pre_arena_pho.get_node("StateMachine").enabled = true
 		pre_arena_pho.trigger()
 
 func thorn_camera():

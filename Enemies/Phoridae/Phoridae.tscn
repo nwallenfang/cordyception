@@ -145,10 +145,10 @@ size = 24
 font_data = ExtResource( 10 )
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 234.105
+radius = 357.035
 
 [sub_resource type="CircleShape2D" id=14]
-radius = 602.863
+radius = 738.133
 
 [sub_resource type="Animation" id=15]
 tracks/0/type = "value"
@@ -331,6 +331,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
 modulate = Color( 1, 1, 1, 0.278431 )
 show_behind_parent = true
+position = Vector2( 2, 0 )
 shape = SubResource( 14 )
 
 [node name="PhoridaeStats" parent="." instance=ExtResource( 16 )]

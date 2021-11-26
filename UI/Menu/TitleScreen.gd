@@ -12,7 +12,7 @@ func return_from_settings():
 	settings.visible = false
 
 func _on_Play_pressed() -> void:
-	get_tree().change_scene("res://Levels/Level1.tscn")
+	get_tree().change_scene("res://Levels/Act1.tscn")
 
 func _on_Exit_pressed() -> void:
 	get_tree().quit()

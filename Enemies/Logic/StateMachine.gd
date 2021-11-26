@@ -90,9 +90,9 @@ func _get_random_next_state(transition_chances: Dictionary):
 	for new_state in State.keys():
 		psum += transition_chances[new_state]
 		if rand <= psum:
-			if print_random_calculation:
-				print(transition_chances)
-				print(str(rand) + " -> " + new_state)
+#			if print_random_calculation:
+#				print(transition_chances)
+#				print(str(rand) + " -> " + new_state)
 			return new_state
 		# random seed doesn't fit new state, go next
 	
@@ -180,9 +180,9 @@ func set_behavior_to(probabilities: Dictionary):
 	for child_state in get_children():
 		child_state.RELATIVE_TRANSITION_CHANCE = 0.0
 	for state_name in probabilities.keys():
-		var state = get_node(state_name)
-		if state != null:
-			state.RELATIVE_TRANSITION_CHANCE = probabilities[state_name]
+		var _state = get_node(state_name)
+		if _state != null:
+			_state.RELATIVE_TRANSITION_CHANCE = probabilities[state_name]
 		else:
 			print("behavior WARN: state ", state_name, " doesn't exist!")
 

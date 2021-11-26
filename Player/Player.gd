@@ -5,7 +5,7 @@ var aim_direction := 0.0
 var input_vec := Vector2.ZERO
 var last_delta : float
 
-export var invinc_time := 1.0
+export var invinc_time := 1.5
 
 var facing := Vector2.RIGHT
 

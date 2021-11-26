@@ -2,7 +2,7 @@ extends Node2D
 
 var target : Node2D = null setget set_target
 export var proportion := 0.5
-export var max_from_player := 320.0
+export var max_from_player := 300.0
 
 func set_target(new_target):
 	target = new_target

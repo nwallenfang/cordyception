@@ -106,7 +106,7 @@ func dandelion_dialog():
 	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 0.8)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
-	var comedic_timer = get_tree().create_timer(1.1)
+	var comedic_timer = get_tree().create_timer(1.2)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
 	$ScriptedCamera.back_to_player(1.5)
@@ -266,10 +266,10 @@ func joke_attack():
 	yield(antertainer1_speech, "dialog_completed")
 	antertainer2_speech.set_text("That darn fungus is our natural ANTagonist")
 	yield(antertainer2_speech, "dialog_completed")
-	antertainer2.state_machine.start()
 	antertainer1_speech.set_text("Let's ANT her suffering then!")
 	yield(antertainer1_speech, "dialog_completed")
 	antertainer1.state_machine.start()
+	antertainer2.state_machine.start()
 
 
 # checkpoint2

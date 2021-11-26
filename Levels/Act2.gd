@@ -66,7 +66,7 @@ func on_dash_tutorial_entered(body: Node):
 
 func shroom_dash_learned():
 	cordy.set_eyes("happy")
-	cordy.say_bottom("Don't worry.")
+	cordy.say_bottom("Don't worry.", .8)
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
 	cordy.say("I've got another trick up your sleeve")
@@ -132,6 +132,7 @@ func small_chase():
 	var dyn_cam = DYNAMIC_CAM.instance()
 	GameStatus.CURRENT_YSORT.add_child(dyn_cam)
 	dyn_cam.target = scout
+	dyn_cam.proportion = 0.4
 	$ScriptedCamera.follow(dyn_cam)
 	scout.state_machine.get_node("FollowPath").FOLLOW_ACCELERATION += 50000
 	var runpath := []

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/title.png-5a7906ee3ac09b0ce4f8772af4e8c928.stex"
+path="res://.import/ast_ameise.png-1449bfa6421a307d579ff54a1700f2f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Menu/title.png"
-dest_files=[ "res://.import/title.png-5a7906ee3ac09b0ce4f8772af4e8c928.stex" ]
+source_file="res://Cutscene/ast_ameise.png"
+dest_files=[ "res://.import/ast_ameise.png-1449bfa6421a307d579ff54a1700f2f3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

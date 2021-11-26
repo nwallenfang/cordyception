@@ -7,7 +7,7 @@
 [ext_resource path="res://World/Grass/GrassBlade03.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 88.0303, 218.615 )
+extents = Vector2( 88.0303, 417.89 )
 
 [node name="GrassTuft" type="YSort"]
 

@@ -522,8 +522,8 @@ func _on_Timer_timeout() -> void:
 "
 
 [node name="ShroomUI" type="Control"]
-margin_right = -1150.0
-margin_bottom = -592.0
+margin_top = 1.0
+margin_bottom = 1.0
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -570,7 +570,7 @@ bubble_size = Vector2( 44, 44 )
 [node name="SpeechBubbleRight" parent="." instance=ExtResource( 7 )]
 position = Vector2( 139.112, 2.82534 )
 script = SubResource( 4 )
-arrow_pos = 0.8
+arrow_pos = 0.9
 arrow_reversed_h = false
 bubble_size = Vector2( 44, 44 )
 

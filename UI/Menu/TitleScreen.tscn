@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://UI/Menu/title.png" type="Texture" id=1]
 [ext_resource path="res://UI/Menu/logo.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://UI/Menu/bitmask.bmp" type="BitMap" id=13]
 [ext_resource path="res://UI/Menu/Settings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Sound/Music/menu_placeholder.mp3" type="AudioStream" id=15]
+[ext_resource path="res://Cutscene/ast_ameise.png" type="Texture" id=16]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -34,34 +35,34 @@ __meta__ = {
 }
 
 [node name="Title" type="TextureRect" parent="Menu"]
-margin_right = 1040.0
-margin_bottom = 125.0
+margin_right = 1108.0
+margin_bottom = 180.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
-margin_top = 129.0
-margin_right = 1040.0
+margin_top = 184.0
+margin_right = 1108.0
 margin_bottom = 560.0
 size_flags_vertical = 3
 
 [node name="CenterContainer2" type="CenterContainer" parent="Menu/CenterRow"]
 margin_right = 220.0
-margin_bottom = 431.0
+margin_bottom = 376.0
 rect_min_size = Vector2( 220, 0 )
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
 margin_left = 224.0
 margin_right = 354.0
-margin_bottom = 431.0
+margin_bottom = 376.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Play" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 117.0
+margin_top = 90.0
 margin_right = 130.0
-margin_bottom = 169.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 130, 52 )
 size_flags_stretch_ratio = 2.0
 texture_normal = ExtResource( 6 )
@@ -72,9 +73,9 @@ expand = true
 stretch_mode = 5
 
 [node name="Settings" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 189.0
+margin_top = 162.0
 margin_right = 130.0
-margin_bottom = 241.0
+margin_bottom = 214.0
 rect_min_size = Vector2( 130, 52 )
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 10 )
@@ -83,9 +84,9 @@ expand = true
 stretch_mode = 5
 
 [node name="Exit" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 261.0
+margin_top = 234.0
 margin_right = 130.0
-margin_bottom = 313.0
+margin_bottom = 286.0
 rect_min_size = Vector2( 130, 52 )
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 11 )
@@ -98,16 +99,17 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
 margin_left = 358.0
-margin_right = 1040.0
-margin_bottom = 431.0
+margin_right = 1108.0
+margin_bottom = 376.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="Menu/CenterRow/CenterContainer"]
-margin_left = 191.0
-margin_top = 65.0
-margin_right = 491.0
-margin_bottom = 365.0
+visible = false
+margin_left = 225.0
+margin_top = 38.0
+margin_right = 525.0
+margin_bottom = 338.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
@@ -117,8 +119,11 @@ flip_h = true
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-autoplay = true
 bus = "Music"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1047, 413 )
+texture = ExtResource( 16 )
 
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Settings" to="." method="_on_Settings_pressed"]

@@ -20,6 +20,8 @@ func _physics_process(delta: float) -> void:
 
 func start_movement():
 	movement = true
+	yield(get_tree().create_timer(6.5), "timeout")
+	$AudioStreamPlayer.play()
 
 func start_game():
 	get_tree().change_scene("res://Levels/Act1.tscn")
@@ -29,3 +31,4 @@ func start_animation():
 	if !animation_started:
 		animation_started = true
 		$AnimationPlayer.play("stone_animation")
+

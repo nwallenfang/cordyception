@@ -130,6 +130,8 @@ texture = ExtResource( 16 )
 
 [node name="Cutscene" parent="." instance=ExtResource( 17 )]
 
+[node name="MusicTween" type="Tween" parent="."]
+
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Exit" to="." method="_on_Exit_pressed"]

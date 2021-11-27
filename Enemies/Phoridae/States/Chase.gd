@@ -32,6 +32,9 @@ var progress: float
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
 		chase_timer = get_tree().create_timer(min_chase_time)
+		var distance = parent.global_position.distance_to(GameStatus.CURRENT_PLAYER.global_position)
+		if distance < parent.fly_sound_radius:
+			parent.play_fly_sound_if_suitable()
 	var line2d = parent.line2D
 	var distance_vector := (line2d.points[1] - line2d.points[0]) as Vector2
 	var direction_vector = distance_vector.normalized()

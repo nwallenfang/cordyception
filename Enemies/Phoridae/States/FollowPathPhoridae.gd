@@ -18,10 +18,14 @@ func process(delta: float, first_time_entering: bool):
 		parent.levitation_player.play("up")
 		first_time_following = true
 		done = false
+		
 	elif not done and not parent.levitation_player.is_playing():
 		if first_time_following:
 			parent.animation_player.play("fly_move")
 			first_time_following = false
+			var distance = parent.global_position.distance_to(GameStatus.CURRENT_PLAYER.global_position)
+			if distance < parent.fly_sound_radius:
+				parent.play_fly_sound_if_suitable()
 		
 		if stop_when_player_near:
 			distance_to_player = parent.global_position.distance_to(GameStatus.CURRENT_PLAYER.global_position)

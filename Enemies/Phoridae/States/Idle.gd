@@ -20,6 +20,9 @@ func process(delta, first_time_entering):
 	if first_time_entering:
 		if parent.flying:
 			parent.animation_player.play("fly_idle")
+			var distance = parent.global_position.distance_to(GameStatus.CURRENT_PLAYER.global_position)
+			if distance < parent.fly_sound_radius:
+				parent.play_fly_sound_if_suitable()
 		else:
 			parent.animation_player.play("stand")
 		idle_timer = get_tree().create_timer(rand_range(IDLE_TIME_MIN, IDLE_TIME_MAX) if state_machine.previous_non_idle_state.name != "Transition" else 0.1)

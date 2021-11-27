@@ -32,7 +32,7 @@ func _ready():
 	scout.set_facing_direction(Vector2.LEFT)
 	scout.get_node("StateMachine").enabled = false
 	
-	$YSort/AphidPathWithAphid/RedAphid.get_node("StateMachine").start()
+	$YSort/RedAphidPath/RedAphid.get_node("StateMachine").start()
 	
 	var shooter_behavior = {
 		"Chase": 0.0,
@@ -59,6 +59,7 @@ func _ready():
 	$YSort/Room/Enemies/Talker1.set_facing_direction(Vector2.RIGHT)
 	$YSort/Room/Enemies/Talker2.set_facing_direction(Vector2.LEFT)
 	$YSort/Room/Enemies/Thrower.set_facing_direction(Vector2.LEFT)
+	thrower.get_node("EnemyStats").set_max_health(20)
 
 func on_dash_tutorial_entered(body: Node):
 	GameStatus.DASH_ENABLED = true
@@ -69,7 +70,9 @@ func shroom_dash_learned():
 	cordy.say_bottom("Don't worry.", .8)
 	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
-	cordy.say("I've got another trick up your sleeve")
+	cordy.say("I've got another trick up your sleeve", 0.8)
+	yield(cordy, "speech_done")
+	cordy.say("Just dash over those thorns", 1)
 
 func reset():
 	pass
@@ -262,7 +265,7 @@ func ant_kicks_stone():
 	tween.start()
 
 func room_cutscene():
-	scout.state_machine.get_node("FollowPath").FOLLOW_ACCELERATION -= 20000
+	scout.state_machine.get_node("FollowPath").FOLLOW_ACCELERATION = 115000
 	scout.global_position = $Positions/ScoutAwayFromStick.global_position
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
@@ -309,14 +312,23 @@ func room_cutscene():
 	GameStatus.DASH_ENABLED = true
 
 func room_checkpoint():
+	cordy.show()
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	scout.queue_free()
+	$YSort/RedAphidPath.queue_free()
+	$YSort/Room/Enemies/Guard2.global_position = $Positions/Guard2Point.global_position
+	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.UP)
+	$YSort/MoveStick.rotation = deg2rad(25.0)
+	$YSort/Room/InvisWall.collision_layer = 1
 	thrower.global_position = $Positions/ThrowerNewPosition.global_position
 	thrower.set_facing_direction(Vector2.RIGHT)
 	$YSort/Room/Enemies/Guard1.set_facing_direction(Vector2.UP)
-	$YSort/Room/Enemies/Guard2.set_facing_direction(Vector2.UP)
+	$YSort/Room/Enemies/Guard2.animation_state.travel("Idle")
+	$StaticBody2D/CollisionPolygon2D5.queue_free()
+	for i in range(4):
+		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
 
 func _on_TriggerArea_body_entered(body: Node) -> void:
 	yield(get_tree().create_timer(0.1), "timeout")

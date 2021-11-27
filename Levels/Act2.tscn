@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -138,6 +138,9 @@ shader = ExtResource( 47 )
 shader_param/active = false
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 10, 372.001 )
 
 [sub_resource type="Curve2D" id=5]
 resource_local_to_scene = true
@@ -408,6 +411,54 @@ func _on_Tween_tween_all_completed() -> void:
 	$Timer.start(rand_range(min_wait, max_wait))
 "
 
+[sub_resource type="GDScript" id=27]
+script/source = "extends YSort
+
+func _ready() -> void:
+	$Aphid.connect(\"tree_exiting\", self, \"queue_free\")
+"
+
+[sub_resource type="Curve2D" id=28]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 53.8408, 419.907, 0, 0, 0, 0, -4.13184, 346.886, 0, 0, 0, 0, -68.1182, 310.862, 0, 0, 0, 0, -174.113, 296.822, 0, 0, 0, 0, -290.114, 298.779, 0, 0, 0, 0, -335.09, 234.762, 0, 0, 0, 0, -360.067, 175.752, 0, 0, 0, 0, -343.026, 64.759, 0, 0, 0, 0, -271.009, 18.7859, 0, 0, 0, 0, -162.007, 11.8267, 0, 0, 0, 0, -31.002, -1.12439, 0, 0, 0, 0, 86.002, -10.0806, 0, 0, 0, 0, 167.002, -11.0503, 0, 0, 0, 0, 226.007, -24.0283, 0, 0, 0, 0, 265.015, -44.0137, 0, 0, 0, 0, 368.035, -98.9752, 0, 0, 0, 0, 440.054, -147.948, 0, 0, 0, 0, 511.098, -265.922, 0, 0, 0, 0, 543.127, -344.91, 0, 0, 0, 0, 557.154, -417.905, 0, 0, 0, 0, 587.185, -497.893, 0, 0, 0, 0, 622.193, -523.88, 0, 0, 0, 0, 709.193, -522.848, 0, 0, 0, 0, 777.181, -487.822, 0, 0, 0, 0, 795.173, -467.816, 0, 0, 0, 0, 924.139, -376.767, 0, 0, 0, 0, 987.136, -367.744, 0, 0, 0, 0, 1078.13, -341.71, 0, 0, 0, 0, 1165.11, -300.677, 0, 0, 0, 0, 1239.1, -260.65, 0, 0, 0, 0, 1297.09, -242.628, 0, 0, 0, 0, 1339.08, -207.612, 0, 0, 0, 0, 1347.07, -187.609, 0, 0, 0, 0, 1356.05, -126.606, 0, 0, 0, 0, 1420.04, -106.582, 0, 0, 0, 0, 1453.04, -115.57 )
+}
+
+[sub_resource type="GDScript" id=29]
+script/source = "extends Path2D
+class_name AphidPath
+
+onready var follow := $PathFollow2D as PathFollow2D
+
+export(bool) var reversed := false
+export(float, 0, 10) var min_wait := 0.8
+export(float, 0, 10) var max_wait := 3.0
+export(float, 0, 1) var min_travel := 0.2
+export(float, 0, 1) var max_travel := 0.5
+export(float, 0, 0.5) var border := 0.25
+export var speed := 50.0
+var animation_to_right := true
+
+func _ready() -> void:
+	$Timer.start(rand_range(min_wait, max_wait))
+
+func _on_Timer_timeout() -> void:
+	var old_position :float = follow.unit_offset
+	var direction : float = (randi() % 2) * 2 - 1  # random get -1 or 1
+	if old_position < border:
+		direction = 1
+	if old_position > 1.0 - border:
+		direction = -1
+	var distance := rand_range(min_travel, max_travel) * direction
+	var target_position := clamp(old_position + distance, 0, 1)
+	var actual_distance : float = abs((target_position - old_position) * curve.get_baked_length())
+	$Tween.interpolate_property(follow, \"unit_offset\", old_position, target_position, actual_distance / speed, Tween.TRANS_LINEAR)
+	$Tween.start()
+
+func _on_Tween_tween_all_completed() -> void:
+	$Timer.stop()
+	$Timer.start(rand_range(min_wait, max_wait))
+"
+
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 5.93064, 170.024 )
 
@@ -431,8 +482,12 @@ height = 714.0
 radius = 153.791
 height = 747.107
 
-[sub_resource type="CapsuleShape2D" id=24]
-radius = 256.591
+[sub_resource type="CapsuleShape2D" id=30]
+radius = 271.98
+height = 315.575
+
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 271.98
 height = 315.575
 
 [sub_resource type="RectangleShape2D" id=25]
@@ -488,7 +543,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 1963.09, -1097.78 )
+position = Vector2( 15728.3, 939.369 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -518,7 +573,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 7
+frame = 0
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -529,7 +584,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 7
+frame = 0
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -539,7 +594,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 1
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -549,7 +604,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 8
+frame = 1
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -1056,15 +1111,19 @@ frame = 19
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="3"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="4"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="5"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="15"]
 parameters/playback = SubResource( 4 )
@@ -1105,6 +1164,7 @@ position = Vector2( 17401.8, -273.005 )
 
 [node name="Stone3" parent="YSort/Room/KickStone" instance=ExtResource( 17 )]
 scale = Vector2( 0.7, 0.7 )
+collision_layer = 0
 
 [node name="Tween" type="Tween" parent="YSort/Room/KickStone"]
 
@@ -1131,6 +1191,14 @@ rotation = 1.43174
 position = Vector2( 17777.2, 1309.13 )
 rotation = 3.68623
 
+[node name="InvisWall" type="StaticBody2D" parent="YSort/Room"]
+position = Vector2( 15947.3, 970.451 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Room/InvisWall"]
+shape = SubResource( 32 )
+
 [node name="TreeBase" parent="YSort" instance=ExtResource( 38 )]
 position = Vector2( 12743.6, -2367.75 )
 
@@ -1141,21 +1209,21 @@ position = Vector2( 10230.1, -1124.69 )
 position = Vector2( 16072.1, -1118.5 )
 rotation = 1.06599
 
-[node name="AphidPathWithAphid" parent="YSort" instance=ExtResource( 40 )]
+[node name="RedAphidPath" parent="YSort" instance=ExtResource( 40 )]
 position = Vector2( 15844.3, -1591.59 )
 
-[node name="AphidPath" parent="YSort/AphidPathWithAphid" index="0"]
+[node name="AphidPath" parent="YSort/RedAphidPath" index="0"]
 position = Vector2( -42.4206, 49.6157 )
 scale = Vector2( 0.599866, 0.598582 )
 curve = SubResource( 5 )
 
-[node name="PathFollow2D" parent="YSort/AphidPathWithAphid/AphidPath" index="0"]
+[node name="PathFollow2D" parent="YSort/RedAphidPath/AphidPath" index="0"]
 position = Vector2( -71.0439, -24.4661 )
 
-[node name="Aphid" parent="YSort/AphidPathWithAphid" index="1"]
+[node name="Aphid" parent="YSort/RedAphidPath" index="1"]
 visible = false
 
-[node name="RedAphid" parent="YSort/AphidPathWithAphid" instance=ExtResource( 41 )]
+[node name="RedAphid" parent="YSort/RedAphidPath" instance=ExtResource( 41 )]
 mother_path = NodePath("../AphidPath/PathFollow2D/Mother")
 is_full_attacker = true
 
@@ -1432,14 +1500,16 @@ position = Vector2( -0.0336914, -32.2161 )
 scale = Vector2( 2, 2 )
 
 [node name="AphidPathWithAphid5" parent="YSort" instance=ExtResource( 40 )]
-position = Vector2( 17985.7, 281.7 )
+position = Vector2( 18138.4, 756.27 )
+script = SubResource( 27 )
 
 [node name="AphidPath" parent="YSort/AphidPathWithAphid5" index="0"]
 position = Vector2( -0.0116425, 31.1128 )
-curve = SubResource( 6 )
+curve = SubResource( 28 )
+script = SubResource( 29 )
 
 [node name="PathFollow2D" parent="YSort/AphidPathWithAphid5/AphidPath" index="0"]
-position = Vector2( -0.0336914, -32.2161 )
+position = Vector2( 53.8408, 419.907 )
 
 [node name="Aphid" parent="YSort/AphidPathWithAphid5" index="1"]
 scale = Vector2( 2, 2 )
@@ -1500,7 +1570,7 @@ position = Vector2( 10.6787, 78.7555 )
 texture = ExtResource( 12 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1962.68, -1098.51 )
+position = Vector2( 15728.7, 933.49 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -1521,6 +1591,9 @@ position = Vector2( 13222.7, -706.51 )
 
 [node name="ScoutRoom1" type="Position2D" parent="Positions"]
 position = Vector2( 16917.7, -764.51 )
+
+[node name="Guard2Point" type="Position2D" parent="Positions"]
+position = Vector2( 17288.7, -593.51 )
 
 [node name="ScoutRoom2" type="Position2D" parent="Positions"]
 position = Vector2( 17128.7, -123.51 )
@@ -1666,7 +1739,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ZoneRoomCutscene"]
 modulate = Color( 0.929412, 0.172549, 0.866667, 1 )
 self_modulate = Color( 1, 0.141176, 0.886275, 1 )
-position = Vector2( -57, 3 )
+position = Vector2( -261, -37 )
 shape = SubResource( 22 )
 
 [node name="TopAgitator" type="Area2D" parent="Detector"]
@@ -1691,7 +1764,7 @@ collision_mask = 2
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
 position = Vector2( 32.248, 234.703 )
 rotation = 0.855772
-shape = SubResource( 24 )
+shape = SubResource( 30 )
 
 [node name="RightAgitator" type="Area2D" parent="Detector"]
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
@@ -1704,7 +1777,7 @@ collision_mask = 2
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
 position = Vector2( 32.248, 234.703 )
 rotation = 0.855772
-shape = SubResource( 24 )
+shape = SubResource( 31 )
 
 [node name="ShroomTrigger" type="Area2D" parent="Detector"]
 position = Vector2( -4959.43, 576.071 )
@@ -1722,7 +1795,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/TransitionZone"]
-position = Vector2( 473.8, 65.0699 )
+position = Vector2( 568.8, 79.0699 )
 shape = SubResource( 26 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -1773,8 +1846,8 @@ polygon = PoolVector2Array( 13380.7, -481.51, 14086.7, -543.51, 14116.7, -481.51
 [editable path="YSort/Room/Enemies/Thrower/StateMachine/Sprint/DashStuff"]
 [editable path="YSort/Room/Enemies/Thrower/StateMachine/ShootRadial/EnemyProjectileSpawner"]
 [editable path="YSort/Room/Enemies/Thrower/SpeechBubble"]
-[editable path="YSort/AphidPathWithAphid"]
-[editable path="YSort/AphidPathWithAphid/Aphid"]
+[editable path="YSort/RedAphidPath"]
+[editable path="YSort/RedAphidPath/Aphid"]
 [editable path="YSort/AphidPathWithAphid2"]
 [editable path="YSort/AphidPathWithAphid2/Aphid"]
 [editable path="YSort/AphidPathWithAphid8"]

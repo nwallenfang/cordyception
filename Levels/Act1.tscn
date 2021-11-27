@@ -512,6 +512,9 @@ position = Vector2( 3325.65, 935.983 )
 [node name="GrassBlade17" parent="YSort/ExitPath/GrassTuft" index="16"]
 position = Vector2( 8354.24, -623.877 )
 
+[node name="CollisionShape2D" parent="YSort/ExitPath/GrassTuft/TransitionArea" index="0"]
+position = Vector2( 728.969, 285.108 )
+
 [node name="AphidPathWithAphid" parent="YSort" instance=ExtResource( 15 )]
 position = Vector2( 10276.5, -1396.42 )
 

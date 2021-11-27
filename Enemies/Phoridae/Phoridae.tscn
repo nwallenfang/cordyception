@@ -19,8 +19,8 @@
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=17]
 [ext_resource path="res://Enemies/Phoridae/States/FollowPathPhoridae.gd" type="Script" id=18]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 11.6124
+[sub_resource type="CapsuleShape2D" id=1]
+height = 26.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.7944
@@ -221,6 +221,7 @@ width = 2.0
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Body/Hitbox" index="0"]
+position = Vector2( 0, 11 )
 shape = SubResource( 1 )
 
 [node name="Hurtbox" parent="Body" instance=ExtResource( 2 )]

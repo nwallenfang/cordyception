@@ -118,7 +118,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=19]
-radius = 25.0799
+radius = 23.0217
 
 [sub_resource type="Animation" id=20]
 resource_name = "fade"
@@ -190,6 +190,7 @@ tracks/4/keys = {
 radius = 51.5024
 
 [node name="PhoridaeProjectile" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="."]

@@ -1,19 +1,15 @@
-[gd_scene load_steps=572 format=2]
+[gd_scene load_steps=568 format=2]
 
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Collision/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/EnemyProjectileSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Stag/States/StagBeetle.gd" type="Script" id=5]
-[ext_resource path="res://Enemies/Ant/States/SimpleShoot.gd" type="Script" id=6]
-[ext_resource path="res://Enemies/Ant/States/FollowPath.gd" type="Script" id=7]
-[ext_resource path="res://Enemies/Ant/States/ShootVolley.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/Stag/States/Idle.gd" type="Script" id=6]
 [ext_resource path="res://Enemies/Stag/States/StagStateMachine.gd" type="Script" id=9]
 [ext_resource path="res://Enemies/Stag/States/MoveDown.gd" type="Script" id=10]
 [ext_resource path="res://Enemies/Stag/States/MoveUp.gd" type="Script" id=11]
 [ext_resource path="res://Collision/AntHurtbox.gd" type="Script" id=12]
-[ext_resource path="res://Enemies/Ant/States/ShootRadial.gd" type="Script" id=13]
-[ext_resource path="res://Enemies/Ant/States/Idle.gd" type="Script" id=14]
 [ext_resource path="res://Enemies/Stag/States/TurnLeft.gd" type="Script" id=15]
 [ext_resource path="res://Enemies/Stag/States/TurnRight.gd" type="Script" id=16]
 [ext_resource path="res://Enemies/Stag/States/Turn.gd" type="Script" id=17]
@@ -2440,15 +2436,9 @@ shape = SubResource( 539 )
 script = ExtResource( 9 )
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 14 )
-
-[node name="IdleTimer" type="Timer" parent="StateMachine/Idle"]
-process_mode = 0
-one_shot = true
+script = ExtResource( 6 )
 
 [node name="ShootRadial" type="Node2D" parent="StateMachine"]
-script = ExtResource( 13 )
-RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/ShootRadial"]
 wait_time = 0.3
@@ -2461,8 +2451,6 @@ anims/shoot = SubResource( 540 )
 anims/shoot_single = SubResource( 541 )
 
 [node name="ShootVolley" type="Node2D" parent="StateMachine"]
-script = ExtResource( 8 )
-RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/ShootVolley"]
 wait_time = 0.3
@@ -2475,8 +2463,6 @@ anims/shoot = SubResource( 542 )
 anims/shoot_single = SubResource( 543 )
 
 [node name="SimpleShoot" type="Node2D" parent="StateMachine"]
-script = ExtResource( 6 )
-RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/SimpleShoot"]
 wait_time = 0.3
@@ -2488,10 +2474,6 @@ PROJECTILE_SPEED = 500
 [node name="ScriptedPlayer" type="AnimationPlayer" parent="StateMachine/SimpleShoot"]
 anims/shoot = SubResource( 544 )
 anims/shoot_single = SubResource( 545 )
-
-[node name="FollowPath" type="Node2D" parent="StateMachine"]
-script = ExtResource( 7 )
-RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="Turn" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )

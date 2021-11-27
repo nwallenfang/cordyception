@@ -128,8 +128,6 @@ func wave1():
 	yield(shot_caller_speech, "dialog_completed")
 	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
 	yield(shot_caller_speech, "dialog_completed")
-	cordy.set_eyes("bored")
-	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
 	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
 	yield(shot_caller_speech, "dialog_completed")
 
@@ -138,7 +136,8 @@ func wave1():
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
-	cordy.set_eyes("happy")	
+	cordy.set_eyes("bored")
+	cordy.say("Yes! What a perfect occasion to try out your newfound abilities.")
 
 	w1_ant3.connect("follow_completed", self, "last_enemy_ready_wave1")
 	w1_ant1.follow_path_array_then_fight([gate, $Positions/Wave11.global_position])
@@ -147,6 +146,7 @@ func wave1():
 	w1_ant4.follow_path_array_then_fight([gate, $Positions/Wave14.global_position])
 
 	yield(get_tree().create_timer(3.8), "timeout")
+	cordy.set_eyes("idle")
 	$ScriptedCamera.back_to_player(1.0)
 
 	GameStatus.MOVE_ENABLED = true
@@ -271,13 +271,12 @@ func shroom_to_shroom_talk(speech_position: Vector2):
 	cordy.set_eyes("idle")
 	cordy.say_right("The world of fungi can be so small. And weird.")
 
-
 func died_in_arena():
 	# wait for player to have actually respawned
 	cordy.set_eyes("angry")
 	cordy.say("Weak, you must do better than this.")
-
-	
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
 
 func _on_Wave1TriggerZone_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("arena_wave1")
@@ -362,7 +361,8 @@ func thorn_camera():
 	$ScriptedCamera.back_to_player()
 
 func _on_DynamicCameraTrigger_body_exited(body: Node) -> void:
-	$ScriptedCamera.back_to_player()
+	if is_instance_valid(thorn_shooter):
+		$ScriptedCamera.back_to_player()
 
 
 func _on_PrePhoTrigger_body_entered(body: Node) -> void:

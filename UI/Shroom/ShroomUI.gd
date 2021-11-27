@@ -97,7 +97,7 @@ func say(text: String, duration: float = -1) -> void:
 	if !try:
 		try = say_right(text, duration)
 
-const MOOD_ANGRY = preload("res://UI/Shroom/Mood HAPPY.png")
+const MOOD_ANGRY = preload("res://UI/Shroom/Mood ANGRY.png")
 const MOOD_BORED = preload("res://UI/Shroom/Mood BORED.png")
 const MOOD_IDLE = preload("res://UI/Shroom/Mood IDLE.png")
 const MOOD_HAPPY = preload("res://UI/Shroom/Mood HAPPY.png")

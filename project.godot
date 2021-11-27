@@ -179,6 +179,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/Stag/StagBeetle.gd"
 }, {
+"base": "StateMachine",
+"class": "StagStateMachine",
+"language": "GDScript",
+"path": "res://Enemies/Stag/States/StagStateMachine.gd"
+}, {
 "base": "Node2D",
 "class": "StateMachine",
 "language": "GDScript",
@@ -234,6 +239,7 @@ _global_script_class_icons={
 "SlideMover": "",
 "SpeechBubble": "",
 "StagBeetle": "",
+"StagStateMachine": "",
 "StateMachine": "",
 "Thorn": "",
 "TutorialCaption": "",

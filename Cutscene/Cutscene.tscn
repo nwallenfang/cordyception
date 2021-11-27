@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Cutscene/Frames Ant Stone/Ant0020.png" type="Texture" id=1]
 [ext_resource path="res://Cutscene/Cutscene.gd" type="Script" id=2]
@@ -55,6 +55,9 @@
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=53]
 [ext_resource path="res://Cutscene/moon_placeholder.png" type="Texture" id=54]
 [ext_resource path="res://Sound/Music/IntroCutscene.mp3" type="AudioStream" id=55]
+[ext_resource path="res://Cutscene/Stein Ameise BG.png" type="Texture" id=56]
+[ext_resource path="res://Cutscene/Baumkrone.png" type="Texture" id=57]
+[ext_resource path="res://Cutscene/Busch with Grey BG.png" type="Texture" id=58]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 53 )
@@ -136,7 +139,7 @@ motion_scale = Vector2( 1, 0.22 )
 [node name="ColorRect" type="ColorRect" parent="ParallaxBackground/BackgroundMountain"]
 margin_top = 978.0
 margin_right = 1280.0
-margin_bottom = 6748.0
+margin_bottom = 6728.0
 color = Color( 0.439216, 0.439216, 0.439216, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -165,6 +168,7 @@ centered = false
 motion_scale = Vector2( 1, 0.55 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Bushes"]
+visible = false
 modulate = Color( 0.14902, 0.14902, 0.14902, 1 )
 material = SubResource( 1 )
 position = Vector2( -95, 1939 )
@@ -172,22 +176,48 @@ texture = ExtResource( 52 )
 centered = false
 
 [node name="Sprite2" type="Sprite" parent="ParallaxBackground/Bushes"]
+visible = false
 modulate = Color( 0.14902, 0.14902, 0.14902, 1 )
 material = SubResource( 1 )
 position = Vector2( 476, 1956 )
 texture = ExtResource( 52 )
 centered = false
 
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/Bushes"]
+position = Vector2( -63, 1724 )
+texture = ExtResource( 58 )
+centered = false
+
+[node name="AlmostForeground" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -46, 3406 )
+motion_scale = Vector2( 1, 0.9 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/AlmostForeground"]
+texture = ExtResource( 56 )
+centered = false
+
+[node name="AntAst" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -46, 3406 )
+motion_scale = Vector2( 1, 0.85 )
+
+[node name="AstAmeise" type="Sprite" parent="ParallaxBackground/AntAst"]
+position = Vector2( 949, -604 )
+texture = ExtResource( 51 )
+
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Ast" type="Sprite" parent="ParallaxBackground/Foreground"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 523, 1941 )
 texture = ExtResource( 49 )
 flip_h = true
 
-[node name="AstAmeise" type="Sprite" parent="ParallaxBackground/Foreground"]
-position = Vector2( 900, 3165 )
-texture = ExtResource( 51 )
+[node name="Baumkrone" type="Sprite" parent="ParallaxBackground/Foreground"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 2, 596 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 57 )
+centered = false
 
 [node name="SteinAmeise" type="AnimatedSprite" parent="ParallaxBackground/Foreground"]
 position = Vector2( 344, 4494 )

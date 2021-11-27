@@ -323,6 +323,8 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 	GameStatus.SHOOT_ENABLED = true
 	# set gate
 	$ArenaBlock.collision_layer = GameStatus.CURRENT_PLAYER.collision_mask
+	if is_instance_valid(pre_arena_pho):
+		pre_arena_pho.queue_free()
 
 
 func _on_ShroomSkillTrigger2_body_entered(body: Node) -> void:
@@ -335,14 +337,17 @@ func _on_DynamicCameraTrigger_body_entered(body: Node) -> void:
 
 
 func trigger_phoridae():
-	yield(get_tree().create_timer(0.5), "timeout")
-	cordy.set_eyes("angry")
-	cordy.say("Looks like they've hired new flying defendants.")
-	yield(cordy, "speech_done")
-	cordy.set_eyes("idle")
+	pre_arena_pho.very_aggressive = true
 	if is_instance_valid(pre_arena_pho):
 		pre_arena_pho.get_node("StateMachine").enabled = true
 		pre_arena_pho.trigger()
+	yield(get_tree().create_timer(0.5), "timeout")
+	cordy.set_eyes("angry")
+	cordy.say("Looks like they've hired new flying defendants.")
+
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
+
 
 func thorn_camera():
 	cordy.set_eyes("happy")

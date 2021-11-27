@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var player = $YSort/Player
-onready var boss = $YSort/StagBeetle
+onready var player = $YSort/Player as Player
+onready var boss = $YSort/StagBeetle as StagBeetle
 
 func _ready():
 	GameStatus.CURRENT_ACT = self

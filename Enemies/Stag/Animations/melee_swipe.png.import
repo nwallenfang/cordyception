@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/melee_swipe_turn.png-e713fe1e7571458f416be4893200e9d8.stex"
+path="res://.import/melee_swipe.png-c3d7c327c3ebec406e23af2343514103.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Stag/melee_swipe_turn.png"
-dest_files=[ "res://.import/melee_swipe_turn.png-e713fe1e7571458f416be4893200e9d8.stex" ]
+source_file="res://Enemies/Stag/Animations/melee_swipe.png"
+dest_files=[ "res://.import/melee_swipe.png-c3d7c327c3ebec406e23af2343514103.stex" ]
 
 [params]
 

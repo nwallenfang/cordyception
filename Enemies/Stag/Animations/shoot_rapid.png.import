@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/turn_right.png-93698c36cebf6fccc0d00e0a528fc08a.stex"
+path="res://.import/shoot_rapid.png-9645e5c91685e2319a604adf991c562b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Stag/turn_right.png"
-dest_files=[ "res://.import/turn_right.png-93698c36cebf6fccc0d00e0a528fc08a.stex" ]
+source_file="res://Enemies/Stag/Animations/shoot_rapid.png"
+dest_files=[ "res://.import/shoot_rapid.png-9645e5c91685e2319a604adf991c562b.stex" ]
 
 [params]
 

@@ -1,5 +1,8 @@
 extends Node2D
 
+onready var player = $YSort/Player
+onready var boss = $YSort/StagBeetle
+
 func _ready():
 	GameStatus.CURRENT_ACT = self
 	GameStatus.CURRENT_YSORT = $YSort
@@ -15,3 +18,6 @@ func _ready():
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
+	
+	boss.get_node("StateMachine").start()
+	

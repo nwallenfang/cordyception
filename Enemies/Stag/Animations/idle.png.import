@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/turn_left.png-d5e97fec9daeb5229c09d8a8424fcd97.stex"
+path="res://.import/idle.png-09fa3f82ae0c8b9381806b311dc76e0b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Stag/turn_left.png"
-dest_files=[ "res://.import/turn_left.png-d5e97fec9daeb5229c09d8a8424fcd97.stex" ]
+source_file="res://Enemies/Stag/Animations/idle.png"
+dest_files=[ "res://.import/idle.png-09fa3f82ae0c8b9381806b311dc76e0b.stex" ]
 
 [params]
 

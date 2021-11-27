@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stag.jpg-0122a7286b51ec7e752353cc956b51a5.stex"
+path="res://.import/turn_left.png-7847610090655daf057a456d9da87472.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Stag/stag.jpg"
-dest_files=[ "res://.import/stag.jpg-0122a7286b51ec7e752353cc956b51a5.stex" ]
+source_file="res://Enemies/Stag/Animations/turn_left.png"
+dest_files=[ "res://.import/turn_left.png-7847610090655daf057a456d9da87472.stex" ]
 
 [params]
 

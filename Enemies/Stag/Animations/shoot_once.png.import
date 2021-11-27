@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/melee_default.png-98944c2be825a2787681e6cd61b337d1.stex"
+path="res://.import/shoot_once.png-51c8155ed22fc19a3549a57457b4ca7b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Stag/melee_default.png"
-dest_files=[ "res://.import/melee_default.png-98944c2be825a2787681e6cd61b337d1.stex" ]
+source_file="res://Enemies/Stag/Animations/shoot_once.png"
+dest_files=[ "res://.import/shoot_once.png-51c8155ed22fc19a3549a57457b4ca7b.stex" ]
 
 [params]
 

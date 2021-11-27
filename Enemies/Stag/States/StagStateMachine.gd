@@ -6,7 +6,6 @@ onready var label_was_visible = get_parent().get_node("StateLabel").visible
 
 func start():
 	enabled = true
-	get_parent().get_node("Healthbar").visible = true
 	get_parent().get_node("StateLabel").visible = label_was_visible
 	get_parent().get_node("Hitbox").set_deferred("monitoring", true)
 	get_parent().get_node("Hitbox").set_deferred("monitorable", true)
@@ -20,7 +19,6 @@ func start():
 		
 func stop():
 	enabled = false
-	get_parent().get_node("Healthbar").visible = false
 	get_parent().get_node("StateLabel").visible = false
 	get_parent().get_node("Hitbox").set_deferred("monitoring", false)
 	get_parent().get_node("Hitbox").set_deferred("monitorable", false)

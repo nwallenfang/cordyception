@@ -3,6 +3,7 @@ class_name Phoridae
 
 export var fly_speed := 600.0
 export var walk_speed := 400.0
+export var fly_sound_radius := 550.0
 
 onready var levitation_player := $LevitationPlayer as AnimationPlayer
 onready var animation_player := $AnimationPlayer as AnimationPlayer
@@ -85,8 +86,15 @@ func set_facing_direction(direction: Vector2) -> void:
 	$Body/Sprite.flip_h = direction.x < 0
 
 
+func play_fly_sound_if_suitable():
+	# suitable meaning you're close etc.
+	if flying and not $FlySound.playing and not levitation_player.is_playing():
+		# flying and not just levitating and distance
+		$FlySound.play()
+
 func _process(delta: float) -> void:
 	line2D.points[1] = $ScentRay.get_player_scent_position() - position
+
 	$StateMachine.process(delta)
 	accelerate_and_move(delta)
 

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/BossHealthbar.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/healthbar_back.png-23fc41745b2ff21e73470b67f932e143.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/healthbar_over.png-b3ce31ec78bdba177f562b8ba6974749.stex"
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/healthbar_progress.png-8effe47a75ccc1e39b344f174c92aeef.stex"
+
+[node name="BossHealthbar" type="TextureProgress"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -266.0
+margin_top = -267.488
+margin_right = 266.0
+margin_bottom = -245.488
+size_flags_horizontal = 2
+value = 50.0
+texture_under = SubResource( 1 )
+texture_over = SubResource( 2 )
+texture_progress = SubResource( 3 )
+tint_progress = Color( 0.0941176, 0.937255, 0, 1 )
+nine_patch_stretch = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="FadeTween" type="Tween" parent="."]

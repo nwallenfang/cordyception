@@ -2,6 +2,7 @@ extends Node2D
 
 onready var player = $YSort/Player as Player
 onready var boss = $YSort/StagBeetle as StagBeetle
+onready var cordy: Cordy
 
 func _ready():
 	GameStatus.CURRENT_ACT = self
@@ -17,7 +18,16 @@ func _ready():
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
+	GameStatus.BOSS_HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
 	
+	cordy = GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
+	cordy.show()
+	cordy.set_eyes("idle")
 	boss.get_node("StateMachine").start()
+	
+	# TODO dynamic camera!!
+	
+	
+	GameStatus.CURRENT_UI.boss_healthbar.set_max(boss.MAX_HEALTH)
 	

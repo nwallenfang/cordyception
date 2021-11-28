@@ -2365,8 +2365,11 @@ script = ExtResource( 5 )
 position = Vector2( 52.473, 23.3262 )
 frames = SubResource( 554 )
 animation = "idle"
-frame = 34
+frame = 102
 playing = true
+
+[node name="ProjectileOrigin" type="Node2D" parent="Origin"]
+position = Vector2( -0.868909, 87.76 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
@@ -2402,7 +2405,6 @@ script = ExtResource( 6 )
 
 [node name="ShootVolley" type="Node2D" parent="StateMachine"]
 script = ExtResource( 7 )
-RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="ShootDelayTimer" type="Timer" parent="StateMachine/ShootVolley"]
 wait_time = 0.3
@@ -2453,6 +2455,7 @@ __meta__ = {
 [node name="SpeechBubble" parent="." instance=ExtResource( 2 )]
 position = Vector2( -25.4026, -38.6664 )
 
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="tween_all_completed" from="StateMachine/TurnLeft/Tween" to="StateMachine/TurnLeft" method="_on_Tween_tween_all_completed"]
 [connection signal="tween_all_completed" from="StateMachine/TurnRight/Tween" to="StateMachine/TurnRight" method="_on_Tween_tween_all_completed"]
 

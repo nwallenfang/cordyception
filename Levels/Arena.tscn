@@ -229,28 +229,28 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.48157, -32.2117, 0, 0, 0, 0, -152.952, -277.265, 0, 0, 0, 0, 20.8488, -478.543, 0, 0, 0, 0, 59.2173, -638.89, 0, 0, 0, 0, -208.902, -748.571, 0, 0, 0, 0, -522.492, -766.506, 0, 0, 0, 0, -414.577, -1077.39 )
 }
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 3043, 130 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 1436.74, 31.9026 )
 
-[sub_resource type="CircleShape2D" id=17]
+[sub_resource type="CircleShape2D" id=18]
 radius = 1180.02
 
-[sub_resource type="CircleShape2D" id=18]
+[sub_resource type="CircleShape2D" id=19]
 radius = 309.958
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 134.778, 972.412 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 1064.68, 95.6447 )
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 659.301, 95.6447 )
 
-[sub_resource type="CircleShape2D" id=22]
+[sub_resource type="CircleShape2D" id=23]
 radius = 589.654
 
 [node name="Arena" type="Node2D"]
@@ -838,19 +838,15 @@ position = Vector2( 0.614258, 0.000488281 )
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99951 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Wave2Enemies/AntThrower" index="3"]
 position = Vector2( 0.5, -1.99951 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Wave2Enemies/AntThrower" index="4"]
 position = Vector2( 0.5, -1.99951 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Wave2Enemies/AntThrower" index="5"]
 position = Vector2( 0.5, -1.99951 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Wave2Enemies/AntThrower" index="15"]
 parameters/playback = SubResource( 8 )
@@ -1132,7 +1128,7 @@ position = Vector2( 881.184, -2600.98 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint5/TriggerArea" index="0"]
 position = Vector2( 10, -206 )
-shape = SubResource( 23 )
+shape = SubResource( 16 )
 
 [node name="Position" parent="Checkpoints/Checkpoint5" index="1"]
 position = Vector2( 17, -220 )
@@ -1143,7 +1139,7 @@ position = Vector2( 1048.36, 726.021 )
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint4/TriggerArea" index="0"]
 position = Vector2( 566.82, -239 )
 rotation = 0.36279
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="Position" parent="Checkpoints/Checkpoint4" index="1"]
 position = Vector2( 20.9763, -283.4 )
@@ -1157,7 +1153,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( -24.9, -1131.54 )
-shape = SubResource( 17 )
+shape = SubResource( 18 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -1166,7 +1162,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 18 )
+shape = SubResource( 19 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -1175,7 +1171,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 18 )
+shape = SubResource( 19 )
 
 [node name="ShroomSkillTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -1186,7 +1182,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger"]
 position = Vector2( 344.667, -56.042 )
 rotation = -0.581763
-shape = SubResource( 19 )
+shape = SubResource( 20 )
 
 [node name="ShroomSkillTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 1422.8, 70.5942 )
@@ -1197,7 +1193,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger2"]
 position = Vector2( 214.813, -11.3903 )
 rotation = 0.397483
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="PrePhoTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 903.661, -605.343 )
@@ -1208,7 +1204,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PrePhoTrigger"]
 position = Vector2( 240.989, -463.287 )
 rotation = -0.0188068
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="DynamicCameraTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
@@ -1219,7 +1215,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraTrigger"]
 position = Vector2( -26.23, 472.49 )
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 

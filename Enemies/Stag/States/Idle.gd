@@ -7,5 +7,5 @@ func _ready() -> void:
 func process(delta, first_time_entering):
 	parent = parent as StagBeetle
 	if first_time_entering:
-		parent.play_animation("idle", false)
 		state_machine.call_deferred("transition_to_random_state")
+#	parent.play_animation("idle", false)

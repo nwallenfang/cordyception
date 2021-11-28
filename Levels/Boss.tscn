@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://World/TileMaps/bigger_dirt.png" type="Texture" id=6]
 [ext_resource path="res://Levels/Boss.gd" type="Script" id=7]
 [ext_resource path="res://Enemies/Stag/States/StagBeetle.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World/Sticks/Stick1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/TileMaps/moss_test.png" type="Texture" id=18]
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
@@ -103,12 +105,64 @@ script = ExtResource( 7 )
 margin_left = -5038.0
 margin_top = -8300.0
 margin_right = 7474.0
-margin_bottom = 2425.0
+margin_bottom = 4267.0
 texture = ExtResource( 6 )
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Wood" parent="DirtTexture" instance=ExtResource( 10 )]
+position = Vector2( 4593.99, 7948.9 )
+rotation = 2.24701
+
+[node name="Wood2" parent="DirtTexture" instance=ExtResource( 10 )]
+position = Vector2( 3558.34, 7958.97 )
+rotation = 2.24701
+
+[node name="Stick" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 3014.72, 8994.3 )
+rotation = -0.265275
+
+[node name="Stick7" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 5057.92, 9034.09 )
+rotation = -1.61367
+
+[node name="Stick2" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 2746.02, 9424.23 )
+rotation = -0.938533
+
+[node name="Stick3" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 2649.49, 9922.6 )
+rotation = -1.09064
+
+[node name="Stick4" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 2779.69, 10382.8 )
+rotation = -1.69892
+
+[node name="Stick5" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 3140.01, 10599 )
+rotation = 0.396027
+
+[node name="Stick6" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 3620.23, 10450.6 )
+rotation = -0.373135
+
+[node name="Stick8" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 4406.36, 10473.7 )
+rotation = -1.76795
+
+[node name="Stick9" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 4802.91, 10511 )
+rotation = -0.214545
+
+[node name="Stick10" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 5154.83, 10104.1 )
+rotation = -0.892436
+
+[node name="Stick11" parent="DirtTexture" instance=ExtResource( 9 )]
+position = Vector2( 5240.45, 9494.93 )
+rotation = -1.09781
 
 [node name="SandMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

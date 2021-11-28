@@ -271,6 +271,11 @@ func health_boost():
 	GameStatus.CURRENT_HEALTH += 1
 	heal_player.play("heal")
 
+# heal to max HP
+func health_full():
+	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
+	heal_player.play("heal")
+
 # on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	if not $Hurtbox/InvincibilityTimer.is_stopped():

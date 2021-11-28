@@ -278,6 +278,8 @@ func health_full():
 
 # on hit
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
+	if not GameStatus.PLAYERHURT_ENABLED:
+		return
 	if not $Hurtbox/InvincibilityTimer.is_stopped():
 		return
 

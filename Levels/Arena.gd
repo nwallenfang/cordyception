@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var cordy
+onready var cordy: Cordy
 onready var thorn_shooter = $YSort/PreArena/ThornShooter
 onready var pre_arena_pho = $YSort/PreArena/Phoridae
 onready var shot_caller = $YSort/ShotcallerAnt as AntEnemy
@@ -124,6 +124,9 @@ func wave1():
 	GameStatus.DASH_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+	GameStatus.PLAYERHURT_ENABLED = false
+
+	shroom_to_shroom_aborted = true
 
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
@@ -159,6 +162,7 @@ func wave1():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+	GameStatus.PLAYERHURT_ENABLED = true
 
 #	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
@@ -177,6 +181,7 @@ func wave2():
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+	GameStatus.PLAYERHURT_ENABLED = false
 	$ScriptedCamera.slide_to_object(shot_caller, 1.8)
 	yield($ScriptedCamera, "slide_finished")
 	shot_caller_speech.set_text("Well.. let's consider that warm-up done..", 1.0)
@@ -208,6 +213,7 @@ func wave2():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+	GameStatus.PLAYERHURT_ENABLED = true
 
 	# wait for wave 2 to have died
 
@@ -251,28 +257,46 @@ func after_wave2():
 func reset():
 	pass
 
-
+var shroom_to_shroom_aborted := false
 func shroom_to_shroom_talk(speech_position: Vector2):
+	if shroom_to_shroom_aborted:
+		return
 	$OtherShroomSpeech.global_position = speech_position
 	$OtherShroomSpeech.set_text("Yo Cordy!", 1.0)
 	yield($OtherShroomSpeech, "dialog_completed")
+	if shroom_to_shroom_aborted:
+		return
 	cordy.say("Yo Fred, haven't seen you up here in so long!", 1.5)
 	yield(cordy, "speech_done")
+	if shroom_to_shroom_aborted:
+		return
 	$OtherShroomSpeech.set_text("Uh-huh..", 0.6)
 	yield($OtherShroomSpeech, "dialog_completed")
+	if shroom_to_shroom_aborted:
+		return
 	cordy.set_eyes("happy")
 	cordy.say("What have you been up to?")
 	yield(cordy, "speech_done")
+	if shroom_to_shroom_aborted:
+		return
 	$OtherShroomSpeech.set_text("You know, expanding my mycelium..", 0.8)
 	yield($OtherShroomSpeech, "dialog_completed")
+	if shroom_to_shroom_aborted:
+		return
 	$OtherShroomSpeech.set_text("Sharing some spores..", 0.6)
 	cordy.set_eyes("bored")
 	yield($OtherShroomSpeech, "dialog_completed")
+	if shroom_to_shroom_aborted:
+		return
 	$OtherShroomSpeech.set_text("Being intimate with some oak roots..", 1.2)
 	yield($OtherShroomSpeech, "dialog_completed")
+	if shroom_to_shroom_aborted:
+		return
 	cordy.set_eyes("bored")
 	cordy.say("Uhmmm... alright, bye then!")
 	yield(get_tree().create_timer(2.5), "timeout")
+	if shroom_to_shroom_aborted:
+		return
 	cordy.set_eyes("idle")
 	cordy.say_right("The world of fungi can be so small. And weird.")
 

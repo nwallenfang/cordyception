@@ -8,7 +8,7 @@
 [ext_resource path="res://Player/DashStuff.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Player/ScentSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=8]
-[ext_resource path="res://Sound/nicer_dash_shorter.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sound/dash_3.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Player/PlayerPoison.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sound/poison_sound.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Sound/health_boost.wav" type="AudioStream" id=12]
@@ -1055,6 +1055,7 @@ process_material = SubResource( 50 )
 
 [node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 9 )
+volume_db = 4.412
 bus = "SFX"
 
 [node name="PoisonCloud" type="AudioStreamPlayer" parent="Sounds"]

@@ -115,7 +115,7 @@ func state_dash() -> void:
 	if state_first_frame:
 		add_acceleration(GameStatus.PLAYER_DASH_ACC * input_vec)
 		script_player.play("dash")
-		var dash_duration: float = script_player.get_animation("dash").length
+		var dash_duration: float = script_player.get_animation("dash").length + 0.5
 		$Hurtbox/InvincibilityTimer.start(dash_duration)
 		dash_stuff.start_dash_effects()
 		$Sounds/Dash.play()

@@ -6,7 +6,7 @@
 [ext_resource path="res://UI/CooldownStuff/dash_symbol.png" type="Texture" id=4]
 [ext_resource path="res://UI/CooldownStuff/cooldown_background.png" type="Texture" id=5]
 [ext_resource path="res://UI/CooldownStuff/Controls/dash_c.png" type="Texture" id=6]
-[ext_resource path="res://UI/CooldownStuff/Controls/dash_k.png" type="Texture" id=7]
+[ext_resource path="res://UI/CooldownStuff/Controls/dash_kspace.png" type="Texture" id=7]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -167,9 +167,12 @@ __meta__ = {
 }
 
 [node name="Keyboard" type="TextureRect" parent="."]
-margin_left = 14.9883
-margin_top = 24.672
-margin_right = 76.9883
-margin_bottom = 66.672
+margin_left = 15.0583
+margin_top = 20.1083
+margin_right = 92.0583
+margin_bottom = 84.1083
 rect_scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

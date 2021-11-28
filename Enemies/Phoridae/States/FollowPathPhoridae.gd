@@ -16,6 +16,7 @@ var distance_to_player
 func process(delta: float, first_time_entering: bool):
 	if first_time_entering:
 		parent.levitation_player.play("up")
+		parent.animation_player.play("fly_idle")
 		first_time_following = true
 		done = false
 		

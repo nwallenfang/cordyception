@@ -54,6 +54,10 @@ func _ready():
 	w2_pho2.very_aggressive = true
 	w2_pho3.very_aggressive = true
 	w2_pho4.very_aggressive = true
+	w2_pho1.set_facing_direction(Vector2.LEFT)
+	w2_pho2.set_facing_direction(Vector2.LEFT)
+	w2_pho3.set_facing_direction(Vector2.LEFT)
+	w2_pho4.set_facing_direction(Vector2.LEFT)
 	
 	CheckpointManager.connect("player_respawned", self, "died_in_arena")
 	

@@ -157,12 +157,14 @@ __meta__ = {
 }
 
 [node name="Keyboard" type="TextureRect" parent="."]
-margin_left = 23.2644
-margin_top = 24.8222
-margin_right = 76.2644
-margin_bottom = 87.8222
+margin_left = 23.0
+margin_top = 25.0
+margin_right = 71.0
+margin_bottom = 75.0
 rect_scale = Vector2( 0.28, 0.28 )
 texture = ExtResource( 6 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }

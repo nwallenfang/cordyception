@@ -162,17 +162,14 @@ position = Vector2( -963.651, 639.417 )
 [node name="Wood" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( -443.875, -351.265 )
 rotation = 2.24739
-scale = Vector2( 2, 2 )
 
 [node name="Wood2" parent="YSort" instance=ExtResource( 10 )]
 position = Vector2( -1479.53, -341.585 )
 rotation = 2.24739
-scale = Vector2( 2, 2 )
 
 [node name="Stick" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -2023.54, 693.549 )
 rotation = -0.264901
-scale = Vector2( 2, 2 )
 
 [node name="Stick7" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 19.6445, 734.097 )
@@ -185,12 +182,10 @@ rotation = -0.938159
 [node name="Stick3" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -2389.12, 1621.71 )
 rotation = -1.09027
-scale = Vector2( 2, 2 )
 
 [node name="Stick4" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -2259.09, 2081.96 )
 rotation = -1.69855
-scale = Vector2( 2, 2 )
 
 [node name="Stick5" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( -1898.84, 2298.29 )

@@ -123,6 +123,7 @@ func _on_PhoridaeStats_health_zero():
 
 func handle_damage(attack, should_play_hit):
 	$PhoridaeStats.health -= attack.damage
+	add_acceleration(attack.knockback_vector())
 	if should_play_hit:
 		$InvincibilityPlayer.play("hit")
 

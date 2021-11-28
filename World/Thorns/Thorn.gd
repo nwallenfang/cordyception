@@ -2,7 +2,7 @@ extends Node2D
 class_name Thorn
 
 export var knock_back := 100000
-export var enrichment_level := 2
+export var enrichment_level := 3
 
 onready var area := $Area2D as Area2D
 onready var polygon := $Area2D/CollisionShape2D.polygon as PoolVector2Array

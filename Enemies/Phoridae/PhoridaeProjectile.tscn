@@ -145,7 +145,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.2, 0.2 ) ]
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.2, 0.2 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Hitbox:monitoring")
@@ -190,7 +190,7 @@ tracks/4/keys = {
 radius = 51.5024
 
 [node name="PhoridaeProjectile" type="Node2D"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -231,6 +231,8 @@ autoplay = "spin"
 anims/spin = SubResource( 18 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
+monitoring = false
+monitorable = false
 collision_mask = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://World/Sticks/stick2.png" type="Texture" id=1]
+
+[node name="Stick" type="StaticBody2D"]
+scale = Vector2( 2, 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 25.5908, -17.4911 )
+rotation = 0.383972
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 25.5908, -17.4911 )
+rotation = 0.383972
+polygon = PoolVector2Array( 92.9358, -83.3958, 102.348, -100.141, 100.091, -108.397, 87.7523, -105.569, -13.2927, -5.96361, -23.8334, -20.04, -31.4381, -17.5067, -34.8756, 8.68836, -44.7517, 25.621, -99.2359, 84.3042, -102.158, 98.4272, -94.9796, 106.852, -83.6474, 108.205, -39.8961, 60.3294, -20.5049, 56.2697, -13.935, 49.8404, -17.7793, 38.9905 )

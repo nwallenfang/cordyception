@@ -28,6 +28,7 @@ var DASH_ENABLED := false setget set_dash_enabled
 var AIMER_VISIBLE := true setget set_aimer_visible
 var HEALTH_VISIBLE := false setget set_health_visible
 var BOSS_HEALTH_VISIBLE := false setget set_boss_health_visible
+var PLAYERHURT_ENABLED := true
 
 signal start_spray
 signal stop_spray

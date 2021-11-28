@@ -16,12 +16,21 @@ func emit_player_respawned():
 	emit_signal("player_respawned")
 
 func player_died():
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	GameStatus.DASH_ENABLED = false
+	GameStatus.SHOOT_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
+	GameStatus.PLAYERHURT_ENABLED = false
+	yield(get_tree().create_timer(1.0), "timeout")
 
 	# Start camera fadeout
 	GameStatus.CURRENT_CAMERA.fade_out()
 	yield(GameStatus.CURRENT_CAMERA, "fade_out_finished")
 	# call_deferred("reset") -> old reset call
 	# after fadeout, transition
+	yield(get_tree().create_timer(.5), "timeout")
+	GameStatus.PLAYERHURT_ENABLED = true
 	get_tree().reload_current_scene()
 	GameEvents.OBSERVER_DICT = {}
 	call_deferred("reset")

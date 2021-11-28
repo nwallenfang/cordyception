@@ -118,7 +118,7 @@ extents = Vector2( 606.681, 548.36 )
 [sub_resource type="CapsuleShape2D" id=13]
 height = 330.588
 
-[sub_resource type="CircleShape2D" id=18]
+[sub_resource type="CircleShape2D" id=14]
 radius = 623.129
 
 [sub_resource type="RectangleShape2D" id=15]
@@ -131,10 +131,10 @@ radius = 268.002
 radius = 49.0
 height = 168.0
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 643.838, 305.711 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 280.331, 887 )
 
 [node name="Act1" type="Node2D"]
@@ -199,7 +199,6 @@ position = Vector2( 6364.04, -680.892 )
 visible = false
 position = Vector2( 0.614258, -0.61441 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
@@ -225,6 +224,7 @@ position = Vector2( 3.06689, 0.324921 )
 
 [node name="Aphid" parent="YSort/DandelionRoom/AphidPath" index="1"]
 z_index = 1
+full_heal = true
 
 [node name="StickObstacle" parent="YSort/DandelionRoom" instance=ExtResource( 19 )]
 position = Vector2( 8009.43, -710.873 )
@@ -434,23 +434,19 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 7 )
-frame = 18
+frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 8 )
@@ -465,23 +461,7 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 9 )
-frame = 18
-
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
+frame = 19
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 10 )
@@ -627,7 +607,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 2.75604 )
-shape = SubResource( 18 )
+shape = SubResource( 14 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -689,17 +669,22 @@ rotation = 0.765485
 scale = Vector2( 1.96817, -0.149641 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint1/TriggerArea" index="0"]
-shape = SubResource( 21 )
+shape = SubResource( 18 )
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
 position = Vector2( 8954, -923.26 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/TriggerArea" index="0"]
 position = Vector2( 2.66895, 0 )
-shape = SubResource( 20 )
+shape = SubResource( 19 )
 
 [node name="Leafs" parent="." instance=ExtResource( 30 )]
 position = Vector2( 6326.63, -1695.5 )
+
+[node name="StoneEdges" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StoneEdges"]
+polygon = PoolVector2Array( 3307, 661.74, 3147, 614.74, 3143, 571.74, 3104, 554.74, 3037, 544.74, 2975, 544.74, 2895, 586.74, 2695, 625.74, 2654, 739.74, 2685, 797.74, 2742, 813.74, 2774, 806.74, 2802, 781.74, 2825, 802.74, 2977, 776.74, 3047, 797.74, 3129, 870.74, 3209, 867.74, 3239, 896.74, 3291, 901.74, 3336, 880.74, 3374, 885.74, 3337, 921.74, 3259, 942.74, 3079, 943.74, 3048, 928.74, 2928, 842.74, 2663, 841.74, 2582, 809.74, 2562, 755.74, 2650, 606.74, 2870, 566.74, 2977, 518.74, 3135, 537.74, 3168, 593.74, 3302, 643.74 )
 
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]

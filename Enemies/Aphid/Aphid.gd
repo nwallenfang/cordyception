@@ -1,6 +1,8 @@
 extends PhysicsMover
 class_name Aphid
 
+export var full_heal := false
+
 export var move_speed := 30000.0
 export(NodePath) var mother_path : NodePath setget set_mother_path
 export var mother_radius := 10.0
@@ -14,6 +16,8 @@ func set_mother_path(path: NodePath):
 func _ready() -> void:
 	set_monitor(true)
 	set_mother_path(mother_path)
+	if full_heal:
+		$Sprite.modulate = Color(1.2, 1.2, 1.2)
 
 var monitor: bool = true setget set_monitor
 
@@ -42,5 +46,5 @@ func _process(delta: float) -> void:
 func _on_Area_body_entered(body: Node) -> void:
 	if GameStatus.CURRENT_HEALTH < GameStatus.PLAYER_MAX_HEALTH:
 		$StateMachine.stop()
-		connect("health_boost", body as Player, "health_boost")
+		connect("health_boost", body as Player, "health_full" if full_heal else "health_boost")
 		$AnimationPlayer.play("death_right" if facing_right else "death_left")

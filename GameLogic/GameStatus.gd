@@ -27,6 +27,7 @@ var SHOOT_ENABLED := false setget set_shoot_enabled
 var DASH_ENABLED := false setget set_dash_enabled
 var AIMER_VISIBLE := true setget set_aimer_visible
 var HEALTH_VISIBLE := false setget set_health_visible
+var BOSS_HEALTH_VISIBLE := false setget set_boss_health_visible
 
 signal start_spray
 signal stop_spray
@@ -55,6 +56,10 @@ func set_aimer_visible(vis: bool) -> void:
 
 func set_health_visible(vis: bool) -> void:
 	HEALTH_VISIBLE = vis
+	CURRENT_UI.show_health = vis
+	
+func set_boss_health_visible(vis: bool) -> void:
+	BOSS_HEALTH_VISIBLE = vis
 	CURRENT_UI.show_health = vis
 
 func set_health(new_health:int):

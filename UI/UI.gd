@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name UI
 
+onready var boss_healthbar = $BossHealthbar
+
 var show_spray := false setget set_show_spray
 var show_health := false setget set_show_health
 var show_shoot := false setget set_show_shoot
@@ -23,6 +25,12 @@ func set_show_health(show: bool) -> void:
 	if show_health != show:
 		show_health = show
 		$Tween.interpolate_property($HealthUI, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
+		$Tween.start()
+		
+func set_show_boss_health(show: bool) -> void:
+	if show_health != show:
+		show_health = show
+		$Tween.interpolate_property($BossHealthbar, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
 		$Tween.start()
 
 func set_show_shoot(show: bool) -> void:

@@ -1,6 +1,7 @@
 extends Node
 
 # act 1
+signal growing
 signal dandelion_dialog
 signal dandelion_attack
 signal dandelion_attack_over

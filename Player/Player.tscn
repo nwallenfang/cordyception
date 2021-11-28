@@ -1025,7 +1025,7 @@ anims/stop = SubResource( 42 )
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 43 )
 texture = ExtResource( 2 )
-hframes = 36
+hframes = 65
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( -1, 2 )

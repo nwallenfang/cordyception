@@ -37,6 +37,7 @@ func _ready() -> void:
 	GameEvents.connect("enemy_died", self, "enemy_died")
 	GameEvents.connect("joke_dialog", self, "joke_dialog")
 	GameEvents.connect("joke_attack", self, "joke_attack")
+	GameEvents.connect("growing", self, "growing")
 	
 	# give the 3 ants simpler behavior and less HP
 	var simpler_behavior = {
@@ -89,6 +90,39 @@ func _ready() -> void:
 	
 	antertainer1.set_facing_direction(Vector2.RIGHT)
 	antertainer2.set_facing_direction(Vector2.LEFT)
+	
+	$Tutorials/TutorialMove/Area2D.monitorable = false
+	$Tutorials/TutorialMove/Area2D.monitoring = false
+	GameEvents.trigger_unique_event("growing")
+
+func growing():
+	var grow_animation := $YSort/Player/GrowAnimation as AnimatedSprite
+	var darkness := $darkness as Sprite
+	var darkness_tween := $darkness/Tween as Tween
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
+	grow_animation.playing = false
+	grow_animation.frame = 0
+	player.get_node("Sprite").visible = false
+	$ScriptedCamera.zoom(.5, 0.05)
+	yield($ScriptedCamera, "zoom_finished")
+	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(.3, .3), 4)
+	darkness_tween.start()
+	$ScriptedCamera.zoom(.25, 4)
+	yield($ScriptedCamera, "zoom_finished")
+	grow_animation.playing = true
+	yield(grow_animation, "animation_finished")
+	$ScriptedCamera.zoom_back(2)
+	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(2, 2), 2)
+	darkness_tween.interpolate_property(darkness, "modulate", darkness.modulate, Color.transparent, 2, Tween.TRANS_EXPO, Tween.EASE_IN)
+	darkness_tween.start()
+	yield($ScriptedCamera, "zoom_finished")
+	GameStatus.MOVE_ENABLED = true
+	$Tutorials/TutorialMove/Area2D.monitorable = true
+	$Tutorials/TutorialMove/Area2D.monitoring = true
+	GameStatus.AIMER_VISIBLE = true
+	grow_animation.visible = false
+	player.get_node("Sprite").visible = true
 
 func reset():
 	if is_instance_valid(ant1):

@@ -16,8 +16,13 @@ func start():
 	# stop all animations etc.
 	# stop Tween movement if currently sprinting
 
+func activate_hithurt():
+	get_parent().get_node("Healthbar").visible = true
+	get_parent().get_node("Hitbox").set_deferred("monitoring", true)
+	get_parent().get_node("Hitbox").set_deferred("monitorable", true)
+	get_parent().get_node("Hurtbox").set_deferred("monitoring", true)
+	get_parent().get_node("Hurtbox").set_deferred("monitorable", true)
 
-		
 func stop():
 	enabled = false
 	get_parent().get_node("Healthbar").visible = false

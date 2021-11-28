@@ -2365,7 +2365,7 @@ script = ExtResource( 5 )
 position = Vector2( 52.473, 23.3262 )
 frames = SubResource( 554 )
 animation = "idle"
-frame = 62
+frame = 102
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]

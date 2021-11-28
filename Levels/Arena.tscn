@@ -835,15 +835,19 @@ position = Vector2( 0.614258, 0.000488281 )
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99951 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Wave2Enemies/AntThrower" index="3"]
 position = Vector2( 0.5, -1.99951 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Wave2Enemies/AntThrower" index="4"]
 position = Vector2( 0.5, -1.99951 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Wave2Enemies/AntThrower" index="5"]
 position = Vector2( 0.5, -1.99951 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Wave2Enemies/AntThrower" index="15"]
 parameters/playback = SubResource( 8 )

@@ -21,6 +21,7 @@ func _ready():
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
+	GameStatus.BOSS_HEALTH_VISIBLE = false
 	
 	GameEvents.connect("scout_dialog", self, "scout_dialog")
 	GameEvents.connect("small_chase", self, "small_chase")

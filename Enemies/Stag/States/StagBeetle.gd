@@ -40,17 +40,16 @@ func set_health(new_health: int) -> void:
 	health = max(new_health, 0)
 
 	GameStatus.CURRENT_UI.boss_healthbar.health = health
-	if new_health != health_prev:
-		emit_signal("health_changed")
+
 	if health <= 0:
-		emit_signal("health_zero")
+		emit_signal("boss_health_zero")
 	
 
 func set_max_health(new_max: int):
 	MAX_HEALTH = new_max
 	#set_health(min(MAX_HEALTH, health))
 	set_health(MAX_HEALTH)
-	get_parent().get_node("Healthbar").set_max(MAX_HEALTH)
+	GameStatus.CURRENT_UI.boss_healthbar.MAX_HEALTH = MAX_HEALTH
 
 
 func set_rotation(rot):

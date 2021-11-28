@@ -30,9 +30,10 @@ func set_show_health(show: bool) -> void:
 func set_show_boss_health(show: bool) -> void:
 	if show_health != show:
 		show_health = show
-		$Tween.interpolate_property($BossHealthbar, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
-		$Tween.start()
-
+	if show:
+		$BossHealthbar.visible = true
+	else:
+		$BossHealthbar.visible = false
 func set_show_shoot(show: bool) -> void:
 	if show_shoot != show:
 		show_shoot = show

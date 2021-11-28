@@ -60,7 +60,7 @@ func set_health_visible(vis: bool) -> void:
 	
 func set_boss_health_visible(vis: bool) -> void:
 	BOSS_HEALTH_VISIBLE = vis
-	CURRENT_UI.show_health = vis
+	CURRENT_UI.set_show_boss_health(vis)
 
 func set_health(new_health:int):
 	CURRENT_HEALTH = clamp(new_health, 0, PLAYER_MAX_HEALTH)

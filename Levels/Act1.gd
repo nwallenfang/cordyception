@@ -29,6 +29,7 @@ func _ready() -> void:
 	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.HEALTH_VISIBLE = false
+	GameStatus.BOSS_HEALTH_VISIBLE = false
 	
 #	$YSort/AntEnemy4.set_facing_direction(Vector2.LEFT)
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")

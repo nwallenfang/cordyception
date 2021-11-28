@@ -42,6 +42,7 @@ func _ready():
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
+	GameStatus.BOSS_HEALTH_VISIBLE = false
 	
 	pre_arena_pho.get_node("StateMachine").stop()
 	

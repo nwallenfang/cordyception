@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/Speech/SpeechBubble.gd" type="Script" id=1]
 [ext_resource path="res://Sound/dialogue_playing.wav" type="AudioStream" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/Speech/side_up.png" type="Texture" id=6]
 [ext_resource path="res://UI/Speech/side_left.png" type="Texture" id=7]
 [ext_resource path="res://UI/Speech/side_right.png" type="Texture" id=8]
+[ext_resource path="res://Sound/shroom_dialogue_playing.wav" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/pixeltype.ttf"
@@ -181,6 +182,9 @@ volume_db = -9.871
 bus = "SFX"
 
 [node name="BlendTween" type="Tween" parent="."]
+
+[node name="ShroomSpeechSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

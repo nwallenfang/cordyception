@@ -20,6 +20,7 @@ export var DEFAULT_WAIT := 3.0
 export var arrow_pos := 0.8
 export var arrow_reversed_h := false
 export var arrow_reversed_v := false
+export var use_shroom_sound := false
 export var center := false
 
 signal dialog_completed
@@ -81,6 +82,11 @@ func set_bubble_size(size: Vector2) -> void:
 	
 	origin.position = - arrow.rect_position + flip_offset
 
+func get_speech_audio():
+	if use_shroom_sound:
+		return $ShroomSpeechSound
+	else:
+		return $SpeechSound
 
 func set_text(lines, wait_time = DEFAULT_WAIT):
 	if lines is String:
@@ -127,7 +133,7 @@ func set_text(lines, wait_time = DEFAULT_WAIT):
 	
 	# idea was to start sound from random position to make it less repetitive
 	# sound is approx 11 secs 
-	$SpeechSound.play(rand_range($SpeechSound.stream.loop_begin, $SpeechSound.stream.loop_end))
+	get_speech_audio().play(rand_range(get_speech_audio().stream.loop_begin, get_speech_audio().stream.loop_end))
 
 	yield(get_tree().create_timer(.1), "timeout")
 	set_deferred("visible", true)
@@ -138,7 +144,7 @@ func say(lines, wait_time = DEFAULT_WAIT):
 	
 # for interruptions:
 func stop_and_blend(blend_time:=0.0):
-	$SpeechSound.stop()
+	get_speech_audio().stop()
 	$Timer.stop()
 	$Tween.stop_all()
 	$Tween.remove_all()
@@ -150,7 +156,7 @@ func stop_and_blend(blend_time:=0.0):
 	$BlendTween.start()
 
 func _on_Tween_tween_all_completed() -> void:
-	$SpeechSound.stop()
+	get_speech_audio().stop()
 	$Timer.start()
 	emit_signal("writing_completed")
 

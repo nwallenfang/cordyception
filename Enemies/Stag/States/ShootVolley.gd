@@ -17,7 +17,7 @@ func process(delta: float, first_time_entering: bool) -> void:
 
 	if angle_deg > 45 or angle_deg < -45:
 		# makes no sense to shoot here
-		state_machine.transition_deferred("Idle")
+		state_machine.transition_deferred("Turn")
 	elif first_time_entering:
 		parent.play_animation("shoot_once")
 		yield(get_tree().create_timer(0.5), "timeout")

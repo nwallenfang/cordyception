@@ -835,7 +835,6 @@ position = Vector2( 3095.58, -6389.75 )
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 7 )
 position = Vector2( 0.614258, 0.000488281 )
-frame = 18
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99951 )

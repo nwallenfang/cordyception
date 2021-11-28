@@ -7,7 +7,7 @@
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 288, 96 )
+0/region = Rect2( 0, 0, 352, 96 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 0
 0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256, Vector2( 0, 1 ), 4, Vector2( 0, 2 ), 260, Vector2( 1, 0 ), 64, Vector2( 1, 1 ), 1, Vector2( 1, 2 ), 65, Vector2( 2, 0 ), 69, Vector2( 2, 1 ), 321, Vector2( 2, 2 ), 325, Vector2( 3, 0 ), 261, Vector2( 3, 1 ), 324, Vector2( 3, 2 ), 325, Vector2( 4, 0 ), 320, Vector2( 4, 1 ), 5, Vector2( 4, 2 ), 325, Vector2( 5, 0 ), 325, Vector2( 5, 1 ), 325, Vector2( 5, 2 ), 325, Vector2( 6, 0 ), 325, Vector2( 6, 1 ), 325, Vector2( 6, 2 ), 325, Vector2( 7, 0 ), 325, Vector2( 7, 1 ), 325, Vector2( 7, 2 ), 325, Vector2( 8, 0 ), 325, Vector2( 8, 1 ), 325, Vector2( 8, 2 ), 325 ]

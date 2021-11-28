@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -118,7 +118,7 @@ extents = Vector2( 606.681, 548.36 )
 [sub_resource type="CapsuleShape2D" id=13]
 height = 330.588
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=18]
 radius = 623.129
 
 [sub_resource type="RectangleShape2D" id=15]
@@ -126,6 +126,16 @@ extents = Vector2( 607, 206 )
 
 [sub_resource type="CircleShape2D" id=16]
 radius = 268.002
+
+[sub_resource type="CapsuleShape2D" id=17]
+radius = 49.0
+height = 168.0
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 643.838, 305.711 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 280.331, 887 )
 
 [node name="Act1" type="Node2D"]
 position = Vector2( 0, 1.25989 )
@@ -242,7 +252,7 @@ position = Vector2( 8704.8, -153.886 )
 rotation = -2.50991
 
 [node name="Wood4" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 12 )]
-position = Vector2( 4894.67, -1662.88 )
+position = Vector2( 4971.54, -1443.4 )
 rotation = -0.264679
 
 [node name="Wood2" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 12 )]
@@ -295,7 +305,7 @@ position = Vector2( 2537.96, 1435.32 )
 rotation = -1.99076
 
 [node name="Wood6" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 12 )]
-position = Vector2( 4293.83, 1560.47 )
+position = Vector2( 4335.36, 1703.36 )
 rotation = -2.64234
 
 [node name="Leafs7" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 30 )]
@@ -314,16 +324,16 @@ position = Vector2( 6790.89, -2785.66 )
 rotation = 1.60424
 
 [node name="GrassBlade" parent="YSort/DandelionRoom" instance=ExtResource( 33 )]
-position = Vector2( 5657.25, -1541.86 )
+position = Vector2( 5716.58, -1548.12 )
 
 [node name="GrassBlade2" parent="YSort/DandelionRoom" instance=ExtResource( 36 )]
-position = Vector2( 5692.58, -1573.8 )
+position = Vector2( 5805.59, -1563.09 )
 
 [node name="GrassBlade3" parent="YSort/DandelionRoom" instance=ExtResource( 34 )]
-position = Vector2( 5729.57, -1546.87 )
+position = Vector2( 5858.57, -1531.07 )
 
 [node name="GrassBlade4" parent="YSort/DandelionRoom" instance=ExtResource( 37 )]
-position = Vector2( 5603.43, -1540.19 )
+position = Vector2( 5753.56, -1502.11 )
 
 [node name="GrassBlade5" parent="YSort/DandelionRoom" instance=ExtResource( 33 )]
 position = Vector2( 5198.25, -505.112 )
@@ -404,7 +414,7 @@ color = 0
 position = Vector2( 3528.52, 221.595 )
 
 [node name="Shroom11" parent="YSort/DandelionRoom" instance=ExtResource( 39 )]
-position = Vector2( 4910.48, -1165.32 )
+position = Vector2( 5045.39, -1039.37 )
 color = 0
 
 [node name="Shroom12" parent="YSort/DandelionRoom" instance=ExtResource( 39 )]
@@ -424,19 +434,23 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 7 )
-frame = 19
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 8 )
@@ -451,7 +465,23 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 9 )
-frame = 19
+frame = 18
+
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
+
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
+position = Vector2( 0.5, -2 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 10 )
@@ -501,7 +531,7 @@ scale = Vector2( 4, 4 )
 position = Vector2( 10533, -1616.26 )
 
 [node name="Buttercup2" parent="YSort/ExitPath" instance=ExtResource( 42 )]
-position = Vector2( 5362.96, -1538.2 )
+position = Vector2( 5379.5, -1329.25 )
 
 [node name="Dandelion" parent="YSort/ExitPath" instance=ExtResource( 8 )]
 position = Vector2( 7992.26, -452.115 )
@@ -596,8 +626,8 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
-scale = Vector2( 0.919575, 1.033 )
-shape = SubResource( 14 )
+scale = Vector2( 0.919575, 2.75604 )
+shape = SubResource( 18 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -616,6 +646,17 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -201, -43.9999 )
 shape = SubResource( 16 )
+
+[node name="AssaultTrigger" type="Area2D" parent="Detector"]
+modulate = Color( 0.588235, 0.184314, 0.0431373, 1 )
+position = Vector2( 4477.12, -1702.74 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/AssaultTrigger"]
+position = Vector2( -16, -31 )
+rotation = 1.5708
+shape = SubResource( 17 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 3017.52, 660.694 )
@@ -647,11 +688,15 @@ position = Vector2( 5367, 499.74 )
 rotation = 0.765485
 scale = Vector2( 1.96817, -0.149641 )
 
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint1/TriggerArea" index="0"]
+shape = SubResource( 21 )
+
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
 position = Vector2( 8954, -923.26 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/TriggerArea" index="0"]
 position = Vector2( 2.66895, 0 )
+shape = SubResource( 20 )
 
 [node name="Leafs" parent="." instance=ExtResource( 30 )]
 position = Vector2( 6326.63, -1695.5 )
@@ -662,6 +707,7 @@ position = Vector2( 6326.63, -1695.5 )
 [connection signal="body_entered" from="Detector/Zone2" to="." method="_on_Zone2_body_entered"]
 [connection signal="body_entered" from="Detector/Zone3" to="." method="_on_Zone3_body_entered"]
 [connection signal="body_entered" from="Detector/Zone4" to="." method="_on_Zone4_body_entered"]
+[connection signal="area_entered" from="Detector/AssaultTrigger" to="." method="_on_AssaultTrigger_area_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint2/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 
 [editable path="YSort/DandelionRoom/SpecialDandelion"]
@@ -683,4 +729,5 @@ position = Vector2( 6326.63, -1695.5 )
 [editable path="Tutorials/TutorialMove"]
 [editable path="Tutorials/TutorialSpray"]
 [editable path="Tutorials/TutorialAphid"]
+[editable path="Checkpoints/Checkpoint1"]
 [editable path="Checkpoints/Checkpoint2"]

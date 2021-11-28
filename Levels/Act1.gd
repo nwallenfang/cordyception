@@ -254,23 +254,40 @@ func joke_dialog():
 		return
 	antertainer2_speech.set_text("We're so funny. We should be ANTertainers")
 
+var assault_started := false
 func joke_attack():
 	attack_started = true
 	antertainer2.set_facing_direction(Vector2.RIGHT)
 	antertainer1_speech.stop_and_blend()
 	antertainer2_speech.stop_and_blend()
 	yield(get_tree().create_timer(0.7),"timeout")
+	if assault_started:
+		return
 	antertainer2_speech.set_text("Hey, wanna ANTer our funny conversation?")
 	yield(antertainer2_speech, "dialog_completed")
+	if assault_started:
+		return
 	antertainer1_speech.set_text("Shit, her body is ANTirely infested")
 	yield(antertainer1_speech, "dialog_completed")
+	if assault_started:
+		return
 	antertainer2_speech.set_text("That darn fungus is our natural ANTagonist")
 	yield(antertainer2_speech, "dialog_completed")
+	if assault_started:
+		return
 	antertainer1_speech.set_text("Let's ANT her suffering then!")
 	yield(antertainer1_speech, "dialog_completed")
+	if assault_started:
+		return
 	antertainer1.state_machine.start()
 	antertainer2.state_machine.start()
 
+func joke_assault():
+	if !assault_started:
+		assault_started = true
+		antertainer1_speech.set_text("Let's ANT her suffering!")
+		antertainer1.state_machine.start()
+		antertainer2.state_machine.start()
 
 # checkpoint2
 func _on_TriggerArea_body_entered(body: Node) -> void:
@@ -280,3 +297,7 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+
+
+func _on_AssaultTrigger_area_entered(area: Area2D) -> void:
+	joke_assault()

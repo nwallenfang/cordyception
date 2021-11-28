@@ -459,50 +459,50 @@ func _on_Tween_tween_all_completed() -> void:
 	$Timer.start(rand_range(min_wait, max_wait))
 "
 
-[sub_resource type="RectangleShape2D" id=34]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 458.816, 266 )
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 5.93064, 170.024 )
 
-[sub_resource type="RectangleShape2D" id=33]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 193, 485 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 384.969, 410 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 190.129, 861.359 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 42.2378, 317.585 )
 
-[sub_resource type="CircleShape2D" id=25]
+[sub_resource type="CircleShape2D" id=27]
 radius = 152.118
 
-[sub_resource type="CircleShape2D" id=26]
+[sub_resource type="CircleShape2D" id=28]
 radius = 456.844
 
-[sub_resource type="CapsuleShape2D" id=27]
+[sub_resource type="CapsuleShape2D" id=29]
 radius = 38.0
 height = 714.0
 
-[sub_resource type="CapsuleShape2D" id=28]
+[sub_resource type="CapsuleShape2D" id=30]
 radius = 153.791
 height = 747.107
 
-[sub_resource type="CapsuleShape2D" id=29]
+[sub_resource type="CapsuleShape2D" id=31]
 radius = 271.98
 height = 315.575
 
-[sub_resource type="CapsuleShape2D" id=30]
+[sub_resource type="CapsuleShape2D" id=32]
 radius = 271.98
 height = 315.575
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 1655.5, 163.027 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 149.726, 243.423 )
 
 [node name="Act2" type="Node2D"]
@@ -1116,6 +1116,7 @@ position = Vector2( 17776.6, 307.135 )
 [node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="0"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 3 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )
@@ -1578,7 +1579,7 @@ position = Vector2( 8.08055, 80.5731 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialDash/Area2D" index="0"]
-shape = SubResource( 34 )
+shape = SubResource( 21 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1995.68, -983.51 )
@@ -1671,7 +1672,7 @@ modulate = Color( 0.2, 0.764706, 0.121569, 1 )
 position = Vector2( 210.606, 235.903 )
 rotation = -2.80654
 scale = Vector2( 18.8995, -13.5814 )
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="Position" type="Position2D" parent="Checkpoints/Checkpoint21"]
 position = Vector2( 130.799, -182.831 )
@@ -1681,14 +1682,14 @@ position = Vector2( 12111.7, 381.49 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint22/TriggerArea" index="0"]
 position = Vector2( -25.02, -18 )
-shape = SubResource( 33 )
+shape = SubResource( 23 )
 
 [node name="Checkpoint23" parent="Checkpoints" instance=ExtResource( 37 )]
 position = Vector2( 17085.7, 966.49 )
 scale = Vector2( 0.39998, 1 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint23/TriggerArea" index="0"]
-shape = SubResource( 22 )
+shape = SubResource( 24 )
 
 [node name="Detector" type="Node" parent="."]
 
@@ -1700,7 +1701,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ZoneScout"]
 position = Vector2( 309.542, 160.192 )
 rotation = -0.211323
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="ShooterTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 4713.68, 1396.64 )
@@ -1709,7 +1710,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShooterTrigger"]
 position = Vector2( 338.082, 174.317 )
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="ShooterTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 6488, 1319 )
@@ -1719,7 +1720,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShooterTrigger2"]
 position = Vector2( 338.082, 174.317 )
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="StickClose" type="Area2D" parent="Detector"]
 position = Vector2( 7625, -63 )
@@ -1730,7 +1731,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/StickClose"]
 position = Vector2( 31, -41 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="SmallChase" type="Area2D" parent="Detector"]
 position = Vector2( 6488, 542 )
@@ -1747,7 +1748,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/SmallChase2"]
 position = Vector2( 6427, 687 )
 rotation = -1.20555
-shape = SubResource( 26 )
+shape = SubResource( 28 )
 
 [node name="ZoneRoomCutscene" type="Area2D" parent="Detector"]
 position = Vector2( 8654, 2192 )
@@ -1758,7 +1759,7 @@ collision_mask = 2
 modulate = Color( 0.929412, 0.172549, 0.866667, 1 )
 self_modulate = Color( 1, 0.141176, 0.886275, 1 )
 position = Vector2( -261, -37 )
-shape = SubResource( 27 )
+shape = SubResource( 29 )
 
 [node name="TopAgitator" type="Area2D" parent="Detector"]
 position = Vector2( 8843, 515 )
@@ -1769,7 +1770,7 @@ collision_mask = 2
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
 position = Vector2( 18, 119 )
 rotation = 1.45703
-shape = SubResource( 28 )
+shape = SubResource( 30 )
 
 [node name="LeftAgitator" type="Area2D" parent="Detector"]
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
@@ -1782,7 +1783,7 @@ collision_mask = 2
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
 position = Vector2( 32.248, 234.703 )
 rotation = 0.855772
-shape = SubResource( 29 )
+shape = SubResource( 31 )
 
 [node name="RightAgitator" type="Area2D" parent="Detector"]
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
@@ -1795,7 +1796,7 @@ collision_mask = 2
 modulate = Color( 0.176471, 0.470588, 0.843137, 0.588235 )
 position = Vector2( 32.248, 234.703 )
 rotation = 0.855772
-shape = SubResource( 30 )
+shape = SubResource( 32 )
 
 [node name="ShroomTrigger" type="Area2D" parent="Detector"]
 position = Vector2( -4959.43, 576.071 )
@@ -1805,7 +1806,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomTrigger"]
 position = Vector2( -4.56984, 33.929 )
 rotation = -0.49957
-shape = SubResource( 31 )
+shape = SubResource( 33 )
 
 [node name="TransitionZone" type="Area2D" parent="Detector"]
 position = Vector2( 12029.2, 2009.93 )
@@ -1814,7 +1815,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/TransitionZone"]
 position = Vector2( 568.8, 79.0699 )
-shape = SubResource( 32 )
+shape = SubResource( 34 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 0

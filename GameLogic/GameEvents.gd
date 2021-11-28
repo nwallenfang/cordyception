@@ -25,6 +25,10 @@ signal trigger_phoridae
 signal trigger_thorn_shooter
 signal thorn_camera
 
+# boss
+signal begin_boss
+signal begin_boss_cutscene_ended
+
 signal enemy_died
 signal player_died
 signal checkpoint_collected

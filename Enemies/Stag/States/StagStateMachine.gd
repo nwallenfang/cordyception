@@ -27,7 +27,7 @@ func stop():
 	# stop all animations etc.
 	# stop Tween movement if currently sprinting
 	# disable hitboxes and hide health bar
-	$Sprint/SprintMovementTween.stop_all()
+
 	transition_to("Idle")
 
 func set_enabled(enable: bool):

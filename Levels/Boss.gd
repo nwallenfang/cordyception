@@ -26,8 +26,14 @@ func _ready():
 	cordy.set_eyes("idle")
 	boss.get_node("StateMachine").start()
 	
-	# TODO dynamic camera!!
-	
-	
 	GameStatus.CURRENT_UI.boss_healthbar.set_max(boss.MAX_HEALTH)
 	
+
+
+func _on_DynamicCameraZone_body_entered(body: Node) -> void:
+	$DynamicPlayerCam.target = boss
+	$ScriptedCamera.follow($DynamicPlayerCam)
+
+
+func _on_DynamicCameraZone_body_exited(body: Node) -> void:
+	$ScriptedCamera.back_to_player()

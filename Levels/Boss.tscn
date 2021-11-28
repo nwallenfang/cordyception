@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Enemies/Stag/States/StagBeetle.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/Sticks/Stick1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://World/BigElements/Wood.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Levels/DynamicPlayerCam.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/TileMaps/moss_test.png" type="Texture" id=18]
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
@@ -96,6 +97,9 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 767.467
 
 [node name="BossLevel" type="Node2D"]
 position = Vector2( -5.18408, -0.020752 )
@@ -218,6 +222,20 @@ environment = ExtResource( 4 )
 
 [node name="Detector" type="Node" parent="."]
 
+[node name="DynamicCameraZone" type="Area2D" parent="Detector"]
+modulate = Color( 0.188235, 0.188235, 0.188235, 0.290196 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraZone"]
+position = Vector2( -980.749, 1121.56 )
+shape = SubResource( 3 )
+
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( -964.816, 1163.02 )
 rotation = -0.000373805
+
+[node name="DynamicPlayerCam" parent="." instance=ExtResource( 11 )]
+
+[connection signal="body_entered" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_entered"]
+[connection signal="body_exited" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_exited"]

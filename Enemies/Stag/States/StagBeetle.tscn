@@ -2430,7 +2430,7 @@ script = ExtResource( 5 )
 position = Vector2( 130.201, 90.5868 )
 frames = SubResource( 222 )
 animation = "melee_swipe"
-frame = 27
+frame = 31
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
@@ -2573,7 +2573,7 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="MeleeSwipe" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
-RELATIVE_TRANSITION_CHANCE = 35.0
+RELATIVE_TRANSITION_CHANCE = 0.8
 
 [node name="Tween" type="Tween" parent="StateMachine/MeleeSwipe"]
 

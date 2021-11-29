@@ -582,7 +582,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 5
+frame = 8
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -593,7 +593,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 5
+frame = 8
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -603,6 +603,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 0
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -612,6 +613,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 0
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )

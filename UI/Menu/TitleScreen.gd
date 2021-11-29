@@ -19,7 +19,7 @@ func _on_Play_pressed() -> void:
 	$Cutscene.start_movement()
 	$Menu.visible = false
 	yield(get_tree().create_timer(3), "timeout")
-	$MusicTween.interpolate_property($TitleMusic, "volume_db", $TitleMusic.volume_db, -80, 5)
+	$MusicTween.interpolate_property($TitleMusic, "volume_db", $TitleMusic.volume_db, -80, 8)
 	$MusicTween.start()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

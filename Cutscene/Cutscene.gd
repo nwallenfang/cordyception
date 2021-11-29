@@ -11,6 +11,11 @@ func _ready() -> void:
 	$ParallaxBackground.scroll_offset.y = start_y_value
 	if get_tree().current_scene == self:
 		start_movement()
+	$ParallaxBackground/Moon/CloudTween.interpolate_property($ParallaxBackground/Moon/Cloud, "position", $ParallaxBackground/Moon/Cloud.position, $ParallaxBackground/Moon/Cloud.position + Vector2(-600, 0), 80)
+	$ParallaxBackground/Moon/CloudTween.interpolate_property($ParallaxBackground/Moon/Cloud2, "position", $ParallaxBackground/Moon/Cloud2.position, $ParallaxBackground/Moon/Cloud2.position + Vector2(-1000, 0), 80)
+	$ParallaxBackground/Moon/CloudTween.start()
+
+var cloud_move_counter = 0
 
 func _physics_process(delta: float) -> void:
 	if movement:
@@ -35,7 +40,7 @@ func start_spores():
 
 func start_movement():
 	movement = true
-	yield(get_tree().create_timer(6.5), "timeout")
+	yield(get_tree().create_timer(6.9), "timeout")
 	$AudioStreamPlayer.play()
 
 func start_game():

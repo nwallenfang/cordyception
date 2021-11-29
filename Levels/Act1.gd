@@ -30,6 +30,7 @@ func _ready() -> void:
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.HEALTH_VISIBLE = false
 	GameStatus.BOSS_HEALTH_VISIBLE = false
+	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
 #	$YSort/AntEnemy4.set_facing_direction(Vector2.LEFT)
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")
@@ -133,18 +134,20 @@ func reset():
 	
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion)
 	yield($ScriptedCamera, "slide_finished")
-	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.0)
+	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.2)
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 0.8)
+	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 1.2)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
-	var comedic_timer = get_tree().create_timer(1.2)
+	var comedic_timer = get_tree().create_timer(1.35)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
 	$ScriptedCamera.back_to_player(1.5)
 	GameStatus.MOVE_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
 
 
 func look_towards_player():

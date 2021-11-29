@@ -233,6 +233,9 @@ func update_aim() -> void:
 
 # update aimer arrow to mouse input
 func update_mouse_aim():
+	if GameStatus.USE_CROSSHAIR:
+		aim_direction = global_position.direction_to(get_global_mouse_position()).rotated(deg2rad(90)).angle()
+		return
 	var mouse_movement := collective_mouse_movement_input
 	collective_mouse_movement_input = Vector2.ZERO
 	

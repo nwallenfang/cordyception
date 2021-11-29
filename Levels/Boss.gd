@@ -25,6 +25,7 @@ func _ready():
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.MOUSE_CAPTURE = true
+	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
 	boss.state_machine.enabled = false
 	

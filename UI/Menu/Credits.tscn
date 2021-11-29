@@ -1,0 +1,175 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://UI/Menu/Credits.gd" type="Script" id=1]
+[ext_resource path="res://UI/Menu/back_shine.png" type="Texture" id=2]
+[ext_resource path="res://UI/Menu/back.png" type="Texture" id=3]
+[ext_resource path="res://UI/Menu/back_pressed.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fonts/FFFFORWA.TTF" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 5 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 1280, 720 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 120.0
+margin_top = 78.0
+margin_right = 1160.0
+margin_bottom = 642.0
+custom_constants/separation = 40
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 1040.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+custom_fonts/font = SubResource( 1 )
+text = "Credits"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 1040.0
+margin_bottom = 472.0
+custom_constants/separation = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 382.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 120.0
+margin_right = 520.0
+margin_bottom = 382.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "
+[b]Game by[/b]
+
+Nitai Heeb & Nils Wallenfang
+
+[b]Majority of Art by[/b]
+
+Stefan Horrmann
+
+[b]Epic Battle Music by[/b]
+
+Arthur Maxant
+
+[b]Menu Music / Intro Music by[/b]
+
+Jonas Lemmen & Markus Horrmann"
+text = "
+Game by
+
+Nitai Heeb & Nils Wallenfang
+
+Majority of Art by
+
+Stefan Horrmann
+
+Epic Battle Music by
+
+Arthur Maxant
+
+Menu Music / Intro Music by
+
+Jonas Lemmen & Markus Horrmann"
+fit_content_height = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 540.0
+margin_right = 1040.0
+margin_bottom = 382.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "
+[b]Special Thanks for smaller Art Contributions[/b]
+
+Navid Jansen
+Erman Baglan
+Niels Asselborn
+Cedric Haaks
+Dominik Göbels
+
+[b]Thanks for Playtesting[/b]
+
+Luis Willner
+Joel Zaubitzer
+Benjamin Giese
+Daniel Schwarz
+Joel Zaubitzer
+Rouben Rehmann
+Marco Kamphoff"
+text = "
+Special Thanks for smaller Art Contributions
+
+Navid Jansen
+Erman Baglan
+Niels Asselborn
+Cedric Haaks
+Dominik Göbels
+
+Thanks for Playtesting
+
+Luis Willner
+Joel Zaubitzer
+Benjamin Giese
+Daniel Schwarz
+Joel Zaubitzer
+Rouben Rehmann
+Marco Kamphoff"
+fit_content_height = true
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 512.0
+margin_right = 1040.0
+margin_bottom = 564.0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 455.0
+margin_right = 585.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 130, 52 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CenterContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

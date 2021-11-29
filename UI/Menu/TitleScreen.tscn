@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://UI/Menu/title.png" type="Texture" id=1]
 [ext_resource path="res://UI/Menu/logo.png" type="Texture" id=2]
@@ -17,6 +17,10 @@
 [ext_resource path="res://Sound/Music/Menu.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Cutscene/ast_ameise.png" type="Texture" id=16]
 [ext_resource path="res://Cutscene/Cutscene.tscn" type="PackedScene" id=17]
+[ext_resource path="res://UI/Menu/credits.png" type="Texture" id=18]
+[ext_resource path="res://UI/Menu/credits_shine.png" type="Texture" id=19]
+[ext_resource path="res://UI/Menu/credits_pressed.png" type="Texture" id=20]
+[ext_resource path="res://UI/Menu/Credits.tscn" type="PackedScene" id=21]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -61,9 +65,9 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Play" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 90.0
+margin_top = 54.0
 margin_right = 130.0
-margin_bottom = 142.0
+margin_bottom = 106.0
 rect_min_size = Vector2( 130, 52 )
 size_flags_stretch_ratio = 2.0
 texture_normal = ExtResource( 6 )
@@ -74,9 +78,9 @@ expand = true
 stretch_mode = 5
 
 [node name="Settings" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 162.0
+margin_top = 126.0
 margin_right = 130.0
-margin_bottom = 214.0
+margin_bottom = 178.0
 rect_min_size = Vector2( 130, 52 )
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 10 )
@@ -84,10 +88,21 @@ texture_hover = ExtResource( 12 )
 expand = true
 stretch_mode = 5
 
-[node name="Exit" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-margin_top = 234.0
+[node name="Credits" type="TextureButton" parent="Menu/CenterRow/Buttons"]
+margin_top = 198.0
 margin_right = 130.0
-margin_bottom = 286.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 130, 52 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 19 )
+expand = true
+stretch_mode = 5
+
+[node name="Exit" type="TextureButton" parent="Menu/CenterRow/Buttons"]
+margin_top = 270.0
+margin_right = 130.0
+margin_bottom = 322.0
 rect_min_size = Vector2( 130, 52 )
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 11 )
@@ -132,6 +147,9 @@ texture = ExtResource( 16 )
 
 [node name="MusicTween" type="Tween" parent="."]
 
+[node name="Credits" parent="." instance=ExtResource( 21 )]
+
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/Exit" to="." method="_on_Exit_pressed"]

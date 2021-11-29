@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Shroom/ShroomUI.gd"
 }, {
+"base": "Control",
+"class": "Credits",
+"language": "GDScript",
+"path": "res://UI/Menu/Credits.gd"
+}, {
 "base": "Node2D",
 "class": "DashStuff",
 "language": "GDScript",
@@ -213,6 +218,7 @@ _global_script_class_icons={
 "AphidPath": "",
 "AphidStateMachine": "",
 "Cordy": "",
+"Credits": "",
 "DashStuff": "",
 "EnemyDash": "",
 "Explosion": "",

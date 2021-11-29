@@ -48,8 +48,7 @@ func begin_boss_fight():
 #	camera.back_to_player(0.5)
 #	yield(camera, "slide_finished")
 
-	# TODO health fade in
-	# TODO start dramatic music
+	$BossMusic.play()
 	boss.get_node("StateMachine").start()
 	GameStatus.BOSS_HEALTH_VISIBLE = true
 	GameEvents.trigger_unique_event("begin_boss_cutscene_ended")

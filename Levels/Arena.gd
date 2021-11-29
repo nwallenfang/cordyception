@@ -141,6 +141,7 @@ func wave1():
 
 	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
 	yield(shot_caller_speech, "dialog_completed")
+	$Music.play()
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")

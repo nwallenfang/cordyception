@@ -21,6 +21,7 @@ func _on_Play_pressed() -> void:
 	yield(get_tree().create_timer(3), "timeout")
 	$MusicTween.interpolate_property($TitleMusic, "volume_db", $TitleMusic.volume_db, -80, 5)
 	$MusicTween.start()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_Exit_pressed() -> void:
 	get_tree().quit()

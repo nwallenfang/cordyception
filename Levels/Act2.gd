@@ -272,6 +272,7 @@ func room_cutscene():
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.DASH_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
 	for i in range(4):
 		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
 	$ScriptedCamera.follow(scout)
@@ -312,6 +313,7 @@ func room_cutscene():
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
 
 func room_checkpoint():
 	cordy.show()

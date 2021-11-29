@@ -70,197 +70,197 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="AtlasTexture" id=49]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 16 )
 region = Rect2( 2520, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=50]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 16 )
 region = Rect2( 2590, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 16 )
 region = Rect2( 2660, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 16 )
 region = Rect2( 2730, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=53]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 16 )
 region = Rect2( 2800, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 16 )
 region = Rect2( 2870, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=55]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 16 )
 region = Rect2( 2940, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=56]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 16 )
 region = Rect2( 3010, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=57]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 16 )
 region = Rect2( 3080, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=58]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 16 )
 region = Rect2( 3150, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 16 )
 region = Rect2( 3220, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 16 )
 region = Rect2( 3290, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=61]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 16 )
 region = Rect2( 3360, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 16 )
 region = Rect2( 3430, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 16 )
 region = Rect2( 3500, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 16 )
 region = Rect2( 3570, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 16 )
 region = Rect2( 3640, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 16 )
 region = Rect2( 3710, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 16 )
 region = Rect2( 3780, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 16 )
 region = Rect2( 3850, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=69]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 16 )
 region = Rect2( 3920, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=70]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 16 )
 region = Rect2( 3990, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=71]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 16 )
 region = Rect2( 4060, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=72]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 16 )
 region = Rect2( 4130, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=73]
+[sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 16 )
 region = Rect2( 4200, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=74]
+[sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 16 )
 region = Rect2( 4270, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=75]
+[sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 16 )
 region = Rect2( 4340, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=76]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 16 )
 region = Rect2( 4410, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=77]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 16 )
 region = Rect2( 4480, 0, 70, 70 )
 
-[sub_resource type="SpriteFrames" id=48]
+[sub_resource type="SpriteFrames" id=31]
 animations = [ {
-"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
 "loop": false,
 "name": "default",
 "speed": 10.0
 } ]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=32]
 resource_local_to_scene = true
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 17 )
 region = Rect2( 2520, 0, 70, 70 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 17 )
 region = Rect2( 2590, 0, 70, 70 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=35]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
 "name": "default",
 "speed": 4.0
 } ]
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=36]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 15.9626, -9.61169, 0, 0, 0, 0, 9.40869, -12.4235, 0, 0, 0, 0, 1.16821, -12.6139, 0, 0, 0, 0, -8.57153, -10.5573, 0, 0, 0, 0, -15.1287, -5.31567, 0, 0, 0, 0, -18.3149, 0.676361, 0, 0, 0, 0, -17.9424, 6.10785, 0, 0, 0, 0, -14.1987, 11.7279, 0, 0, 0, 0, -5.95874, 13.9784, 0, 0, 0, 0, 9.39893, 13.9842, 0, 0, 0, 0, 15.9556, 9.30444, 0, 0, 0, 0, 19.8906, 4.4364, 0, 0, 0, 0, 22.7019, -0.993927 )
 }
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=37]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=38]
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=39]
 resource_local_to_scene = true
 shader = ExtResource( 21 )
 shader_param/active = false
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=40]
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=41]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -57.0254, 67.9789, 0, 0, 0, 0, -157.013, 33.9415, 0, 0, 0, 0, -288.99, -26.1079, 0, 0, 0, 0, -392.968, -85.1467, 0, 0, 0, 0, -439.952, -127.164, 0, 0, 0, 0, -424.933, -180.159, 0, 0, 0, 0, -362.914, -229.135, 0, 0, 0, 0, -219.908, -243.082, 0, 0, 0, 0, -39.9199, -212.015, 0, 0, 0, 0, 99.0498, -131.963, 0, 0, 0, 0, 167.01, -23.9374, 0, 0, 0, 0, 83.9873, 35.0316, 0, 0, 0, 0, -91.0039, 10.9662, 0, 0, 0, 0, -155.989, -28.0581, 0, 0, 0, 0, -160.968, -85.0601, 0, 0, 0, 0, -68.9492, -135.026, 0, 0, 0, 0, 51.042, -110.981, 0, 0, 0, 0, 115.022, -58.9569 )
 }
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 606.681, 548.36 )
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=43]
 height = 330.588
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=44]
 radius = 623.129
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 607, 206 )
 
-[sub_resource type="CircleShape2D" id=16]
+[sub_resource type="CircleShape2D" id=46]
 radius = 268.002
 
-[sub_resource type="CapsuleShape2D" id=17]
+[sub_resource type="CapsuleShape2D" id=47]
 radius = 49.0
 height = 168.0
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=48]
 extents = Vector2( 643.838, 305.711 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=49]
 extents = Vector2( 280.331, 887 )
 
 [node name="Act1" type="Node2D"]
@@ -312,7 +312,7 @@ remote_path = NodePath("../../../ScriptedCamera")
 
 [node name="GrowAnimation" type="AnimatedSprite" parent="YSort/Player"]
 rotation = 0.000373805
-frames = SubResource( 48 )
+frames = SubResource( 31 )
 frame = 28
 playing = true
 
@@ -322,7 +322,7 @@ playing = true
 position = Vector2( 6177.17, -646.398 )
 
 [node name="Sprite" parent="YSort/DandelionRoom/SpecialDandelion" index="0"]
-material = SubResource( 2 )
+material = SubResource( 32 )
 
 [node name="AntEnemyClimber" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6364.04, -680.892 )
@@ -330,7 +330,7 @@ position = Vector2( 6364.04, -680.892 )
 [node name="Climbing" type="AnimatedSprite" parent="YSort/DandelionRoom/AntEnemyClimber"]
 visible = false
 position = Vector2( 0.614258, -0.61441 )
-frames = SubResource( 5 )
+frames = SubResource( 35 )
 frame = 1
 playing = true
 
@@ -347,7 +347,7 @@ scale = Vector2( 2, 2 )
 [node name="AphidPath" parent="YSort/DandelionRoom/AphidPath" index="0"]
 position = Vector2( -2.5, -1.00095 )
 z_index = 1
-curve = SubResource( 6 )
+curve = SubResource( 36 )
 
 [node name="PathFollow2D" parent="YSort/DandelionRoom/AphidPath/AphidPath" index="0"]
 position = Vector2( 15.9626, -9.61169 )
@@ -566,7 +566,8 @@ position = Vector2( 9642.18, -371.656 )
 position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
-material = SubResource( 7 )
+material = SubResource( 37 )
+frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -581,7 +582,7 @@ position = Vector2( 0.499512, -2 )
 position = Vector2( 0.499512, -2 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
-parameters/playback = SubResource( 8 )
+parameters/playback = SubResource( 38 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
 position = Vector2( -22.7488, -27.5947 )
@@ -592,10 +593,11 @@ arrow_pos = 0.3
 position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
-material = SubResource( 9 )
+material = SubResource( 39 )
+frame = 19
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
-parameters/playback = SubResource( 10 )
+parameters/playback = SubResource( 40 )
 
 [node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
 position = Vector2( 26.9094, -31.0244 )
@@ -660,7 +662,7 @@ position = Vector2( 728.969, 285.108 )
 position = Vector2( 10276.5, -1396.42 )
 
 [node name="AphidPath" parent="YSort/AphidPathWithAphid" index="0"]
-curve = SubResource( 11 )
+curve = SubResource( 41 )
 
 [node name="PathFollow2D" parent="YSort/AphidPathWithAphid/AphidPath" index="0"]
 position = Vector2( -57.0254, 67.9789 )
@@ -713,7 +715,7 @@ texture = ExtResource( 26 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialAphid/Area2D" index="0"]
 position = Vector2( -36, 299 )
-shape = SubResource( 12 )
+shape = SubResource( 42 )
 
 [node name="Detector" type="Node2D" parent="."]
 position = Vector2( 5659.88, 1196.48 )
@@ -728,7 +730,7 @@ collision_mask = 2
 position = Vector2( -521.636, -511.476 )
 rotation = 2.55099
 scale = Vector2( 5.25468, -4.73701 )
-shape = SubResource( 13 )
+shape = SubResource( 43 )
 
 [node name="Zone2" type="Area2D" parent="Detector"]
 position = Vector2( 513.12, -1849.74 )
@@ -738,7 +740,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone2"]
 rotation = 1.57851
 scale = Vector2( 0.919575, 2.75604 )
-shape = SubResource( 14 )
+shape = SubResource( 44 )
 
 [node name="Zone3" type="Area2D" parent="Detector"]
 position = Vector2( 4681.12, -1941.74 )
@@ -747,7 +749,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone3"]
 position = Vector2( -70, -48 )
-shape = SubResource( 15 )
+shape = SubResource( 45 )
 
 [node name="Zone4" type="Area2D" parent="Detector"]
 position = Vector2( 4809.12, -1598.74 )
@@ -756,7 +758,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Zone4"]
 position = Vector2( -201, -43.9999 )
-shape = SubResource( 16 )
+shape = SubResource( 46 )
 
 [node name="AssaultTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 0.588235, 0.184314, 0.0431373, 1 )
@@ -767,7 +769,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/AssaultTrigger"]
 position = Vector2( -16, -31 )
 rotation = 1.5708
-shape = SubResource( 17 )
+shape = SubResource( 47 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2998, 646.74 )
@@ -800,14 +802,14 @@ rotation = 0.765485
 scale = Vector2( 1.96817, -0.149641 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint1/TriggerArea" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 48 )
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 10 )]
 position = Vector2( 8954, -923.26 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint2/TriggerArea" index="0"]
 position = Vector2( 2.66895, 0 )
-shape = SubResource( 19 )
+shape = SubResource( 49 )
 
 [node name="Leafs" parent="." instance=ExtResource( 30 )]
 position = Vector2( 6326.63, -1695.5 )

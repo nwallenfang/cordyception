@@ -104,11 +104,10 @@ func growing():
 	grow_animation.playing = false
 	grow_animation.frame = 0
 	player.get_node("Sprite").visible = false
-	$ScriptedCamera.zoom(.5, 0.05)
-	yield($ScriptedCamera, "zoom_finished")
-	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(.3, .3), 4)
+	$ScriptedCamera.zoom = Vector2(.5, .5)
+	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(.3, .3), 3)
 	darkness_tween.start()
-	$ScriptedCamera.zoom(.25, 4)
+	$ScriptedCamera.zoom(.25, 3)
 	yield($ScriptedCamera, "zoom_finished")
 	grow_animation.playing = true
 	yield(grow_animation, "animation_finished")

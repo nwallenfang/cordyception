@@ -67,7 +67,7 @@ func set_aimer_visible(vis: bool) -> void:
 func set_use_crosshair(use: bool) -> void:
 	USE_CROSSHAIR = use
 	if CURRENT_PLAYER != null:
-		if is_instance_valid(CURRENT_PLAYER)
+		if is_instance_valid(CURRENT_PLAYER):
 			CURRENT_PLAYER.aimer.visible = not use
 
 func set_health_visible(vis: bool) -> void:

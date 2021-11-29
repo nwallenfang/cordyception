@@ -21,6 +21,7 @@ func _ready():
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
+	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.MOUSE_CAPTURE = true
 	
 	boss.state_machine.enabled = false

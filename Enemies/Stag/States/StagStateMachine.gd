@@ -7,10 +7,10 @@ onready var label_was_visible = get_parent().get_node("StateLabel").visible
 func start():
 	enabled = true
 	get_parent().get_node("StateLabel").visible = label_was_visible
-	get_parent().get_node("Hitbox").set_deferred("monitoring", true)
-	get_parent().get_node("Hitbox").set_deferred("monitorable", true)
-	get_parent().get_node("Hurtbox").set_deferred("monitoring", true)
-	get_parent().get_node("Hurtbox").set_deferred("monitorable", true)
+	get_parent().get_node("Origin/Hitbox").set_deferred("monitoring", true)
+	get_parent().get_node("Origin/Hitbox").set_deferred("monitorable", true)
+	get_parent().get_node("Origin/Hurtbox").set_deferred("monitoring", true)
+	get_parent().get_node("Origin/Hurtbox").set_deferred("monitorable", true)
 
 	# stop all animations etc.
 	# stop Tween movement if currently sprinting
@@ -20,10 +20,10 @@ func start():
 func stop():
 	enabled = false
 	get_parent().get_node("StateLabel").visible = false
-	get_parent().get_node("Hitbox").set_deferred("monitoring", false)
-	get_parent().get_node("Hitbox").set_deferred("monitorable", false)
-	get_parent().get_node("Hurtbox").set_deferred("monitoring", false)
-	get_parent().get_node("Hurtbox").set_deferred("monitorable", false)
+	get_parent().get_node("Origin/Hitbox").set_deferred("monitoring", false)
+	get_parent().get_node("Origin/Hitbox").set_deferred("monitorable", false)
+	get_parent().get_node("Origin/Hurtbox").set_deferred("monitoring", false)
+	get_parent().get_node("Origin/Hurtbox").set_deferred("monitorable", false)
 	# stop all animations etc.
 	# stop Tween movement if currently sprinting
 	# disable hitboxes and hide health bar

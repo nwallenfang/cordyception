@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sound/SoundPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Sound/grass_rustle4.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sound/grass_rustle5.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sound/grass_rustle6.ogg" type="AudioStream" id=4]
 
 [node name="SoundPlayer" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,11 +16,11 @@ volume_db = -6.085
 bus = "SFX"
 
 [node name="Grass2" type="AudioStreamPlayer" parent="GrassPlayers"]
-stream = ExtResource( 2 )
+stream = ExtResource( 3 )
 volume_db = -6.085
 bus = "SFX"
 
 [node name="Grass3" type="AudioStreamPlayer" parent="GrassPlayers"]
-stream = ExtResource( 2 )
+stream = ExtResource( 4 )
 volume_db = -6.085
 bus = "SFX"

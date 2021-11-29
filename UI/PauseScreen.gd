@@ -17,6 +17,7 @@ func _input(event: InputEvent) -> void:
 		$MarginContainer.visible = visible
 		settings.visible = false
 		GameStatus.MOUSE_CAPTURE = not visible
+		Input.set_custom_mouse_cursor(null)
 
 func _on_ExitButton_pressed() -> void:
 	get_tree().quit()
@@ -25,6 +26,7 @@ func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
 	visible = false
 	GameStatus.MOUSE_CAPTURE = true
+	Input.set_custom_mouse_cursor(load("res://UI/cross.png"))
 
 func _on_SettingsButton_pressed() -> void:
 	$MarginContainer.visible = false

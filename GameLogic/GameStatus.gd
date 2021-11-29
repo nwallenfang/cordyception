@@ -30,6 +30,12 @@ var HEALTH_VISIBLE := false setget set_health_visible
 var BOSS_HEALTH_VISIBLE := false setget set_boss_health_visible
 var PLAYERHURT_ENABLED := true
 
+var SETTINGS_MUSIC : float = 0.5 setget set_music_volume
+var SETTINGS_SOUND : float = 0.5 setget set_sound_volume
+const SFX_BUS_INDEX = 1
+const MUSIC_BUS_INDEX = 2
+var USE_CROSSHAIR : bool = true setget set_use_crosshair
+
 signal start_spray
 signal stop_spray
 
@@ -53,7 +59,16 @@ func set_dash_enabled(enabled: bool) -> void:
 
 func set_aimer_visible(vis: bool) -> void:
 	AIMER_VISIBLE = vis
-	CURRENT_PLAYER.aimer.visible = vis
+	if !USE_CROSSHAIR:
+		CURRENT_PLAYER.aimer.visible = vis
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED if vis else Input.MOUSE_MODE_CAPTURED)
+
+func set_use_crosshair(use: bool) -> void:
+	USE_CROSSHAIR = use
+	if CURRENT_PLAYER != null:
+		if is_instance_valid(CURRENT_PLAYER)
+			CURRENT_PLAYER.aimer.visible = not use
 
 func set_health_visible(vis: bool) -> void:
 	HEALTH_VISIBLE = vis
@@ -72,15 +87,19 @@ func set_health(new_health:int):
 
 signal input_device_changed
 var CONTROLLER_USED := false 
+var crosshair_previously_on_keyboard := true
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("any_controller_input"):
 		if !CONTROLLER_USED:
 			CONTROLLER_USED = true
+			crosshair_previously_on_keyboard = USE_CROSSHAIR
+			set_use_crosshair(false)
 			emit_signal("input_device_changed")
 	if Input.is_action_pressed("any_keyboard_input"):
 		if CONTROLLER_USED:
 			CONTROLLER_USED = false
+			set_use_crosshair(crosshair_previously_on_keyboard)
 			emit_signal("input_device_changed")
 
 var MOUSE_CAPTURE : bool = false setget set_mouse_capture
@@ -102,14 +121,15 @@ func _input(event: InputEvent) -> void:
 	# game, so the mouse mode has to be set in _input
 	# see https://docs.godotengine.org/en/stable/getting_started/workflow/export/exporting_for_web.html#full-screen-and-mouse-capture
 	if MOUSE_CAPTURE:
-		if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if not USE_CROSSHAIR:
+			if not Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			if not Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+				Input.set_custom_mouse_cursor(load("res://UI/cross.png"))
 
-var SETTINGS_MUSIC : float = 0.5 setget set_music_volume
-var SETTINGS_SOUND : float = 0.5 setget set_sound_volume
-const SFX_BUS_INDEX = 1
-const MUSIC_BUS_INDEX = 2
-var USE_CROSSHAIR : bool = false
+
 
 func set_music_volume(volume: float):
 	var index = AudioServer.get_bus_index("Music")

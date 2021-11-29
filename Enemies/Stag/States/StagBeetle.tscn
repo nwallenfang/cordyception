@@ -1,4 +1,4 @@
-[gd_scene load_steps=593 format=2]
+[gd_scene load_steps=594 format=2]
 
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=2]
@@ -2296,17 +2296,17 @@ height = 164.39
 radius = 18.2565
 height = 53.8167
 
+[sub_resource type="CapsuleShape2D" id=228]
+radius = 18.2565
+height = 53.8167
+
 [sub_resource type="CapsuleShape2D" id=226]
 radius = 69.9064
 height = 73.1326
 
 [sub_resource type="CapsuleShape2D" id=227]
-radius = 43.3431
-height = 90.6083
-
-[sub_resource type="CapsuleShape2D" id=228]
-radius = 18.2565
-height = 53.8167
+radius = 59.9021
+height = 82.4644
 
 [sub_resource type="Animation" id=229]
 length = 0.5
@@ -2420,6 +2420,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.9 )
 }
 
+[sub_resource type="CapsuleShape2D" id=565]
+radius = 6.50522
+height = 83.078
+
 [node name="StagBeetle" type="Node2D"]
 scale = Vector2( 1.45, 1.45 )
 script = ExtResource( 5 )
@@ -2429,8 +2433,8 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Origin"]
 position = Vector2( 130.201, 90.5868 )
 frames = SubResource( 222 )
-animation = "melee_swipe"
-frame = 31
+animation = "melee_default"
+frame = 18
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
@@ -2449,14 +2453,14 @@ position = Vector2( 1.94887, 33.1262 )
 z_index = 1
 shape = SubResource( 223 )
 
-[node name="Hitbox" type="Area2D" parent="Origin"]
+[node name="BodyHitbox" type="Area2D" parent="Origin"]
 show_behind_parent = true
 position = Vector2( 0.5, -2 )
 rotation = 3.14159
 collision_layer = 0
 collision_mask = 12
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/BodyHitbox"]
 position = Vector2( 1.46289, 39.5005 )
 z_index = 1
 shape = SubResource( 224 )
@@ -2472,6 +2476,19 @@ collision_mask = 12
 position = Vector2( -16.028, -5.14767 )
 z_index = 1
 shape = SubResource( 225 )
+
+[node name="MandibleHitbox2" type="Area2D" parent="Origin"]
+show_behind_parent = true
+position = Vector2( -69.0037, 117.675 )
+rotation = 3.14159
+scale = Vector2( 1, 1 )
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/MandibleHitbox2"]
+position = Vector2( -120.514, -6.5288 )
+z_index = 1
+shape = SubResource( 228 )
 
 [node name="SwipeHitbox" type="Area2D" parent="Origin"]
 visible = false
@@ -2501,25 +2518,13 @@ collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/MeleeHitbox"]
 modulate = Color( 0.564706, 0.0117647, 0.364706, 1 )
-position = Vector2( 6.19341, -88.5434 )
+position = Vector2( 34.415, -60.1329 )
 rotation = 0.813435
 z_index = 1
 shape = SubResource( 227 )
 
-[node name="MandibleHitbox2" type="Area2D" parent="Origin"]
-show_behind_parent = true
-position = Vector2( -69.0037, 117.675 )
-rotation = 3.14159
-collision_layer = 0
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/MandibleHitbox2"]
-position = Vector2( -120.514, -6.5288 )
-z_index = 1
-shape = SubResource( 228 )
-
 [node name="SwipeOrigin" type="Node2D" parent="Origin"]
-position = Vector2( 89.4978, 129.468 )
+position = Vector2( 9.00974, 58.1958 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 9 )
@@ -2573,7 +2578,7 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="MeleeSwipe" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
-RELATIVE_TRANSITION_CHANCE = 0.8
+RELATIVE_TRANSITION_CHANCE = 20.0
 
 [node name="Tween" type="Tween" parent="StateMachine/MeleeSwipe"]
 
@@ -2611,6 +2616,15 @@ texture = ExtResource( 28 )
 
 [node name="Animation" type="AnimationPlayer" parent="SwipeProjectile"]
 anims/fly = SubResource( 232 )
+
+[node name="Hitbox" type="Area2D" parent="SwipeProjectile"]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwipeProjectile/Hitbox"]
+position = Vector2( 89.8056, 129.377 )
+rotation = 0.94752
+shape = SubResource( 565 )
 
 [connection signal="area_entered" from="Origin/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

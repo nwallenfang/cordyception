@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -45,6 +45,8 @@
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=44]
 [ext_resource path="res://Sound/Music/JAM_OFF_Stage.ogg" type="AudioStream" id=45]
+[ext_resource path="res://World/Sticks/Stick2.tscn" type="PackedScene" id=46]
+[ext_resource path="res://World/BigElements/StoneEggs.tscn" type="PackedScene" id=47]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -252,7 +254,7 @@ extents = Vector2( 1064.68, 95.6447 )
 extents = Vector2( 659.301, 95.6447 )
 
 [sub_resource type="CircleShape2D" id=23]
-radius = 589.654
+radius = 638.614
 
 [node name="Arena" type="Node2D"]
 position = Vector2( -5.18408, -0.020752 )
@@ -366,6 +368,9 @@ position = Vector2( 1876.92, -3185.09 )
 [node name="Shroom9" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
 position = Vector2( 2873.47, -4087.82 )
 
+[node name="Shroom23" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
+position = Vector2( 3670.41, -5379.98 )
+
 [node name="Shroom10" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
 position = Vector2( 2020.09, -5832.17 )
 color = 0
@@ -380,6 +385,12 @@ color = 1
 
 [node name="Shroom14" parent="YSort/ShroomsNFlowers" instance=ExtResource( 28 )]
 position = Vector2( 2072.61, -4508.19 )
+
+[node name="Shroom24" parent="YSort/ShroomsNFlowers" instance=ExtResource( 28 )]
+position = Vector2( 3370.62, -6809.79 )
+
+[node name="Shroom25" parent="YSort/ShroomsNFlowers" instance=ExtResource( 28 )]
+position = Vector2( 3370.62, -6809.79 )
 
 [node name="Shroom15" parent="YSort/ShroomsNFlowers" instance=ExtResource( 11 )]
 position = Vector2( 2058.67, -4652.19 )
@@ -405,6 +416,14 @@ rotation = 0.805254
 
 [node name="Shroom18" parent="YSort/ShroomsNFlowers" instance=ExtResource( 11 )]
 position = Vector2( 2985.54, -6421.12 )
+color = 2
+
+[node name="Shroom21" parent="YSort/ShroomsNFlowers" instance=ExtResource( 11 )]
+position = Vector2( 2665.59, -6748.47 )
+color = 2
+
+[node name="Shroom22" parent="YSort/ShroomsNFlowers" instance=ExtResource( 11 )]
+position = Vector2( 3992.17, -6301.23 )
 color = 2
 
 [node name="Shroom19" parent="YSort/ShroomsNFlowers" instance=ExtResource( 10 )]
@@ -782,6 +801,10 @@ scale = Vector2( 3, 3 )
 position = Vector2( 3000.51, -5483.3 )
 scale = Vector2( 5, 5 )
 
+[node name="Stone27" parent="YSort/Stones" instance=ExtResource( 23 )]
+position = Vector2( 3613.4, -5897.38 )
+scale = Vector2( 5, 5 )
+
 [node name="Stone16" parent="YSort/Stones" instance=ExtResource( 23 )]
 position = Vector2( 3187.55, -5347.82 )
 scale = Vector2( 5, 5 )
@@ -863,7 +886,7 @@ position = Vector2( 2883.3, -5801.94 )
 position = Vector2( 2882.74, -5873.48 )
 
 [node name="Phoridae4" parent="YSort/Wave2Enemies" instance=ExtResource( 37 )]
-position = Vector2( 2923.51, -5835.32 )
+position = Vector2( 2924.84, -5835.32 )
 
 [node name="RedAphid1" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
 position = Vector2( 3094.34, -6450.65 )
@@ -1082,6 +1105,71 @@ rotation = 0.571803
 position = Vector2( -1970.9, 1058.67 )
 rotation = -1.1256
 
+[node name="PostArena" type="YSort" parent="YSort"]
+
+[node name="Stick" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 2517.69, -6491.47 )
+
+[node name="Stick2" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 3032.38, -6731.56 )
+
+[node name="Stick6" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 3531.4, -6962.12 )
+
+[node name="Stick3" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 3454.33, -5950.4 )
+
+[node name="Stick5" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 3848.14, -6313.77 )
+rotation = -0.720754
+
+[node name="Stick4" parent="YSort/PostArena" instance=ExtResource( 46 )]
+position = Vector2( 3755.79, -5543.92 )
+rotation = -1.64034
+
+[node name="StoneEggs" parent="YSort/PostArena" instance=ExtResource( 47 )]
+position = Vector2( 2784.94, -7007.8 )
+rotation = 0.0338952
+
+[node name="GrassBlade" parent="YSort/PostArena" instance=ExtResource( 13 )]
+position = Vector2( 3781.24, -6875.3 )
+
+[node name="GrassBlade8" parent="YSort/PostArena" instance=ExtResource( 13 )]
+position = Vector2( 3781.24, -6875.3 )
+
+[node name="GrassBlade9" parent="YSort/PostArena" instance=ExtResource( 13 )]
+position = Vector2( 3868, -6740.17 )
+
+[node name="GrassBlade2" parent="YSort/PostArena" instance=ExtResource( 27 )]
+position = Vector2( 4017.89, -6862.29 )
+
+[node name="GrassBlade12" parent="YSort/PostArena" instance=ExtResource( 27 )]
+position = Vector2( 3721.87, -6954.47 )
+
+[node name="GrassBlade3" parent="YSort/PostArena" instance=ExtResource( 15 )]
+position = Vector2( 3894.78, -6962.76 )
+
+[node name="GrassBlade4" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 3897.39, -6886.04 )
+
+[node name="GrassBlade6" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 3971.04, -6955.86 )
+
+[node name="GrassBlade10" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 4065.26, -6740.15 )
+
+[node name="GrassBlade13" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 3980.84, -6784.18 )
+
+[node name="GrassBlade11" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 3838.15, -6825.85 )
+
+[node name="GrassBlade7" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 4082.38, -6875.59 )
+
+[node name="GrassBlade5" parent="YSort/PostArena" instance=ExtResource( 34 )]
+position = Vector2( 3984.48, -6718.45 )
+
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1221,6 +1309,33 @@ shape = SubResource( 23 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 
+[node name="ShotcallerPostFightTrigger" type="Area2D" parent="Detector"]
+modulate = Color( 1, 1, 1, 0.411765 )
+position = Vector2( 934.932, -5735.56 )
+monitoring = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShotcallerPostFightTrigger"]
+position = Vector2( -26.23, 472.49 )
+scale = Vector2( 1, 0.599999 )
+shape = SubResource( 23 )
+
+[node name="DynamicPlayerCam" parent="Detector/ShotcallerPostFightTrigger" instance=ExtResource( 40 )]
+
+[node name="TransitionZone" type="Area2D" parent="Detector"]
+modulate = Color( 1, 1, 1, 0.411765 )
+position = Vector2( 4557.69, -7529.58 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/TransitionZone"]
+position = Vector2( -193.997, 434.814 )
+rotation = -0.450141
+scale = Vector2( 1, 0.599999 )
+shape = SubResource( 23 )
+
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( -964.632, 1013.02 )
 rotation = -0.000373805
@@ -1265,6 +1380,8 @@ bus = "Music"
 [connection signal="body_entered" from="Detector/PrePhoTrigger" to="." method="_on_PrePhoTrigger_body_entered"]
 [connection signal="body_entered" from="Detector/DynamicCameraTrigger" to="." method="_on_DynamicCameraTrigger_body_entered"]
 [connection signal="body_exited" from="Detector/DynamicCameraTrigger" to="." method="_on_DynamicCameraTrigger_body_exited"]
+[connection signal="body_entered" from="Detector/ShotcallerPostFightTrigger" to="." method="_on_ShotcallerPostFightTrigger_body_entered"]
+[connection signal="body_entered" from="Detector/TransitionZone" to="." method="_on_TransitionZone_body_entered"]
 
 [editable path="YSort/GrassNThorns/GrassBlade16"]
 [editable path="YSort/GrassNThorns/GrassBlade17"]

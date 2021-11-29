@@ -25,6 +25,7 @@ signal shroom_to_shroom_talk
 signal trigger_phoridae
 signal trigger_thorn_shooter
 signal thorn_camera
+signal shotcaller_post_fight
 
 # boss
 signal begin_boss

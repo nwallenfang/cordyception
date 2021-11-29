@@ -22,6 +22,7 @@ func _ready():
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.BOSS_HEALTH_VISIBLE = false
+	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
 	GameEvents.connect("scout_dialog", self, "scout_dialog")
 	GameEvents.connect("small_chase", self, "small_chase")

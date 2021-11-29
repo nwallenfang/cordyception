@@ -43,6 +43,7 @@ func _ready():
 	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.BOSS_HEALTH_VISIBLE = false
+	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
 	pre_arena_pho.get_node("StateMachine").stop()
 	

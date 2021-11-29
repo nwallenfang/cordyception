@@ -23,14 +23,14 @@ func process(delta, first_time_entering):
 		yield(get_tree().create_timer(1.4), "timeout")
 		
 		# Start Swipe Sprite movement
-		print(parent.sprite_rotation)
-		# TODO fix direction
-		var direction = Vector2.UP.rotated(deg2rad(parent.sprite_rotation - 90))
+		var start = parent.get_node("Origin/SwipeOrigin").global_position
+		var direction = parent.get_node("Origin").global_position.direction_to(start)
 		var target = SWIPE_PROJECTILE_RANGE * direction
-		var start = parent.get_node("Origin").global_position + parent.get_node("Origin/SwipeOrigin").position
-		direction = parent.get_node("Origin").global_position.direction_to(start)
+
+
 		parent.swipe_projectile.get_node("Animation").play("fly")
 		parent.swipe_projectile.rotation_degrees = direction.angle()
+		parent.swipe_projectile.modulate = Color(1.4, 1.4, 1.4)
 		$Tween.interpolate_property(parent.swipe_projectile, "global_position", start, target, SWIPE_PROJECTILE_RANGE/SWIPE_PROJECTILE_SPEED)
 		$Tween.start()
 		

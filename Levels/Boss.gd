@@ -56,7 +56,9 @@ func begin_boss_fight():
 
 
 func _on_DynamicCameraZone_body_entered(body: Node) -> void:
+	print("dynamic")
 	if GameEvents.count("begin_boss_cutscene_ended") > 0:
+
 		$DynamicPlayerCam.target = boss
 		$ScriptedCamera.follow($DynamicPlayerCam)
 

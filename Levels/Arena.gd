@@ -88,7 +88,11 @@ func _ready():
 	GameEvents.connect("trigger_thorn_shooter", self, "trigger_thorn_shooter")
 	GameEvents.connect("thorn_camera", self, "thorn_camera")
 	GameEvents.connect("trigger_phoridae", self, "trigger_phoridae")
+	GameEvents.connect("shotcaller_post_fight", self, "shotcaller_post_fight")
 
+
+func shotcaller_post_fight():
+	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.")
 
 func learn_shoot():
 	cordy.say_bottom("I have prepared a new skill for you to use.")
@@ -245,15 +249,20 @@ func wave2_backup():
 func after_wave2():
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
-	shot_caller_speech.set_text("That's it for now! Thanks for playing!", 1.0)
-	cordy.set_eyes("bored")
-	cordy.say("Nooo, I want more destruction!")
+	shot_caller_speech.set_text("Your power ", 1.0)
 	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("Be sure to give us some feedback!", 1.0)
+	shot_caller_speech.set_text("There is only one foe left who can stop you now.", 1.0)
 	yield(shot_caller_speech, "dialog_completed")
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.back_to_player()
 	yield($ScriptedCamera, "slide_finished")
+	
+	$Detector/ShotcallerPostFightTrigger.set_deferred("monitoring", true)
+	$Detector/ShotcallerPostFightTrigger.set_deferred("monitorable", true)
+	# TODO fadeout
+	$Music.stop()
+	
+	$InvisibleWall/CollisionPolygon2D.disabled = true
 	
 
 func reset():
@@ -398,3 +407,14 @@ func _on_DynamicCameraTrigger_body_exited(body: Node) -> void:
 
 func _on_PrePhoTrigger_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("trigger_phoridae")
+
+
+func _on_ShotcallerPostFightTrigger_body_entered(body: Node) -> void:
+	GameEvents.trigger_unique_event("shotcaller_post_fight")
+
+
+func _on_TransitionZone_body_entered(body: Node) -> void:
+	$ScriptedCamera.fade_out()
+	yield($ScriptedCamera, "fade_out_finished")
+	get_tree().change_scene("res://Levels/Boss.tscn")
+	$ScriptedCamera.fade_in()

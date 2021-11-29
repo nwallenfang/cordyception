@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player = $YSort/Player as Player
-onready var boss = $YSort/StagBeetle as StagBeetle
+onready var boss = $YSort/StagBeetle
 onready var boss_speech = $YSort/StagBeetle/SpeechBubble as SpeechBubble
 onready var camera = $ScriptedCamera as ScriptedCamera
 onready var cordy: Cordy
@@ -48,8 +48,7 @@ func begin_boss_fight():
 #	camera.back_to_player(0.5)
 #	yield(camera, "slide_finished")
 
-	# TODO health fade in
-	# TODO start dramatic music
+	$BossMusic.play()
 	boss.get_node("StateMachine").start()
 	GameStatus.BOSS_HEALTH_VISIBLE = true
 	GameEvents.trigger_unique_event("begin_boss_cutscene_ended")

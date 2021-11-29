@@ -23,7 +23,7 @@
 [ext_resource path="res://World/Thorns/Thorn4.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://World/Thorns/Thorn2.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Sound/Music/JAM_OFF_Stage.mp3" type="AudioStream" id=24]
+[ext_resource path="res://Sound/Music/JAMM_OFF_Boss_Cut.ogg" type="AudioStream" id=24]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=25]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
 

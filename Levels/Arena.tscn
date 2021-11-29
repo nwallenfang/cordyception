@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://World/BigElements/Bush.tscn" type="PackedScene" id=42]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
 [ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=44]
+[ext_resource path="res://Sound/Music/JAM_OFF_Stage.ogg" type="AudioStream" id=45]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -835,6 +836,7 @@ position = Vector2( 3095.58, -6389.75 )
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 7 )
 position = Vector2( 0.614258, 0.000488281 )
+frame = 19
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99951 )
@@ -1248,6 +1250,11 @@ position = Vector2( 1662, 211 )
 
 [node name="CollisionShape2D" parent="Tutorials/TutorialShoot/Area2D" index="0"]
 position = Vector2( -74, 310 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 45 )
+volume_db = -1.857
+bus = "Music"
 
 [connection signal="body_entered" from="Checkpoints/Checkpoint5/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Detector/Wave1TriggerZone" to="." method="_on_Wave1TriggerZone_body_entered"]

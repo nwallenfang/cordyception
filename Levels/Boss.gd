@@ -6,8 +6,10 @@ onready var boss_speech = $YSort/StagBeetle/SpeechBubble as SpeechBubble
 onready var camera = $ScriptedCamera as ScriptedCamera
 onready var cordy: Cordy
 
+onready var red_aphid1  = $YSort/RedAphids/RedAphid1 as RedAphid
+onready var red_aphid2  = $YSort/RedAphids/RedAphid2 as RedAphid
+
 func _ready():
-	# TODO Checkpoint
 	GameStatus.CURRENT_ACT = self
 	GameStatus.CURRENT_YSORT = $YSort
 	GameStatus.CURRENT_UI = $UI
@@ -36,17 +38,19 @@ func _ready():
 	
 
 func begin_boss_fight():
-	cordy.say("I sense a great presence")
-	yield(cordy, "speech_done")
-	# TODO start dramatic music
-	camera.slide_to_object(boss)
-	yield(camera, "slide_finished")
-	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]")
-	yield(boss_speech, "dialog_completed")
-	camera.back_to_player(0.5)
-	yield(camera, "slide_finished")
-	boss.get_node("StateMachine").start()
+#	cordy.say("I sense a great presence")
+#	yield(cordy, "speech_done")
+
+#	camera.slide_to_object(boss)
+#	yield(camera, "slide_finished")
+#	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]")
+#	yield(boss_speech, "dialog_completed")
+#	camera.back_to_player(0.5)
+#	yield(camera, "slide_finished")
+
 	# TODO health fade in
+	# TODO start dramatic music
+	boss.get_node("StateMachine").start()
 	GameStatus.BOSS_HEALTH_VISIBLE = true
 	GameEvents.trigger_unique_event("begin_boss_cutscene_ended")
 

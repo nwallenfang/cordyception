@@ -3,6 +3,9 @@ class_name StagBeetle
 
 onready var origin := $Origin as Node2D
 onready var projectile_origin := $Origin/ProjectileOrigin as Node2D
+onready var swipe_hitbox := $Origin/SwipeHitbox as Area2D
+onready var melee_hitbox := $Origin/MeleeHitbox as Area2D
+
 onready var sprite := $Origin/AnimatedSprite as AnimatedSprite
 onready var state_machine := $StateMachine as StagStateMachine
 

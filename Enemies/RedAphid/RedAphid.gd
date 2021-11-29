@@ -148,6 +148,5 @@ func _on_EnemyStats_health_changed():
 
 func _on_EnemyStats_health_zero():
 	set_hurtbox_enabled(false)
-	print("aphid zero")
 	$StateMachine.transition_deferred("Ignite")
 

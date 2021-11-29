@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/JAMM_OFF_Boss.mp3-3b3f315f38c17e3f178278ac09c4a503.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/JAMM_OFF_Boss.mp3"
+dest_files=[ "res://.import/JAMM_OFF_Boss.mp3-3b3f315f38c17e3f178278ac09c4a503.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

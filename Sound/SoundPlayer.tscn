@@ -24,3 +24,5 @@ bus = "SFX"
 stream = ExtResource( 4 )
 volume_db = -6.085
 bus = "SFX"
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]

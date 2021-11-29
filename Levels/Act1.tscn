@@ -331,14 +331,13 @@ position = Vector2( 6364.04, -680.892 )
 visible = false
 position = Vector2( 0.614258, -0.61441 )
 frames = SubResource( 35 )
-frame = 1
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
 position = Vector2( 6011.68, -694.032 )
 
 [node name="AntEnemy2" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
-position = Vector2( 6120.5, -823.208 )
+position = Vector2( 5856.43, -640.169 )
 
 [node name="AphidPath" parent="YSort/DandelionRoom" instance=ExtResource( 15 )]
 position = Vector2( 6204.15, -907.924 )
@@ -567,7 +566,6 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 37 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -594,7 +592,6 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 39 )
-frame = 19
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 40 )

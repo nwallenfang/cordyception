@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/psychedelic.mp3-a3b42052ed86987f27b88111ad1faad2.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/psychedelic.mp3"
+dest_files=[ "res://.import/psychedelic.mp3-a3b42052ed86987f27b88111ad1faad2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

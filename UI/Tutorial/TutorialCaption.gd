@@ -20,8 +20,9 @@ func _on_Area2D_body_entered(body: Node) -> void:
 	tween.start()
 
 func _on_Area2D_body_exited(body: Node) -> void:
-	tween.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	tween.start()
+	if is_instance_valid(tween):
+		tween.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.start()
 
 func on_input_device_changed() -> void:
 	if GameStatus.CONTROLLER_USED:

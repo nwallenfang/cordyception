@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/MenuAlt.mp3-fb18efde4d32619db8f03a5bf9ca2a8d.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/MenuAlt.mp3"
+dest_files=[ "res://.import/MenuAlt.mp3-fb18efde4d32619db8f03a5bf9ca2a8d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -453,7 +453,6 @@ position = Vector2( -151.453, 48.1086 )
 
 [node name="Thorn" parent="." instance=ExtResource( 43 )]
 position = Vector2( -2140, -338 )
-enrichment_level = 3
 
 [node name="Phoridae" parent="." instance=ExtResource( 44 )]
 position = Vector2( -2081, 43 )

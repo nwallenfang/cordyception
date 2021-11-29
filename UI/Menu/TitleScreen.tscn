@@ -135,7 +135,7 @@ flip_h = true
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-volume_db = -13.412
+volume_db = -7.0
 autoplay = true
 bus = "Music"
 

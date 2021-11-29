@@ -16,3 +16,6 @@ func grass_rustle():
 			return
 	# all audio players busy at the moment
 		
+
+func boss_music():
+	pass	

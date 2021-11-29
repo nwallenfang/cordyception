@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/JAM_OFF_Stage.mp3-88a01df2346996cc79854a48f977a393.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/JAM_OFF_Stage.mp3"
+dest_files=[ "res://.import/JAM_OFF_Stage.mp3-88a01df2346996cc79854a48f977a393.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

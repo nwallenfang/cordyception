@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://World/Thorns/Thorn4.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Levels/TileMap.gd" type="Script" id=22]
 [ext_resource path="res://World/Thorns/Thorn2.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Sound/Music/JAM_OFF_Stage.mp3" type="AudioStream" id=24]
+[ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=25]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
 
 [sub_resource type="TileSet" id=1]
@@ -108,7 +110,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Node2D
 
 func _on_TriggerArea_body_entered(body: Node) -> void:
@@ -120,13 +122,13 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 	
 "
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 3043, 130 )
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=5]
 radius = 767.467
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 724.468, 114.053 )
 
 [node name="BossLevel" type="Node2D"]
@@ -190,17 +192,14 @@ position = Vector2( -963.651, 639.417 )
 [node name="Wood" parent="YSort/DecorationNBoundaries" instance=ExtResource( 10 )]
 position = Vector2( -443.875, -351.265 )
 rotation = 2.24739
-scale = Vector2( 2, 2 )
 
 [node name="Wood2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 10 )]
 position = Vector2( -1479.53, -341.585 )
 rotation = 2.24739
-scale = Vector2( 2, 2 )
 
 [node name="Stick" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -1769.58, 750.79 )
 rotation = -0.264901
-scale = Vector2( 2, 2 )
 
 [node name="Stick7" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -215.255, 638.765 )
@@ -209,7 +208,6 @@ rotation = -1.61329
 [node name="Stick2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -1930.08, 1170.57 )
 rotation = -1.13496
-scale = Vector2( 2, 2 )
 
 [node name="Stick3" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -1920.91, 1522.8 )
@@ -223,11 +221,11 @@ rotation = -1.69855
 position = Vector2( -2970.43, 1553.11 )
 rotation = 0.396401
 
-[node name="Stick6" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
+[node name="GateLeft" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -1418.58, 2150.02 )
 rotation = -0.372761
 
-[node name="Stick8" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
+[node name="GateRight" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
 position = Vector2( -632.452, 2173.5 )
 rotation = -1.76757
 
@@ -322,6 +320,20 @@ rotation = 0.695286
 position = Vector2( 25.4264, 988.193 )
 rotation = 2.91329
 
+[node name="RedAphids" type="YSort" parent="YSort"]
+
+[node name="RedAphid1" parent="YSort/RedAphids" instance=ExtResource( 25 )]
+position = Vector2( -2153.35, 1256.35 )
+
+[node name="RedAphid2" parent="YSort/RedAphids" instance=ExtResource( 25 )]
+position = Vector2( -2088.35, 1337.45 )
+
+[node name="RedAphid3" parent="YSort/RedAphids" instance=ExtResource( 25 )]
+position = Vector2( -2208.62, 1345.42 )
+
+[node name="RedAphid4" parent="YSort/RedAphids" instance=ExtResource( 25 )]
+position = Vector2( -2756.36, 906.004 )
+
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -348,11 +360,11 @@ polygon = PoolVector2Array( 663.061, -2245.98, 1062.55, -2261.98, 878.447, -2173
 
 [node name="Checkpoint9999" parent="Checkpoints" instance=ExtResource( 13 )]
 position = Vector2( -1030.09, 2401.43 )
-script = SubResource( 5 )
+script = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint9999/TriggerArea" index="0"]
 position = Vector2( 263.984, -148.854 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Position" parent="Checkpoints/Checkpoint9999" index="1"]
 position = Vector2( 32.1362, -61.9116 )
@@ -366,7 +378,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraZone"]
 position = Vector2( -980.749, 1121.56 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="BeginBossZone" type="Area2D" parent="Detector"]
 position = Vector2( -1243.77, 1947.69 )
@@ -375,13 +387,17 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/BeginBossZone"]
 position = Vector2( 263.063, -191.971 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
 position = Vector2( -987.353, 2410.69 )
 rotation = -0.000373805
 
 [node name="DynamicPlayerCam" parent="." instance=ExtResource( 11 )]
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+bus = "Music"
 
 [connection signal="body_entered" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_entered"]
 [connection signal="body_exited" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_exited"]

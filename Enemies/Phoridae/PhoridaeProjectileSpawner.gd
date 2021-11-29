@@ -8,3 +8,10 @@ func spawn_projectile() -> void:
 	GameStatus.CURRENT_YSORT.add_child(projectile)
 	projectile.global_position = global_position
 	projectile.start()
+
+
+func spawn_projectile_here(position) -> void:
+	var projectile := PROJECTILE.instance() as PhoridaeProjectile
+	GameStatus.CURRENT_YSORT.add_child(projectile)
+	projectile.global_position = position
+	projectile.start()

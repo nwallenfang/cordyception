@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player = $YSort/Player as Player
-onready var boss = $YSort/StagBeetle as StagBeetle
+onready var boss = $YSort/StagBeetle
 onready var boss_speech = $YSort/StagBeetle/SpeechBubble as SpeechBubble
 onready var camera = $ScriptedCamera as ScriptedCamera
 onready var cordy: Cordy

@@ -27,9 +27,10 @@ func process(delta, first_time_entering):
 		# TODO fix direction
 		var direction = Vector2.UP.rotated(deg2rad(parent.sprite_rotation - 90))
 		var target = SWIPE_PROJECTILE_RANGE * direction
-		var start = parent.get_node("Origin/SwipeOrigin").global_position
+		var start = parent.get_node("Origin").global_position + parent.get_node("Origin/SwipeOrigin").position
+		direction = parent.get_node("Origin").global_position.direction_to(start)
 		parent.swipe_projectile.get_node("Animation").play("fly")
-		parent.swipe_projectile.rotation = parent.sprite_rotation
+		parent.swipe_projectile.rotation_degrees = direction.angle()
 		$Tween.interpolate_property(parent.swipe_projectile, "global_position", start, target, SWIPE_PROJECTILE_RANGE/SWIPE_PROJECTILE_SPEED)
 		$Tween.start()
 		

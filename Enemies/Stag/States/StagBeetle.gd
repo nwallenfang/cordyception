@@ -21,6 +21,8 @@ signal boss_health_changed
 
 
 func _ready():
+	for anim in sprite.frames.get_animation_names():
+		play_animation(anim)
 	play_animation("idle")
 	connect("boss_health_changed", self, "boss_health_changed")
 	connect("boss_health_zero", self, "boss_health_zero")

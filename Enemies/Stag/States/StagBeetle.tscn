@@ -2430,7 +2430,7 @@ script = ExtResource( 5 )
 position = Vector2( 130.201, 90.5868 )
 frames = SubResource( 222 )
 animation = "melee_swipe"
-frame = 12
+frame = 27
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
@@ -2519,6 +2519,7 @@ z_index = 1
 shape = SubResource( 228 )
 
 [node name="SwipeOrigin" type="Node2D" parent="Origin"]
+position = Vector2( 89.4978, 129.468 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 9 )
@@ -2601,6 +2602,7 @@ __meta__ = {
 position = Vector2( -25.4026, -38.6664 )
 
 [node name="SwipeProjectile" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite" type="Sprite" parent="SwipeProjectile"]
 position = Vector2( 87.7204, 129.704 )

@@ -20,9 +20,12 @@ onready var w2_pho2 = $YSort/Wave2Enemies/Phoridae2
 onready var w2_pho3 = $YSort/Wave2Enemies/Phoridae3
 onready var w2_pho4 = $YSort/Wave2Enemies/Phoridae4
 onready var w2_thrower = $YSort/Wave2Enemies/AntThrower
+onready var thrower_stats = $YSort/Wave2Enemies/AntThrower/EnemyStats
 onready var w2_raphid1 = $YSort/Wave2Enemies/RedAphid1
 onready var w2_raphid2 = $YSort/Wave2Enemies/RedAphid2
 onready var w2_raphid3 = $YSort/Wave2Enemies/RedAphid3
+onready var w2_raphid4 = $YSort/Wave2Enemies/RedAphid4
+onready var w2_raphid5 = $YSort/Wave2Enemies/RedAphid5
 
 
 var enemies_killed_baseline: int
@@ -77,6 +80,7 @@ func _ready():
 	w2_raphid3.visible = true
 	w2_thrower.visible = true
 	
+	var thrower_max_health = 34
 	var thrower_behavior = {
 		"Chase": 1.0,
 		"SimpleShoot": 1.0,
@@ -84,6 +88,7 @@ func _ready():
 		"Sprint": 0.0,
 	}
 	w2_thrower.set_behavior(thrower_behavior)
+	thrower_stats.set_max_health(thrower_max_health)
 	
 	GameEvents.connect("arena_wave1", self, "wave1")
 	GameEvents.connect("arena_wave2", self, "wave2")
@@ -96,7 +101,9 @@ func _ready():
 
 
 func shotcaller_post_fight():
+	$ScriptedCamera.slide_to_object(shot_caller, 0.4)
 	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.")
+	$ScriptedCamera.back_to_player(0.4)
 
 func learn_shoot():
 	cordy.say_bottom("I have prepared a new skill for you to use.")
@@ -128,6 +135,15 @@ func last_enemy_ready_wave2():
 	w2_pho2.trigger()
 
 func wave1():
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.SHOOT_ENABLED = true
+	GameStatus.DASH_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
+	GameStatus.HEALTH_VISIBLE = true
+	GameStatus.PLAYERHURT_ENABLED = true
+	wave2_backup()
+	return
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = false
@@ -233,30 +249,45 @@ func wave2():
 	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
 
+func thrower_health_changed(health):
+	print(health)
+	GameStatus.CURRENT_UI.boss_healthbar.health = health
 
+func boss_dead():
+	GameStatus.BOSS_HEALTH_VISIBLE = false
 
 func wave2_backup():
 	w2_raphid1.visible = true
 	w2_raphid2.visible = true
 	w2_raphid3.visible = true
+	w2_raphid4.visible = true
+	w2_raphid5.visible = true
 	w2_raphid1.get_node("StateMachine").start()
 	w2_raphid2.get_node("StateMachine").start()
 	w2_raphid3.get_node("StateMachine").start()
+	w2_raphid4.get_node("StateMachine").start()
+	w2_raphid5.get_node("StateMachine").start()
 	w2_thrower.visible = true
+	w2_thrower.get_node("Healthbar").never_visible = true
 	w2_pho3.visible = true
 	w2_pho4.visible = true
 	cordy.set_eyes("idle")
 	cordy.say("Careful, there are more enemies coming.")
+	GameStatus.BOSS_HEALTH_VISIBLE = true
+	GameStatus.CURRENT_UI.boss_healthbar.set_max(thrower_stats.MAX_HEALTH)
+	GameStatus.CURRENT_UI.set_boss_name("Avid Aphid Thrower")
+	w2_thrower.connect("boss_health_changed", self, "thrower_health_changed")
+	w2_thrower.connect("died", self, "boss_dead")
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position])
-	print("DONE once ", GameEvents.count("enemy_died") + 6, "have been killed, you're at ", GameEvents.count("enemy_died"))
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 6, self, "after_wave2")
+	print("DONE once ", GameEvents.count("enemy_died") + 8, " have been killed, you're at ", GameEvents.count("enemy_died"))
+	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 8, self, "after_wave2")
 
 func after_wave2():
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
-	shot_caller_speech.set_text("Your power has surpassed my tiny brain's imagination ", 1.8)
+	shot_caller_speech.set_text("Your power has surpassed my tiny brain's imagination.", 1.8)
 	yield(shot_caller_speech, "dialog_completed")
 	shot_caller_speech.set_text("There is only one foe left who can stop you now.", 1.0)
 	yield(shot_caller_speech, "dialog_completed")
@@ -267,7 +298,7 @@ func after_wave2():
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitoring", true)
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitorable", true)
 
-	$FadeOut.interpolate_property($Stage, "volume_db", -5.2, -80, 2.8, Tween.TRANS_SINE, Tween.EASE_IN, 0)
+	$FadeOut.interpolate_property($Stage, "volume_db", -5.2, -80, 4.5, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
 	$FadeOut.start()
 	SoundPlayer.start_music()
 	$InvisibleWall/CollisionPolygon2D.disabled = true
@@ -401,10 +432,7 @@ func trigger_phoridae():
 		pre_arena_pho.get_node("StateMachine").enabled = true
 		pre_arena_pho.trigger()
 	yield(get_tree().create_timer(0.5), "timeout")
-	cordy.set_eyes("angry")
-	cordy.say("Looks like they've hired new flying defendants.")
 
-	yield(cordy, "speech_done")
 	cordy.set_eyes("idle")
 
 

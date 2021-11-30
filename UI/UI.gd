@@ -29,8 +29,7 @@ func set_show_health(show: bool) -> void:
 	else:
 		# dirty fix
 		if not show:
-			$Tween.interpolate_property($HealthUI, "modulate", Color.white, Color.transparent, 1)
-			$Tween.start()
+			$HealthUI.modulate = Color.transparent
 
 func set_boss_name(name: String):
 	$BossLabel.bbcode_text = "[center]" + name + "[/center]"

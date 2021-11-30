@@ -211,10 +211,10 @@ func dandelion_attack():
 	look_towards_player()
 
 	# dialog
-	ant1_speech.set_text("Hey, looks like you could lend us a hand.")
+	ant1_speech.set_text("Hey, looks like you could lend us a hand.", 1.8)
 	yield(get_tree().create_timer(1.8), "timeout")
 	ant1_speech.stop_and_blend()
-	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 1.2)
+	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 2.2)
 	yield(ant2_speech, "dialog_completed")
 	# interruption?
 	climber_speech.set_text("Disgusting, let's attack her!", 0.7)
@@ -283,7 +283,7 @@ func joke_dialog():
 	yield(antertainer2_speech, "dialog_completed")
 	if attack_started:
 		return
-	antertainer1_speech.set_text("He startet working as ANTrepreneur")
+	antertainer1_speech.set_text("He startet working as an ANTrepreneur")
 	yield(antertainer1_speech, "dialog_completed")
 	if attack_started:
 		return

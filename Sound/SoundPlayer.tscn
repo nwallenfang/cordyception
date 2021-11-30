@@ -42,7 +42,7 @@ bus = "Music"
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -5.943
+volume_db = -7.4
 bus = "Music"
 
 [node name="TweenIn" type="Tween" parent="."]

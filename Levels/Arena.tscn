@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -209,7 +209,19 @@ _data = {
 [sub_resource type="Curve2D" id=11]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -3009.38, 702.751, 0, 0, 0, 0, -2964.6, 1005.83, 0, 0, 0, 0, -2706.55, 1311.24, 0, 0, 0, 0, -2443.97, 1524.6, 0, 0, 0, 0, -2329.59, 1816.49 )
+"points": PoolVector2Array( 0, 0, 0, 0, -3009.38, 702.751, 0, 0, 0, 0, -2964.6, 1005.83, 0, 0, 0, 0, -2571.39, 1513.73, 0, 0, 0, 0, -2520.15, 1416.28, 0, 0, 0, 0, -2443.97, 1524.6, 0, 0, 0, 0, -2329.59, 1816.49 )
+}
+
+[sub_resource type="GDScript" id=24]
+script/source = "extends YSort
+
+func _ready() -> void:
+	$Aphid.connect(\"tree_exiting\", self, \"queue_free\")
+"
+
+[sub_resource type="Curve2D" id=25]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -2346.41, 508.303, 0, 0, 0, 0, -2479.48, 753.855, 0, 0, 0, 0, -2743.19, 1185.29, 0, 0, 0, 0, -2924.2, 1444.83, 0, 0, 0, 0, -3012.91, 1641.3 )
 }
 
 [sub_resource type="Curve2D" id=12]
@@ -304,7 +316,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -965.011, 1012.66 )
+position = Vector2( 833.665, -3872.91 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -854,24 +866,28 @@ position = Vector2( 3532.56, -6504.68 )
 
 [node name="AntThrower" parent="YSort/Wave2Enemies" instance=ExtResource( 25 )]
 position = Vector2( 3095.58, -6389.75 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Sprite" parent="YSort/Wave2Enemies/AntThrower" index="0"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 7 )
 position = Vector2( 0.614258, 0.000488281 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
-position = Vector2( 0.5, -1.99951 )
+position = Vector2( 0.5, -1.99976 )
+scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Wave2Enemies/AntThrower" index="3"]
-position = Vector2( 0.5, -1.99951 )
+position = Vector2( 0.5, -1.99976 )
+scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Wave2Enemies/AntThrower" index="4"]
-position = Vector2( 0.5, -1.99951 )
+position = Vector2( 0.5, -1.99976 )
+scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Wave2Enemies/AntThrower" index="5"]
-position = Vector2( 0.5, -1.99951 )
+position = Vector2( 0.5, -1.99976 )
+scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Wave2Enemies/AntThrower" index="15"]
 parameters/playback = SubResource( 8 )
@@ -898,6 +914,14 @@ mother_path = NodePath("../AntThrower")
 
 [node name="RedAphid3" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
 position = Vector2( 3149.58, -6460.87 )
+mother_path = NodePath("../AntThrower")
+
+[node name="RedAphid4" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
+position = Vector2( 3105.23, -6491.09 )
+mother_path = NodePath("../AntThrower")
+
+[node name="RedAphid5" parent="YSort/Wave2Enemies" instance=ExtResource( 44 )]
+position = Vector2( 3159.04, -6524.11 )
 mother_path = NodePath("../AntThrower")
 
 [node name="Aphids" type="YSort" parent="YSort"]
@@ -934,6 +958,18 @@ position = Vector2( 2090.27, -5233.05 )
 curve = SubResource( 11 )
 
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid3" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="AphidPathWithAphid7" parent="YSort/Aphids" instance=ExtResource( 38 )]
+position = Vector2( 1365.71, -6115.37 )
+script = SubResource( 24 )
+
+[node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid7" index="0"]
+position = Vector2( 5692.06, -693.479 )
+scale = Vector2( 2.25241, 0.769078 )
+curve = SubResource( 25 )
+
+[node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid7" index="1"]
 scale = Vector2( 2, 2 )
 
 [node name="AphidPathWithAphid4" parent="YSort/Aphids" instance=ExtResource( 38 )]
@@ -1341,7 +1377,7 @@ scale = Vector2( 1, 0.599999 )
 shape = SubResource( 23 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( -964.632, 1013.02 )
+position = Vector2( 832.217, -3873.22 )
 rotation = -0.000373805
 
 [node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]
@@ -1409,6 +1445,8 @@ bus = "Music"
 [editable path="YSort/Aphids/AphidPathWithAphid2/Aphid"]
 [editable path="YSort/Aphids/AphidPathWithAphid3"]
 [editable path="YSort/Aphids/AphidPathWithAphid3/Aphid"]
+[editable path="YSort/Aphids/AphidPathWithAphid7"]
+[editable path="YSort/Aphids/AphidPathWithAphid7/Aphid"]
 [editable path="YSort/Aphids/AphidPathWithAphid4"]
 [editable path="YSort/Aphids/AphidPathWithAphid4/Aphid"]
 [editable path="YSort/Aphids/AphidPathWithAphid5"]

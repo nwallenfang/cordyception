@@ -1065,7 +1065,7 @@ bus = "SFX"
 
 [node name="HealthBoost" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 12 )
-volume_db = -10.603
+volume_db = -12.46
 bus = "SFX"
 
 [node name="TakeHit" type="AudioStreamPlayer" parent="Sounds"]

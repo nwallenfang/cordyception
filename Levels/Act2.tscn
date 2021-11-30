@@ -7,7 +7,6 @@
 [ext_resource path="res://World/TileMaps/SandMap.tres" type="TileSet" id=5]
 [ext_resource path="res://UI/Tutorial/dashKspace.png" type="Texture" id=6]
 [ext_resource path="res://Levels/Act2.gd" type="Script" id=7]
-[ext_resource path="res://World/Grass/GrassTuft.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Levels/Checkpoint.gd" type="Script" id=10]
 [ext_resource path="res://UI/Tutorial/dashC.png" type="Texture" id=11]
@@ -131,6 +130,9 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 88.0303, 417.89 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -516,6 +518,7 @@ margin_bottom = 2832.0
 texture = ExtResource( 49 )
 stretch_mode = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -552,13 +555,161 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 15824, 925.262 )
+position = Vector2( 1939.82, -1023.35 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
 
-[node name="GrassTuft" parent="YSort" instance=ExtResource( 8 )]
+[node name="GrassTuft" type="YSort" parent="YSort"]
 position = Vector2( -6457.61, -369.431 )
+
+[node name="GrassBlade" parent="YSort/GrassTuft" instance=ExtResource( 26 )]
+position = Vector2( 8205.97, -849.008 )
+
+[node name="GrassBlade2" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8132.62, -662.869 )
+
+[node name="GrassBlade8" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8302.02, -493.313 )
+
+[node name="GrassBlade3" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8058.85, -663.779 )
+
+[node name="GrassBlade9" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8241.44, -585.855 )
+
+[node name="GrassBlade7" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8170.01, -522.322 )
+
+[node name="GrassBlade37" parent="YSort/GrassTuft" instance=ExtResource( 26 )]
+position = Vector2( 7795.4, -821.042 )
+
+[node name="GrassBlade38" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 7733.04, -704.549 )
+
+[node name="GrassBlade39" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 7902.44, -534.993 )
+
+[node name="GrassBlade40" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 7659.27, -705.459 )
+
+[node name="GrassBlade41" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 7841.86, -627.535 )
+
+[node name="GrassBlade42" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 7770.43, -564.002 )
+
+[node name="GrassBlade4" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8255.01, -416.215 )
+
+[node name="GrassBlade6" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8111.15, -413.86 )
+
+[node name="GrassBlade5" parent="YSort/GrassTuft" instance=ExtResource( 27 )]
+position = Vector2( 8027.81, -539.613 )
+
+[node name="GrassBlade10" parent="YSort/GrassTuft" instance=ExtResource( 26 )]
+position = Vector2( 8361.44, -818.556 )
+
+[node name="GrassBlade11" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8178.67, -804.852 )
+
+[node name="GrassBlade12" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8725.06, -619.836 )
+
+[node name="GrassBlade13" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8373.67, -732.031 )
+
+[node name="GrassBlade14" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8742.96, -825.353 )
+
+[node name="GrassBlade15" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8098.34, -777.28 )
+
+[node name="GrassBlade16" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8390.26, -570.089 )
+
+[node name="GrassBlade17" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8377.2, -658.114 )
+
+[node name="GrassBlade18" parent="YSort/GrassTuft" instance=ExtResource( 27 )]
+position = Vector2( 8271.28, -725.596 )
+
+[node name="GrassBlade19" parent="YSort/GrassTuft" instance=ExtResource( 26 )]
+position = Vector2( 8591.39, -687.972 )
+
+[node name="GrassBlade20" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8509.7, -611.239 )
+
+[node name="GrassBlade21" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8630.36, -541.577 )
+
+[node name="GrassBlade22" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8791.51, -531.283 )
+
+[node name="GrassBlade23" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8630.7, -435.927 )
+
+[node name="GrassBlade43" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8020.71, -937.42 )
+
+[node name="GrassBlade44" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8181.86, -927.126 )
+
+[node name="GrassBlade45" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8021.05, -831.77 )
+
+[node name="GrassBlade24" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8418.67, -459.989 )
+
+[node name="GrassBlade25" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8533.4, -503.722 )
+
+[node name="GrassBlade26" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 7968.56, -630.991 )
+
+[node name="GrassBlade46" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 7894.26, -714.174 )
+
+[node name="GrassBlade27" parent="YSort/GrassTuft" instance=ExtResource( 27 )]
+position = Vector2( 7992.25, -455.874 )
+
+[node name="GrassBlade28" parent="YSort/GrassTuft" instance=ExtResource( 26 )]
+position = Vector2( 8637.45, -829.954 )
+
+[node name="GrassBlade29" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8454.68, -816.25 )
+
+[node name="GrassBlade30" parent="YSort/GrassTuft" instance=ExtResource( 28 )]
+position = Vector2( 8723.98, -689.507 )
+
+[node name="GrassBlade31" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8649.67, -743.429 )
+
+[node name="GrassBlade32" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8549.22, -827.237 )
+
+[node name="GrassBlade33" parent="YSort/GrassTuft" instance=ExtResource( 36 )]
+position = Vector2( 8831, -626.945 )
+
+[node name="GrassBlade34" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8819.67, -762.247 )
+
+[node name="GrassBlade35" parent="YSort/GrassTuft" instance=ExtResource( 29 )]
+position = Vector2( 8492.67, -736.109 )
+
+[node name="GrassBlade36" parent="YSort/GrassTuft" instance=ExtResource( 27 )]
+position = Vector2( 8466.41, -752.454 )
+
+[node name="TransitionArea" type="Area2D" parent="YSort/GrassTuft"]
+position = Vector2( 7612.26, -897.99 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GrassTuft/TransitionArea"]
+modulate = Color( 0.952941, 0, 0, 1 )
+position = Vector2( 788.285, 271.02 )
+shape = SubResource( 35 )
 
 [node name="Stick" parent="YSort" instance=ExtResource( 19 )]
 position = Vector2( 12010.4, 1.43884 )
@@ -582,7 +733,6 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -593,7 +743,6 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -603,7 +752,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 1
+frame = 7
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -613,7 +762,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 1
+frame = 7
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -1577,7 +1726,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 21 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 15824.4, 919.346 )
+position = Vector2( 1939.44, -1024.08 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

@@ -39,7 +39,7 @@ margin_bottom = 398.888
 
 [node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = 4.222
+volume_db = 0.487
 bus = "SFX"
 
 [node name="HealthUI" parent="." instance=ExtResource( 3 )]

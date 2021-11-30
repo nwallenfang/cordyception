@@ -15,7 +15,6 @@ func _ready():
 	GameStatus.CURRENT_PLAYER = $YSort/Player
 	GameStatus.CURRENT_CAMERA = $ScriptedCamera
 	GameStatus.CURRENT_CAM_REMOTE = $YSort/Player/CamRemote
-	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
@@ -148,7 +147,9 @@ func small_chase():
 	for i in range(5):
 		runpath.append(get_node("Positions/ScoutStick" + str(i+1)).global_position)
 	scout.follow_path_array(runpath)
+	SoundPlayer.switch_music()
 	yield(get_tree().create_timer(.4), "timeout")
+
 	cordy.say("There he is!")
 	cordy.set_eyes("angry")
 	yield(get_tree().create_timer(1.4), "timeout")

@@ -90,7 +90,7 @@ func stop_music():
 	tween_out.reset_all()
 	if $Psychedelic.playing:
 		tween_out.interpolate_property($Psychedelic, "volume_db", psychedelic_max_volume, -80, fadeout_duration, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
-	if $Stage.playing:
+	elif $Stage.playing:
 		tween_out.interpolate_property($Stage, "volume_db", stage_base_volume, -80, fadeout_duration, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
 	if combat:
 		tween_out.interpolate_property($Combat, "volume_db", combat_max_volume, -80, fadeout_duration, Tween.TRANS_CIRC, Tween.EASE_IN, 0)

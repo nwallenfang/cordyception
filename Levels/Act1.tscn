@@ -444,6 +444,10 @@ rotation = -5.18299
 position = Vector2( 4113.3, 1878.28 )
 rotation = -5.56799
 
+[node name="Wood7" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 12 )]
+position = Vector2( 2573.04, 2035.9 )
+rotation = -2.64234
+
 [node name="Leafs7" parent="YSort/DandelionRoom/BigElements" instance=ExtResource( 30 )]
 position = Vector2( 2487.51, -1.13513 )
 
@@ -708,7 +712,8 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries/StaticBody2D"]
-polygon = PoolVector2Array( 3332.74, 70.1081, 3381.73, 85.5316, 2532.69, 366.158, 2927.16, 143.129 )
+position = Vector2( -22.1775, 6.10352e-05 )
+polygon = PoolVector2Array( 3332.74, 70.1081, 3381.73, 85.5316, 2478.24, 390.951, 2927.16, 143.129 )
 
 [node name="Tutorials" type="Node2D" parent="."]
 
@@ -848,6 +853,7 @@ position = Vector2( 6326.63, -1695.5 )
 polygon = PoolVector2Array( 3307, 661.74, 3147, 614.74, 3143, 571.74, 3104, 554.74, 3037, 544.74, 2975, 544.74, 2895, 586.74, 2695, 625.74, 2654, 739.74, 2685, 797.74, 2742, 813.74, 2774, 806.74, 2802, 781.74, 2825, 802.74, 2977, 776.74, 3047, 797.74, 3129, 870.74, 3209, 867.74, 3239, 896.74, 3291, 901.74, 3336, 880.74, 3374, 885.74, 3337, 921.74, 3259, 942.74, 3079, 943.74, 3048, 928.74, 2928, 842.74, 2663, 841.74, 2582, 809.74, 2562, 755.74, 2650, 606.74, 2870, 566.74, 2977, 518.74, 3135, 537.74, 3168, 593.74, 3302, 643.74 )
 
 [node name="darkness" type="Sprite" parent="."]
+visible = false
 position = Vector2( 2981, 634.74 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 44 )
@@ -866,7 +872,8 @@ energy = 0.8
 
 [node name="Infestation" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 46 )
-volume_db = -6.229
+volume_db = -7.2
+bus = "Music"
 
 [node name="InfestationTiming" type="Timer" parent="."]
 wait_time = 1.46

@@ -135,15 +135,6 @@ func last_enemy_ready_wave2():
 	w2_pho2.trigger()
 
 func wave1():
-	GameStatus.MOVE_ENABLED = true
-	GameStatus.SPRAY_ENABLED = true
-	GameStatus.SHOOT_ENABLED = true
-	GameStatus.DASH_ENABLED = true
-	GameStatus.AIMER_VISIBLE = true
-	GameStatus.HEALTH_VISIBLE = true
-	GameStatus.PLAYERHURT_ENABLED = true
-	wave2_backup()
-	return
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = false

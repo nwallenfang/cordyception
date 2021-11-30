@@ -37,7 +37,6 @@ func _ready():
 	GameStatus.CURRENT_PLAYER = $YSort/Player
 	GameStatus.CURRENT_CAMERA = $ScriptedCamera
 	GameStatus.CURRENT_CAM_REMOTE = $YSort/Player/CamRemote
-	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.SHOOT_ENABLED = false
@@ -160,8 +159,8 @@ func wave1():
 
 	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
 	yield(shot_caller_speech, "dialog_completed")
-	$Music.play()
 	SoundPlayer.stop_music()
+	SoundPlayer.start_stage_music()
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
@@ -238,7 +237,6 @@ func wave2():
 	GameStatus.PLAYERHURT_ENABLED = true
 
 	# wait for wave 2 to have died
-
 	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
 
@@ -298,8 +296,7 @@ func after_wave2():
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitoring", true)
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitorable", true)
 
-	$FadeOut.interpolate_property($Stage, "volume_db", -5.2, -80, 4.5, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
-	$FadeOut.start()
+	SoundPlayer.stop_stage_music()
 	SoundPlayer.start_music()
 	$InvisibleWall/CollisionPolygon2D.disabled = true
 	GameStatus.MOVE_ENABLED = true

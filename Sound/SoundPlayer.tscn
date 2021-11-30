@@ -30,6 +30,7 @@ volume_db = -6.085
 bus = "SFX"
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
+bus = "Music"
 
 [node name="Psychedelic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
@@ -54,5 +55,6 @@ bus = "Music"
 [node name="Stage" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -5.943
+bus = "Music"
 
 [connection signal="tween_completed" from="TweenOut" to="." method="_on_TweenOut_tween_completed"]

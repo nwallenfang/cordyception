@@ -15,7 +15,6 @@ func _ready():
 	GameStatus.CURRENT_PLAYER = $YSort/Player
 	GameStatus.CURRENT_CAMERA = $ScriptedCamera
 	GameStatus.CURRENT_CAM_REMOTE = $YSort/Player/CamRemote
-	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
@@ -147,7 +146,9 @@ func small_chase():
 	for i in range(5):
 		runpath.append(get_node("Positions/ScoutStick" + str(i+1)).global_position)
 	scout.follow_path_array(runpath)
+	SoundPlayer.switch_music()
 	yield(get_tree().create_timer(.4), "timeout")
+
 	cordy.say("There he is!")
 	cordy.set_eyes("angry")
 	yield(get_tree().create_timer(1.4), "timeout")
@@ -160,7 +161,7 @@ func small_chase():
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
 	scout.state_machine.execute_state_once("ShootVolley")
-	SoundPlayer.switch_music()
+
 	scout.get_node("SpeechBubble").set_text("Get away from me!", 1.0)
 	yield(scout, "follow_completed")
 	scout.get_node("StateMachine").stop()

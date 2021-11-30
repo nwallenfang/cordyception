@@ -1267,6 +1267,7 @@ position = Vector2( 17776.6, 307.135 )
 [node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="0"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 4 )
+frame = 18
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )

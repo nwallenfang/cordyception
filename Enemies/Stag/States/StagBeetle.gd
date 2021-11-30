@@ -3,6 +3,7 @@ class_name StagBeetle
 
 onready var origin := $Origin as Node2D
 onready var projectile_origin := $Origin/ProjectileOrigin as Node2D
+onready var mandible_point := $Origin/MandiblePoint as Node2D
 onready var swipe_hitbox := $Origin/SwipeHitbox as Area2D
 onready var swipe_projectile := $SwipeProjectile as Node2D
 onready var melee_hitbox := $Origin/MeleeHitbox as Area2D
@@ -21,22 +22,27 @@ signal boss_health_changed
 
 
 func _ready():
-	for anim in sprite.frames.get_animation_names():
-		play_animation(anim)
 	play_animation("idle")
 	connect("boss_health_changed", self, "boss_health_changed")
 	connect("boss_health_zero", self, "boss_health_zero")
-	
 
+
+func laecherliche_anti_lag_funktion():
+	var old_pos := sprite.position
+	sprite.modulate = Color(1, 1, 1, .01)
+	sprite.global_position = GameStatus.CURRENT_PLAYER.global_position
+	for anim in sprite.frames.get_animation_names():
+		play_animation(anim)
+		yield(get_tree().create_timer(.1), "timeout")
+	sprite.position = old_pos
+	sprite.modulate = Color.white
 
 func _process(delta):
 	$StateMachine.process(delta)
 
 func boss_health_changed():
-
 	GameStatus.CURRENT_UI.boss_healthbar.health = health
-	
-	
+
 func boss_health_zero():
 	$SpeechBubble.set_text("ARRRGHGHHGH!! I'M DEAD.")
 

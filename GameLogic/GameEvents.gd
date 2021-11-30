@@ -36,6 +36,12 @@ signal player_died
 signal checkpoint_collected
 signal grass_rustle
 
+var DEATH_COUNT := 0 setget set_death_count
+func set_death_count(new_count):
+	DEATH_COUNT = new_count
+	if DEATH_COUNT >= 3:
+		GameStatus.EASY_MODE = true
+
 var EVENT_COUNTER: Dictionary = {}  # name -> int 
 
 # for events that don't reset upon death

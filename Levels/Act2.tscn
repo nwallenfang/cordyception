@@ -745,7 +745,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
+frame = 3
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -756,7 +756,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 0
+frame = 3
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -766,7 +766,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 1
+frame = 4
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -776,7 +776,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 1
+frame = 4
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -1271,19 +1271,15 @@ frame = 18
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="3"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="4"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="5"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="15"]
 parameters/playback = SubResource( 5 )

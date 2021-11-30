@@ -16,6 +16,8 @@ func emit_player_respawned():
 	emit_signal("player_respawned")
 
 func player_died():
+	GameEvents.DEATH_COUNT += 1
+	
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.DASH_ENABLED = false
@@ -56,6 +58,7 @@ func reset():
 	
 	var player = GameStatus.CURRENT_PLAYER as Player
 	player.global_position = checkpoint.position
+	GameStatus.CURRENT_HEALTH = GameStatus.PLAYER_MAX_HEALTH
 
 func _process(delta):
 	# for debugging

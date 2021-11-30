@@ -38,6 +38,13 @@ var USE_CROSSHAIR : bool = true setget set_use_crosshair
 
 var STARTING_CUTSCENE_HAS_PLAYED := false
 
+var EASY_MODE := false setget set_easy_mode
+
+func set_easy_mode(mode: bool):
+	EASY_MODE = mode
+	PLAYER_POISON_DAMAGE = 2 if mode else 1
+	PLAYER_PROJECTILE_DAMAGE = 14 if mode else 7
+
 signal start_spray
 signal stop_spray
 

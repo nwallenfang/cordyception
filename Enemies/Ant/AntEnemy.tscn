@@ -320,7 +320,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=18]
-radius = 106.216
+radius = 128.276
 
 [sub_resource type="DynamicFont" id=19]
 size = 24
@@ -1775,11 +1775,11 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 script = ExtResource( 25 )
 
 [node name="AphidDetector" type="Area2D" parent="StateMachine/ThrowAphid"]
-visible = false
 collision_layer = 0
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/ThrowAphid/AphidDetector"]
+visible = false
 shape = SubResource( 18 )
 
 [node name="StateLabel" type="Label" parent="."]

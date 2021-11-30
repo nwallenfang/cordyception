@@ -36,6 +36,8 @@ const SFX_BUS_INDEX = 1
 const MUSIC_BUS_INDEX = 2
 var USE_CROSSHAIR : bool = true setget set_use_crosshair
 
+var STARTING_CUTSCENE_HAS_PLAYED := false
+
 signal start_spray
 signal stop_spray
 

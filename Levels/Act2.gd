@@ -50,7 +50,6 @@ func _ready():
 		shooter.set_behavior(shooter_behavior)
 		shooter.get_node("EnemyStats").set_max_health(lower_health)
 	
-	
 	var thrower_behavior = {
 		"Chase": 1.0,
 		"SimpleShoot": 1.0,
@@ -64,7 +63,8 @@ func _ready():
 	$YSort/Room/Enemies/Talker1.set_facing_direction(Vector2.RIGHT)
 	$YSort/Room/Enemies/Talker2.set_facing_direction(Vector2.LEFT)
 	$YSort/Room/Enemies/Thrower.set_facing_direction(Vector2.LEFT)
-	thrower.get_node("EnemyStats").set_max_health(20)
+	thrower.get_node("EnemyStats").set_max_health(18)
+	scout.get_node("EnemyStats").set_max_health(50)
 
 func on_dash_tutorial_entered(body: Node):
 	GameStatus.DASH_ENABLED = true
@@ -136,6 +136,7 @@ func _on_StickClose_body_entered(body: Node) -> void:
 var chase_right_detector := false
 const DYNAMIC_CAM = preload("res://Levels/DynamicPlayerCam.tscn")
 func small_chase():
+	SoundPlayer.switch_music()
 	scout.global_position = $Positions/ScoutRunAway.global_position + Vector2(700.0 if chase_right_detector else 0.0, 0)
 	var dyn_cam = DYNAMIC_CAM.instance()
 	GameStatus.CURRENT_YSORT.add_child(dyn_cam)
@@ -156,11 +157,9 @@ func small_chase():
 	yield(get_tree().create_timer(1.5), "timeout")
 	scout.get_node("SpeechBubble").set_text("WHEEEE", 0.6)
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
-	
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
 	scout.state_machine.execute_state_once("ShootVolley")
-	SoundPlayer.switch_music()
 	scout.get_node("SpeechBubble").set_text("Get away from me!", 1.0)
 	yield(scout, "follow_completed")
 	scout.get_node("StateMachine").stop()
@@ -193,6 +192,7 @@ func stick_close():
 
 func _on_TriggerAreaCP22_body_entered(body: Node) -> void:
 	cordy.show()
+	$YSort/Rocks/MovableRock.global_position = $Positions/RockTarget.global_position
 
 func _on_SmallChase_body_entered(body: Node) -> void:
 	GameEvents.trigger_unique_event("small_chase")
@@ -363,7 +363,7 @@ func shroom_fist_dialog():
 	yield(get_tree().create_timer(3), "timeout")
 	SoundPlayer.switch_to_psychedelic()
 	cordy.grow_second()
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(4), "timeout")
 	cordy.say_right("Hello, my new host", 1)
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")

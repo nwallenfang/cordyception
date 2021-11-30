@@ -14,6 +14,7 @@ func set_active(new_state) -> void:
 	$PoisonFog.emitting = new_state
 	$PoisonFog2.emitting = new_state
 	$PoisonSpray.emitting = new_state
+	$PoisonSpray2.emitting = new_state
 	if active:
 		$Timer.start()
 	else:
@@ -32,6 +33,7 @@ func set_local_coords(local: bool) -> void:
 	$PoisonFog.local_coords = local_coords
 	$PoisonFog2.local_coords = local_coords
 	$PoisonSpray.local_coords = local_coords
+	$PoisonSpray2.local_coords = local_coords
 
 const POISON_FRAGMENT = preload("res://Player/PoisonFragment.tscn")
 func _on_Timer_timeout() -> void:

@@ -23,7 +23,7 @@ func process(delta, first_time_entering):
 					target_aphid = aphid
 					target_distance = aphid.global_position.distance_to(parent.throw_origin.global_position)
 		if target_aphid == null:
-			state_machine.transition_deferred("Idle")
+			back_to_idle()
 			return
 		target_aphid.throw_origin = parent.throw_origin
 		target_aphid.get_node("StateMachine").transition_deferred("GetThrown")
@@ -35,4 +35,4 @@ func process(delta, first_time_entering):
 		yield(target_aphid, "ready_to_launch")
 		parent.animation_state.travel("Throw")
 		yield(get_tree().create_timer(wait_time), "timeout")
-		state_machine.transition_deferred("Idle")
+		back_to_idle()

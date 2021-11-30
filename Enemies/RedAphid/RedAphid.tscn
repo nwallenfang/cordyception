@@ -541,7 +541,6 @@ anims/spin_right_fast = SubResource( 17 )
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 3 )
-print_random_calculation = true
 
 [node name="Idle" type="Node2D" parent="StateMachine"]
 script = ExtResource( 4 )
@@ -571,6 +570,7 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 margin_left = -19.0
 margin_top = -29.0
 margin_right = 21.0

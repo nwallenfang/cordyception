@@ -94,7 +94,14 @@ func _ready() -> void:
 	
 	$Tutorials/TutorialMove/Area2D.monitorable = false
 	$Tutorials/TutorialMove/Area2D.monitoring = false
-	GameEvents.trigger_unique_event("growing")
+	if !GameStatus.STARTING_CUTSCENE_HAS_PLAYED:
+		GameStatus.STARTING_CUTSCENE_HAS_PLAYED = true
+		GameEvents.trigger_unique_event("growing")
+	else:
+		GameStatus.MOVE_ENABLED = true
+		GameStatus.AIMER_VISIBLE = true
+		$YSort/Player/GrowAnimation.visible = false
+		$darkness.visible = false
 
 func _on_InfestationTiming_timeout() -> void:
 	$Infestation.play()
@@ -148,12 +155,12 @@ func dandelion_dialog():
 
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion)
 	yield($ScriptedCamera, "slide_finished")
-	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.2)
+	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.5)
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.2)
+	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.5)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
-	var comedic_timer = get_tree().create_timer(1.45)
+	var comedic_timer = get_tree().create_timer(2.0)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
 	$ScriptedCamera.back_to_player(1.5)
@@ -216,8 +223,8 @@ func dandelion_attack():
 	look_towards_player()
 
 	# dialog
-	ant1_speech.set_text("Hey, looks like you could lend us a hand.", 1.8)
-	yield(get_tree().create_timer(1.8), "timeout")
+	ant1_speech.set_text("Hey, looks like you could lend us a hand.", 2.3)
+	yield(get_tree().create_timer(2.3), "timeout")
 	ant1_speech.stop_and_blend()
 	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 2.2)
 	yield(ant2_speech, "dialog_completed")

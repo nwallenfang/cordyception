@@ -188,7 +188,7 @@ position = Vector2( -1017.59, 3101.75 )
 remote_path = NodePath("../../../ScriptedCamera")
 
 [node name="StagBeetle" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( -963.651, 639.417 )
+position = Vector2( -966.969, 408.659 )
 z_index = 2
 
 [node name="DecorationNBoundaries" type="YSort" parent="YSort"]
@@ -592,6 +592,8 @@ position = Vector2( -1016.43, 3102.13 )
 rotation = -0.000373805
 
 [node name="DynamicPlayerCam" parent="." instance=ExtResource( 11 )]
+proportion = 0.3
+max_from_player = 200.0
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )

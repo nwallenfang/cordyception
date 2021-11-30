@@ -45,6 +45,7 @@ func _ready():
 
 func boss_died():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
+	GameStatus.PLAYERHURT_ENABLED = false
 	$FadeOut.interpolate_property($BossMusic, "volume_db", -2.6, -80, 6.0, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
 	$FadeOut.start()
 	yield(get_tree().create_timer(6.0), "timeout")
@@ -59,12 +60,10 @@ func boss_died():
 	get_tree().change_scene("res://UI/Menu/Ending.tscn")
 
 func begin_boss_fight():
-	cordy.say("I sense a great presence")
+	cordy.say("I sense a great presence", 1.5)
 	yield(cordy, "speech_done")
-	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]")
+	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]", 1.5)
 	yield(boss_speech, "dialog_completed")
-	camera.back_to_player(0.5)
-	yield(camera, "slide_finished")
 
 	$BossMusic.play()
 	boss.get_node("StateMachine").start()

@@ -6,4 +6,3 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 	
 	GameEvents.trigger_event_with_arg("checkpoint_collected", {"name":name, 
 	"position":$Position.global_position, "current_events": GameEvents.EVENT_COUNTER.duplicate()})
-	

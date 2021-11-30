@@ -470,3 +470,7 @@ func _on_TransitionZone_body_entered(body: Node) -> void:
 
 func _on_FadeOut_tween_all_completed() -> void:
 	$Music.stop()
+
+
+func _on_TriggerAreaAtBeginning_body_entered(body: Node) -> void:
+	GameStatus.SHOOT_ENABLED = true

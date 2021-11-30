@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://UI/Tutorial/TutorialCaption.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Levels/Checkpoint.gd" type="Script" id=10]
 [ext_resource path="res://UI/Tutorial/dashC.png" type="Texture" id=11]
+[ext_resource path="res://World/Thorns/Thorn4.tscn" type="PackedScene" id=12]
 [ext_resource path="res://World/Stones/Stone02.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Enemies/Ant/AntEnemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://World/Stones/Stone05.tscn" type="PackedScene" id=15]
@@ -48,6 +49,7 @@
 [ext_resource path="res://Effects/Shaders/White.shader" type="Shader" id=47]
 [ext_resource path="res://World/TileMaps/moss_test.png" type="Texture" id=48]
 [ext_resource path="res://World/TileMaps/bigger_dirt.png" type="Texture" id=49]
+[ext_resource path="res://World/Thorns/Thorn2.tscn" type="PackedScene" id=50]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_test.png 0"
@@ -551,6 +553,16 @@ script = ExtResource( 22 )
 [node name="YSort" type="YSort" parent="."]
 rotation = -0.000373805
 
+[node name="Thorn3" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 15104, -89.0613 )
+rotation = -0.8845
+scale = Vector2( 2, 2.2626 )
+
+[node name="Thorn4" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 15503.9, 255.699 )
+rotation = 5.50793
+scale = Vector2( 2, 2.30736 )
+
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 15824, 925.262 )
 
@@ -847,25 +859,13 @@ rotation = 8.2663
 position = Vector2( 15200.1, 1247.42 )
 rotation = 10.2631
 
-[node name="Thorn2" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( 13606.9, 183.978 )
-rotation = -1.20608
-
-[node name="Thorn4" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( 15285.8, -219.796 )
-rotation = -1.20608
-
-[node name="Thorn5" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( 15473.6, 179.274 )
-rotation = 0.0393614
+[node name="Thorn2" parent="YSort" instance=ExtResource( 12 )]
+position = Vector2( 13359.1, -270.613 )
+rotation = 0.578804
 
 [node name="Thorn6" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 14848.4, 726.041 )
 rotation = -3.07304
-
-[node name="Thorn3" parent="YSort" instance=ExtResource( 20 )]
-position = Vector2( 13241.8, -286.56 )
-rotation = -2.66587
 
 [node name="GrassBlade" parent="YSort" instance=ExtResource( 26 )]
 position = Vector2( 9954.28, -865.576 )
@@ -1184,11 +1184,16 @@ position = Vector2( 16890.7, -172.196 )
 [node name="Stone4" parent="YSort/Room" instance=ExtResource( 15 )]
 position = Vector2( 16799.7, -154.23 )
 
+[node name="Thorn3" parent="YSort/Room" instance=ExtResource( 50 )]
+position = Vector2( 13503.9, 214.987 )
+rotation = -0.801129
+scale = Vector2( 2, 2.30858 )
+
 [node name="Stone5" parent="YSort/Room" instance=ExtResource( 17 )]
 position = Vector2( 16862.7, -131.206 )
 
 [node name="Thorn" parent="YSort/Room" instance=ExtResource( 20 )]
-position = Vector2( 17794.8, -190.858 )
+position = Vector2( 17857.8, -130.29 )
 rotation = 1.43174
 
 [node name="Thorn2" parent="YSort/Room" instance=ExtResource( 20 )]
@@ -1577,7 +1582,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 21 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 15824.4, 919.346 )
+position = Vector2( 15824.3, 919.347 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

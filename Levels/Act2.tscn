@@ -1267,7 +1267,6 @@ position = Vector2( 17776.6, 307.135 )
 [node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="0"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 4 )
-frame = 18
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )
@@ -1619,6 +1618,32 @@ shape = SubResource( 15 )
 
 [node name="CollisionShape2D" parent="YSort/AphidPathWithAphid2/Aphid" index="7"]
 shape = SubResource( 16 )
+
+[node name="AphidPathWithAphid9" parent="YSort" instance=ExtResource( 40 )]
+position = Vector2( 16187.3, -1929.5 )
+
+[node name="AphidPath" parent="YSort/AphidPathWithAphid9" index="0"]
+position = Vector2( -0.0116425, 31.1128 )
+curve = SubResource( 8 )
+
+[node name="PathFollow2D" parent="YSort/AphidPathWithAphid9/AphidPath" index="0"]
+position = Vector2( -0.0336914, -32.2161 )
+
+[node name="Aphid" parent="YSort/AphidPathWithAphid9" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="AphidPathWithAphid10" parent="YSort" instance=ExtResource( 40 )]
+position = Vector2( 16761.4, -1601.19 )
+
+[node name="AphidPath" parent="YSort/AphidPathWithAphid10" index="0"]
+position = Vector2( -0.0116425, 31.1128 )
+curve = SubResource( 8 )
+
+[node name="PathFollow2D" parent="YSort/AphidPathWithAphid10/AphidPath" index="0"]
+position = Vector2( -0.0336914, -32.2161 )
+
+[node name="Aphid" parent="YSort/AphidPathWithAphid10" index="1"]
+scale = Vector2( 2, 2 )
 
 [node name="AphidPathWithAphid8" parent="YSort" instance=ExtResource( 40 )]
 position = Vector2( 14104.2, -1301.24 )
@@ -2023,6 +2048,10 @@ polygon = PoolVector2Array( 13380.7, -481.51, 14086.7, -543.51, 14116.7, -481.51
 [editable path="YSort/RedAphidPath/Aphid"]
 [editable path="YSort/AphidPathWithAphid2"]
 [editable path="YSort/AphidPathWithAphid2/Aphid"]
+[editable path="YSort/AphidPathWithAphid9"]
+[editable path="YSort/AphidPathWithAphid9/Aphid"]
+[editable path="YSort/AphidPathWithAphid10"]
+[editable path="YSort/AphidPathWithAphid10/Aphid"]
 [editable path="YSort/AphidPathWithAphid8"]
 [editable path="YSort/AphidPathWithAphid8/Aphid"]
 [editable path="YSort/AphidPathWithAphid3"]

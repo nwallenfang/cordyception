@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World/Shrooms/Pilz_01_Violet.png" type="Texture" id=1]
 [ext_resource path="res://World/Shrooms/Shroom1.gd" type="Script" id=2]
+[ext_resource path="res://Effects/lightorb256.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "size"
@@ -56,3 +57,9 @@ polygon = PoolVector2Array( 17, 34.5, 26.5, 26, 27.5, 13.5, 14, 5, -9, 1.5, -20,
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "size"
 anims/size = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+show_behind_parent = true
+position = Vector2( 6, -20 )
+texture = ExtResource( 3 )
+energy = 0.4

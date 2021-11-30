@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://World/Flowers/Buttercup.tscn" type="PackedScene" id=42]
 [ext_resource path="res://World/TileMaps/bigger_dirt.png" type="Texture" id=43]
 [ext_resource path="res://Effects/darkness.png" type="Texture" id=44]
+[ext_resource path="res://Effects/lightorb256.png" type="Texture" id=45]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_3x3.png 0"
@@ -268,10 +269,10 @@ position = Vector2( 0, 1.25989 )
 script = ExtResource( 7 )
 
 [node name="DirtTexture" type="TextureRect" parent="."]
-margin_left = 2.0
-margin_top = -3151.26
-margin_right = 12514.0
-margin_bottom = 2424.74
+margin_left = 20.0
+margin_top = -3146.0
+margin_right = 12532.0
+margin_bottom = 2430.0
 texture = ExtResource( 43 )
 stretch_mode = 2
 __meta__ = {
@@ -331,7 +332,6 @@ position = Vector2( 6364.04, -680.892 )
 visible = false
 position = Vector2( 0.614258, -0.61441 )
 frames = SubResource( 35 )
-frame = 1
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
@@ -567,7 +567,6 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 37 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -594,7 +593,6 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 39 )
-frame = 19
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 40 )
@@ -825,6 +823,16 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 44 )
 
 [node name="Tween" type="Tween" parent="darkness"]
+
+[node name="Lights" type="Node2D" parent="."]
+visible = false
+
+[node name="Light2D" type="Light2D" parent="Lights"]
+visible = false
+position = Vector2( 4034, 806.74 )
+texture = ExtResource( 45 )
+texture_scale = 3.0
+energy = 0.8
 
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]

@@ -115,6 +115,7 @@ func growing():
 	$ScriptedCamera.zoom_back(2)
 	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(2, 2), 2)
 	darkness_tween.interpolate_property(darkness, "modulate", darkness.modulate, Color.transparent, 2, Tween.TRANS_EXPO, Tween.EASE_IN)
+	#darkness_tween.interpolate_property($WorldEnvironment.environment, "adjustment_brightness", 1, .7, 2, Tween.TRANS_EXPO, Tween.EASE_IN)
 	darkness_tween.start()
 	yield($ScriptedCamera, "zoom_finished")
 	GameStatus.MOVE_ENABLED = true

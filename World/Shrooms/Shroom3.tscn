@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World/Shrooms/Shroom3.gd" type="Script" id=1]
 [ext_resource path="res://World/Shrooms/Pilz_03_Yellow.png" type="Texture" id=2]
 [ext_resource path="res://Effects/dot_particle.png" type="Texture" id=3]
 [ext_resource path="res://World/Shrooms/Pilz_03_YellowCap.png" type="Texture" id=4]
+[ext_resource path="res://Effects/lightorb256.png" type="Texture" id=5]
 
 [sub_resource type="Curve" id=1]
 max_value = 100.0
@@ -88,3 +89,8 @@ texture = ExtResource( 3 )
 [node name="Cap" type="Sprite" parent="."]
 position = Vector2( -9, -43 )
 texture = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+texture_scale = 2.0
+energy = 0.4

@@ -45,6 +45,10 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
+	SoundPlayer.start_music()
+	if SoundPlayer.combat:
+		SoundPlayer.switch_music()
+	
 	pre_arena_pho.get_node("StateMachine").stop()
 	
 	# phos invisible till wave 2
@@ -129,6 +133,7 @@ func wave1():
 	GameStatus.DASH_ENABLED = false
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+	GameStatus.HEALTH_VISIBLE = false
 	GameStatus.PLAYERHURT_ENABLED = false
 
 	shroom_to_shroom_aborted = true
@@ -147,6 +152,7 @@ func wave1():
 	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
 	yield(shot_caller_speech, "dialog_completed")
 	$Music.play()
+	SoundPlayer.stop_music()
 	$ScriptedCamera.stop_following()
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
 	yield($ScriptedCamera, "slide_finished")
@@ -168,6 +174,7 @@ func wave1():
 	GameStatus.SHOOT_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+	GameStatus.HEALTH_VISIBLE = true
 	GameStatus.PLAYERHURT_ENABLED = true
 
 #	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
@@ -249,7 +256,7 @@ func wave2_backup():
 func after_wave2():
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
-	shot_caller_speech.set_text("Your power ", 1.0)
+	shot_caller_speech.set_text("Your power has surpassed my tiny brain's imagination ", 1.8)
 	yield(shot_caller_speech, "dialog_completed")
 	shot_caller_speech.set_text("There is only one foe left who can stop you now.", 1.0)
 	yield(shot_caller_speech, "dialog_completed")
@@ -259,9 +266,10 @@ func after_wave2():
 	
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitoring", true)
 	$Detector/ShotcallerPostFightTrigger.set_deferred("monitorable", true)
-	# TODO fadeout
-	$Music.stop()
-	
+
+	$FadeOut.interpolate_property($Stage, "volume_db", -5.2, -80, 2.8, Tween.TRANS_SINE, Tween.EASE_IN, 0)
+	$FadeOut.start()
+	SoundPlayer.start_music()
 	$InvisibleWall/CollisionPolygon2D.disabled = true
 	
 
@@ -270,46 +278,58 @@ func reset():
 
 var shroom_to_shroom_aborted := false
 func shroom_to_shroom_talk(speech_position: Vector2):
+	
 	if shroom_to_shroom_aborted:
 		return
+	SoundPlayer.switch_to_psychedelic()
 	$OtherShroomSpeech.global_position = speech_position
 	$OtherShroomSpeech.set_text("Yo Cordy!", 1.0)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.say("Yo Fred, haven't seen you up here in so long!", 1.5)
 	yield(cordy, "speech_done")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
 	$OtherShroomSpeech.set_text("Uh-huh..", 0.6)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.set_eyes("happy")
 	cordy.say("What have you been up to?")
 	yield(cordy, "speech_done")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("You know, expanding my mycelium..", 0.8)
+	$OtherShroomSpeech.set_text("You know, expanding my mycelium..", 0.9)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("Sharing some spores..", 0.6)
+	$OtherShroomSpeech.set_text("Sharing some spores..", 0.8)
 	cordy.set_eyes("bored")
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("Being intimate with some oak roots..", 1.2)
+	$OtherShroomSpeech.set_text("Harboring an intimate relationship with some oak roots..", 1.6)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.set_eyes("bored")
 	cordy.say("Uhmmm... alright, bye then!")
 	yield(get_tree().create_timer(2.5), "timeout")
 	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.set_eyes("idle")
 	cordy.say_right("The world of fungi can be so small. And weird.")
+	yield(cordy, "speech_done")
+	SoundPlayer.switch_back_from_psychdelic()
 
 func died_in_arena():
 	# wait for player to have actually respawned
@@ -418,3 +438,7 @@ func _on_TransitionZone_body_entered(body: Node) -> void:
 	yield($ScriptedCamera, "fade_out_finished")
 	get_tree().change_scene("res://Levels/Boss.tscn")
 	$ScriptedCamera.fade_in()
+
+
+func _on_FadeOut_tween_all_completed() -> void:
+	$Music.stop()

@@ -552,7 +552,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 1996.05, -982.764 )
+position = Vector2( 15824, 925.262 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -582,6 +582,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 0
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -592,6 +593,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 0
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -601,7 +603,7 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 7
+frame = 1
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -611,7 +613,7 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 7
+frame = 1
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -696,8 +698,8 @@ rotation = 0.000373805
 scale = Vector2( 4, 4 )
 
 [node name="Stone12" parent="YSort/Rocks" instance=ExtResource( 23 )]
-position = Vector2( 11575.1, -701.025 )
-rotation = 0.000373805
+position = Vector2( 11603.4, -702.902 )
+rotation = 0.624344
 scale = Vector2( 4, 4 )
 
 [node name="Stone5" parent="YSort/Rocks" instance=ExtResource( 15 )]
@@ -1575,7 +1577,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 21 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1995.68, -983.51 )
+position = Vector2( 15824.4, 919.346 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]
@@ -1657,6 +1659,7 @@ scale = Vector2( -2.18012, 0.582888 )
 script = ExtResource( 10 )
 
 [node name="TriggerArea" type="Area2D" parent="Checkpoints/Checkpoint21"]
+position = Vector2( -279.505, -345.001 )
 collision_layer = 0
 collision_mask = 2
 
@@ -1833,6 +1836,7 @@ polygon = PoolVector2Array( 11863.7, -1005.51, 14256.7, -1562.51, 14364.7, -1463
 polygon = PoolVector2Array( 13380.7, -481.51, 14086.7, -543.51, 14116.7, -481.51, 13443.7, -410.51 )
 
 [connection signal="body_entered" from="Tutorials/TutorialDash/Area2D" to="." method="on_dash_tutorial_entered"]
+[connection signal="body_entered" from="Checkpoints/Checkpoint21/TriggerArea" to="." method="_on_first_CheckPoint_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint21/TriggerArea" to="Checkpoints/Checkpoint21" method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint22/TriggerArea" to="." method="_on_TriggerAreaCP22_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint23/TriggerArea" to="." method="_on_TriggerArea_body_entered"]

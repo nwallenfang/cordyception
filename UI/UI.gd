@@ -26,6 +26,11 @@ func set_show_health(show: bool) -> void:
 		show_health = show
 		$Tween.interpolate_property($HealthUI, "modulate", Color.transparent if show else Color.white, Color.white if show else Color.transparent, 1)
 		$Tween.start()
+	else:
+		# dirty fix
+		if not show:
+			$Tween.interpolate_property($HealthUI, "modulate", Color.white, Color.transparent, 1)
+			$Tween.start()
 		
 func set_show_boss_health(show: bool) -> void:
 	if show_health != show:

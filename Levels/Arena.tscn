@@ -1372,8 +1372,10 @@ position = Vector2( -74, 310 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 45 )
-volume_db = -1.857
+volume_db = -5.2
 bus = "Music"
+
+[node name="FadeOut" type="Tween" parent="."]
 
 [connection signal="body_entered" from="Checkpoints/Checkpoint5/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Detector/Wave1TriggerZone" to="." method="_on_Wave1TriggerZone_body_entered"]
@@ -1386,6 +1388,7 @@ bus = "Music"
 [connection signal="body_exited" from="Detector/DynamicCameraTrigger" to="." method="_on_DynamicCameraTrigger_body_exited"]
 [connection signal="body_entered" from="Detector/ShotcallerPostFightTrigger" to="." method="_on_ShotcallerPostFightTrigger_body_entered"]
 [connection signal="body_entered" from="Detector/TransitionZone" to="." method="_on_TransitionZone_body_entered"]
+[connection signal="tween_all_completed" from="FadeOut" to="." method="_on_FadeOut_tween_all_completed"]
 
 [editable path="YSort/GrassNThorns/GrassBlade16"]
 [editable path="YSort/GrassNThorns/GrassBlade17"]

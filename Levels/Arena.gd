@@ -278,6 +278,13 @@ func wave2_backup():
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 8, self, "after_wave2")
 
 func after_wave2():
+	GameStatus.MOVE_ENABLED = false
+	GameStatus.SPRAY_ENABLED = false
+	GameStatus.SHOOT_ENABLED = false
+	GameStatus.DASH_ENABLED = false
+	GameStatus.AIMER_VISIBLE = false
+	GameStatus.PLAYERHURT_ENABLED = false
+	
 	$ScriptedCamera.follow(shot_caller, 1.8)
 	yield($ScriptedCamera, "follow_target_reached")
 	shot_caller_speech.set_text("Your power has surpassed my tiny brain's imagination.", 1.8)
@@ -295,6 +302,12 @@ func after_wave2():
 	$FadeOut.start()
 	SoundPlayer.start_music()
 	$InvisibleWall/CollisionPolygon2D.disabled = true
+	GameStatus.MOVE_ENABLED = true
+	GameStatus.SPRAY_ENABLED = true
+	GameStatus.SHOOT_ENABLED = true
+	GameStatus.DASH_ENABLED = true
+	GameStatus.AIMER_VISIBLE = true
+	GameStatus.PLAYERHURT_ENABLED = true
 	
 
 func reset():

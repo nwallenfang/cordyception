@@ -39,6 +39,19 @@ func _ready():
 	GameStatus.CURRENT_UI.boss_healthbar.set_max(boss.MAX_HEALTH)
 	GameEvents.connect("begin_boss", self, "begin_boss_fight")
 	
+	boss.connect("boss_health_zero", self, "boss_died")
+	
+
+func boss_died():
+	yield(get_tree().create_timer(6.0), "timeout")
+	cordy.set_eyes("happy")
+	cordy.say("Wonderful", .8)
+	yield(cordy, "speech_done")
+	cordy.set_eyes("angry")
+	cordy.say("Now no one can stop me from overtaking the whole colony.")
+	$ScriptedCamera.fade_out()
+	yield(get_tree().create_timer(2.0), "timeout")
+	get_tree().change_scene("res://UI/Menu/Ending.tscn")
 
 func begin_boss_fight():
 #	cordy.say("I sense a great presence")

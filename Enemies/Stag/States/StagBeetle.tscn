@@ -2618,7 +2618,7 @@ script = ExtResource( 5 )
 position = Vector2( 131.31, 211.121 )
 frames = SubResource( 554 )
 animation = "turn_right"
-frame = 10
+frame = 35
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
@@ -2851,6 +2851,8 @@ __meta__ = {
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 2 )]
 position = Vector2( -25.4026, -38.6664 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="area_entered" from="Origin/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

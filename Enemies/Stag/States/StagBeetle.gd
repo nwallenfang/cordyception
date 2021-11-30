@@ -45,6 +45,11 @@ func boss_health_changed():
 
 func boss_health_zero():
 	$SpeechBubble.set_text("ARRRGHGHHGH!! I'M DEAD.")
+	$StateMachine.enabled = false
+	sprite.playing = false
+	$Tween.interpolate_property(self, "scale", scale, Vector2(.7, .7), 2)
+	$Tween.interpolate_property(self, "modulate", modulate, Color(.3, .3, .3), 2)
+	$Tween.start()
 
 func set_health(new_health: int) -> void:
 	var health_prev = health

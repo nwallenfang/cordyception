@@ -44,26 +44,27 @@ func _ready():
 	
 
 func boss_died():
+	GameStatus.BOSS_HEALTH_VISIBLE = false
+	$FadeOut.interpolate_property($BossMusic, "volume_db", -2.6, -80, 6.0, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
+	$FadeOut.start()
 	yield(get_tree().create_timer(6.0), "timeout")
 	cordy.set_eyes("happy")
 	cordy.say("Wonderful", .8)
 	yield(cordy, "speech_done")
 	cordy.set_eyes("angry")
 	cordy.say("Now no one can stop me from overtaking the whole colony.")
+	yield(cordy, "speech_done")
 	$ScriptedCamera.fade_out()
 	yield(get_tree().create_timer(2.0), "timeout")
 	get_tree().change_scene("res://UI/Menu/Ending.tscn")
 
 func begin_boss_fight():
-#	cordy.say("I sense a great presence")
-#	yield(cordy, "speech_done")
-
-#	camera.slide_to_object(boss)
-#	yield(camera, "slide_finished")
-#	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]")
-#	yield(boss_speech, "dialog_completed")
-#	camera.back_to_player(0.5)
-#	yield(camera, "slide_finished")
+	cordy.say("I sense a great presence")
+	yield(cordy, "speech_done")
+	boss_speech.set_text("[color=#ff0000]ARGGHH[shake]HH!!![/shake][/color]")
+	yield(boss_speech, "dialog_completed")
+	camera.back_to_player(0.5)
+	yield(camera, "slide_finished")
 
 	$BossMusic.play()
 	boss.get_node("StateMachine").start()

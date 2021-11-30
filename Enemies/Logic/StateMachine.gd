@@ -2,7 +2,7 @@ extends Node2D
 
 class_name StateMachine
 
-export var print_random_calculation := false
+export var print_random_calculation := true
 
 var enabled := false setget set_enabled
 # state dictionary (was an enum earlier)
@@ -90,9 +90,9 @@ func _get_random_next_state(transition_chances: Dictionary):
 	for new_state in State.keys():
 		psum += transition_chances[new_state]
 		if rand <= psum:
-#			if print_random_calculation:
-#				print(transition_chances)
-#				print(str(rand) + " -> " + new_state)
+			if print_random_calculation:
+				print(transition_chances)
+				print(str(rand) + " -> " + new_state)
 			return new_state
 		# random seed doesn't fit new state, go next
 	

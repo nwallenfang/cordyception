@@ -15,12 +15,12 @@ func process(delta: float, first_time_entering: bool) -> void:
 	var direction_to_player_helper = GameStatus.CURRENT_PLAYER.global_position.direction_to(parent.global_position)
 	var angle_deg = parent.normalize_angle(rad2deg(direction_to_player_helper.angle()) + 90 - parent.sprite_rotation)
 
-	if angle_deg > 45 or angle_deg < -45:
-		# makes no sense to shoot here
-		state_machine.transition_deferred("Turn")
-	elif first_time_entering:
-		parent.play_animation("shoot_once")
-		yield(get_tree().create_timer(0.5), "timeout")
+#	if angle_deg > 45 or angle_deg < -45:
+#		# makes no sense to shoot here
+#		state_machine.transition_deferred("Turn")
+	if first_time_entering:
+		parent.play_animation("shoot_rapid")
+		yield(get_tree().create_timer(1.6), "timeout")
 		shoot_projectiles()
-		yield(get_tree().create_timer(2.5), "timeout")
+		yield(parent.sprite, "animation_finished")
 		back_to_idle()

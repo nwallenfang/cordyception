@@ -41,7 +41,7 @@ signal stop_spray
 
 func _ready():
 	randomize()
-	set_music_volume(0)
+#	set_music_volume(0)
 
 func set_move_enabled(enabled: bool) -> void:
 	MOVE_ENABLED = enabled

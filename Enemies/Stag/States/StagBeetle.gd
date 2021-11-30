@@ -5,7 +5,7 @@ onready var origin := $Origin as Node2D
 onready var projectile_origin := $Origin/ProjectileOrigin as Node2D
 onready var mandible_point := $Origin/MandiblePoint as Node2D
 onready var swipe_hitbox := $Origin/SwipeHitbox as Area2D
-onready var swipe_projectile := $Origin/SwipeProjectile as Node2D
+onready var swipe_projectile := $Origin/SwipeOrigin/SwipeProjectile as Node2D
 onready var melee_hitbox := $Origin/MeleeHitbox as Area2D
 
 onready var sprite := $Origin/AnimatedSprite as AnimatedSprite
@@ -13,7 +13,7 @@ onready var state_machine := $StateMachine as StagStateMachine
 
 var sprite_rotation := 0.0 setget set_rotation
 
-export var MAX_HEALTH := 140 setget set_max_health
+export var MAX_HEALTH := 120 setget set_max_health
 onready var health := MAX_HEALTH setget set_health
 export var DAMAGE := 1
 

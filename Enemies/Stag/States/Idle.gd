@@ -18,5 +18,6 @@ func process(delta, first_time_entering):
 			state_machine.transition_deferred("TurnLeft")
 		elif angle_deg < -20:
 			state_machine.transition_deferred("TurnRight")
-		state_machine.call_deferred("transition_to_random_state")
+		else:
+			state_machine.call_deferred("transition_to_random_state")
 #	parent.play_animation("idle", false)

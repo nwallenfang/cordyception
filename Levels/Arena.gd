@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var cordy: Cordy
-onready var thorn_shooter = $YSort/PreArena/ThornShooter
+onready var thorn_shooter = $YSort/PreArena/ThornShooter as AntEnemy
 onready var pre_arena_pho = $YSort/PreArena/Phoridae
 onready var shot_caller = $YSort/ShotcallerAnt as AntEnemy
 onready var shot_caller_speech = $YSort/ShotcallerAnt/SpeechBubble as SpeechBubble
@@ -98,6 +98,8 @@ func _ready():
 	GameEvents.connect("thorn_camera", self, "thorn_camera")
 	GameEvents.connect("trigger_phoridae", self, "trigger_phoridae")
 	GameEvents.connect("shotcaller_post_fight", self, "shotcaller_post_fight")
+	
+	thorn_shooter.connect("died", self, "shooter_died")
 
 
 func shotcaller_post_fight():
@@ -430,14 +432,18 @@ func trigger_phoridae():
 func thorn_camera():
 	cordy.set_eyes("happy")
 	cordy.say_bottom("Now you can stop these thorny shenanigans.")
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
 	$Detector/DynamicCameraTrigger/DynamicPlayerCam.target = thorn_shooter
 	$ScriptedCamera.follow($Detector/DynamicCameraTrigger/DynamicPlayerCam)
-	
-	yield(thorn_shooter, "died")
+
+func shooter_died():
 	cordy.set_eyes("happy")
 	cordy.say_bottom("Nice, that's all there's to it.")
 
 	$ScriptedCamera.back_to_player()
+	yield(cordy, "speech_done")
+	cordy.set_eyes("idle")
 
 func _on_DynamicCameraTrigger_body_exited(body: Node) -> void:
 	if is_instance_valid(thorn_shooter):

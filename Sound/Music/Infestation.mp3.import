@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Infestation.mp3-04f3337bd654e32dbd8fd817203e59df.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/Infestation.mp3"
+dest_files=[ "res://.import/Infestation.mp3-04f3337bd654e32dbd8fd817203e59df.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

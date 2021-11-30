@@ -16,13 +16,14 @@ func process(delta, first_time_entering):
 		
 		# TODO hitboxes!
 		parent.play_animation("melee_default")
-		yield(get_tree().create_timer(1.7), "timeout")
+		$AnimationPlayer.play("phorid")
+		yield(get_tree().create_timer(2.0), "timeout")
 		parent.melee_hitbox.set_deferred("monitoring", true) 
 		parent.melee_hitbox.set_deferred("monitorable", true) 
 		parent.melee_hitbox.set_deferred("visible", true) 
 		# normal melee attack is a bit boring so spawn some projectiles as well
-		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.projectile_origin.global_position)
-		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.projectile_origin.global_position)
+		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
+		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
 		yield(parent.sprite, "animation_finished")
 		state_machine.transition_deferred("Idle")
 		parent.melee_hitbox.set_deferred("monitoring", false) 

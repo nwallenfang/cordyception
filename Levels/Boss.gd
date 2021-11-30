@@ -28,6 +28,7 @@ func _ready():
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
 	boss.state_machine.enabled = false
+	boss.laecherliche_anti_lag_funktion()
 	
 	cordy = GameStatus.CURRENT_UI.get_node("ShroomUI") as Cordy
 	cordy.show()

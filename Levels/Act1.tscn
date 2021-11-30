@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Levels/Camera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -45,6 +45,7 @@
 [ext_resource path="res://World/TileMaps/bigger_dirt.png" type="Texture" id=43]
 [ext_resource path="res://Effects/darkness.png" type="Texture" id=44]
 [ext_resource path="res://Effects/lightorb256.png" type="Texture" id=45]
+[ext_resource path="res://Sound/Music/Infestation.ogg" type="AudioStream" id=46]
 
 [sub_resource type="TileSet" id=1]
 0/name = "moss_3x3.png 0"
@@ -567,7 +568,7 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
 material = SubResource( 37 )
-frame = 19
+frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
@@ -594,7 +595,7 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 39 )
-frame = 19
+frame = 18
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 40 )
@@ -836,6 +837,14 @@ texture = ExtResource( 45 )
 texture_scale = 3.0
 energy = 0.8
 
+[node name="Infestation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 46 )
+volume_db = -6.229
+
+[node name="InfestationTiming" type="Timer" parent="."]
+wait_time = 1.46
+one_shot = true
+
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
 [connection signal="body_entered" from="Tutorials/TutorialSpray/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Detector/Zone" to="." method="_on_Zone_body_entered"]
@@ -844,6 +853,7 @@ energy = 0.8
 [connection signal="body_entered" from="Detector/Zone4" to="." method="_on_Zone4_body_entered"]
 [connection signal="area_entered" from="Detector/AssaultTrigger" to="." method="_on_AssaultTrigger_area_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint2/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
+[connection signal="timeout" from="InfestationTiming" to="." method="_on_InfestationTiming_timeout"]
 
 [editable path="YSort/DandelionRoom/SpecialDandelion"]
 [editable path="YSort/DandelionRoom/AphidPath"]

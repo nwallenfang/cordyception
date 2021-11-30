@@ -96,10 +96,14 @@ func _ready() -> void:
 	$Tutorials/TutorialMove/Area2D.monitoring = false
 	GameEvents.trigger_unique_event("growing")
 
+func _on_InfestationTiming_timeout() -> void:
+	$Infestation.play()
+
 func growing():
 	var grow_animation := $YSort/Player/GrowAnimation as AnimatedSprite
 	var darkness := $darkness as Sprite
 	var darkness_tween := $darkness/Tween as Tween
+	$InfestationTiming.start()
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
 	grow_animation.playing = false
@@ -111,6 +115,7 @@ func growing():
 	$ScriptedCamera.zoom(.25, 3)
 	yield($ScriptedCamera, "zoom_finished")
 	grow_animation.playing = true
+
 	yield(grow_animation, "animation_finished")
 	$ScriptedCamera.zoom_back(2)
 	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(2, 2), 2)
@@ -344,3 +349,6 @@ func _on_TriggerArea_body_entered(body: Node) -> void:
 
 func _on_AssaultTrigger_area_entered(area: Area2D) -> void:
 	joke_assault()
+
+
+

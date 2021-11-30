@@ -456,6 +456,7 @@ func _on_TransitionZone_body_entered(body: Node) -> void:
 	$ScriptedCamera.fade_out()
 	yield($ScriptedCamera, "fade_out_finished")
 	get_tree().change_scene("res://Levels/Boss.tscn")
+	SoundPlayer.stop_music()
 	$ScriptedCamera.fade_in()
 
 

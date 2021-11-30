@@ -333,7 +333,7 @@ func shroom_to_shroom_talk(speech_position: Vector2):
 		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.set_eyes("happy")
-	cordy.say("What have you been up to?")
+	cordy.say("What have you been up to?", 1.2)
 	yield(cordy, "speech_done")
 	if shroom_to_shroom_aborted:
 		SoundPlayer.switch_back_from_psychdelic()

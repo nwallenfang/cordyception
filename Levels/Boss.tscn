@@ -135,6 +135,7 @@ extents = Vector2( 724.468, 114.053 )
 
 [node name="BossLevel" type="Node2D"]
 position = Vector2( -5.18408, -0.020752 )
+z_index = 1
 script = ExtResource( 7 )
 
 [node name="DirtTexture" type="TextureRect" parent="."]
@@ -439,7 +440,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/BeginBossZone"]
-position = Vector2( 263.063, -191.971 )
+position = Vector2( 262.77, -268.69 )
 shape = SubResource( 6 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]

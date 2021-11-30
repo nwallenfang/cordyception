@@ -23,4 +23,4 @@ func process(delta: float, first_time_entering: bool) -> void:
 		yield(get_tree().create_timer(0.5), "timeout")
 		shoot_projectiles()
 		yield(get_tree().create_timer(2.5), "timeout")
-		state_machine.transition_deferred("Idle")
+		back_to_idle()

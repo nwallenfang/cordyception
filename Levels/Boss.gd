@@ -26,6 +26,7 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
+	GameStatus.PLAYERHURT_ENABLED = false
 	
 	boss.state_machine.enabled = false
 	boss.laecherliche_anti_lag_funktion()
@@ -58,14 +59,15 @@ func begin_boss_fight():
 
 func _on_DynamicCameraZone_body_entered(body: Node) -> void:
 	print("dynamic")
-	if GameEvents.count("begin_boss_cutscene_ended") > 0:
-
-		$DynamicPlayerCam.target = boss
-		$ScriptedCamera.follow($DynamicPlayerCam)
+#	if GameEvents.count("begin_boss_cutscene_ended") > 0:
+	$DynamicPlayerCam.target = boss
+	$ScriptedCamera.follow($DynamicPlayerCam)
+	$ScriptedCamera.zoom(1.3)
 
 
 func _on_DynamicCameraZone_body_exited(body: Node) -> void:
 	$ScriptedCamera.back_to_player()
+	$ScriptedCamera.zoom_back()
 
 
 func _on_BeginBossZone_body_entered(body: Node) -> void:

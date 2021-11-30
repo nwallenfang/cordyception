@@ -1,7 +1,7 @@
 extends AbstractState
 
 
-export var MELEE_RANGE := 550.0
+export var MELEE_RANGE := 650.0
 
 # question is: where will the check be whether melee attack makes sense?
 # have it be in this script for now
@@ -25,7 +25,7 @@ func process(delta, first_time_entering):
 		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
 		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
 		yield(parent.sprite, "animation_finished")
-		state_machine.transition_deferred("Idle")
 		parent.melee_hitbox.set_deferred("monitoring", false) 
 		parent.melee_hitbox.set_deferred("monitorable", false) 
 		parent.melee_hitbox.set_deferred("visible", false) 
+		back_to_idle()

@@ -12,4 +12,4 @@ func process(delta, first_time_entering):
 		$Tween.interpolate_property(parent, "sprite_rotation", parent.sprite_rotation, parent.sprite_rotation - 60, .8)
 		$Tween.start()
 		yield(parent.sprite, "animation_finished")
-		state_machine.transition_deferred("Idle")
+		back_to_idle()

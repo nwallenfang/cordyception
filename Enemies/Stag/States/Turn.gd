@@ -20,4 +20,4 @@ func process(delta, first_time_entering):
 			state_machine.transition_deferred("TurnRight")
 		else:
 			# dont wanna turn right now
-			state_machine.transition_deferred("Idle")
+			back_to_idle()

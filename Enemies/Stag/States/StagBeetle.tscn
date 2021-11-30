@@ -1,4 +1,4 @@
-[gd_scene load_steps=602 format=2]
+[gd_scene load_steps=603 format=2]
 
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=2]
@@ -2310,6 +2310,133 @@ height = 73.1326
 radius = 59.9021
 height = 82.4644
 
+[sub_resource type="Animation" id=564]
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.7, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.37931, 52.4138 ), Vector2( -109.655, 161.379 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 8.0, 32.0 ]
+}
+
+[sub_resource type="Animation" id=572]
+resource_name = "reset"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -109.655, 161.379 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 32.0 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=565]
+radius = 6.50522
+height = 83.078
+
 [sub_resource type="Gradient" id=567]
 offsets = PoolRealArray( 0, 0.395833, 0.673611 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -2470,52 +2597,6 @@ tracks/4/keys = {
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=564]
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Sprite:modulate:r")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("Sprite:modulate:g")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("Sprite:modulate:b")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("Sprite:modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.9 )
-}
-
-[sub_resource type="CapsuleShape2D" id=565]
-radius = 6.50522
-height = 83.078
-
 [node name="StagBeetle" type="Node2D"]
 scale = Vector2( 1.45, 1.45 )
 script = ExtResource( 5 )
@@ -2525,8 +2606,7 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Origin"]
 position = Vector2( 130.201, 90.5868 )
 frames = SubResource( 554 )
-animation = "melee_default"
-frame = 79
+animation = "melee_swipe_turn"
 playing = true
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
@@ -2617,8 +2697,37 @@ rotation = 0.813435
 z_index = 1
 shape = SubResource( 560 )
 
+[node name="SwipeProjectile" type="Node2D" parent="Origin"]
+show_behind_parent = true
+position = Vector2( -109.655, 161.379 )
+rotation = 0.558505
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Sprite" type="Sprite" parent="Origin/SwipeProjectile"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 87.7204, 129.704 )
+rotation = -0.261113
+texture = ExtResource( 28 )
+
+[node name="Animation" type="AnimationPlayer" parent="Origin/SwipeProjectile"]
+autoplay = "reset"
+anims/fly = SubResource( 564 )
+anims/reset = SubResource( 572 )
+
+[node name="Hitbox" type="Area2D" parent="Origin/SwipeProjectile"]
+position = Vector2( 0.862069, 7.75863 )
+monitoring = false
+monitorable = false
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Origin/SwipeProjectile/Hitbox"]
+position = Vector2( 89.8056, 129.377 )
+rotation = 0.94752
+shape = SubResource( 565 )
+
 [node name="SwipeOrigin" type="Node2D" parent="Origin"]
-position = Vector2( 9.00974, 58.1958 )
+position = Vector2( -4.82759, 62.7586 )
 
 [node name="MandibleLightRight" type="Light2D" parent="Origin"]
 position = Vector2( 49.6552, 157.931 )
@@ -2673,6 +2782,7 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="Turn" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
+RELATIVE_TRANSITION_CHANCE = 0.0
 
 [node name="TurnLeft" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
@@ -2705,7 +2815,6 @@ script = ExtResource( 10 )
 
 [node name="Melee" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
-RELATIVE_TRANSITION_CHANCE = 10.0
 
 [node name="PhoridaeProjectileSpawner" parent="StateMachine/Melee" instance=ExtResource( 26 )]
 
@@ -2730,26 +2839,6 @@ __meta__ = {
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 2 )]
 position = Vector2( -25.4026, -38.6664 )
-
-[node name="SwipeProjectile" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite" type="Sprite" parent="SwipeProjectile"]
-position = Vector2( 87.7204, 129.704 )
-rotation = -0.261113
-texture = ExtResource( 28 )
-
-[node name="Animation" type="AnimationPlayer" parent="SwipeProjectile"]
-anims/fly = SubResource( 564 )
-
-[node name="Hitbox" type="Area2D" parent="SwipeProjectile"]
-collision_layer = 0
-collision_mask = 12
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwipeProjectile/Hitbox"]
-position = Vector2( 89.8056, 129.377 )
-rotation = 0.94752
-shape = SubResource( 565 )
 
 [connection signal="area_entered" from="Origin/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

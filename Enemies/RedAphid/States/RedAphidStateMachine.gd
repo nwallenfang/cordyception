@@ -12,7 +12,11 @@ func start():
 		set_attack_behaviour()
 
 
-		
+func start_with_state(state_name:String) -> void:
+	start()
+	transition_to(state_name)
+
+
 func stop():
 	enabled = false
 	get_parent().get_node("StateLabel").visible = false

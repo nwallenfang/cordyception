@@ -31,14 +31,19 @@ func set_show_health(show: bool) -> void:
 		if not show:
 			$Tween.interpolate_property($HealthUI, "modulate", Color.white, Color.transparent, 1)
 			$Tween.start()
-		
+
+func set_boss_name(name: String):
+	$BossLabel.bbcode_text = "[center]" + name + "[/center]"
+
 func set_show_boss_health(show: bool) -> void:
 	if show_health != show:
 		show_health = show
 	if show:
 		$BossHealthbar.visible = true
+		$BossLabel.visible = true
 	else:
 		$BossHealthbar.visible = false
+		$BossLabel.visible = false
 func set_show_shoot(show: bool) -> void:
 	if show_shoot != show:
 		show_shoot = show

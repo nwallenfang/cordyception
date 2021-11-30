@@ -24,6 +24,9 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
+	if not SoundPlayer.is_music_playing():
+		SoundPlayer.start_music()
+	
 	GameEvents.connect("scout_dialog", self, "scout_dialog")
 	GameEvents.connect("small_chase", self, "small_chase")
 	GameEvents.connect("room_checkpoint", self, "room_checkpoint")
@@ -211,6 +214,7 @@ func agitate_everyone():
 
 func _on_TopAgitator_body_entered(body: Node) -> void:
 	if !room_agitated:
+		SoundPlayer.start_stage_music()
 		room_agitated = true
 		$YSort/Room/Enemies/Guard1.look_at(GameStatus.CURRENT_PLAYER.global_position)
 		$YSort/Room/Enemies/Guard2.look_at(GameStatus.CURRENT_PLAYER.global_position)
@@ -226,6 +230,7 @@ func _on_TopAgitator_body_entered(body: Node) -> void:
 
 func _on_LeftAgitator_body_entered(body: Node) -> void:
 	if !room_agitated:
+		SoundPlayer.start_stage_music()
 		room_agitated = true
 		$YSort/Room/Enemies/Talker1.look_at(GameStatus.CURRENT_PLAYER.global_position)
 		$YSort/Room/Enemies/Talker2.look_at(GameStatus.CURRENT_PLAYER.global_position)
@@ -241,6 +246,7 @@ func _on_LeftAgitator_body_entered(body: Node) -> void:
 
 func _on_RightAgitator_body_entered(body: Node) -> void:
 	if !room_agitated:
+		SoundPlayer.start_stage_music()
 		room_agitated = true
 		$YSort/Room/Enemies/Thrower.look_at(GameStatus.CURRENT_PLAYER.global_position)
 		$YSort/Room/Enemies/Thrower/SpeechBubble.set_text("[shake]CORDYCEPS IS HERE![/shake]")
@@ -273,6 +279,10 @@ func room_cutscene():
 	GameStatus.SPRAY_ENABLED = false
 	GameStatus.DASH_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+	GameStatus.HEALTH_VISIBLE = false
+
+	SoundPlayer.switch_music()
+	
 	for i in range(4):
 		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true
 	$ScriptedCamera.follow(scout)
@@ -290,7 +300,7 @@ func room_cutscene():
 	scout.follow_path($Positions/ScoutRoom4.global_position)
 	yield(scout, "follow_completed") # POINT 4 REACHED
 	scout.set_facing_direction(Vector2.UP)
-	scout.get_node("SpeechBubble").set_text("We have an emergency!", 1.0)
+	scout.get_node("SpeechBubble").set_text("There is an emergency!", 1.0)
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
 	scout.get_node("SpeechBubble").set_text("A [shake]raging cordyceps[/shake] is headed our way", 1.0)
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
@@ -314,6 +324,7 @@ func room_cutscene():
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
+	GameStatus.HEALTH_VISIBLE = true
 
 func room_checkpoint():
 	cordy.show()
@@ -351,12 +362,13 @@ func shroom_fist_dialog():
 	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 2600.0
 	cordy.grow_first()
 	yield(get_tree().create_timer(3), "timeout")
+	SoundPlayer.switch_to_psychedelic()
 	cordy.grow_second()
 	yield(get_tree().create_timer(2), "timeout")
 	cordy.say_right("Hello, my new host", 1)
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")
-	cordy.say_left("I see you've put your newly learned abilities to good use.", 1.5)
+	cordy.say_left("I see you've put your newly learned ability to good use.", 1.5)
 	cordy.set_eyes("idle")
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")
@@ -373,10 +385,10 @@ func shroom_fist_dialog():
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")
 	cordy.set_eyes("idle")
-	cordy.say_left("Now you're far superior to those pathetic weaklings.", 1.2)
+	cordy.say_left("Now you're far superior to those weaklings.", 1.2)
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")
-	cordy.say_left("Now do as I say and your future will be full of satisfaction.", 1.3)
+	cordy.say_left("Do as I say and there's a bright future waiting.", 1.3)
 	cordy.set_eyes("happy")
 	yield(cordy, "speech_done")
 	yield(get_tree().create_timer(.1), "timeout")
@@ -387,8 +399,13 @@ func shroom_fist_dialog():
 
 
 func _on_TransitionZone_body_entered(body: Node) -> void:
+	SoundPlayer.stop_stage_music()
 	$ScriptedCamera.fade_out()
 	yield($ScriptedCamera, "fade_out_finished")
 	get_tree().change_scene("res://Levels/Arena.tscn")
 	# todo set camera completely faded out instantly
 	$ScriptedCamera.fade_in()
+
+
+func _on_first_CheckPoint_entered(body: Node) -> void:
+	SoundPlayer.switch_back_from_psychdelic()

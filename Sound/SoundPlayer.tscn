@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sound/SoundPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Sound/grass_rustle4.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Sound/grass_rustle5.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Sound/grass_rustle6.ogg" type="AudioStream" id=4]
-[ext_resource path="res://Sound/Music/psychedelic.mp3" type="AudioStream" id=5]
-[ext_resource path="res://Sound/Music/combat.mp3" type="AudioStream" id=6]
-[ext_resource path="res://Sound/Music/ambient.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Sound/Music/ambient.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/Music/combat.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sound/Music/psychedelic.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Sound/Music/JAM_OFF_Stage.ogg" type="AudioStream" id=8]
 
 [node name="SoundPlayer" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,7 +32,8 @@ bus = "SFX"
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 
 [node name="Psychedelic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 7 )
+volume_db = -5.943
 bus = "Music"
 
 [node name="Combat" type="AudioStreamPlayer" parent="."]
@@ -39,5 +41,18 @@ stream = ExtResource( 6 )
 bus = "Music"
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 5 )
+volume_db = -5.943
 bus = "Music"
+
+[node name="TweenIn" type="Tween" parent="."]
+
+[node name="TweenOut" type="Tween" parent="."]
+
+[node name="TweenPsychOut" type="Tween" parent="."]
+
+[node name="Stage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.943
+
+[connection signal="tween_completed" from="TweenOut" to="." method="_on_TweenOut_tween_completed"]

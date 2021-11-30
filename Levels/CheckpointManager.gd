@@ -22,6 +22,7 @@ func player_died():
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
 	GameStatus.PLAYERHURT_ENABLED = false
+	SoundPlayer.stop_music()
 	yield(get_tree().create_timer(1.0), "timeout")
 
 	# Start camera fadeout

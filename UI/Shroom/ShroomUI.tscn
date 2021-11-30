@@ -58,6 +58,7 @@ centered = false
 visible = false
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 centered = false
 
@@ -74,7 +75,7 @@ use_shroom_sound = true
 bubble_size = Vector2( 44, 44 )
 
 [node name="SpeechBubbleRight" parent="." instance=ExtResource( 7 )]
-position = Vector2( 139.112, 2.82534 )
+position = Vector2( 131.334, 2.82534 )
 arrow_pos = 0.8
 arrow_reversed_h = false
 use_shroom_sound = true

@@ -124,6 +124,10 @@ func growing():
 	GameStatus.AIMER_VISIBLE = true
 	grow_animation.visible = false
 	player.get_node("Sprite").visible = true
+	
+	# TODO turn off transformation music
+	# start ambient music
+	SoundPlayer.start_music()
 
 func reset():
 	if is_instance_valid(ant1):
@@ -136,11 +140,12 @@ func reset():
 func dandelion_dialog():
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
+
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion)
 	yield($ScriptedCamera, "slide_finished")
 	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.2)
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet, sweet nectar", 1.2)
+	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.2)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
 	var comedic_timer = get_tree().create_timer(1.35)
@@ -212,9 +217,9 @@ func dandelion_attack():
 	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 1.2)
 	yield(ant2_speech, "dialog_completed")
 	# interruption?
-	climber_speech.set_text("Disgusting, attack!", 0.7)
+	climber_speech.set_text("Disgusting, let's attack her!", 0.7)
 	yield(climber_speech, "dialog_completed")
-
+	SoundPlayer.switch_music()
 	# shoot single projectile towards player
 	ant1.shoot_single_projectile(player.global_position)
 	# wait until projectile has hit the player
@@ -242,7 +247,7 @@ func dandelion_attack():
 	# I tried yielding individually on tree_exited but it SUCKS 
 	# so instead go for a kill counter setup
 	yield(self, "dandelion_enemies_dead")
-		
+	SoundPlayer.switch_music()
 	# let aphid climb down
 	aphid_climb_down()
 	# once the player has picked it up, open the passage

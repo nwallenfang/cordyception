@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/psychedelic.ogg-46068916806ff2243bd182627ac0d716.oggstr"
+
+[deps]
+
+source_file="res://Sound/Music/psychedelic.ogg"
+dest_files=[ "res://.import/psychedelic.ogg-46068916806ff2243bd182627ac0d716.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

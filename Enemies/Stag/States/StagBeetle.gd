@@ -5,7 +5,7 @@ onready var origin := $Origin as Node2D
 onready var projectile_origin := $Origin/ProjectileOrigin as Node2D
 onready var mandible_point := $Origin/MandiblePoint as Node2D
 onready var swipe_hitbox := $Origin/SwipeHitbox as Area2D
-onready var swipe_projectile := $Origin/SwipeProjectile as Node2D
+onready var swipe_projectile := $Origin/SwipeOrigin/SwipeProjectile as Node2D
 onready var melee_hitbox := $Origin/MeleeHitbox as Area2D
 
 onready var sprite := $Origin/AnimatedSprite as AnimatedSprite
@@ -13,7 +13,7 @@ onready var state_machine := $StateMachine as StagStateMachine
 
 var sprite_rotation := 0.0 setget set_rotation
 
-export var MAX_HEALTH := 140 setget set_max_health
+export var MAX_HEALTH := 120 setget set_max_health
 onready var health := MAX_HEALTH setget set_health
 export var DAMAGE := 1
 
@@ -45,6 +45,11 @@ func boss_health_changed():
 
 func boss_health_zero():
 	$SpeechBubble.set_text("ARRRGHGHHGH!! I'M DEAD.")
+	$StateMachine.enabled = false
+	sprite.playing = false
+	$Tween.interpolate_property(self, "scale", scale, Vector2(.7, .7), 2)
+	$Tween.interpolate_property(self, "modulate", modulate, Color(.3, .3, .3), 2)
+	$Tween.start()
 
 func set_health(new_health: int) -> void:
 	var health_prev = health

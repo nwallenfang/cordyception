@@ -29,4 +29,11 @@ one_shot = true
 
 [node name="FadeTween" type="Tween" parent="."]
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="FadeTimer" to="." method="_on_FadeTimer_timeout"]

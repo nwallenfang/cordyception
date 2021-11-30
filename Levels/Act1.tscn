@@ -763,6 +763,8 @@ shape = SubResource( 46 )
 [node name="AssaultTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 0.588235, 0.184314, 0.0431373, 1 )
 position = Vector2( 4477.12, -1702.74 )
+monitoring = false
+monitorable = false
 collision_layer = 8
 collision_mask = 0
 

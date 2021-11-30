@@ -153,7 +153,7 @@ func dandelion_dialog():
 	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.2)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
-	var comedic_timer = get_tree().create_timer(1.35)
+	var comedic_timer = get_tree().create_timer(1.45)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
 	$ScriptedCamera.back_to_player(1.5)
@@ -222,7 +222,13 @@ func dandelion_attack():
 	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 2.2)
 	yield(ant2_speech, "dialog_completed")
 	# interruption?
-	climber_speech.set_text("Disgusting, let's attack her!", 0.7)
+	climber_speech.set_text("Disgusting!", 0.9)
+	yield(get_tree().create_timer(.6), "timeout")
+	ant1_speech.set_text("Disgusting!", 0.9)
+	yield(get_tree().create_timer(.3), "timeout")
+	ant2_speech.set_text("Disgusting!", 0.9)
+	yield(get_tree().create_timer(.9), "timeout")
+	climber_speech.set_text("Attack!", 0.8)
 	yield(climber_speech, "dialog_completed")
 	SoundPlayer.switch_music()
 	# shoot single projectile towards player
@@ -304,6 +310,8 @@ func joke_dialog():
 
 var assault_started := false
 func joke_attack():
+	$Detector/AssaultTrigger.monitorable = true
+	$Detector/AssaultTrigger.monitoring = true
 	attack_started = true
 	antertainer2.set_facing_direction(Vector2.RIGHT)
 	antertainer1_speech.stop_and_blend()

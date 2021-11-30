@@ -37,6 +37,7 @@ func _ready():
 
 	
 	GameStatus.CURRENT_UI.boss_healthbar.set_max(boss.MAX_HEALTH)
+	GameStatus.CURRENT_UI.set_boss_name("Furious Stag Beetle")
 	GameEvents.connect("begin_boss", self, "begin_boss_fight")
 	
 	boss.connect("boss_health_zero", self, "boss_died")

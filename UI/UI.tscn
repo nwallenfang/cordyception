@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://UI/CooldownStuff/ProjectileCooldown.tscn" type="PackedScene" id=2]
@@ -9,6 +9,14 @@
 [ext_resource path="res://UI/Shroom/ShroomUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/CooldownStuff/SprayCooldownUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/BossHealthbar.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/pixeltype.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+extra_spacing_space = 1
+font_data = SubResource( 1 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -31,7 +39,7 @@ margin_bottom = 398.888
 
 [node name="CooldownNotReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = 4.222
+volume_db = 0.487
 bus = "SFX"
 
 [node name="HealthUI" parent="." instance=ExtResource( 3 )]
@@ -64,5 +72,24 @@ margin_left = -403.343
 margin_top = -71.592
 margin_right = 376.657
 margin_bottom = -34.592
+
+[node name="BossLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -640.0
+margin_top = -100.748
+margin_right = 637.0
+margin_bottom = -53.7482
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Boss Name[/center]"
+text = "Boss Name"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="ProjectileCooldownUI"]

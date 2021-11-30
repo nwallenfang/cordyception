@@ -18,6 +18,8 @@ var knockbackable = true
 var initial_position: Vector2
 
 signal follow_completed
+signal boss_health_changed(new_health)
+signal boss_health_zero
 signal died
 
 func _ready():
@@ -98,6 +100,7 @@ func set_facing_direction(direction: Vector2):
 
 func handle_damage(attack, should_play_hit):
 	$EnemyStats.health -= attack.damage
+	emit_signal("boss_health_changed", $EnemyStats.health)
 	if get_state() != "Sprint" and knockbackable:
 		add_acceleration(attack.knockback_vector())
 	if should_play_hit:

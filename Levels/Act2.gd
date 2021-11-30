@@ -154,12 +154,13 @@ func small_chase():
 	cordy.say("Get him!", .6)
 	scout.state_machine.execute_state_once("SimpleShoot")
 	yield(get_tree().create_timer(1.5), "timeout")
-	scout.get_node("SpeechBubble").set_text("REEEEE", 0.6)
+	scout.get_node("SpeechBubble").set_text("WHEEEE", 0.6)
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
 	
 	yield(scout.get_node("SpeechBubble"), "dialog_completed")
 	#scout.shoot_single_projectile(GameStatus.CURRENT_PLAYER.global_position)
 	scout.state_machine.execute_state_once("ShootVolley")
+	SoundPlayer.switch_music()
 	scout.get_node("SpeechBubble").set_text("Get away from me!", 1.0)
 	yield(scout, "follow_completed")
 	scout.get_node("StateMachine").stop()
@@ -280,8 +281,6 @@ func room_cutscene():
 	GameStatus.DASH_ENABLED = false
 	GameStatus.AIMER_VISIBLE = false
 	GameStatus.HEALTH_VISIBLE = false
-
-	SoundPlayer.switch_music()
 	
 	for i in range(4):
 		get_node("YSort/Room/Enemies/RedAphid"+str(i+1)+"/StateMachine").enabled = true

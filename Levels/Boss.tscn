@@ -182,7 +182,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -991.958, 2629.41 )
+position = Vector2( -1017.59, 3101.75 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -258,16 +258,12 @@ position = Vector2( -1559.07, 2671.78 )
 rotation = -1.16903
 
 [node name="Stick15" parent="YSort/DecorationNBoundaries" instance=ExtResource( 12 )]
-position = Vector2( -1351.61, 3182.52 )
-rotation = -1.76323
-
-[node name="Stick16" parent="YSort/DecorationNBoundaries" instance=ExtResource( 12 )]
-position = Vector2( -1021.12, 3371.23 )
-rotation = 0.439094
+position = Vector2( -1569.58, 3203.86 )
+rotation = -1.13734
 
 [node name="Stick17" parent="YSort/DecorationNBoundaries" instance=ExtResource( 12 )]
-position = Vector2( -584.564, 3208.24 )
-rotation = -0.785343
+position = Vector2( -471.432, 3222.42 )
+rotation = -1.20841
 
 [node name="Shroom" parent="YSort/DecorationNBoundaries" instance=ExtResource( 14 )]
 position = Vector2( -1827.25, 1566.21 )
@@ -372,6 +368,141 @@ position = Vector2( -1109.37, 3177.54 )
 [node name="GrassBlade21" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
 position = Vector2( -865.143, 3127.8 )
 
+[node name="GrassBlade23" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1298.79, 3124.59 )
+
+[node name="GrassBlade24" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1251.42, 3246.73 )
+
+[node name="GrassBlade25" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1234.29, 3111.28 )
+
+[node name="GrassBlade26" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -927.031, 2906.77 )
+
+[node name="GrassBlade27" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -879.657, 3028.91 )
+
+[node name="GrassBlade28" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -862.536, 2893.46 )
+
+[node name="GrassBlade29" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1403.36, 3120.77 )
+
+[node name="GrassBlade30" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1355.99, 3242.91 )
+
+[node name="GrassBlade31" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1338.87, 3107.46 )
+
+[node name="GrassBlade32" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -1179.11, 3375.57 )
+
+[node name="GrassBlade33" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -1179.11, 3375.57 )
+
+[node name="GrassBlade34" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1238.48, 3296.41 )
+
+[node name="GrassBlade35" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1311.61, 3372.08 )
+
+[node name="GrassBlade36" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1264.24, 3494.22 )
+
+[node name="GrassBlade37" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1247.11, 3358.77 )
+
+[node name="GrassBlade38" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1416.18, 3368.26 )
+
+[node name="GrassBlade39" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1368.81, 3490.4 )
+
+[node name="GrassBlade40" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1351.69, 3354.95 )
+
+[node name="GrassBlade41" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -842.529, 3379.94 )
+
+[node name="GrassBlade42" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -842.529, 3379.94 )
+
+[node name="GrassBlade43" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -901.899, 3300.78 )
+
+[node name="GrassBlade44" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -975.028, 3376.44 )
+
+[node name="GrassBlade45" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -927.655, 3498.58 )
+
+[node name="GrassBlade46" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -910.532, 3363.13 )
+
+[node name="GrassBlade47" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -1079.6, 3372.63 )
+
+[node name="GrassBlade48" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1032.23, 3494.76 )
+
+[node name="GrassBlade49" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -1015.1, 3359.32 )
+
+[node name="GrassBlade50" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -565.333, 3353.17 )
+
+[node name="GrassBlade51" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -565.333, 3353.17 )
+
+[node name="GrassBlade52" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -624.703, 3274.01 )
+
+[node name="GrassBlade53" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -697.833, 3349.68 )
+
+[node name="GrassBlade54" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -650.459, 3471.82 )
+
+[node name="GrassBlade55" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -633.337, 3336.37 )
+
+[node name="GrassBlade56" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -802.405, 3345.86 )
+
+[node name="GrassBlade57" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -755.031, 3468 )
+
+[node name="GrassBlade58" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -737.908, 3332.55 )
+
+[node name="GrassBlade59" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -609.075, 3088.7 )
+
+[node name="GrassBlade60" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
+position = Vector2( -609.075, 3088.7 )
+
+[node name="GrassBlade61" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -668.445, 3009.54 )
+
+[node name="GrassBlade62" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -741.574, 3085.2 )
+
+[node name="GrassBlade63" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -694.201, 3207.34 )
+
+[node name="GrassBlade64" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -677.078, 3071.89 )
+
+[node name="GrassBlade65" parent="YSort/DecorationNBoundaries" instance=ExtResource( 27 )]
+position = Vector2( -846.147, 3081.38 )
+
+[node name="GrassBlade66" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -798.773, 3203.52 )
+
+[node name="GrassBlade67" parent="YSort/DecorationNBoundaries" instance=ExtResource( 17 )]
+position = Vector2( -781.65, 3068.07 )
+
 [node name="GrassBlade22" parent="YSort/DecorationNBoundaries" instance=ExtResource( 26 )]
 position = Vector2( -963.042, 3284.94 )
 
@@ -406,6 +537,18 @@ collision_mask = 2
 position = Vector2( -6665.93, 2226.38 )
 scale = Vector2( 7.76484, 1 )
 polygon = PoolVector2Array( 663.061, -2245.98, 1062.55, -2261.98, 878.447, -2173 )
+
+[node name="ArenaBlock2" type="StaticBody2D" parent="Boundaries"]
+position = Vector2( -851.289, 505.196 )
+rotation = -3.12018
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundaries/ArenaBlock2"]
+position = Vector2( -6432.26, -873.665 )
+rotation = -0.00845329
+scale = Vector2( 7.76484, 1 )
+polygon = PoolVector2Array( 917.203, -2020.19, 911.19, -2154.45, 785.771, -2144.82, 771.713, -2011.55, 768.356, -2173.04, 916.502, -2208.93 )
 
 [node name="Positions" type="Node2D" parent="."]
 
@@ -445,7 +588,7 @@ position = Vector2( 262.77, -268.69 )
 shape = SubResource( 6 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( -990.975, 2629.78 )
+position = Vector2( -1016.43, 3102.13 )
 rotation = -0.000373805
 
 [node name="DynamicPlayerCam" parent="." instance=ExtResource( 11 )]

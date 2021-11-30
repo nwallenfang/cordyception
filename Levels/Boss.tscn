@@ -595,7 +595,10 @@ rotation = -0.000373805
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
+volume_db = -2.6
 bus = "Music"
+
+[node name="FadeOut" type="Tween" parent="."]
 
 [connection signal="body_entered" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_entered"]
 [connection signal="body_exited" from="Detector/DynamicCameraZone" to="." method="_on_DynamicCameraZone_body_exited"]

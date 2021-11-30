@@ -9,7 +9,7 @@ func process(delta, first_time_entering):
 
 	if first_time_entering:
 		parent.play_animation("turn_left")
-		$Tween.interpolate_property(parent, "sprite_rotation", parent.sprite_rotation, parent.sprite_rotation + 20, .8)
+		$Tween.interpolate_property(parent, "sprite_rotation", parent.sprite_rotation, parent.sprite_rotation + 20, .65)
 		$Tween.start()
 		yield(parent.sprite, "animation_finished")
-		state_machine.transition_deferred("Idle")
+		back_to_idle()

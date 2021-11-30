@@ -17,17 +17,22 @@ var acc: Vector2
 var speed: float
 var homing_speed: float
 
+var first_roll_of_boss_aphid := true
+
 func process(delta, first_time_entering):
 	parent = parent as RedAphid
 	var player_global : Vector2 = GameStatus.CURRENT_PLAYER.global_position
 	
 	if first_time_entering:
 		var scent_global : Vector2 = parent.scentray.get_player_scent_position_global()
-		if scent_global.distance_to(player_global) > 20.0:
-			state_machine.transition_deferred("Idle")
+		if scent_global.distance_to(player_global) > 50.0 and not parent.is_boss_aphid:
+			back_to_idle()
 			return
 		parent.set_roll_area(true)
 		direction = parent.global_position.direction_to(player_global)
+		if parent.is_boss_aphid:
+			if first_roll_of_boss_aphid:
+				direction = Vector2.DOWN
 		parent.set_facing_direction(direction)
 		parent.play_start_roll()
 		speed = SPEED_SLOW

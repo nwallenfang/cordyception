@@ -555,7 +555,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 1939.82, -1023.35 )
+position = Vector2( 1959.08, -1064.78 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -733,6 +733,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 5
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -743,6 +744,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+frame = 5
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -752,7 +754,10 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+<<<<<<< HEAD
 frame = 7
+=======
+>>>>>>> 79f097809c94aae81ec56beeb6f8055c6df3d430
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -762,7 +767,10 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
+<<<<<<< HEAD
 frame = 7
+=======
+>>>>>>> 79f097809c94aae81ec56beeb6f8055c6df3d430
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -1726,7 +1734,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 21 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1939.44, -1024.08 )
+position = Vector2( 1958.68, -1065.51 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

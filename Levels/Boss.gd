@@ -26,6 +26,7 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
+	GameStatus.PLAYERHURT_ENABLED = false
 	
 	boss.state_machine.enabled = false
 	boss.laecherliche_anti_lag_funktion()
@@ -39,6 +40,19 @@ func _ready():
 	GameStatus.CURRENT_UI.set_boss_name("Furious Stag Beetle")
 	GameEvents.connect("begin_boss", self, "begin_boss_fight")
 	
+	boss.connect("boss_health_zero", self, "boss_died")
+	
+
+func boss_died():
+	yield(get_tree().create_timer(6.0), "timeout")
+	cordy.set_eyes("happy")
+	cordy.say("Wonderful", .8)
+	yield(cordy, "speech_done")
+	cordy.set_eyes("angry")
+	cordy.say("Now no one can stop me from overtaking the whole colony.")
+	$ScriptedCamera.fade_out()
+	yield(get_tree().create_timer(2.0), "timeout")
+	get_tree().change_scene("res://UI/Menu/Ending.tscn")
 
 func begin_boss_fight():
 #	cordy.say("I sense a great presence")
@@ -59,14 +73,15 @@ func begin_boss_fight():
 
 func _on_DynamicCameraZone_body_entered(body: Node) -> void:
 	print("dynamic")
-	if GameEvents.count("begin_boss_cutscene_ended") > 0:
-
-		$DynamicPlayerCam.target = boss
-		$ScriptedCamera.follow($DynamicPlayerCam)
+#	if GameEvents.count("begin_boss_cutscene_ended") > 0:
+	$DynamicPlayerCam.target = boss
+	$ScriptedCamera.follow($DynamicPlayerCam)
+	$ScriptedCamera.zoom(1.3)
 
 
 func _on_DynamicCameraZone_body_exited(body: Node) -> void:
 	$ScriptedCamera.back_to_player()
+	$ScriptedCamera.zoom_back()
 
 
 func _on_BeginBossZone_body_entered(body: Node) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Enemies/Phoridae/projectile.png" type="Texture" id=1]
 [ext_resource path="res://Effects/pixel.png" type="Texture" id=2]
@@ -118,7 +118,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=19]
-radius = 23.0217
+radius = 28.3333
 
 [sub_resource type="Animation" id=20]
 resource_name = "fade"
@@ -186,6 +186,58 @@ tracks/4/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=22]
+resource_name = "reset"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="CircleShape2D" id=21]
 radius = 51.5024
 
@@ -231,20 +283,22 @@ autoplay = "spin"
 anims/spin = SubResource( 18 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
-monitoring = false
-monitorable = false
 collision_mask = 5
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 1.66667, 0 )
 shape = SubResource( 19 )
 
 [node name="FadePlayer" type="AnimationPlayer" parent="."]
+autoplay = "reset"
 anims/fade = SubResource( 20 )
+anims/reset = SubResource( 22 )
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 5.0
 
 [node name="SoftCollision" type="Area2D" parent="."]
+visible = false
 collision_layer = 128
 collision_mask = 128
 

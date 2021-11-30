@@ -42,9 +42,9 @@ margin_bottom = 720.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 margin_left = 120.0
-margin_top = 88.0
+margin_top = 54.0
 margin_right = 1160.0
-margin_bottom = 631.0
+margin_bottom = 666.0
 custom_constants/separation = 40
 
 [node name="Title" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
@@ -58,18 +58,18 @@ align = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 90.0
 margin_right = 1040.0
-margin_bottom = 451.0
+margin_bottom = 520.0
 custom_constants/separation = 20
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
-margin_bottom = 361.0
+margin_bottom = 430.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 120.0
 margin_right = 520.0
-margin_bottom = 361.0
+margin_bottom = 430.0
 rect_min_size = Vector2( 400, 0 )
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -89,7 +89,11 @@ Arthur Maxant
 
 [b]Menu Music / Intro Music by[/b]
 
-Jonas Lemmen & Markus Horrmann"
+Jonas Lemmen & Markus Horrmann
+
+[b]Royalty-free Music from[/b]
+
+bensound.com"
 text = "
 Game by
 
@@ -105,13 +109,17 @@ Arthur Maxant
 
 Menu Music / Intro Music by
 
-Jonas Lemmen & Markus Horrmann"
+Jonas Lemmen & Markus Horrmann
+
+Royalty-free Music from
+
+bensound.com"
 fit_content_height = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 540.0
 margin_right = 1040.0
-margin_bottom = 361.0
+margin_bottom = 430.0
 rect_min_size = Vector2( 500, 0 )
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -153,9 +161,9 @@ Marco Kamphoff"
 fit_content_height = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 491.0
+margin_top = 560.0
 margin_right = 1040.0
-margin_bottom = 543.0
+margin_bottom = 612.0
 
 [node name="TextureButton" type="TextureButton" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 455.0

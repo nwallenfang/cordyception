@@ -338,7 +338,7 @@ playing = true
 position = Vector2( 6011.68, -694.032 )
 
 [node name="AntEnemy2" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
-position = Vector2( 6120.5, -823.208 )
+position = Vector2( 5856.43, -640.169 )
 
 [node name="AphidPath" parent="YSort/DandelionRoom" instance=ExtResource( 15 )]
 position = Vector2( 6204.15, -907.924 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/combat.mp3-262ec341196292f24d38a9bcc54d370f.mp3str"
+
+[deps]
+
+source_file="res://Sound/Music/combat.mp3"
+dest_files=[ "res://.import/combat.mp3-262ec341196292f24d38a9bcc54d370f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

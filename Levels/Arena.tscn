@@ -1170,6 +1170,10 @@ position = Vector2( 4082.38, -6875.59 )
 [node name="GrassBlade5" parent="YSort/PostArena" instance=ExtResource( 34 )]
 position = Vector2( 3984.48, -6718.45 )
 
+[node name="Bush" parent="YSort/PostArena" instance=ExtResource( 42 )]
+position = Vector2( 5179.2, -7329.36 )
+rotation = -0.971511
+
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -26,7 +26,7 @@ func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
 	visible = false
 	GameStatus.MOUSE_CAPTURE = true
-	Input.set_custom_mouse_cursor(load("res://UI/cross.png"))
+	Input.set_custom_mouse_cursor(GameStatus.CURSOR_INVIS)
 
 func _on_SettingsButton_pressed() -> void:
 	$MarginContainer.visible = false

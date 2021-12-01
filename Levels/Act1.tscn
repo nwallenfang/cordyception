@@ -577,7 +577,6 @@ position = Vector2( 10029.2, -531.511 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer" index="1"]
 material = SubResource( 37 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
@@ -604,23 +603,6 @@ position = Vector2( 10213.2, -526.442 )
 
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="1"]
 material = SubResource( 39 )
-frame = 18
-
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="3"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="4"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="5"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="6"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="16"]
 parameters/playback = SubResource( 40 )
@@ -632,7 +614,7 @@ arrow_pos = 0.6
 arrow_reversed_h = false
 
 [node name="Acorn" parent="YSort/ExitPath" instance=ExtResource( 20 )]
-position = Vector2( 9741.17, -1132.68 )
+position = Vector2( 9673.39, -1038.64 )
 
 [node name="Acorn2" parent="YSort/ExitPath" instance=ExtResource( 20 )]
 position = Vector2( 5346.92, 93.993 )

@@ -153,10 +153,10 @@ func _on_EnemyStats_health_zero() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
+	if state_machine.enabled:
+		$Line2D.points[1] = $ScentRay.get_player_scent_position() - position
 	
 	$StateMachine.process(delta)
-		
 	# call for handling knockback
 	accelerate_and_move(delta)
 

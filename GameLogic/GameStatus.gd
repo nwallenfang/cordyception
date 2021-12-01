@@ -40,6 +40,8 @@ var STARTING_CUTSCENE_HAS_PLAYED := false
 
 var EASY_MODE := false setget set_easy_mode
 
+const CURSOR_INVIS = preload("res://UI/invis.png")
+
 func set_easy_mode(mode: bool):
 	EASY_MODE = mode
 	PLAYER_POISON_DAMAGE = 2 if mode else 1
@@ -71,7 +73,7 @@ func set_aimer_visible(vis: bool) -> void:
 	if !USE_CROSSHAIR:
 		CURRENT_PLAYER.aimer.visible = vis
 	else:
-		Input.set_custom_mouse_cursor(load("res://UI/cross.png") if vis else null)
+		Input.set_custom_mouse_cursor(GameStatus.CURSOR_INVIS if vis else null)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED if vis else Input.MOUSE_MODE_CAPTURED)
 
 func set_use_crosshair(use: bool) -> void:
@@ -138,7 +140,7 @@ func _input(event: InputEvent) -> void:
 			if AIMER_VISIBLE:
 				if not Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 					Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-					Input.set_custom_mouse_cursor(load("res://UI/cross.png"))
+					Input.set_custom_mouse_cursor(CURSOR_INVIS)
 
 
 

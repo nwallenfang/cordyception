@@ -71,12 +71,7 @@ func on_dash_tutorial_entered(body: Node):
 
 func shroom_dash_learned():
 	cordy.set_eyes("happy")
-	cordy.say_bottom("Don't worry.", .8)
-	yield(cordy, "speech_done")
-	cordy.set_eyes("idle")
 	cordy.say("I've got another trick up your sleeve", 0.8)
-	yield(cordy, "speech_done")
-	cordy.say("Just dash over those thorns", 1)
 
 func reset():
 	pass
@@ -124,8 +119,20 @@ func scout_dialog():
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 
+var first_time_entering = true
 func _on_ShooterTrigger_body_entered(body):
-	shooter1.state_machine.enabled = true
+	if first_time_entering:
+		first_time_entering = false
+		cordy.say("Dashing makes you completely invincible!")
+		cordy.set_eyes("happy")
+		yield(cordy, "speech_done")
+		shooter1.state_machine.enabled = true
+		cordy.say("At least for a short time..", 1.5)
+		cordy.set_eyes("bored")
+		yield(cordy, "speech_done")
+		yield()
+		cordy.set_eyes("idle")
+		
 
 
 

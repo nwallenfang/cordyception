@@ -22,11 +22,13 @@ func set_mother_path(path: NodePath):
 			mother = get_node(mother_path)
 
 func _ready() -> void:
+	$BarScaler/Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	$StateMachine.enabled = false
 	set_mother_path(mother_path)
 	set_ignite_area(false)
 	set_roll_area(false)
-	$BarScaler/Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
+
+	
 
 func set_ignite_area(b: bool):
 	$IgniteArea.monitorable = b

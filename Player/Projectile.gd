@@ -15,12 +15,7 @@ onready var velocity := SPEED * direction
 
 func _ready():
 	$AnimationPlayer.play("active")
-	yield(get_tree().create_timer(1.7), "timeout")
-	$Hitbox.set_deferred("monitoring", false)
-	$Hitbox.set_deferred("monitorable", false)
-	$FadeOut.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.5, Tween.TRANS_CIRC)
-	$FadeOut.start()
-	
+	$FadeOutTimer.start()
 
 func set_direction(new_dir: Vector2):
 	direction = new_dir
@@ -61,3 +56,10 @@ func _on_Hitbox_body_entered(body: Node) -> void:
 
 func _on_FadeOut_tween_all_completed() -> void:
 	call_deferred("queue_free")
+
+
+func _on_FadeOutTimer_timeout() -> void:
+	$Hitbox.set_deferred("monitoring", false)
+	$Hitbox.set_deferred("monitorable", false)
+	$FadeOut.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.5, Tween.TRANS_CIRC)
+	$FadeOut.start()

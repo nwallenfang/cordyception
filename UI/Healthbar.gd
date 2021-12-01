@@ -18,6 +18,8 @@ func set_max(new_max) -> void:
 	MAX_HEALTH = new_max
 	max_value = new_max
 	set_health(new_max)
+	self.modulate = faded_out
+	$FadeTimer.stop()
 
 func set_never_visible(never: bool):
 	print("good stuff")

@@ -46,10 +46,12 @@ func _ready():
 	GameStatus.MOUSE_CAPTURE = true
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
-	
-	SoundPlayer.start_music()
-	if SoundPlayer.combat:
-		SoundPlayer.switch_music()
+	if GameEvents.ARENA_LAST_CHECKPOINT:
+		SoundPlayer.start_stage_music()
+	else:
+		SoundPlayer.start_music()
+		if SoundPlayer.combat:
+			SoundPlayer.switch_music()
 	
 	pre_arena_pho.get_node("StateMachine").stop()
 	

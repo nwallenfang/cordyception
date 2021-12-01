@@ -1,4 +1,4 @@
-[gd_scene load_steps=761 format=2]
+[gd_scene load_steps=762 format=2]
 
 [ext_resource path="res://Fonts/pixeltype.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/Speech/SpeechBubble.tscn" type="PackedScene" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://Enemies/Stag/Animations/shoot_second.png" type="Texture" id=31]
 [ext_resource path="res://Enemies/Stag/Animations/idle_short.png" type="Texture" id=32]
 [ext_resource path="res://Enemies/Stag/Animations/melee_swipe_turn_left.png" type="Texture" id=33]
+[ext_resource path="res://Enemies/Stag/States/MeleeSwipeLeft.gd" type="Script" id=34]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 18 )
@@ -3256,11 +3257,12 @@ script = ExtResource( 5 )
 position = Vector2( -50.3448, 147.586 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Origin"]
-position = Vector2( 131.31, 211.121 )
+position = Vector2( -140.69, -100 )
 frames = SubResource( 554 )
-animation = "shoot_second"
-frame = 40
+animation = "idle"
+frame = 106
 playing = true
+centered = false
 
 [node name="ProjectileOrigin" type="Node2D" parent="Origin"]
 position = Vector2( 0.240433, 208.294 )
@@ -3465,6 +3467,11 @@ RELATIVE_TRANSITION_CHANCE = 0.0
 script = ExtResource( 10 )
 
 [node name="Tween" type="Tween" parent="StateMachine/MeleeSwipe"]
+
+[node name="MeleeSwipeLeft" type="Node" parent="StateMachine"]
+script = ExtResource( 34 )
+
+[node name="Tween" type="Tween" parent="StateMachine/MeleeSwipeLeft"]
 
 [node name="Melee" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )

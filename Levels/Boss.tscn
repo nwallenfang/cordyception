@@ -532,6 +532,11 @@ position = Vector2( -1580.52, 1880.43 )
 [node name="Leafs2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 31 )]
 position = Vector2( -2054.13, 838.253 )
 
+[node name="Thorn5" parent="YSort/DecorationNBoundaries" instance=ExtResource( 30 )]
+visible = false
+position = Vector2( -981.019, 543.654 )
+rotation = 1.38046
+
 [node name="RedAphids" type="YSort" parent="YSort"]
 
 [node name="RedAphid1" parent="YSort/RedAphids" instance=ExtResource( 25 )]

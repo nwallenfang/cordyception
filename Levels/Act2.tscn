@@ -1271,19 +1271,15 @@ frame = 18
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="3"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="4"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="5"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="6"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="16"]
 parameters/playback = SubResource( 5 )

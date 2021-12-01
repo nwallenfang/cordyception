@@ -13,6 +13,7 @@ export var SPAWN_TIME_MIN := 3
 export var SPAWN_TIME_MAX := 6
 
 var volley_index: int = 0
+var stay_forever = false
 
 func _ready() -> void:
 	randomize()
@@ -31,6 +32,9 @@ func create_projectile(direction: float) -> void:
 	projectile.knockback = PROJECTILE_KNOCKBACK
 	projectile.rotation = direction
 	projectile.SPEED = PROJECTILE_SPEED
+	if stay_forever:
+		print("stayyy")
+		projectile.get_node("FadeOutTimer").stop()
 
 
 func _on_SpawnTimer_timeout() -> void:

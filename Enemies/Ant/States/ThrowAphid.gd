@@ -31,6 +31,7 @@ func process(delta, first_time_entering):
 		var direction := parent.global_position.direction_to(player_pos) as Vector2
 		parent.animation_tree.set("parameters/Throw/blend_position", direction)
 		parent.animation_tree.set("parameters/ThrowStart/blend_position", direction)
+		parent.update_shadow(direction)
 		parent.animation_state.travel("ThrowStart")
 		yield(target_aphid, "ready_to_launch")
 		parent.animation_state.travel("Throw")

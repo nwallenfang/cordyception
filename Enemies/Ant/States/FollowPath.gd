@@ -25,6 +25,7 @@ func process(delta: float, first_time_entering: bool):
 			state_machine.enabled = false
 			parent.animation_state.travel("Idle")
 			parent.animation_tree.set("parameters/Idle/blend_position", distance_vec)
+			parent.update_shadow(distance_vec)
 			emit_signal("movement_completed")
 			done = true
 			return
@@ -34,11 +35,13 @@ func process(delta: float, first_time_entering: bool):
 			if distance_to_player < PLAYER_DETECT_DISTANCE:
 				parent.animation_state.travel("Idle")
 				parent.animation_tree.set("parameters/Idle/blend_position", distance_vec)
+				parent.update_shadow(distance_vec)
 				emit_signal("movement_completed")
 				done = true
 				return
 	
 		parent.animation_state.travel("Walk")
 		parent.animation_tree.set("parameters/Walk/blend_position", distance_vec)
+		parent.update_shadow(distance_vec)
 
 		parent.add_acceleration(GameStatus.const_delta * FOLLOW_ACCELERATION * distance_vec.normalized())

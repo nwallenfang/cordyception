@@ -573,29 +573,29 @@ position = Vector2( 9642.18, -371.656 )
 [node name="Antertainer" parent="YSort/ExitPath" instance=ExtResource( 14 )]
 position = Vector2( 10029.2, -531.511 )
 
-[node name="Sprite" parent="YSort/ExitPath/Antertainer" index="0"]
+[node name="Sprite" parent="YSort/ExitPath/Antertainer" index="1"]
 material = SubResource( 37 )
 
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="6"]
 position = Vector2( 0.499512, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
+[node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="16"]
 parameters/playback = SubResource( 38 )
 
-[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="17"]
+[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer" index="18"]
 position = Vector2( -22.7488, -27.5947 )
 DEFAULT_WAIT = 1.5
 arrow_pos = 0.3
@@ -603,29 +603,29 @@ arrow_pos = 0.3
 [node name="Antertainer2" parent="YSort/ExitPath" instance=ExtResource( 14 )]
 position = Vector2( 10213.2, -526.442 )
 
-[node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
+[node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="1"]
 material = SubResource( 39 )
 
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
+[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="3"]
 position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
+[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="4"]
 position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
+[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="5"]
 position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
+[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="6"]
 position = Vector2( 0.5, -2 )
 scale = Vector2( 1, 1 )
 
-[node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
+[node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="16"]
 parameters/playback = SubResource( 40 )
 
-[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="17"]
+[node name="SpeechBubble" parent="YSort/ExitPath/Antertainer2" index="18"]
 position = Vector2( 26.9094, -31.0244 )
 DEFAULT_WAIT = 1.5
 arrow_pos = 0.6
@@ -874,7 +874,7 @@ volume_db = -7.2
 bus = "Music"
 
 [node name="InfestationTiming" type="Timer" parent="."]
-wait_time = 1.46
+wait_time = 1.56
 one_shot = true
 
 [connection signal="body_entered" from="YSort/ExitPath/GrassTuft/TransitionArea" to="." method="_on_TransitionArea_body_entered"]
@@ -891,11 +891,13 @@ one_shot = true
 [editable path="YSort/DandelionRoom/AphidPath"]
 [editable path="YSort/DandelionRoom/AphidPath/Aphid"]
 [editable path="YSort/ExitPath/Antertainer"]
+[editable path="YSort/ExitPath/Antertainer/Shadows"]
 [editable path="YSort/ExitPath/Antertainer/Hurtbox"]
 [editable path="YSort/ExitPath/Antertainer/StateMachine/Sprint/DashStuff"]
 [editable path="YSort/ExitPath/Antertainer/StateMachine/ShootRadial/EnemyProjectileSpawner"]
 [editable path="YSort/ExitPath/Antertainer/SpeechBubble"]
 [editable path="YSort/ExitPath/Antertainer2"]
+[editable path="YSort/ExitPath/Antertainer2/Shadows"]
 [editable path="YSort/ExitPath/Antertainer2/Hurtbox"]
 [editable path="YSort/ExitPath/Antertainer2/StateMachine/Sprint/DashStuff"]
 [editable path="YSort/ExitPath/Antertainer2/StateMachine/ShootRadial/EnemyProjectileSpawner"]

@@ -61,6 +61,8 @@ func _ready() -> void:
 	# rotate climber towards dandelion
 	climber.set_facing_direction(Vector2.LEFT)
 	
+	ant2.set_facing_direction(Vector2.RIGHT)
+	
 	# disable aphid pickup in the beginning
 	aphid.monitor = false
 	
@@ -119,7 +121,7 @@ func growing():
 	$ScriptedCamera.zoom = Vector2(.5, .5)
 	darkness_tween.interpolate_property(darkness, "scale", darkness.scale, Vector2(.3, .3), 3)
 	darkness_tween.start()
-	$ScriptedCamera.zoom(.25, 3)
+	$ScriptedCamera.zoom(.25, 2.5)
 	yield($ScriptedCamera, "zoom_finished")
 	grow_animation.playing = true
 
@@ -160,7 +162,7 @@ func dandelion_dialog():
 	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.5)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
 	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
-	var comedic_timer = get_tree().create_timer(2.0)
+	var comedic_timer = get_tree().create_timer(1.5)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
 	$ScriptedCamera.back_to_player(1.5)
@@ -172,9 +174,12 @@ func look_towards_player():
 	var direction1 = (player.global_position - ant1.global_position).normalized()
 	var direction2 = (player.global_position - ant2.global_position).normalized()
 	var direction_climb = (player.global_position - climber.global_position).normalized()
-	ant1.animation_tree.set("parameters/Idle/blend_position", direction1)
-	climber.animation_tree.set("parameters/Idle/blend_position", direction_climb)
-	ant2.animation_tree.set("parameters/Idle/blend_position", direction2)
+	ant1.set_facing_direction(direction1)
+	ant2.set_facing_direction(direction2)
+	climber.set_facing_direction(direction_climb)
+#	ant1.animation_tree.set("parameters/Idle/blend_position", direction1)
+#	climber.animation_tree.set("parameters/Idle/blend_position", direction_climb)
+#	ant2.animation_tree.set("parameters/Idle/blend_position", direction2)
 
 func enemy_died():
 	# TODO check if you're in the first arena
@@ -209,7 +214,7 @@ func dandelion_attack():
 	climber.global_position = $Positions/ClimberPosition.global_position
 	climber.get_node("Climbing").visible = true
 	climber.get_node("Sprite").visible = false
-	
+	climber.update_shadow(Vector2.LEFT)
 	# center camera (no margins)
 	$ScriptedCamera.slide_to_object($YSort/DandelionRoom/SpecialDandelion, 1.5)
 	yield($ScriptedCamera, "slide_finished")
@@ -219,8 +224,11 @@ func dandelion_attack():
 	player.follow_path($Positions/PlayerTargetPos.global_position)
 	yield(player, "follow_completed")
 	
+	yield(get_tree().create_timer(.8), "timeout")
+	
 	# rotate enemies towards player
-	look_towards_player()
+	#look_towards_player()
+	ant2.set_facing_direction(Vector2.DOWN)
 
 	# dialog
 	ant1_speech.set_text("Hey, looks like you could lend us a hand.", 2.3)

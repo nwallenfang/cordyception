@@ -107,7 +107,7 @@ func _on_Vision_body_exited(_body):
 		return
 	aggressive = false
 
-
+var first_time_entering = true
 func _on_PhoridaeStats_health_zero():
 	healthbar.visible = false
 	$StateLabel.visible = false
@@ -118,7 +118,9 @@ func _on_PhoridaeStats_health_zero():
 	$Body/Hurtbox.set_deferred("monitorable", false)
 	# animation here
 	$DeathPlayer.play("dying")
-	GameEvents.trigger_event("enemy_died")
+	if first_time_entering:
+		GameEvents.trigger_event("enemy_died")
+		first_time_entering = false
 
 
 func handle_damage(attack, should_play_hit):

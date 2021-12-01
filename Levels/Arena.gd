@@ -17,18 +17,20 @@ onready var w2_ant1 = $YSort/Wave2Enemies/AntEnemy1
 onready var w2_ant2 = $YSort/Wave2Enemies/AntEnemy2
 onready var w2_pho1 = $YSort/Wave2Enemies/Phoridae1
 onready var w2_pho2 = $YSort/Wave2Enemies/Phoridae2
-onready var w2_pho3 = $YSort/Wave2Enemies/Phoridae3
-onready var w2_pho4 = $YSort/Wave2Enemies/Phoridae4
-onready var w2_thrower = $YSort/Wave2Enemies/AntThrower
-onready var thrower_stats = $YSort/Wave2Enemies/AntThrower/EnemyStats
-onready var w2_raphid1 = $YSort/Wave2Enemies/RedAphid1
-onready var w2_raphid2 = $YSort/Wave2Enemies/RedAphid2
-onready var w2_raphid3 = $YSort/Wave2Enemies/RedAphid3
-onready var w2_raphid4 = $YSort/Wave2Enemies/RedAphid4
-onready var w2_raphid5 = $YSort/Wave2Enemies/RedAphid5
+onready var w2_pho3 = $YSort/Wave3Enemies/Phoridae3
+onready var w2_pho4 = $YSort/Wave3Enemies/Phoridae4
+onready var w2_thrower = $YSort/Wave3Enemies/AntThrower
+onready var thrower_stats = $YSort/Wave3Enemies/AntThrower/EnemyStats
+onready var w2_raphid1 = $YSort/Wave3Enemies/RedAphid1
+onready var w2_raphid2 = $YSort/Wave3Enemies/RedAphid2
+onready var w2_raphid3 = $YSort/Wave3Enemies/RedAphid3
+onready var w2_raphid4 = $YSort/Wave3Enemies/RedAphid4
+onready var w2_raphid5 = $YSort/Wave3Enemies/RedAphid5
 
 
 var enemies_killed_baseline: int
+
+var current_wave := 0
 
 func _ready():
 	GameStatus.CURRENT_ACT = self
@@ -154,6 +156,8 @@ func last_enemy_ready_wave2():
 	w2_pho2.trigger()
 
 func wave1():
+	current_wave = 1
+	
 	GameStatus.MOVE_ENABLED = false
 	GameStatus.SHOOT_ENABLED = false
 	GameStatus.DASH_ENABLED = false
@@ -175,7 +179,7 @@ func wave1():
 	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 1.5)
 	yield(shot_caller_speech, "dialog_completed")
 
-	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
+	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)
 	yield(shot_caller_speech, "dialog_completed")
 	SoundPlayer.stop_music()
 	SoundPlayer.start_stage_music()
@@ -204,7 +208,7 @@ func wave1():
 	GameStatus.PLAYERHURT_ENABLED = true
 
 #	print("wave2 once ", GameEvents.count("enemy_died") + 4, "have been killed, you're at ", GameEvents.count("enemy_died"))
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
+	#GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 4, self, "wave2")
 
 
 	# fight fight fight
@@ -255,8 +259,8 @@ func wave2():
 	GameStatus.PLAYERHURT_ENABLED = true
 
 	# wait for wave 2 to have died
-	print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
+	#print("wave2_backup once ", GameEvents.count("enemy_died") + 2, "have been killed, you're at ", GameEvents.count("enemy_died"))
+	#GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 2, self, "wave2_backup")	
 
 func thrower_health_changed(health):
 	print(health)
@@ -292,8 +296,8 @@ func wave2_backup():
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
 	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position + Vector2(60, 40)])
 	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position + Vector2(30, 100)])
-	print("DONE once ", GameEvents.count("enemy_died") + 8, " have been killed, you're at ", GameEvents.count("enemy_died"))
-	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 8, self, "after_wave2")
+	#print("DONE once ", GameEvents.count("enemy_died") + 8, " have been killed, you're at ", GameEvents.count("enemy_died"))
+	#GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 8, self, "after_wave2")
 
 func after_wave2():
 	GameStatus.MOVE_ENABLED = false
@@ -535,3 +539,25 @@ func _on_TriggerAreaLastCP_body_entered(body: Node) -> void:
 func _on_StageMusicStarter_timeout() -> void:
 	print("start stage music")
 	SoundPlayer.start_stage_music()
+
+
+func _on_Timer_timeout() -> void:
+	match(current_wave):
+		1:
+			if $YSort/Wave1Enemies.get_child_count() == 0:
+				current_wave = 2
+				wave2()
+			elif $YSort/Wave1Enemies.get_child_count() == 1:
+				yield(get_tree().create_timer(20), "timeout")
+				if current_wave == 1:
+					$YSort/Wave1Enemies.queue_free()
+					current_wave = 2
+					wave2()
+		2:
+			if $YSort/Wave2Enemies.get_child_count() == 0:
+				current_wave = 3
+				wave2_backup()
+		3:
+			if $YSort/Wave3Enemies.get_child_count() == 0:
+				current_wave = 4
+				after_wave2()

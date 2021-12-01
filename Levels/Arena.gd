@@ -47,6 +47,7 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	if GameEvents.ARENA_LAST_CHECKPOINT:
+		print("start stage music")
 		SoundPlayer.start_stage_music()
 	else:
 		SoundPlayer.start_music()
@@ -114,8 +115,8 @@ func start_from_last_checkpoint():
 	w1_ant4.queue_free()
 	w2_pho1.queue_free()
 	w2_pho2.queue_free()
-	SoundPlayer.stop_music()
-	SoundPlayer.start_stage_music()
+#	SoundPlayer.stop_music()
+#	SoundPlayer.start_stage_music()
 
 func shotcaller_post_fight():
 	$ScriptedCamera.slide_to_object(shot_caller, 0.5)

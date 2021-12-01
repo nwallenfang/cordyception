@@ -2,6 +2,7 @@ extends Node2D
 class_name StagBeetle
 
 onready var origin := $Origin as Node2D
+onready var speech := $Origin/SpeechBubble as SpeechBubble
 onready var projectile_origin := $Origin/ProjectileOrigin as Node2D
 onready var mandible_point := $Origin/MandiblePoint as Node2D
 onready var swipe_hitbox := $Origin/SwipeHitbox as Area2D
@@ -44,7 +45,7 @@ func boss_health_changed():
 	GameStatus.CURRENT_UI.boss_healthbar.health = health
 
 func boss_health_zero():
-	$SpeechBubble.set_text("ARRRGHGHHGH!! I'M DEAD.")
+	speech.set_text("ARRRGHGHHGH!! I'M DEAD.")
 	$StateMachine.enabled = false
 	sprite.playing = false
 	$Tween.interpolate_property(self, "scale", scale, Vector2(1.2, 1.2), 2)

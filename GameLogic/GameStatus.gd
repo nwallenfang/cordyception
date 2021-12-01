@@ -4,7 +4,7 @@ extends Node
 export var AUTO_ENEMY_BEHAVIOR := false
 var const_delta = 1.0 / 60
 export var PLAYER_MAX_HEALTH := 5
-export var PLAYER_DASH_ACC := 50000.0
+export var PLAYER_DASH_ACC := 59000.0
 export var PLAYER_PROJECTILE_DAMAGE := 7
 export var PLAYER_PROJECTILE_KNOCKBACK := 70000.0
 export var PLAYER_POISON_DAMAGE := 1

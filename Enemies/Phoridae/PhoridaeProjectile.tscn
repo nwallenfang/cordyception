@@ -186,7 +186,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=21]
 resource_name = "reset"
 length = 0.1
 tracks/0/type = "value"
@@ -238,7 +238,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=22]
 radius = 51.5024
 
 [node name="PhoridaeProjectile" type="Node2D"]
@@ -292,10 +292,10 @@ shape = SubResource( 19 )
 [node name="FadePlayer" type="AnimationPlayer" parent="."]
 autoplay = "reset"
 anims/fade = SubResource( 20 )
-anims/reset = SubResource( 22 )
+anims/reset = SubResource( 21 )
 
 [node name="Lifetime" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.5
 
 [node name="SoftCollision" type="Area2D" parent="."]
 visible = false
@@ -303,7 +303,7 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

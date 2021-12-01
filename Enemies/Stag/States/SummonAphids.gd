@@ -18,11 +18,11 @@ func process(delta, first_time_entering):
 			back_to_idle()
 			return
 		# maybe play a whistling sound
-		parent.play_animation("shoot_rapid")
+		parent.play_animation("shoot_second")
 		# instance aphids
-		yield(get_tree().create_timer(1.1), "timeout")
+		yield(get_tree().create_timer(0.8), "timeout")
 		spawn_red_aphid()
-		yield(get_tree().create_timer(.5), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		spawn_red_aphid()
 		yield(parent.sprite, "animation_finished")
 		back_to_idle()

@@ -10,6 +10,13 @@ export var max_conseq_turns := 1
 func process(delta, first_time_entering):
 	parent = parent as StagBeetle
 	if first_time_entering:
+		if randi() % 3 == 0:
+			parent.play_animation("idle_short")
+			yield(parent.sprite, "animation_finished")
+		elif randi() % 5 == 0:
+			parent.play_animation("idle")
+			yield(parent.sprite, "animation_finished")
+		
 		var direction_to_player = GameStatus.CURRENT_PLAYER.global_position.direction_to(parent.global_position)
 		var angle_deg = parent.normalize_angle(rad2deg(direction_to_player.angle()) + 90 - parent.sprite_rotation)
 		

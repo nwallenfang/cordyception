@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/phoridae_shoot.ogg-5216b8aad92248771241ff4110bed0a1.oggstr"
+
+[deps]
+
+source_file="res://Sound/phoridae_shoot.ogg"
+dest_files=[ "res://.import/phoridae_shoot.ogg-5216b8aad92248771241ff4110bed0a1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

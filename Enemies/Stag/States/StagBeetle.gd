@@ -37,6 +37,7 @@ func laecherliche_anti_lag_funktion():
 		yield(get_tree().create_timer(.1), "timeout")
 	sprite.position = old_pos
 	sprite.modulate = Color.white
+	play_animation("idle")
 
 func _process(delta):
 	$StateMachine.process(delta)

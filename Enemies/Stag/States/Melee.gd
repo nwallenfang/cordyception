@@ -1,7 +1,7 @@
 extends AbstractState
 
 
-export var MELEE_RANGE := 650.0
+export var MELEE_RANGE := 2650.0
 
 # question is: where will the check be whether melee attack makes sense?
 # have it be in this script for now
@@ -11,7 +11,7 @@ func process(delta, first_time_entering):
 	if first_time_entering:
 		var distance_to_player = GameStatus.CURRENT_PLAYER.global_position.distance_to(parent.global_position)
 		if distance_to_player > MELEE_RANGE:
-			state_machine.transition_deferred("Idle")
+			back_to_idle()
 			return
 		
 		# TODO hitboxes!
@@ -24,6 +24,9 @@ func process(delta, first_time_entering):
 		# normal melee attack is a bit boring so spawn some projectiles as well
 		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
 		$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
+		if randi() % 4 == 0:
+			$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
+			$PhoridaeProjectileSpawner.spawn_projectile_here(parent.mandible_point.global_position)
 		yield(parent.sprite, "animation_finished")
 		parent.melee_hitbox.set_deferred("monitoring", false) 
 		parent.melee_hitbox.set_deferred("monitorable", false) 

@@ -118,9 +118,9 @@ func start_from_last_checkpoint():
 	w1_ant4.queue_free()
 	w2_pho1.queue_free()
 	w2_pho2.queue_free()
-#	SoundPlayer.stop_music()
-#	SoundPlayer.start_stage_music()
-
+	yield(get_tree().create_timer(2.0), "timeout")
+	SoundPlayer.start_stage_music()
+	
 func shotcaller_post_fight():
 	$ScriptedCamera.slide_to_object(shot_caller, 0.5)
 	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.", 1.0)

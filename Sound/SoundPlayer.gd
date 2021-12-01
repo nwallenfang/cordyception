@@ -85,7 +85,19 @@ func switch_back_from_psychdelic():
 	
 #	tween_in.start()
 	tween_out.start()
-	
+
+func stop_music_NOW():
+	if $Psychedelic.playing:
+		$Psychedelic.stop()
+	if $Ambient.playing:
+		$Ambient.stop()
+	if $Combat.playing:
+		$Combat.stop()
+	if $BossMusic.playing:
+		$BossMusic.stop()
+	if $Stage.playing:
+		$Stage.stop()
+
 func stop_music():
 	tween_out.reset_all()
 	if $Psychedelic.playing:
@@ -103,7 +115,11 @@ func stop_stage_music():
 	tween_out.interpolate_property($Stage, "volume_db", stage_dialog_volume, -80, fadeout_duration, Tween.TRANS_CIRC, Tween.EASE_IN, 0)
 	tween_out.start()
 	
+func stop_stage_music_NOW():
+	$Stage.stop()
+
 func start_music():
+	tween_in.reset_all()
 	if combat:
 		tween_in.interpolate_property($Combat, "volume_db", -80, combat_max_volume, fadeout_duration, Tween.TRANS_CIRC, Tween.EASE_OUT, 0)
 		$Combat.play()
@@ -114,6 +130,7 @@ func start_music():
 		
 
 func start_stage_music():
+	tween_out.reset_all()
 	tween_out.interpolate_property($Combat, "volume_db", combat_max_volume, -80, fadeout_duration, Tween.TRANS_SINE, Tween.EASE_IN, 0)
 	$Stage.play()
 	tween_in.reset_all()

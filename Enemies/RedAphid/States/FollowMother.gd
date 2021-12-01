@@ -1,7 +1,9 @@
 extends AbstractState
 
+export var follow_acc_fast := 130000.0
 export var follow_acc_base := 100000.0
 export var follow_acc_slow := 30000.0
+export var run_distance := 600.0
 var follow_acc: float = follow_acc_base
 export var chance_to_get_distracted := 0.0015
 
@@ -34,4 +36,6 @@ func process(delta, first_time_entering):
 		var direction = parent.global_position.direction_to(parent.mother.global_position)
 		parent.play_walk_animation(direction)
 		var acc = direction * follow_acc * GameStatus.const_delta
+		if distance > run_distance:
+			acc = direction * follow_acc_fast * GameStatus.const_delta
 		parent.add_acceleration(acc)

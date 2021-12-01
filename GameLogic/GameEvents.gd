@@ -37,6 +37,8 @@ signal player_died
 signal checkpoint_collected
 signal grass_rustle
 
+var ARENA_LAST_CHECKPOINT := false
+
 var DEATH_COUNT := 0 setget set_death_count
 func set_death_count(new_count):
 	DEATH_COUNT = new_count

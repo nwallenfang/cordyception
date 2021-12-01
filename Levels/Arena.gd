@@ -99,12 +99,27 @@ func _ready():
 	GameEvents.connect("shotcaller_post_fight", self, "shotcaller_post_fight")
 	
 	thorn_shooter.connect("died", self, "shooter_died")
+	
+	if GameEvents.ARENA_LAST_CHECKPOINT:
+		start_from_last_checkpoint()
 
+func start_from_last_checkpoint():
+	wave2_backup()
+	GameStatus.SHOOT_ENABLED = true
+	w1_ant1.queue_free()
+	w1_ant2.queue_free()
+	w1_ant3.queue_free()
+	w1_ant4.queue_free()
+	w2_pho1.queue_free()
+	w2_pho2.queue_free()
+	SoundPlayer.stop_music()
+	SoundPlayer.start_stage_music()
 
 func shotcaller_post_fight():
-	$ScriptedCamera.slide_to_object(shot_caller, 0.4)
-	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.")
-	$ScriptedCamera.back_to_player(0.4)
+	$ScriptedCamera.slide_to_object(shot_caller, 0.5)
+	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.", 1.0)
+	yield(shot_caller_speech, "dialog_completed")
+	$ScriptedCamera.back_to_player(0.5)
 
 func learn_shoot():
 	cordy.say_bottom("I have prepared a new skill for you to use.")
@@ -152,9 +167,9 @@ func wave1():
 	yield(shot_caller_speech, "dialog_completed")
 	shot_caller_speech.set_text("We've been expecting you, scoundrel.", 1.5)
 	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 0.6) 
+	shot_caller_speech.set_text("There is an extraordinary cast of brave soldiers waiting..", 1.6) 
 	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 0.9)
+	shot_caller_speech.set_text("..who will ensure your inevitable downfall!", 1.5)
 	yield(shot_caller_speech, "dialog_completed")
 
 	shot_caller_speech.set_text("Enter the Arena, fellow ants!", 0.6)	
@@ -205,16 +220,16 @@ func wave2():
 	GameStatus.PLAYERHURT_ENABLED = false
 	$ScriptedCamera.slide_to_object(shot_caller, 1.8)
 	yield($ScriptedCamera, "slide_finished")
-	shot_caller_speech.set_text("Well.. let's consider that warm-up done..", 1.0)
+	shot_caller_speech.set_text("Well.. let's consider that warm-up done..", 1.5)
 	yield(shot_caller_speech, "dialog_completed")
 	cordy.say("Pfft")
 	cordy.set_eyes("bored")
-	shot_caller_speech.set_text("Time to bring on the real deal, the mighty fine Phoridae!", 1.5)
+	shot_caller_speech.set_text("Time to bring on the real deal, the mighty fine Phoridae!", 1.9)
 	yield(shot_caller_speech, "dialog_completed")
-	shot_caller_speech.set_text("No mere worker could dodge their magic shots.", 1.5)
+	shot_caller_speech.set_text("No mere worker could dodge their magic shots.", 1.8)
 	yield(shot_caller_speech, "dialog_completed")
 	cordy.set_eyes("idle")
-	cordy.say("Ignore him,rules for workers don't apply to you anymore.")
+	cordy.say("Ignore him, rules for workers don't apply to you anymore.")
 
 	# camera again to gate
 	$ScriptedCamera.slide_away_to($Positions/GatePass.global_position, 1.8)
@@ -222,7 +237,7 @@ func wave2():
 
 	# have the wave2 enemies walk in
 	w2_pho1.follow_path_array_then_fight([$Positions/Wave21.global_position])
-	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_pho2.follow_path_array_then_fight([$Positions/Wave21.global_position + Vector2(50, 30)])
 
 	yield(get_tree().create_timer(3.4), "timeout")
 
@@ -248,6 +263,8 @@ func boss_dead():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 
 func wave2_backup():
+	$Checkpoints/Checkpoint6/TriggerArea.monitorable = true
+	$Checkpoints/Checkpoint6/TriggerArea.monitoring = true
 	w2_raphid1.visible = true
 	w2_raphid2.visible = true
 	w2_raphid3.visible = true
@@ -270,8 +287,8 @@ func wave2_backup():
 	w2_thrower.connect("boss_health_changed", self, "thrower_health_changed")
 	w2_thrower.connect("died", self, "boss_dead")
 	w2_pho3.follow_path_array_then_fight([$Positions/Wave21.global_position])
-	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position])
-	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position])
+	w2_pho4.follow_path_array_then_fight([$Positions/Wave21.global_position + Vector2(60, 40)])
+	w2_thrower.follow_path_array_then_fight([$Positions/Wave21.global_position + Vector2(30, 100)])
 	print("DONE once ", GameEvents.count("enemy_died") + 8, " have been killed, you're at ", GameEvents.count("enemy_died"))
 	GameEvents.connect_to_event_count('enemy_died', GameEvents.count("enemy_died") + 8, self, "after_wave2")
 
@@ -327,23 +344,29 @@ func shroom_to_shroom_talk(speech_position: Vector2):
 	if shroom_to_shroom_aborted:
 		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("Uh-huh..", 0.6)
+	$OtherShroomSpeech.set_text("Uh-huh.. I see you've got a new host", 1.5)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
 		SoundPlayer.switch_back_from_psychdelic()
 		return
 	cordy.set_eyes("happy")
+	cordy.say("Indeed", .7)
+	yield(cordy, "speech_done")
+	if shroom_to_shroom_aborted:
+		SoundPlayer.switch_back_from_psychdelic()
+		return
+	cordy.set_eyes("idle")
 	cordy.say("What have you been up to?", 1.2)
 	yield(cordy, "speech_done")
 	if shroom_to_shroom_aborted:
 		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("You know, expanding my mycelium..", 0.9)
+	$OtherShroomSpeech.set_text("You know, expanding my mycelium..", 1.0)
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
 		SoundPlayer.switch_back_from_psychdelic()
 		return
-	$OtherShroomSpeech.set_text("Sharing some spores..", 0.8)
+	$OtherShroomSpeech.set_text("Sharing some spores..", 1.0)
 	cordy.set_eyes("bored")
 	yield($OtherShroomSpeech, "dialog_completed")
 	if shroom_to_shroom_aborted:
@@ -440,10 +463,10 @@ func trigger_phoridae():
 
 
 func thorn_camera():
-	cordy.set_eyes("happy")
-	cordy.say_bottom("Now you can stop these thorny shenanigans.")
-	yield(cordy, "speech_done")
-	cordy.set_eyes("idle")
+#	cordy.set_eyes("happy")
+#	cordy.say_bottom("Now you can stop these thorny shenanigans.")
+#	yield(cordy, "speech_done")
+#	cordy.set_eyes("idle")
 	$Detector/DynamicCameraTrigger/DynamicPlayerCam.target = thorn_shooter
 	$ScriptedCamera.follow($Detector/DynamicCameraTrigger/DynamicPlayerCam)
 
@@ -500,3 +523,7 @@ func _on_OutOfBounds2_body_entered(body: Node) -> void:
 		yield(cordy,"speech_done")
 		cordy.say_bottom("There is really nothing out here...")
 
+
+
+func _on_TriggerAreaLastCP_body_entered(body: Node) -> void:
+	GameEvents.ARENA_LAST_CHECKPOINT = true

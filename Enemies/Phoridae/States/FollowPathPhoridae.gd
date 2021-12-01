@@ -2,7 +2,7 @@ extends AbstractState
 
 export var FOLLOW_ACCELERATION := 140000.0
 export var STOP_DISTANCE := 30.0
-export var PLAYER_DETECT_DISTANCE := 240.0
+export var PLAYER_DETECT_DISTANCE := 500.0
 
 # should be a global position to make sure
 var target_position: Vector2

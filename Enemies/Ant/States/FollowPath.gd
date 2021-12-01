@@ -4,7 +4,7 @@ export var FOLLOW_ACCELERATION := 140000.0
 export var STOP_DISTANCE := 30.0
 # if this is wanted it should be set from outside
 export var stop_when_player_near = false
-export var PLAYER_DETECT_DISTANCE := 120.0
+export var PLAYER_DETECT_DISTANCE := 500.0
 
 
 # should be a global position to make sure

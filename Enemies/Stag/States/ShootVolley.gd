@@ -8,7 +8,7 @@ var direction: float # will be set from process
 func shoot_projectiles():
 	# wait for shoot delay
 	$EnemyProjectileSpawner.global_position = parent.projectile_origin.global_position
-	$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 40, 6, 0.3, 3)
+	$EnemyProjectileSpawner.spawn_cone_projectile_volley(direction, 45, 6, 0.3, 3)
 
 
 func process(delta: float, first_time_entering: bool) -> void:

@@ -38,3 +38,7 @@ func start() -> void:
 
 func _on_Lifetime_timeout():
 	$FadePlayer.play("fade")
+
+func _ready() -> void:
+	$AudioStreamPlayer.play()
+

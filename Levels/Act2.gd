@@ -327,7 +327,6 @@ func room_cutscene():
 	$ScriptedCamera.back_to_player()
 	yield($ScriptedCamera, "back_at_player")
 	
-	GameEvents.connect_to_event_count("enemy_died", GameEvents.count("enemy_died") + 9, self, "after_room_fight")
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
@@ -429,3 +428,12 @@ func _on_TransitionZone_body_entered(body: Node) -> void:
 
 func _on_first_CheckPoint_entered(body: Node) -> void:
 	SoundPlayer.switch_back_from_psychdelic()
+
+var done = false
+func _on_YSortTimer_timeout() -> void:
+	if not done:
+		var node = $YSort/Room/Enemies as Node2D
+		if node.get_child_count() == 0:
+			after_room_fight()
+			done = true
+			$YSortTimer.stop()

@@ -2018,6 +2018,9 @@ polygon = PoolVector2Array( 11863.7, -1005.51, 14256.7, -1562.51, 14364.7, -1463
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 13380.7, -481.51, 14086.7, -543.51, 14116.7, -481.51, 13443.7, -410.51 )
 
+[node name="YSortTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Tutorials/TutorialDash/Area2D" to="." method="on_dash_tutorial_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint21/TriggerArea" to="." method="_on_first_CheckPoint_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint21/TriggerArea" to="Checkpoints/Checkpoint21" method="_on_TriggerArea_body_entered"]
@@ -2035,6 +2038,7 @@ polygon = PoolVector2Array( 13380.7, -481.51, 14086.7, -543.51, 14116.7, -481.51
 [connection signal="body_entered" from="Detector/RightAgitator" to="." method="_on_RightAgitator_body_entered"]
 [connection signal="body_entered" from="Detector/ShroomTrigger" to="." method="_on_ShroomTrigger_body_entered"]
 [connection signal="body_entered" from="Detector/TransitionZone" to="." method="_on_TransitionZone_body_entered"]
+[connection signal="timeout" from="YSortTimer" to="." method="_on_YSortTimer_timeout"]
 
 [editable path="YSort/StickDust"]
 [editable path="YSort/StickDust2"]

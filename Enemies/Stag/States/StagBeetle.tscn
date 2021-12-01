@@ -3260,7 +3260,7 @@ position = Vector2( -50.3448, 147.586 )
 position = Vector2( -140.69, -100 )
 frames = SubResource( 554 )
 animation = "idle"
-frame = 106
+frame = 10
 playing = true
 centered = false
 

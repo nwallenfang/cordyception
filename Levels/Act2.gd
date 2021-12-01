@@ -125,11 +125,11 @@ var first_time_entering = true
 func _on_ShooterTrigger_body_entered(body):
 	if first_time_entering:
 		first_time_entering = false
-		shooter1.state_machine.enabled = true
 		cordy.say("Dashing makes you completely invincible!")
 		cordy.set_eyes("happy")
 		yield(cordy, "speech_done")
 		cordy.say("At least for a short time..", 1.5)
+		shooter1.state_machine.enabled = true
 		cordy.set_eyes("bored")
 		yield(cordy, "speech_done")
 		cordy.set_eyes("idle")

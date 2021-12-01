@@ -1589,7 +1589,7 @@ scale = Vector2( 1, 1 )
 material = SubResource( 1 )
 texture = ExtResource( 10 )
 hframes = 54
-frame = 18
+frame = 19
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2( 0.5, -2 )

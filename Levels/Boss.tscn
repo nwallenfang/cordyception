@@ -341,8 +341,8 @@ position = Vector2( -1731.03, 585.374 )
 rotation = 0.695286
 
 [node name="Thorn3" parent="YSort/DecorationNBoundaries" instance=ExtResource( 21 )]
-position = Vector2( -148.142, 871.965 )
-rotation = 6.03299
+position = Vector2( -252.136, 856.927 )
+rotation = 5.5024
 
 [node name="GrassBlade10" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
 position = Vector2( -1166.29, 3128.09 )

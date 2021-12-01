@@ -109,6 +109,7 @@ func _ready():
 		start_from_last_checkpoint()
 
 func start_from_last_checkpoint():
+	current_wave = 3
 	wave2_backup()
 	GameStatus.SHOOT_ENABLED = true
 	w1_ant1.queue_free()
@@ -561,3 +562,9 @@ func _on_Timer_timeout() -> void:
 			if $YSort/Wave3Enemies.get_child_count() == 0:
 				current_wave = 4
 				after_wave2()
+			elif $YSort/Wave1Enemies.get_child_count() == 1:
+				yield(get_tree().create_timer(20), "timeout")
+				if current_wave == 1:
+					$YSort/Wave1Enemies.queue_free()
+					current_wave = 2
+					wave2()

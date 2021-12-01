@@ -1289,29 +1289,28 @@ scale = Vector2( 3, 3 )
 position = Vector2( 3095.58, -6389.75 )
 scale = Vector2( 2.5, 2.5 )
 
-[node name="Sprite" parent="YSort/Wave3Enemies/AntThrower" index="0"]
+[node name="Sprite" parent="YSort/Wave3Enemies/AntThrower" index="1"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 18 )
 position = Vector2( 0.614258, 0.000488281 )
-frame = 19
 
-[node name="Hitbox" parent="YSort/Wave3Enemies/AntThrower" index="2"]
+[node name="Hitbox" parent="YSort/Wave3Enemies/AntThrower" index="3"]
 position = Vector2( 0.5, -1.99976 )
 scale = Vector2( 1, 1 )
 
-[node name="Hurtbox" parent="YSort/Wave3Enemies/AntThrower" index="3"]
+[node name="Hurtbox" parent="YSort/Wave3Enemies/AntThrower" index="4"]
 position = Vector2( 0.5, -1.99976 )
 scale = Vector2( 1, 1 )
 
-[node name="SoftCollision" parent="YSort/Wave3Enemies/AntThrower" index="4"]
+[node name="SoftCollision" parent="YSort/Wave3Enemies/AntThrower" index="5"]
 position = Vector2( 0.5, -1.99976 )
 scale = Vector2( 1, 1 )
 
-[node name="PhysicsCollisionShape" parent="YSort/Wave3Enemies/AntThrower" index="5"]
+[node name="PhysicsCollisionShape" parent="YSort/Wave3Enemies/AntThrower" index="6"]
 position = Vector2( 0.5, -1.99976 )
 scale = Vector2( 1, 1 )
 
-[node name="AnimationTree" parent="YSort/Wave3Enemies/AntThrower" index="15"]
+[node name="AnimationTree" parent="YSort/Wave3Enemies/AntThrower" index="16"]
 parameters/playback = SubResource( 19 )
 
 [node name="Phoridae3" parent="YSort/Wave3Enemies" instance=ExtResource( 37 )]
@@ -1625,6 +1624,7 @@ autostart = true
 [editable path="YSort/PreArena/AphidPathWithAphid7"]
 [editable path="YSort/PreArena/AphidPathWithAphid7/Aphid"]
 [editable path="YSort/Wave3Enemies/AntThrower"]
+[editable path="YSort/Wave3Enemies/AntThrower/Shadows"]
 [editable path="YSort/Wave3Enemies/AntThrower/Hurtbox"]
 [editable path="YSort/Wave3Enemies/AntThrower/StateMachine/Sprint/DashStuff"]
 [editable path="YSort/Wave3Enemies/AntThrower/StateMachine/ShootRadial/EnemyProjectileSpawner"]

@@ -159,9 +159,11 @@ func dandelion_dialog():
 	yield($ScriptedCamera, "slide_finished")
 	climber.get_node("SpeechBubble").set_text("Man, look at that cute aphid sitting on there..", 1.5)
 	yield(climber.get_node("SpeechBubble"), "dialog_completed")
-	ant1.get_node("SpeechBubble").set_text("I could really go for some of its sweet nectar.", 1.5)
+	ant1.get_node("SpeechBubble").set_text("I could really go for some of its [color=#00bf00]sweet nectar[/color].", 1.5)
 	yield(ant1.get_node("SpeechBubble"), "dialog_completed")
-	climber.get_node("SpeechBubble").set_text("Me too... Come down you LITTLE SHIT")
+	climber.get_node("SpeechBubble").set_text("Me too...", 1.0)
+	yield(climber.get_node("SpeechBubble"), "dialog_completed")
+	climber.get_node("SpeechBubble").set_text("Come down you [shake]LITTLE SHIT![/shake]")
 	var comedic_timer = get_tree().create_timer(1.5)
 	yield(comedic_timer, "timeout")
 	# manually configure the camera to go back just in time for comedic timing
@@ -234,7 +236,7 @@ func dandelion_attack():
 	ant1_speech.set_text("Hey, looks like you could lend us a hand.", 2.3)
 	yield(get_tree().create_timer(2.3), "timeout")
 	ant1_speech.stop_and_blend()
-	ant2_speech.set_text("DON'T TALK TO THAT FREAK. SHE'S INFESTED!", 2.2)
+	ant2_speech.set_text("DON'T TALK TO THAT [color=#ff0000][shake]FREAK[/shake][/color]. SHE'S [wave]INFESTED![/wave]", 2.2)
 	yield(ant2_speech, "dialog_completed")
 	# interruption?
 	climber_speech.set_text("Disgusting!", 0.9)

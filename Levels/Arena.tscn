@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -294,22 +294,25 @@ extents = Vector2( 3043, 130 )
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 1436.74, 31.9026 )
 
-[sub_resource type="CircleShape2D" id=22]
-radius = 1180.02
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 3649, 2787 )
 
 [sub_resource type="CircleShape2D" id=23]
+radius = 1180.02
+
+[sub_resource type="CircleShape2D" id=24]
 radius = 309.958
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 134.778, 972.412 )
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 1165.02, 95.6447 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=27]
 extents = Vector2( 659.301, 95.6447 )
 
-[sub_resource type="CircleShape2D" id=27]
+[sub_resource type="CircleShape2D" id=28]
 radius = 638.614
 
 [node name="Arena" type="Node2D"]
@@ -955,7 +958,6 @@ scale = Vector2( 2.5, 2.5 )
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 7 )
 position = Vector2( 0.614258, 0.000488281 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99976 )
@@ -1399,6 +1401,17 @@ shape = SubResource( 21 )
 [node name="Position" parent="Checkpoints/Checkpoint4" index="1"]
 position = Vector2( 20.9763, -283.4 )
 
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource( 32 )]
+position = Vector2( 890.184, -4012.98 )
+
+[node name="TriggerArea" parent="Checkpoints/Checkpoint6" index="0"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint6/TriggerArea" index="0"]
+visible = false
+shape = SubResource( 22 )
+
 [node name="Detector" type="Node" parent="."]
 
 [node name="Wave1TriggerZone" type="Area2D" parent="Detector"]
@@ -1408,7 +1421,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( -24.9, -1131.54 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -1417,7 +1430,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 23 )
+shape = SubResource( 24 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -1426,7 +1439,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 23 )
+shape = SubResource( 24 )
 
 [node name="ShroomSkillTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -1437,7 +1450,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger"]
 position = Vector2( 344.667, -56.042 )
 rotation = -0.581763
-shape = SubResource( 24 )
+shape = SubResource( 25 )
 
 [node name="ShroomSkillTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 1422.8, 70.5942 )
@@ -1448,7 +1461,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger2"]
 position = Vector2( 269.965, -112.9 )
 rotation = 0.397483
-shape = SubResource( 25 )
+shape = SubResource( 26 )
 
 [node name="PrePhoTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 903.661, -605.343 )
@@ -1459,7 +1472,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PrePhoTrigger"]
 position = Vector2( 240.989, -463.287 )
 rotation = -0.0188068
-shape = SubResource( 26 )
+shape = SubResource( 27 )
 
 [node name="DynamicCameraTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
@@ -1470,7 +1483,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraTrigger"]
 position = Vector2( -26.23, 472.49 )
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 
@@ -1485,7 +1498,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShotcallerPostFightTrigger"]
 position = Vector2( -26.23, 472.49 )
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="DynamicPlayerCam" parent="Detector/ShotcallerPostFightTrigger" instance=ExtResource( 40 )]
 
@@ -1500,7 +1513,7 @@ modulate = Color( 0.168627, 0.0509804, 0.0509804, 1 )
 position = Vector2( -193.997, 434.814 )
 rotation = -0.450141
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 
 [node name="OutOfBounds" type="Area2D" parent="Detector"]
 position = Vector2( -2645, -1447 )
@@ -1558,6 +1571,7 @@ bus = "Music"
 
 [connection signal="body_entered" from="Checkpoints/Checkpoint5/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint4/TriggerArea" to="." method="_on_TriggerAreaAtBeginning_body_entered"]
+[connection signal="body_entered" from="Checkpoints/Checkpoint6/TriggerArea" to="." method="_on_TriggerAreaLastCP_body_entered"]
 [connection signal="body_entered" from="Detector/Wave1TriggerZone" to="." method="_on_Wave1TriggerZone_body_entered"]
 [connection signal="body_entered" from="Detector/ShroomDialogZone" to="." method="_on_ShroomDialogZone_body_entered"]
 [connection signal="body_entered" from="Detector/ShroomDialogZone2" to="." method="_on_ShroomDialogZone2_body_entered"]
@@ -1605,5 +1619,6 @@ bus = "Music"
 [editable path="YSort/PreArena/AphidPathWithAphid7/Aphid"]
 [editable path="Checkpoints/Checkpoint5"]
 [editable path="Checkpoints/Checkpoint4"]
+[editable path="Checkpoints/Checkpoint6"]
 [editable path="Detector/DynamicCameraTrigger/DynamicPlayerCam"]
 [editable path="Tutorials/TutorialShoot"]

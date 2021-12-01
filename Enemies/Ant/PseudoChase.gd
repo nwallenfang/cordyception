@@ -29,6 +29,7 @@ func process(delta: float, first_time_entering: bool):
 	if parent.animation_tree != null:
 		# set idle blend position as last movement blend position
 		parent.animation_tree.set("parameters/Walk/blend_position", direction_vector)
+		parent.update_shadow(direction_vector)
 
 	
 	parent.add_acceleration(GameStatus.const_delta * CHASE_ACCELERATION * direction_vector)

@@ -57,6 +57,7 @@ func begin_sprinting(delta: float):
 	if parent.animation_tree != null:
 		# set idle blend position as last movement blend position
 		parent.animation_tree.set("parameters/Idle/blend_position", sprint_direction)
+		parent.update_shadow(sprint_direction)
 
 
 	# TODO polish this
@@ -86,6 +87,7 @@ func process(delta: float, first_time_entering: bool):
 			if parent.animation_tree != null:
 				# set idle blend position as last movement blend position
 				parent.animation_tree.set("parameters/Walk/blend_position", sprint_direction)
+				parent.update_shadow(sprint_direction)
 				parent.animation_state.travel("Walk")
 			$SprintMovementTween.start()
 			$DashStuff.start_dash_effects()

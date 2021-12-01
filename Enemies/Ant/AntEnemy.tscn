@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://Enemies/Ant/AntEnemy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Healthbar.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Enemies/Ant/States/ThrowAphid.gd" type="Script" id=25]
 [ext_resource path="res://Enemies/Ant/States/ShootRadial.gd" type="Script" id=26]
 [ext_resource path="res://Enemies/Ant/PseudoChase.gd" type="Script" id=27]
+[ext_resource path="res://Shadows/AntShadows.tscn" type="PackedScene" id=28]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -1581,6 +1582,9 @@ scale = Vector2( 1.45, 1.45 )
 collision_layer = 0
 script = ExtResource( 1 )
 
+[node name="Shadows" parent="." instance=ExtResource( 28 )]
+scale = Vector2( 1, 1 )
+
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
 texture = ExtResource( 10 )
@@ -1848,6 +1852,7 @@ position = Vector2( -20, -6.89655 )
 [connection signal="add_dash_frame" from="StateMachine/Sprint/DashStuff" to="StateMachine/Sprint" method="_on_DashStuff_add_dash_frame"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_IdleTimer_timeout"]
 
+[editable path="Shadows"]
 [editable path="Hurtbox"]
 [editable path="StateMachine/Sprint/DashStuff"]
 [editable path="StateMachine/ShootRadial/EnemyProjectileSpawner"]

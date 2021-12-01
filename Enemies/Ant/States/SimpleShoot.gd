@@ -18,6 +18,7 @@ func start_shooting_single_projectile(target_pos: Vector2):  # outside of state 
 	direction = ($EnemyProjectileSpawner.global_position - target_pos).angle() - PI/2
 	parent.animation_tree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(direction))
 	parent.animation_tree.set("parameters/Idle/blend_position", Vector2.UP.rotated(direction))
+	parent.update_shadow(Vector2.UP.rotated(direction))
 	parent.animation_state.travel("Shoot")
 	$ScriptedPlayer.play("shoot_single")
 
@@ -32,6 +33,7 @@ func process(delta: float, first_time_entering: bool):
 		if parent.animation_tree != null:
 			parent.animation_tree.set("parameters/Idle/blend_position", Vector2.UP.rotated(direction))
 			parent.animation_tree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(direction))
+			parent.update_shadow(Vector2.UP.rotated(direction))
 
 		# go to shoot animation
 		if parent.animation_state != null:

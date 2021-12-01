@@ -14,7 +14,7 @@ onready var state_machine := $StateMachine as StagStateMachine
 
 var sprite_rotation := 0.0 setget set_rotation
 
-export var MAX_HEALTH := 136 setget set_max_health
+export var MAX_HEALTH := 140 setget set_max_health
 onready var health := MAX_HEALTH setget set_health
 export var DAMAGE := 1
 

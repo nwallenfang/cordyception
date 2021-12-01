@@ -2,7 +2,7 @@ extends Node2D
 class_name Projectile
  
 const FRIENDLY_COLOR := Color(38, 229, 10)
-const ENEMY_COLOR := Color.brown
+#const ENEMY_COLOR := Color.brown
 
 const IS_PIERCING := false  # whether or not to be destroyed when hitting something
 export var SPEED := 450 setget set_speed

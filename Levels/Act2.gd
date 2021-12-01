@@ -71,7 +71,7 @@ func on_dash_tutorial_entered(body: Node):
 
 func shroom_dash_learned():
 	cordy.set_eyes("happy")
-	cordy.say("I've got another trick up your sleeve", 0.8)
+	cordy.say("I've got another trick up your sleeve", 1.3)
 
 func reset():
 	pass
@@ -112,6 +112,8 @@ func scout_dialog():
 	cordy.set_eyes("bored")
 	$ScriptedCamera.back_to_player(1.0)
 	yield($ScriptedCamera, "back_at_player")
+	cordy.set_eyes("idle")
+	cordy.say("Follow him!")
 	
 	# TODO calculate beginning enemy_dead into this
 	
@@ -123,17 +125,14 @@ var first_time_entering = true
 func _on_ShooterTrigger_body_entered(body):
 	if first_time_entering:
 		first_time_entering = false
+		shooter1.state_machine.enabled = true
 		cordy.say("Dashing makes you completely invincible!")
 		cordy.set_eyes("happy")
 		yield(cordy, "speech_done")
-		shooter1.state_machine.enabled = true
 		cordy.say("At least for a short time..", 1.5)
 		cordy.set_eyes("bored")
 		yield(cordy, "speech_done")
-		yield()
 		cordy.set_eyes("idle")
-		
-
 
 
 func _on_StickClose_body_entered(body: Node) -> void:

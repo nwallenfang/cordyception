@@ -23,6 +23,7 @@ signal boss_health_zero
 signal died
 
 func _ready():
+	update_shadow(Vector2.DOWN)
 	initial_position = global_position
 	$Healthbar.MAX_HEALTH = $EnemyStats.MAX_HEALTH
 	State = $StateMachine.State
@@ -94,9 +95,13 @@ func follow_path_array(positions: Array, stop_when_player_near=false):
 func follow_path_object(path_node):
 	was_enabled_previously = $StateMachine.enabled
 
+func update_shadow(direction: Vector2):
+	$Shadows/AnimationTree.set("parameters/blend_position", direction)
+
 func set_facing_direction(direction: Vector2):
 	# im animation tree setzen.
 	$AnimationTree.set("parameters/Idle/blend_position", direction)
+	update_shadow(direction)
 
 func handle_damage(attack, should_play_hit):
 	$EnemyStats.health -= attack.damage

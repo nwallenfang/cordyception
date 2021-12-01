@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -27,6 +27,10 @@
 [ext_resource path="res://Enemies/RedAphid/RedAphid.tscn" type="PackedScene" id=25]
 [ext_resource path="res://World/Grass/GrassBlade05.tscn" type="PackedScene" id=26]
 [ext_resource path="res://World/Grass/GrassBlade02.tscn" type="PackedScene" id=27]
+[ext_resource path="res://World/BigElements/StoneEggs.tscn" type="PackedScene" id=28]
+[ext_resource path="res://World/Thorns/Thorn3.tscn" type="PackedScene" id=29]
+[ext_resource path="res://World/Thorns/Thorn1.tscn" type="PackedScene" id=30]
+[ext_resource path="res://World/BigElements/Leafs.tscn" type="PackedScene" id=31]
 [ext_resource path="res://World/TileMaps/moss_3x3.png" type="Texture" id=43]
 
 [sub_resource type="TileSet" id=1]
@@ -193,24 +197,31 @@ z_index = 2
 
 [node name="DecorationNBoundaries" type="YSort" parent="YSort"]
 
+[node name="StoneEggs" parent="YSort/DecorationNBoundaries" instance=ExtResource( 28 )]
+position = Vector2( -183.069, 677.952 )
+rotation = 0.0644013
+z_index = 2
+
 [node name="Wood" parent="YSort/DecorationNBoundaries" instance=ExtResource( 10 )]
 position = Vector2( -443.875, -351.265 )
 rotation = 2.24739
+z_index = 1
 
 [node name="Wood2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 10 )]
 position = Vector2( -1479.53, -341.585 )
 rotation = 2.24739
+z_index = 1
 
 [node name="Stick" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
-position = Vector2( -1769.58, 750.79 )
+position = Vector2( -1645.51, 722.406 )
 rotation = -0.264901
 
 [node name="Stick7" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
-position = Vector2( -215.255, 638.765 )
+position = Vector2( 648.896, 771.263 )
 rotation = -1.61329
 
 [node name="Stick2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
-position = Vector2( -1930.08, 1170.57 )
+position = Vector2( -1806, 1142.19 )
 rotation = -1.13496
 
 [node name="Stick3" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
@@ -242,7 +253,7 @@ position = Vector2( -118.742, 1708.79 )
 rotation = -0.892062
 
 [node name="Stick11" parent="YSort/DecorationNBoundaries" instance=ExtResource( 9 )]
-position = Vector2( -32.8937, 1099.68 )
+position = Vector2( -25.2368, 1126.01 )
 rotation = -1.09744
 
 [node name="Stick12" parent="YSort/DecorationNBoundaries" instance=ExtResource( 12 )]
@@ -269,7 +280,8 @@ rotation = -1.20841
 position = Vector2( -1827.25, 1566.21 )
 
 [node name="Shroom5" parent="YSort/DecorationNBoundaries" instance=ExtResource( 14 )]
-position = Vector2( -454.354, 614.017 )
+position = Vector2( -349.191, 1002.89 )
+z_index = 2
 color = 1
 
 [node name="Shroom6" parent="YSort/DecorationNBoundaries" instance=ExtResource( 14 )]
@@ -281,18 +293,18 @@ position = Vector2( -114.828, 2020.78 )
 color = 2
 
 [node name="Shroom2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 15 )]
-position = Vector2( -136.292, 1205.7 )
+position = Vector2( -152.307, 1312.96 )
 color = 2
 
 [node name="Shroom9" parent="YSort/DecorationNBoundaries" instance=ExtResource( 15 )]
 position = Vector2( -425.985, 2886.84 )
 
 [node name="Shroom8" parent="YSort/DecorationNBoundaries" instance=ExtResource( 15 )]
-position = Vector2( -1839.53, 916.485 )
+position = Vector2( -1715.46, 888.101 )
 color = 1
 
 [node name="Shroom4" parent="YSort/DecorationNBoundaries" instance=ExtResource( 15 )]
-position = Vector2( -2023.89, 1217.16 )
+position = Vector2( -1883.26, 1192.32 )
 
 [node name="Shroom3" parent="YSort/DecorationNBoundaries" instance=ExtResource( 16 )]
 position = Vector2( -533.979, 2225.05 )
@@ -325,12 +337,12 @@ position = Vector2( -1694.13, 2609.22 )
 position = Vector2( -1630.15, 2612.65 )
 
 [node name="Thorn" parent="YSort/DecorationNBoundaries" instance=ExtResource( 23 )]
-position = Vector2( -1887.08, 531.04 )
+position = Vector2( -1731.03, 585.374 )
 rotation = 0.695286
 
 [node name="Thorn3" parent="YSort/DecorationNBoundaries" instance=ExtResource( 21 )]
-position = Vector2( 25.4264, 988.193 )
-rotation = 2.91329
+position = Vector2( -148.142, 871.965 )
+rotation = 6.03299
 
 [node name="GrassBlade10" parent="YSort/DecorationNBoundaries" instance=ExtResource( 19 )]
 position = Vector2( -1166.29, 3128.09 )
@@ -506,10 +518,29 @@ position = Vector2( -781.65, 3068.07 )
 [node name="GrassBlade22" parent="YSort/DecorationNBoundaries" instance=ExtResource( 26 )]
 position = Vector2( -963.042, 3284.94 )
 
+[node name="Thorn2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 30 )]
+position = Vector2( -1398.06, 655.498 )
+rotation = 0.391968
+
+[node name="Thorn4" parent="YSort/DecorationNBoundaries" instance=ExtResource( 29 )]
+position = Vector2( -529.069, 675.823 )
+rotation = -0.741013
+
+[node name="Leafs" parent="YSort/DecorationNBoundaries" instance=ExtResource( 31 )]
+position = Vector2( -1580.52, 1880.43 )
+
+[node name="Leafs2" parent="YSort/DecorationNBoundaries" instance=ExtResource( 31 )]
+position = Vector2( -2054.13, 838.253 )
+
+[node name="Thorn5" parent="YSort/DecorationNBoundaries" instance=ExtResource( 30 )]
+visible = false
+position = Vector2( -981.019, 543.654 )
+rotation = 1.38046
+
 [node name="RedAphids" type="YSort" parent="YSort"]
 
 [node name="RedAphid1" parent="YSort/RedAphids" instance=ExtResource( 25 )]
-position = Vector2( -2153.35, 1256.35 )
+position = Vector2( -2029.28, 1227.97 )
 
 [node name="RedAphid2" parent="YSort/RedAphids" instance=ExtResource( 25 )]
 position = Vector2( -2088.35, 1337.45 )

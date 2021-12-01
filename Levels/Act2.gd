@@ -376,7 +376,8 @@ func _on_ShroomTrigger_body_entered(body):
 	GameEvents.trigger_unique_event("shroom_fist_dialog")
 
 func shroom_fist_dialog():
-	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 2600.0
+	var player_acc = GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH
+	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = player_acc - 350
 	cordy.grow_first()
 	yield(get_tree().create_timer(3), "timeout")
 	SoundPlayer.switch_to_psychedelic()
@@ -412,7 +413,7 @@ func shroom_fist_dialog():
 	cordy.say_bottom("Bring me to your queen!", 1)
 	cordy.set_eyes("idle")
 	yield(cordy, "speech_done")
-	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = 3000.0
+	GameStatus.CURRENT_PLAYER.OLD_DEFAULT_ACC_STRENGTH = player_acc
 
 
 func _on_TransitionZone_body_entered(body: Node) -> void:

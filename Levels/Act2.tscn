@@ -567,7 +567,7 @@ rotation = 5.50793
 scale = Vector2( 2, 2.30736 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 16345.1, 966.309 )
+position = Vector2( 2159.45, -1017.25 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -1267,23 +1267,18 @@ position = Vector2( 17776.6, 307.135 )
 [node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="0"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 4 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="3"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="4"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="5"]
 position = Vector2( 0.5, -2.00012 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="15"]
 parameters/playback = SubResource( 5 )
@@ -1765,7 +1760,7 @@ texture = ExtResource( 6 )
 shape = SubResource( 22 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 1 )]
-position = Vector2( 16345.4, 960.199 )
+position = Vector2( 2159.07, -1018.05 )
 rotation = -0.000373805
 
 [node name="Positions" type="Node2D" parent="."]

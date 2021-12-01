@@ -745,7 +745,7 @@ z_index = 1
 
 [node name="AnimatedSprite" parent="YSort/StickDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 3
+frame = 5
 
 [node name="StickDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -756,7 +756,7 @@ scale = Vector2( 2.749, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StickDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 3
+frame = 5
 
 [node name="StoneDust2" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -766,7 +766,6 @@ scale = Vector2( 3, -3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust2" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 4
 
 [node name="StoneDust" parent="YSort" instance=ExtResource( 35 )]
 visible = false
@@ -776,7 +775,6 @@ scale = Vector2( 3, 3 )
 
 [node name="AnimatedSprite" parent="YSort/StoneDust" index="0"]
 modulate = Color( 0.752941, 0.752941, 0.752941, 0.8 )
-frame = 4
 
 [node name="Thorn" parent="YSort" instance=ExtResource( 20 )]
 position = Vector2( 12674.2, 441.046 )
@@ -1264,23 +1262,27 @@ position = Vector2( 17218.7, 1267.45 )
 [node name="Thrower" parent="YSort/Room/Enemies" instance=ExtResource( 14 )]
 position = Vector2( 17776.6, 307.135 )
 
-[node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="0"]
+[node name="Sprite" parent="YSort/Room/Enemies/Thrower" index="1"]
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 4 )
 
-[node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="2"]
+[node name="Hitbox" parent="YSort/Room/Enemies/Thrower" index="3"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
-[node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="3"]
+[node name="Hurtbox" parent="YSort/Room/Enemies/Thrower" index="4"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
-[node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="4"]
+[node name="SoftCollision" parent="YSort/Room/Enemies/Thrower" index="5"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
-[node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="5"]
+[node name="PhysicsCollisionShape" parent="YSort/Room/Enemies/Thrower" index="6"]
 position = Vector2( 0.5, -2.00012 )
+scale = Vector2( 1, 1 )
 
-[node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="15"]
+[node name="AnimationTree" parent="YSort/Room/Enemies/Thrower" index="16"]
 parameters/playback = SubResource( 5 )
 
 [node name="Guard1" parent="YSort/Room/Enemies" instance=ExtResource( 14 )]
@@ -2045,6 +2047,7 @@ autostart = true
 [editable path="YSort/StoneDust2"]
 [editable path="YSort/StoneDust"]
 [editable path="YSort/Room/Enemies/Thrower"]
+[editable path="YSort/Room/Enemies/Thrower/Shadows"]
 [editable path="YSort/Room/Enemies/Thrower/Hurtbox"]
 [editable path="YSort/Room/Enemies/Thrower/StateMachine/Sprint/DashStuff"]
 [editable path="YSort/Room/Enemies/Thrower/StateMachine/ShootRadial/EnemyProjectileSpawner"]

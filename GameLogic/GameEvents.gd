@@ -16,6 +16,7 @@ signal small_chase
 signal stick_close
 signal room_checkpoint
 signal room_cutscene
+signal after_room_fight
 
 # arena
 signal learn_shoot

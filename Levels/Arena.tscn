@@ -237,12 +237,12 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -25.5283, 1465.2, 0, 0, 0, 0, -50.9027, 1247.4, 0, 0, 0, 0, 41.0664, 1126.52, 0, 0, 0, 0, 15.6565, 1002.76, 0, 0, 0, 0, 136.755, 840.138, 0, 0, 0, 0, 93.438, 666.593 )
 }
 
-[sub_resource type="Curve2D" id=26]
+[sub_resource type="Curve2D" id=16]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 451.632, 985.169, 0, 0, 0, 0, 464.604, 1059.17, 0, 0, 0, 0, 424.583, 1116.16, 0, 0, 0, 0, 361.574, 1139.14, 0, 0, 0, 0, 302.573, 1144.11, 0, 0, 0, 0, 241.577, 1132.09, 0, 0, 0, 0, 193.599, 1072.07, 0, 0, 0, 0, 197.63, 990.074, 0, 0, 0, 0, 248.652, 932.093, 0, 0, 0, 0, 422.654, 926.158, 0, 0, 0, 0, 455.643, 955.171, 0, 0, 0, 0, 499.624, 1005.19, 0, 0, 0, 0, 470.587, 1104.18, 0, 0, 0, 0, 395.567, 1160.15, 0, 0, 0, 0, 322.566, 1162.12, 0, 0, 0, 0, 216.576, 1135.08, 0, 0, 0, 0, 180.596, 1082.07, 0, 0, 0, 0, 180.632, 984.068, 0, 0, 0, 0, 271.664, 898.102, 0, 0, 0, 0, 468.657, 919.176 )
 }
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=17]
 script/source = "extends Path2D
 class_name AphidPath
 
@@ -278,20 +278,20 @@ func _on_Tween_tween_all_completed() -> void:
 	$Timer.start(rand_range(min_wait, max_wait))
 "
 
-[sub_resource type="Curve2D" id=16]
+[sub_resource type="Curve2D" id=18]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2576.54, 807.365, 0, 0, 0, 0, -2444.98, 701.348, 0, 0, 0, 0, -2272.41, 615.146, 0, 0, 0, 0, -2251.15, 486.46, 0, 0, 0, 0, -2285.03, 333.712, 0, 0, 0, 0, -2210.06, 272.929 )
 }
 
-[sub_resource type="Curve2D" id=17]
+[sub_resource type="Curve2D" id=19]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.48157, -32.2117, 0, 0, 0, 0, -152.952, -277.265, 0, 0, 0, 0, 20.8488, -478.543, 0, 0, 0, 0, 59.2173, -638.89, 0, 0, 0, 0, -208.902, -748.571, 0, 0, 0, 0, -522.492, -766.506, 0, 0, 0, 0, -414.577, -1077.39 )
 }
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 3043, 130 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 1436.74, 31.9026 )
 
 [sub_resource type="GDScript" id=28]
@@ -311,16 +311,16 @@ extents = Vector2( 2519, 2489 )
 [sub_resource type="CircleShape2D" id=20]
 radius = 1180.02
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=23]
 radius = 309.958
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 134.778, 972.412 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 1165.02, 95.6447 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 659.301, 95.6447 )
 
 [sub_resource type="CircleShape2D" id=25]
@@ -1101,8 +1101,8 @@ scale = Vector2( 2, 2 )
 position = Vector2( 1195.12, -5173.53 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid8" index="0"]
-curve = SubResource( 26 )
-script = SubResource( 27 )
+curve = SubResource( 16 )
+script = SubResource( 17 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid8/AphidPath" index="0"]
 position = Vector2( 451.632, 985.169 )
@@ -1115,7 +1115,7 @@ scale = Vector2( 2, 2 )
 position = Vector2( 2090.27, -5233.05 )
 
 [node name="AphidPath" parent="YSort/Aphids/AphidPathWithAphid6" index="0"]
-curve = SubResource( 16 )
+curve = SubResource( 18 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid6/AphidPath" index="0"]
 position = Vector2( -2576.54, 807.365 )
@@ -1138,7 +1138,7 @@ position = Vector2( 1215.03, -736.841 )
 
 [node name="AphidPath" parent="YSort/PreArena/AphidPathWithAphid7" index="0"]
 position = Vector2( -0.0116425, 31.1128 )
-curve = SubResource( 17 )
+curve = SubResource( 19 )
 
 [node name="PathFollow2D" parent="YSort/PreArena/AphidPathWithAphid7/AphidPath" index="0"]
 position = Vector2( -2.48157, -32.2117 )
@@ -1297,11 +1297,20 @@ position = Vector2( 4017.89, -6862.29 )
 [node name="GrassBlade12" parent="YSort/PostArena" instance=ExtResource( 27 )]
 position = Vector2( 3721.87, -6954.47 )
 
+[node name="GrassBlade14" parent="YSort/PostArena" instance=ExtResource( 27 )]
+position = Vector2( 3800.09, -7011.62 )
+
+[node name="GrassBlade15" parent="YSort/PostArena" instance=ExtResource( 27 )]
+position = Vector2( 3912.79, -7045.22 )
+
 [node name="GrassBlade3" parent="YSort/PostArena" instance=ExtResource( 15 )]
 position = Vector2( 3894.78, -6962.76 )
 
 [node name="GrassBlade4" parent="YSort/PostArena" instance=ExtResource( 9 )]
 position = Vector2( 3897.39, -6886.04 )
+
+[node name="GrassBlade16" parent="YSort/PostArena" instance=ExtResource( 9 )]
+position = Vector2( 3859.61, -7060.96 )
 
 [node name="GrassBlade6" parent="YSort/PostArena" instance=ExtResource( 9 )]
 position = Vector2( 3971.04, -6955.86 )
@@ -1324,6 +1333,20 @@ position = Vector2( 3984.48, -6718.45 )
 [node name="Bush" parent="YSort/PostArena" instance=ExtResource( 42 )]
 position = Vector2( 5179.2, -7329.36 )
 rotation = -0.971511
+
+[node name="Stone" parent="YSort/PostArena" instance=ExtResource( 24 )]
+position = Vector2( 4041.67, -6643.47 )
+scale = Vector2( 3, 3 )
+
+[node name="Stone2" parent="YSort/PostArena" instance=ExtResource( 24 )]
+position = Vector2( 4146.69, -6696.43 )
+rotation = -0.891798
+scale = Vector2( 3, 3 )
+
+[node name="Stone3" parent="YSort/PostArena" instance=ExtResource( 24 )]
+position = Vector2( 4045.86, -6589.17 )
+rotation = -0.13914
+scale = Vector2( 3, 3 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -1373,7 +1396,7 @@ position = Vector2( 881.184, -2600.98 )
 
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint5/TriggerArea" index="0"]
 position = Vector2( 10, -206 )
-shape = SubResource( 18 )
+shape = SubResource( 20 )
 
 [node name="Position" parent="Checkpoints/Checkpoint5" index="1"]
 position = Vector2( 17, -220 )
@@ -1384,7 +1407,7 @@ position = Vector2( 1048.36, 726.021 )
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint4/TriggerArea" index="0"]
 position = Vector2( 566.82, -239 )
 rotation = 0.36279
-shape = SubResource( 19 )
+shape = SubResource( 21 )
 
 [node name="Position" parent="Checkpoints/Checkpoint4" index="1"]
 position = Vector2( 20.9763, -283.4 )
@@ -1410,7 +1433,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/Wave1TriggerZone"]
 position = Vector2( -24.9, -1131.54 )
-shape = SubResource( 20 )
+shape = SubResource( 22 )
 
 [node name="ShroomDialogZone" type="Area2D" parent="Detector"]
 position = Vector2( -105.606, -3529.87 )
@@ -1419,7 +1442,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 21 )
+shape = SubResource( 23 )
 
 [node name="ShroomDialogZone2" type="Area2D" parent="Detector"]
 position = Vector2( 1568.11, -3481.72 )
@@ -1428,7 +1451,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomDialogZone2"]
 position = Vector2( 223.248, 247.221 )
-shape = SubResource( 21 )
+shape = SubResource( 23 )
 
 [node name="ShroomSkillTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -1439,7 +1462,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger"]
 position = Vector2( 344.667, -56.042 )
 rotation = -0.581763
-shape = SubResource( 22 )
+shape = SubResource( 24 )
 
 [node name="ShroomSkillTrigger2" type="Area2D" parent="Detector"]
 position = Vector2( 1422.8, 70.5942 )
@@ -1450,7 +1473,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShroomSkillTrigger2"]
 position = Vector2( 269.965, -112.9 )
 rotation = 0.397483
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="PrePhoTrigger" type="Area2D" parent="Detector"]
 position = Vector2( 903.661, -605.343 )
@@ -1461,7 +1484,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PrePhoTrigger"]
 position = Vector2( 240.989, -463.287 )
 rotation = -0.0188068
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="DynamicCameraTrigger" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
@@ -1472,7 +1495,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/DynamicCameraTrigger"]
 position = Vector2( -26.23, 472.49 )
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="DynamicPlayerCam" parent="Detector/DynamicCameraTrigger" instance=ExtResource( 40 )]
 
@@ -1487,21 +1510,22 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/ShotcallerPostFightTrigger"]
 position = Vector2( -26.23, 472.49 )
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="DynamicPlayerCam" parent="Detector/ShotcallerPostFightTrigger" instance=ExtResource( 40 )]
 
 [node name="TransitionZone" type="Area2D" parent="Detector"]
 modulate = Color( 1, 1, 1, 0.411765 )
-position = Vector2( 4557.69, -7529.58 )
+position = Vector2( 4649.73, -7547.54 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/TransitionZone"]
+modulate = Color( 0.168627, 0.0509804, 0.0509804, 1 )
 position = Vector2( -193.997, 434.814 )
 rotation = -0.450141
 scale = Vector2( 1, 0.599999 )
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 
 [node name="OutOfBounds" type="Area2D" parent="Detector"]
 position = Vector2( -2645, -1447 )

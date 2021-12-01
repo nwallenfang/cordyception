@@ -43,7 +43,7 @@ func _ready():
 		"SimpleShoot": 1.0,
 		"Sprint": 0.0
 	}
-	var lower_health := 8 # default is 20
+	var lower_health := 6 # default is 20
 	
 	for shooter in [shooter1, shooter2, shooter3]:
 		shooter.set_behavior(shooter_behavior)
@@ -147,7 +147,6 @@ func small_chase():
 	for i in range(5):
 		runpath.append(get_node("Positions/ScoutStick" + str(i+1)).global_position)
 	scout.follow_path_array(runpath)
-	SoundPlayer.switch_music()
 	yield(get_tree().create_timer(.4), "timeout")
 
 	cordy.say("There he is!")
@@ -320,12 +319,23 @@ func room_cutscene():
 	yield(get_tree().create_timer(.7), "timeout")
 	$ScriptedCamera.back_to_player()
 	yield($ScriptedCamera, "back_at_player")
+	
+	GameEvents.connect_to_event_count("enemy_died", GameEvents.count("enemy_died") + 9, self, "after_room_fight")
 	GameStatus.MOVE_ENABLED = true
 	GameStatus.SPRAY_ENABLED = true
 	GameStatus.DASH_ENABLED = true
 	GameStatus.AIMER_VISIBLE = true
 	GameStatus.HEALTH_VISIBLE = true
 
+func after_room_fight():
+	cordy.set_eyes("happy")
+	cordy.say("Great! Now let's get out of here.")
+	SoundPlayer.stop_stage_music()
+	
+	yield(get_tree().create_timer(22.0), "timeout")
+	cordy.say("I've seen an exit somewhere to the right.")
+	cordy.set_eyes("bored")
+	
 func room_checkpoint():
 	cordy.show()
 	GameStatus.MOVE_ENABLED = true
@@ -399,7 +409,9 @@ func shroom_fist_dialog():
 
 
 func _on_TransitionZone_body_entered(body: Node) -> void:
-	SoundPlayer.stop_stage_music()
+	if SoundPlayer.get_node("Stage").playing:
+		SoundPlayer.stop_stage_music()
+	cordy.set_eyes("idle")
 	$ScriptedCamera.fade_out()
 	yield($ScriptedCamera, "fade_out_finished")
 	get_tree().change_scene("res://Levels/Arena.tscn")

@@ -99,12 +99,27 @@ func _ready():
 	GameEvents.connect("shotcaller_post_fight", self, "shotcaller_post_fight")
 	
 	thorn_shooter.connect("died", self, "shooter_died")
+	
+	if GameEvents.ARENA_LAST_CHECKPOINT:
+		start_from_last_checkpoint()
 
+func start_from_last_checkpoint():
+	wave2_backup()
+	GameStatus.SHOOT_ENABLED = true
+	w1_ant1.queue_free()
+	w1_ant2.queue_free()
+	w1_ant3.queue_free()
+	w1_ant4.queue_free()
+	w2_pho1.queue_free()
+	w2_pho2.queue_free()
+	SoundPlayer.stop_music()
+	SoundPlayer.start_stage_music()
 
 func shotcaller_post_fight():
-	$ScriptedCamera.slide_to_object(shot_caller, 0.4)
-	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.")
-	$ScriptedCamera.back_to_player(0.4)
+	$ScriptedCamera.slide_to_object(shot_caller, 0.5)
+	shot_caller_speech.set_text("Luckily I'm safe behind these rocks.", 1.0)
+	yield(shot_caller_speech, "dialog_completed")
+	$ScriptedCamera.back_to_player(0.5)
 
 func learn_shoot():
 	cordy.say_bottom("I have prepared a new skill for you to use.")
@@ -248,6 +263,8 @@ func boss_dead():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 
 func wave2_backup():
+	$Checkpoints/Checkpoint6/TriggerArea.monitorable = true
+	$Checkpoints/Checkpoint6/TriggerArea.monitoring = true
 	w2_raphid1.visible = true
 	w2_raphid2.visible = true
 	w2_raphid3.visible = true
@@ -500,3 +517,7 @@ func _on_OutOfBounds2_body_entered(body: Node) -> void:
 		yield(cordy,"speech_done")
 		cordy.say_bottom("There is really nothing out here...")
 
+
+
+func _on_TriggerAreaLastCP_body_entered(body: Node) -> void:
+	GameEvents.ARENA_LAST_CHECKPOINT = true

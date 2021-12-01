@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=2]
@@ -294,6 +294,20 @@ extents = Vector2( 3043, 130 )
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 1436.74, 31.9026 )
 
+[sub_resource type="GDScript" id=28]
+script/source = "extends Node2D
+
+func _on_TriggerArea_body_entered(body: Node) -> void:
+	if body as Player == null:
+		print(\"WARNING SOMETHING STRANGE COLLIDING WITH CHECKPOINT\")
+	
+	GameEvents.trigger_event_with_arg(\"checkpoint_collected\", {\"name\":name, 
+	\"position\":$Position.global_position, \"current_events\": GameEvents.EVENT_COUNTER.duplicate()})
+"
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 2519, 2489 )
+
 [sub_resource type="CircleShape2D" id=20]
 radius = 1180.02
 
@@ -310,7 +324,7 @@ extents = Vector2( 1165.02, 95.6447 )
 extents = Vector2( 659.301, 95.6447 )
 
 [sub_resource type="CircleShape2D" id=25]
-radius = 638.614
+radius = 565.988
 
 [node name="Arena" type="Node2D"]
 position = Vector2( -5.18408, -0.020752 )
@@ -1091,7 +1105,7 @@ curve = SubResource( 26 )
 script = SubResource( 27 )
 
 [node name="PathFollow2D" parent="YSort/Aphids/AphidPathWithAphid8/AphidPath" index="0"]
-position = Vector2( -25.5283, 1465.2 )
+position = Vector2( 451.632, 985.169 )
 
 [node name="Aphid" parent="YSort/Aphids/AphidPathWithAphid8" index="1"]
 position = Vector2( 99.7625, 652.459 )
@@ -1375,6 +1389,18 @@ shape = SubResource( 19 )
 [node name="Position" parent="Checkpoints/Checkpoint4" index="1"]
 position = Vector2( 20.9763, -283.4 )
 
+[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource( 32 )]
+position = Vector2( 907.184, -3940.98 )
+script = SubResource( 28 )
+
+[node name="TriggerArea" parent="Checkpoints/Checkpoint6" index="0"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint6/TriggerArea" index="0"]
+visible = false
+shape = SubResource( 29 )
+
 [node name="Detector" type="Node" parent="."]
 
 [node name="Wave1TriggerZone" type="Area2D" parent="Detector"]
@@ -1533,6 +1559,7 @@ bus = "Music"
 
 [connection signal="body_entered" from="Checkpoints/Checkpoint5/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint4/TriggerArea" to="." method="_on_TriggerAreaAtBeginning_body_entered"]
+[connection signal="body_entered" from="Checkpoints/Checkpoint6/TriggerArea" to="." method="_on_TriggerAreaLastCP_body_entered"]
 [connection signal="body_entered" from="Detector/Wave1TriggerZone" to="." method="_on_Wave1TriggerZone_body_entered"]
 [connection signal="body_entered" from="Detector/ShroomDialogZone" to="." method="_on_ShroomDialogZone_body_entered"]
 [connection signal="body_entered" from="Detector/ShroomDialogZone2" to="." method="_on_ShroomDialogZone2_body_entered"]
@@ -1580,5 +1607,6 @@ bus = "Music"
 [editable path="YSort/PreArena/AphidPathWithAphid7/Aphid"]
 [editable path="Checkpoints/Checkpoint5"]
 [editable path="Checkpoints/Checkpoint4"]
+[editable path="Checkpoints/Checkpoint6"]
 [editable path="Detector/DynamicCameraTrigger/DynamicPlayerCam"]
 [editable path="Tutorials/TutorialShoot"]

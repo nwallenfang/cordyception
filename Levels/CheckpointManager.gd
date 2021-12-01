@@ -25,6 +25,7 @@ func player_died():
 	GameStatus.AIMER_VISIBLE = false
 	GameStatus.PLAYERHURT_ENABLED = false
 	if SoundPlayer.get_node("Stage").playing:
+		print("stop stage music")
 		SoundPlayer.stop_stage_music()
 	else:
 		SoundPlayer.stop_music()

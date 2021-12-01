@@ -958,7 +958,6 @@ scale = Vector2( 2.5, 2.5 )
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 7 )
 position = Vector2( 0.614258, 0.000488281 )
-frame = 19
 
 [node name="Hitbox" parent="YSort/Wave2Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99976 )
@@ -1570,6 +1569,10 @@ bus = "Music"
 
 [node name="FadeOut" type="Tween" parent="."]
 
+[node name="StageMusicStarter" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="body_entered" from="Checkpoints/Checkpoint5/TriggerArea" to="." method="_on_TriggerArea_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint4/TriggerArea" to="." method="_on_TriggerAreaAtBeginning_body_entered"]
 [connection signal="body_entered" from="Checkpoints/Checkpoint6/TriggerArea" to="." method="_on_TriggerAreaLastCP_body_entered"]
@@ -1586,6 +1589,7 @@ bus = "Music"
 [connection signal="body_entered" from="Detector/OutOfBounds" to="." method="_on_OutOfBounds_body_entered"]
 [connection signal="body_entered" from="Detector/OutOfBounds2" to="." method="_on_OutOfBounds2_body_entered"]
 [connection signal="tween_all_completed" from="FadeOut" to="." method="_on_FadeOut_tween_all_completed"]
+[connection signal="timeout" from="StageMusicStarter" to="." method="_on_StageMusicStarter_timeout"]
 
 [editable path="YSort/GrassNThorns/GrassBlade16"]
 [editable path="YSort/GrassNThorns/GrassBlade17"]

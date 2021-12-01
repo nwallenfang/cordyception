@@ -47,8 +47,8 @@ func _ready():
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	if GameEvents.ARENA_LAST_CHECKPOINT:
-		print("start stage music")
-		SoundPlayer.start_stage_music()
+		$StageMusicStarter.start()
+		print("start stage music in 1.5 secs")
 	else:
 		SoundPlayer.start_music()
 		if SoundPlayer.combat:
@@ -530,3 +530,8 @@ func _on_OutOfBounds2_body_entered(body: Node) -> void:
 
 func _on_TriggerAreaLastCP_body_entered(body: Node) -> void:
 	GameEvents.ARENA_LAST_CHECKPOINT = true
+
+
+func _on_StageMusicStarter_timeout() -> void:
+	print("start stage music")
+	SoundPlayer.start_stage_music()

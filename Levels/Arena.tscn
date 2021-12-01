@@ -363,7 +363,7 @@ script = ExtResource( 22 )
 rotation = -0.000373805
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 833.047, -2306.67 )
+position = Vector2( -727.969, 991.22 )
 
 [node name="CamRemote" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../ScriptedCamera")
@@ -1293,6 +1293,7 @@ scale = Vector2( 2.5, 2.5 )
 modulate = Color( 0.6, 0, 0, 1 )
 material = SubResource( 18 )
 position = Vector2( 0.614258, 0.000488281 )
+frame = 19
 
 [node name="Hitbox" parent="YSort/Wave3Enemies/AntThrower" index="2"]
 position = Vector2( 0.5, -1.99976 )
@@ -1535,7 +1536,7 @@ position = Vector2( -686, 57 )
 polygon = PoolVector2Array( 3071, 1051, 817, -289, 493, -2524, 671, -174 )
 
 [node name="ScriptedCamera" parent="." instance=ExtResource( 3 )]
-position = Vector2( 832.185, -2306.98 )
+position = Vector2( -727.598, 991.492 )
 rotation = -0.000373805
 
 [node name="OtherShroomSpeech" parent="." instance=ExtResource( 36 )]

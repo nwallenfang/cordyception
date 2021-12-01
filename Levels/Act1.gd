@@ -32,6 +32,11 @@ func _ready() -> void:
 	GameStatus.BOSS_HEALTH_VISIBLE = false
 	GameStatus.set_use_crosshair(GameStatus.USE_CROSSHAIR)
 	
+	if GameEvents.count("player_died") > 0:
+		print("start music")
+		SoundPlayer.combat = false
+		SoundPlayer.start_music()
+	
 #	$YSort/AntEnemy4.set_facing_direction(Vector2.LEFT)
 	GameEvents.connect("dandelion_dialog", self, "dandelion_dialog")
 	GameEvents.connect("dandelion_attack", self, "dandelion_attack")

@@ -482,3 +482,21 @@ func _on_FadeOut_tween_all_completed() -> void:
 
 func _on_TriggerAreaAtBeginning_body_entered(body: Node) -> void:
 	GameStatus.SHOOT_ENABLED = true
+
+var first_out_of_bounds := false
+func _on_OutOfBounds_body_entered(body: Node) -> void:
+	if !first_out_of_bounds:
+		first_out_of_bounds = true
+		cordy.set_eyes("bored")
+		cordy.say("Oh no, you got out of bounds.")
+		yield(cordy, "speech_done")
+		cordy.set_eyes("idle")
+
+var second_out_of_bounds := false
+func _on_OutOfBounds2_body_entered(body: Node) -> void:
+	if !second_out_of_bounds:
+		second_out_of_bounds = true
+		cordy.say("Better get back!")
+		yield(cordy,"speech_done")
+		cordy.say_bottom("There is really nothing out here...")
+

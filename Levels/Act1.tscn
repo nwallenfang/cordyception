@@ -334,6 +334,7 @@ position = Vector2( 6364.04, -680.892 )
 visible = false
 position = Vector2( 0.614258, -0.61441 )
 frames = SubResource( 35 )
+frame = 1
 playing = true
 
 [node name="AntEnemy1" parent="YSort/DandelionRoom" instance=ExtResource( 14 )]
@@ -578,19 +579,15 @@ frame = 18
 
 [node name="Hitbox" parent="YSort/ExitPath/Antertainer" index="2"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="Hurtbox" parent="YSort/ExitPath/Antertainer" index="3"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="SoftCollision" parent="YSort/ExitPath/Antertainer" index="4"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer" index="5"]
 position = Vector2( 0.499512, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer" index="15"]
 parameters/playback = SubResource( 38 )
@@ -606,22 +603,6 @@ position = Vector2( 10213.2, -526.442 )
 [node name="Sprite" parent="YSort/ExitPath/Antertainer2" index="0"]
 material = SubResource( 39 )
 frame = 18
-
-[node name="Hitbox" parent="YSort/ExitPath/Antertainer2" index="2"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="Hurtbox" parent="YSort/ExitPath/Antertainer2" index="3"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="SoftCollision" parent="YSort/ExitPath/Antertainer2" index="4"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
-
-[node name="PhysicsCollisionShape" parent="YSort/ExitPath/Antertainer2" index="5"]
-position = Vector2( 0.5, -2 )
-scale = Vector2( 1, 1 )
 
 [node name="AnimationTree" parent="YSort/ExitPath/Antertainer2" index="15"]
 parameters/playback = SubResource( 40 )
@@ -853,7 +834,6 @@ position = Vector2( 6326.63, -1695.5 )
 polygon = PoolVector2Array( 3307, 661.74, 3147, 614.74, 3143, 571.74, 3104, 554.74, 3037, 544.74, 2975, 544.74, 2895, 586.74, 2695, 625.74, 2654, 739.74, 2685, 797.74, 2742, 813.74, 2774, 806.74, 2802, 781.74, 2825, 802.74, 2977, 776.74, 3047, 797.74, 3129, 870.74, 3209, 867.74, 3239, 896.74, 3291, 901.74, 3336, 880.74, 3374, 885.74, 3337, 921.74, 3259, 942.74, 3079, 943.74, 3048, 928.74, 2928, 842.74, 2663, 841.74, 2582, 809.74, 2562, 755.74, 2650, 606.74, 2870, 566.74, 2977, 518.74, 3135, 537.74, 3168, 593.74, 3302, 643.74 )
 
 [node name="darkness" type="Sprite" parent="."]
-visible = false
 position = Vector2( 2981, 634.74 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 44 )

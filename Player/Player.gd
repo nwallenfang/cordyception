@@ -97,11 +97,13 @@ func state_follow() -> void:
 	
 	var distance_vec := (target_position - self.global_position) as Vector2
 	$AnimationTree.set("parameters/Walk/blend_position", distance_vec)
+	update_shadow(distance_vec)
 	
 	# stop condition	
 	if distance_vec.length() < STOP_DISTANCE:
 		# set idle position to same as follow so it looks nicer after moving
 		$AnimationTree.set("parameters/Idle/blend_position", distance_vec)
+		update_shadow(distance_vec)
 		emit_signal("follow_completed")
 		set_state(State.IDLE)
 		
@@ -141,15 +143,20 @@ func state_shoot() -> void:
 		animation_state.travel("Shoot")
 		state_blocked = true
 	$AnimationTree.set("parameters/Shoot/blend_position", Vector2.UP.rotated(aim_direction))
+	update_shadow(Vector2.UP.rotated(aim_direction))
 	accelerate_and_move(last_delta)
 
 func state_poison() -> void:
 	var sound_is_over = (not state_first_frame) and (not $Sounds/PoisonCloud.playing)
-	if !Input.is_action_pressed("player_poison") or sound_is_over:
+	var dash_abort = GameStatus.DASH_ENABLED and Input.is_action_just_pressed("player_dash") and dash_stuff.is_cooldown_ready()
+	if !Input.is_action_pressed("player_poison") or sound_is_over or dash_abort:
 		poison.active = false
 		set_state(State.IDLE)
 		$Sounds/PoisonCloud.stop()
 		GameStatus.emit_signal("stop_spray")
+		if dash_abort:
+			set_state(State.DASH)
+			state_dash()
 		return
 	if state_first_frame:
 		$Sounds/PoisonCloud.play()
@@ -217,12 +224,16 @@ func _physics_process(delta: float) -> void:
 		evaluate_action_input()
 	match_state()
 
+func update_shadow(direction: Vector2) -> void:
+	$Shadows/AnimationTree.set("parameters/blend_position", direction)
+
 # update the direction values for the animation tree
 func update_animation_facing(direction: Vector2) -> void:
 	if direction != Vector2.ZERO and GameStatus.MOVE_ENABLED:
 		facing = direction
 		$AnimationTree.set("parameters/Idle/blend_position", facing)
 		$AnimationTree.set("parameters/Walk/blend_position", facing)
+		update_shadow(facing)
 
 func update_aim() -> void:
 	update_mouse_aim()

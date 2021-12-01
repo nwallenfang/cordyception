@@ -1,6 +1,9 @@
 extends AbstractState
 
 
+func _ready() -> void:
+	$EnemyProjectileSpawner.stay_forever = true
+
 var direction: float # will be set from process
 func shoot_projectiles():
 	# wait for shoot delay

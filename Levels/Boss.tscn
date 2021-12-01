@@ -570,7 +570,7 @@ position = Vector2( 32.1362, -61.9116 )
 [node name="Detector" type="Node" parent="."]
 
 [node name="DynamicCameraZone" type="Area2D" parent="Detector"]
-modulate = Color( 0.188235, 0.188235, 0.188235, 0.290196 )
+modulate = Color( 0.188235, 0.188235, 0.188235, 0.243137 )
 collision_layer = 0
 collision_mask = 2
 

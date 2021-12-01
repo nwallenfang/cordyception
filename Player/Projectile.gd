@@ -15,7 +15,8 @@ onready var velocity := SPEED * direction
 
 func _ready():
 	$AnimationPlayer.play("active")
-	# color depending on FRIENDLY / ENEMY
+	yield(get_tree().create_timer(3.0), "timeout")
+	
 
 func set_direction(new_dir: Vector2):
 	direction = new_dir
@@ -52,3 +53,7 @@ func _on_Hitbox_body_entered(body: Node) -> void:
 	# Projectile hit a wall
 	self.velocity = Vector2.ZERO
 	$AnimationPlayer.play("obstacle_collision")
+
+
+func _on_FadeOut_tween_all_completed() -> void:
+	call_deferred("queue_free")

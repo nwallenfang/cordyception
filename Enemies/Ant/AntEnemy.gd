@@ -124,7 +124,7 @@ func _on_Hurtbox_area_entered(area: Area2D) -> void:
 func _on_EnemyStats_health_changed() -> void:
 	$Healthbar.health = $EnemyStats.health
 
-
+var first_time_entering = true
 func _on_EnemyStats_health_zero() -> void:
 	$Healthbar.visible = false
 	$StateLabel.visible = false
@@ -141,7 +141,9 @@ func _on_EnemyStats_health_zero() -> void:
 	animation_state.travel("Idle")
 	$AnimationPlayer.play("dying")  # queue_free is called at the end of this
 	
-	GameEvents.trigger_event("enemy_died")
+	if first_time_entering:
+		GameEvents.trigger_event("enemy_died")
+		first_time_entering = false
 	emit_signal("died")
 
 
